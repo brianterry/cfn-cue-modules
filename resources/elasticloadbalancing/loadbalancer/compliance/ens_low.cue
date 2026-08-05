@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancing/loa
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#ens_low & { ... }
-#ens_low: loadbalancer.#Resource & #Anexo_II_4_1_2_a;_b;_c & #Anexo_II_4_2_6_c & #Anexo_II_4_1_2_a;_b;_c_2
+#ens_low: loadbalancer.#Resource & #Anexo_II_4_1_2_a__b__c & #Anexo_II_4_2_6_c & #Anexo_II_4_1_2_a__b__c_2
 
 // Guard rule: ELB_CROSS_ZONE_LOAD_BALANCING_ENABLED
-#Anexo_II_4_1_2_a;_b;_c: {
+#Anexo_II_4_1_2_a__b__c: {
 	// No clauses extracted — manual review needed
 	...
 }
@@ -21,7 +21,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancing/loa
 }
 
 // Guard rule: ELB_TLS_HTTPS_LISTENERS_ONLY
-#Anexo_II_4_1_2_a;_b;_c_2: {
+#Anexo_II_4_1_2_a__b__c_2: {
 	// No clauses extracted — manual review needed
 	...
 }

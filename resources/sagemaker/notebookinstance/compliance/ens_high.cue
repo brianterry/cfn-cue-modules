@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstan
 
 // #ens_high enforces all ens-high controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#ens_high & { ... }
-#ens_high: notebookinstance.#Resource & #Anexo_II_4_1_2_a;_b;_c & #Anexo_II_4_3_2_b
+#ens_high: notebookinstance.#Resource & #Anexo_II_4_1_2_a__b__c & #Anexo_II_4_3_2_b
 
 // Guard rule: SAGEMAKER_NOTEBOOK_INSTANCE_KMS_KEY_CONFIGURED
-#Anexo_II_4_1_2_a;_b;_c: {
+#Anexo_II_4_1_2_a__b__c: {
 	Properties: KmsKeyId: _ & !=_|_
 	...
 }

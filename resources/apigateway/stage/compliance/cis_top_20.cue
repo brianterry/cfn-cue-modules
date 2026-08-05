@@ -6,10 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/apigateway/stage"
 
 // #cis_top_20 enforces all cis-top-20 controls for this resource.
 // Unify with #Resource: myResource: stage.#Resource & compliance.#cis_top_20 & { ... }
-#cis_top_20: stage.#Resource & #CIS_13
+#cis_top_20: stage.#Resource & #CIS_13 & #CIS_6
 
 // Guard rule: API_GW_CACHE_ENABLED_AND_ENCRYPTED
 #CIS_13: {
+	// No clauses extracted — manual review needed
+	...
+}
+
+// Guard rule: API_GW_EXECUTION_LOGGING_ENABLED
+#CIS_6: {
 	// No clauses extracted — manual review needed
 	...
 }

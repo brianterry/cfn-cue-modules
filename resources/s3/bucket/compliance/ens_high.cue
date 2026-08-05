@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #ens_high enforces all ens-high controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#ens_high & { ... }
-#ens_high: bucket.#Resource & #Anexo_II_4_1_2_a;_b;_c & #Anexo_II_4_3_2_b & #Anexo_II_4_2_6_c & #Anexo_II_4_3_2_b_2 & #Anexo_II_4_3_2_b_3 & #Anexo_II_4_3_10_d & #Anexo_II_4_1_2_a;_b;_c_2 & #Art__25 & #Anexo_II_4_1_2_a;_b;_c_3
+#ens_high: bucket.#Resource & #Anexo_II_4_1_2_a__b__c & #Anexo_II_4_3_2_b & #Anexo_II_4_2_6_c & #Anexo_II_4_3_2_b_2 & #Anexo_II_4_3_2_b_3 & #Anexo_II_4_3_10_d & #Anexo_II_4_1_2_a__b__c_2 & #Art__25 & #Anexo_II_4_1_2_a__b__c_3
 
 // Guard rule: S3_BUCKET_DEFAULT_LOCK_ENABLED
-#Anexo_II_4_1_2_a;_b;_c: {
+#Anexo_II_4_1_2_a__b__c: {
 	Properties: ObjectLockEnabled: _ & !=_|_
 	Properties: ObjectLockEnabled: true
 	...
@@ -58,7 +58,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
-#Anexo_II_4_1_2_a;_b;_c_2: {
+#Anexo_II_4_1_2_a__b__c_2: {
 	Properties: BucketEncryption: _ & !=_|_
 	Properties: BucketEncryption: ServerSideEncryptionConfiguration: [...{
 		ServerSideEncryptionByDefault: SSEAlgorithm: "aws:kms" | "AES256"
@@ -75,7 +75,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_DEFAULT_ENCRYPTION_KMS
-#Anexo_II_4_1_2_a;_b;_c_3: {
+#Anexo_II_4_1_2_a__b__c_3: {
 	Properties: BucketEncryption: _ & !=_|_
 	Properties: BucketEncryption: ServerSideEncryptionConfiguration: [...{
 		ServerSideEncryptionByDefault: SSEAlgorithm: "aws:kms" | "AES256"

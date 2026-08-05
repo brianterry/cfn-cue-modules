@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/secretsmanager/secret"
 
 // #ens_medium enforces all ens-medium controls for this resource.
 // Unify with #Resource: myResource: secret.#Resource & compliance.#ens_medium & { ... }
-#ens_medium: secret.#Resource & #Anexo_II_4_1_2_a;_b;_c
+#ens_medium: secret.#Resource & #Anexo_II_4_1_2_a__b__c
 
 // Guard rule: SECRETSMANAGER_USING_CMK
-#Anexo_II_4_1_2_a;_b;_c: {
+#Anexo_II_4_1_2_a__b__c: {
 	Properties: KmsKeyId: _ & !=_|_
 	Properties: KmsKeyId: "alias/aws/secretsmanager"
 	...

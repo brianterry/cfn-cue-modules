@@ -6,10 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/apigateway/stage"
 
 // #nzism enforces all nzism controls for this resource.
 // Unify with #Resource: myResource: stage.#Resource & compliance.#nzism & { ... }
-#nzism: stage.#Resource & #ctrl_2082
+#nzism: stage.#Resource & #ctrl_2082 & #ctrl_2013
 
 // Guard rule: API_GW_CACHE_ENABLED_AND_ENCRYPTED
 #ctrl_2082: {
+	// No clauses extracted — manual review needed
+	...
+}
+
+// Guard rule: API_GW_EXECUTION_LOGGING_ENABLED
+#ctrl_2013: {
 	// No clauses extracted — manual review needed
 	...
 }
