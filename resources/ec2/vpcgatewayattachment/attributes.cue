@@ -1,0 +1,11 @@
+package vpcgatewayattachment
+
+// #Attributes defines the read-only attributes returned by this resource.
+// These are the values available via Fn::GetAtt.
+//
+// Usage:
+//   fn.#GetAtt & {_logicalName: "MyResource", _attribute: "<attribute name>"}
+#Attributes: {
+	// Used to identify if this resource is an Internet Gateway or Vpn Gateway Attachment 
+	AttachmentType: string
+}

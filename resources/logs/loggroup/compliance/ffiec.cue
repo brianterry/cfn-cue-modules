@@ -1,0 +1,24 @@
+// ffiec compliance constraints for this resource.
+// Generated from aws-guard-rules-registry Guard rules.
+package compliance
+
+import "github.com/brianterry/cfn-cue-modules/resources/loggroup"
+
+// #ffiec enforces all ffiec controls for this resource.
+// Unify with #Resource: myResource: loggroup.#Resource & compliance.#ffiec & { ... }
+#ffiec: loggroup.#Resource & #D5_DR_De_B_1 & #D2_MA_Ma_B_1
+
+// Guard rule: CLOUDWATCH_ALARM_ACTION_CHECK
+#D5_DR_De_B_1: {
+	Properties: AlarmActions: _ & !=_|_
+	Properties: OKActions: _ & !=_|_
+	Properties: InsufficientDataActions: _ & !=_|_
+	...
+}
+
+// Guard rule: CW_LOGGROUP_RETENTION_PERIOD_CHECK
+#D2_MA_Ma_B_1: {
+	Properties: RetentionInDays: 1 | 3 | 5 | 7 | 14 | 30 | 60 | 90 | 120 | 150 | 180 | 365 | 400 | 545 | 731 | 1827 | 3653
+	...
+}
+

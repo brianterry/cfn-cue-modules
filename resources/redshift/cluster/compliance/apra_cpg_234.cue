@@ -1,0 +1,30 @@
+// apra-cpg-234 compliance constraints for this resource.
+// Generated from aws-guard-rules-registry Guard rules.
+package compliance
+
+import "github.com/brianterry/cfn-cue-modules/resources/cluster"
+
+// #apra_cpg_234 enforces all apra-cpg-234 controls for this resource.
+// Unify with #Resource: myResource: cluster.#Resource & compliance.#apra_cpg_234 & { ... }
+#apra_cpg_234: cluster.#Resource & #52c & #36b & #36d
+
+// Guard rule: REDSHIFT_CLUSTER_CONFIGURATION_CHECK
+#52c: {
+	Properties: Encrypted: true
+	...
+}
+
+// Guard rule: REDSHIFT_CLUSTER_MAINTENANCESETTINGS_CHECK
+#36b: {
+	Properties: PreferredMaintenanceWindow: _ & !=_|_
+	Properties: AllowVersionUpgrade: true
+	Properties: AutomatedSnapshotRetentionPeriod: >0
+	...
+}
+
+// Guard rule: REDSHIFT_ENHANCED_VPC_ROUTING_ENABLED
+#36d: {
+	Properties: EnhancedVpcRouting: true
+	...
+}
+

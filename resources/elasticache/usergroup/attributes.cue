@@ -1,0 +1,13 @@
+package usergroup
+
+// #Attributes defines the read-only attributes returned by this resource.
+// These are the values available via Fn::GetAtt.
+//
+// Usage:
+//   fn.#GetAtt & {_logicalName: "MyResource", _attribute: "<attribute name>"}
+#Attributes: {
+	// Indicates user group status. Can be "creating", "active", "modifying", "deleting".
+	Status: string
+	// The Amazon Resource Name (ARN) of the user account.
+	Arn: string
+}

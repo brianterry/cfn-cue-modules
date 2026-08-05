@@ -1,0 +1,49 @@
+package resolverendpoint
+
+#Properties: {
+	// Indicates whether the Resolver endpoint allows inbound or outbound DNS queries:
+- INBOUND: allows DNS queries to your VPC from your network 
+- OUTBOUND: allows DNS queries from your VPC to your network 
+- INBOUND_DELEGATION: allows DNS queries to your VPC from your network with authoritative answers from private hosted zones
+	Direction: string
+	// Specifies whether DNS64 is enabled for the Inbound Resolver Endpoint. When set to true, if a DNS AAAA query is made for a domain that has only an A (IPv4) record, the resolver automatically synthesizes an AAAA (IPv6) response by embedding the IPv4 address into the well-known prefix 64:ff9b::/96. Default is false.
+	Dns64Enabled?: bool
+	// The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC.
+	IpAddresses: [...#IpAddressRequest]
+	// Specifies whether IPv6 Internet Gateway access is enabled through the Outbound Resolver Endpoint. When set to true, this property allows your Endpoint ENIs to reach public IPv6 target nameservers through an internet gateway. Default is false.
+	Ipv6InternetAccessEnabled?: bool
+	// A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console.
+	Name?: string
+	// The ARN (Amazon Resource Name) for the Outpost.
+	OutpostArn?: string
+	// The Amazon EC2 instance type.
+	PreferredInstanceType?: string
+	// Protocols used for the endpoint. DoH-FIPS is applicable for inbound endpoints only.
+	Protocols?: [...string]
+	// The Resolver endpoint IP address type.
+	ResolverEndpointType?: "IPV6" | "IPV4" | "DUALSTACK"
+	// Specifies whether RNI enhanced metrics are enabled for the Resolver Endpoints. When set to true, one-minute granular metrics are published in CloudWatch for each RNI associated with this endpoint. When set to false, metrics are not published. Default is false.
+	RniEnhancedMetricsEnabled?: bool
+	// The ID of one or more security groups that control access to this VPC. The security group must include one or more inbound rules (for inbound endpoints) or outbound rules (for outbound endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network.
+	SecurityGroupIds: [...string]
+	// An array of key-value pairs to apply to this resource.
+	Tags?: [...#Tag]
+	// Specifies whether target name server metrics are enabled for the Outbound Resolver Endpoint. When set to true, one-minute granular metrics are published in CloudWatch for each target name server associated with this endpoint. When set to false, metrics are not published. Default is false.
+	TargetNameServerMetricsEnabled?: bool
+}
+
+#IpAddressRequest: {
+	// The IPv4 address that you want to use for DNS queries.
+	Ip?: string
+	// The IPv6 address that you want to use for DNS queries.
+	Ipv6?: string
+	// The ID of the subnet that contains the IP address.
+	SubnetId: string
+}
+
+#Tag: {
+	// The name for the tag. For example, if you want to associate Resolver resources with the account IDs of your customers for billing purposes, the value of Key might be account-id.
+	Key: string
+	// The value for the tag. For example, if Key is account-id, then Value might be the ID of the customer account that you're creating the resource for.
+	Value: string
+}

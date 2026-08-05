@@ -1,0 +1,16 @@
+// ens-high compliance constraints for this resource.
+// Generated from aws-guard-rules-registry Guard rules.
+package compliance
+
+import "github.com/brianterry/cfn-cue-modules/resources/topic"
+
+// #ens_high enforces all ens-high controls for this resource.
+// Unify with #Resource: myResource: topic.#Resource & compliance.#ens_high & { ... }
+#ens_high: topic.#Resource & #Anexo_II_4_1_2_a;_b;_c
+
+// Guard rule: SNS_ENCRYPTED_KMS
+#Anexo_II_4_1_2_a;_b;_c: {
+	Properties: KmsMasterKeyId: _ & !=_|_
+	...
+}
+

@@ -1,0 +1,9 @@
+package storagelens
+
+import "github.com/brianterry/cfn-cue-modules/cfn"
+
+// The AWS::S3::StorageLens resource is an Amazon S3 resource type that you can use to create Storage Lens configurations.
+#Resource: cfn.#ResourceBase & {
+	Type: "AWS::S3::StorageLens"
+	Properties: #Properties
+}

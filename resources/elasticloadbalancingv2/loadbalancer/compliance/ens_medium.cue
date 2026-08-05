@@ -1,0 +1,16 @@
+// ens-medium compliance constraints for this resource.
+// Generated from aws-guard-rules-registry Guard rules.
+package compliance
+
+import "github.com/brianterry/cfn-cue-modules/resources/loadbalancer"
+
+// #ens_medium enforces all ens-medium controls for this resource.
+// Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#ens_medium & { ... }
+#ens_medium: loadbalancer.#Resource & #Anexo_II_4_1_2_a;_b;_c
+
+// Guard rule: ELB_DELETION_PROTECTION_ENABLED
+#Anexo_II_4_1_2_a;_b;_c: {
+	// No clauses extracted — manual review needed
+	...
+}
+

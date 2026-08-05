@@ -1,0 +1,27 @@
+package host
+
+#Properties: {
+	// The ID of the Outpost hardware asset.
+	AssetId?: string
+	// Indicates whether the host accepts any untargeted instance launches that match its instance type configuration, or if it only accepts Host tenancy instance launches that specify its unique host ID.
+	AutoPlacement?: "on" | "off"
+	// The Availability Zone in which to allocate the Dedicated Host.
+	AvailabilityZone: string
+	// Automatically allocates a new dedicated host and moves your instances on to it if a degradation is detected on your current host.
+	HostMaintenance?: "on" | "off"
+	// Indicates whether to enable or disable host recovery for the Dedicated Host. Host recovery is disabled by default.
+	HostRecovery?: "on" | "off"
+	// Specifies the instance family to be supported by the Dedicated Hosts. If you specify an instance family, the Dedicated Hosts support multiple instance types within that instance family.
+	InstanceFamily?: string
+	// Specifies the instance type to be supported by the Dedicated Hosts. If you specify an instance type, the Dedicated Hosts support instances of the specified instance type only.
+	InstanceType?: string
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Outpost on which to allocate the Dedicated Host.
+	OutpostArn?: string
+	// Any tags assigned to the Host.
+	Tags?: [...#Tag]
+}
+
+#Tag: {
+	Key: string
+	Value: string
+}

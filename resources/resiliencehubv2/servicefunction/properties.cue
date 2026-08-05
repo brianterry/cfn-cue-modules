@@ -1,0 +1,14 @@
+package servicefunction
+
+import "strings"
+
+#Properties: {
+	// The criticality of the service function.
+	Criticality: "PRIMARY" | "SUPPLEMENTAL"
+	// The description of the service function.
+	Description?: string & strings.MaxRunes(500)
+	// The name of the service function.
+	Name: string & =~"^[A-Za-z0-9][A-Za-z0-9_\\-]{1,59}$"
+	// The ARN of the parent service.
+	ServiceArn: string & =~"^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$"
+}

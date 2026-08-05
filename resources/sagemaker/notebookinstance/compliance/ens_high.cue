@@ -1,0 +1,23 @@
+// ens-high compliance constraints for this resource.
+// Generated from aws-guard-rules-registry Guard rules.
+package compliance
+
+import "github.com/brianterry/cfn-cue-modules/resources/notebookinstance"
+
+// #ens_high enforces all ens-high controls for this resource.
+// Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#ens_high & { ... }
+#ens_high: notebookinstance.#Resource & #Anexo_II_4_1_2_a;_b;_c & #Anexo_II_4_3_2_b
+
+// Guard rule: SAGEMAKER_NOTEBOOK_INSTANCE_KMS_KEY_CONFIGURED
+#Anexo_II_4_1_2_a;_b;_c: {
+	Properties: KmsKeyId: _ & !=_|_
+	...
+}
+
+// Guard rule: SAGEMAKER_NOTEBOOK_NO_DIRECT_INTERNET_ACCESS
+#Anexo_II_4_3_2_b: {
+	Properties: DirectInternetAccess: _ & !=_|_
+	Properties: DirectInternetAccess: "Disabled"
+	...
+}
+

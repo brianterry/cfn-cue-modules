@@ -1,0 +1,37 @@
+package conformancepack
+
+import "strings"
+
+#Properties: {
+	// A list of ConformancePackInputParameter objects.
+	ConformancePackInputParameters?: [...#ConformancePackInputParameter]
+	// Name of the conformance pack which will be assigned as the unique identifier.
+	ConformancePackName: string & =~"[a-zA-Z][-a-zA-Z0-9]*" & strings.MinRunes(1) & strings.MaxRunes(256)
+	// AWS Config stores intermediate files while processing conformance pack template.
+	DeliveryS3Bucket?: string & strings.MinRunes(0) & strings.MaxRunes(63)
+	// The prefix for delivery S3 bucket.
+	DeliveryS3KeyPrefix?: string & strings.MinRunes(0) & strings.MaxRunes(1024)
+	// The tags for the conformance pack.
+	Tags?: [...#Tag]
+	// A string containing full conformance pack template body. You can only specify one of the template body or template S3Uri fields.
+	TemplateBody?: string & strings.MinRunes(1) & strings.MaxRunes(51200)
+	// Location of file containing the template body which points to the conformance pack template that is located in an Amazon S3 bucket. You can only specify one of the template body or template S3Uri fields.
+	TemplateS3Uri?: string & =~"s3://.*" & strings.MinRunes(1) & strings.MaxRunes(1024)
+	// The TemplateSSMDocumentDetails object contains the name of the SSM document and the version of the SSM document.
+	TemplateSSMDocumentDetails?: {
+		DocumentName?: string & strings.MinRunes(3) & strings.MaxRunes(128)
+		DocumentVersion?: string & strings.MinRunes(1) & strings.MaxRunes(128)
+	}
+}
+
+#ConformancePackInputParameter: {
+	ParameterName: #ParameterName
+	ParameterValue: #ParameterValue
+}
+
+#Tag: {
+	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
+	// The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
+}

@@ -1,0 +1,23 @@
+// nist-800-181 compliance constraints for this resource.
+// Generated from aws-guard-rules-registry Guard rules.
+package compliance
+
+import "github.com/brianterry/cfn-cue-modules/resources/notebookinstance"
+
+// #nist_800_181 enforces all nist-800-181 controls for this resource.
+// Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#nist_800_181 & { ... }
+#nist_800_181: notebookinstance.#Resource & #T0017 & #T0144
+
+// Guard rule: SAGEMAKER_NOTEBOOK_INSTANCE_KMS_KEY_CONFIGURED
+#T0017: {
+	Properties: KmsKeyId: _ & !=_|_
+	...
+}
+
+// Guard rule: SAGEMAKER_NOTEBOOK_NO_DIRECT_INTERNET_ACCESS
+#T0144: {
+	Properties: DirectInternetAccess: _ & !=_|_
+	Properties: DirectInternetAccess: "Disabled"
+	...
+}
+

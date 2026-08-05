@@ -1,0 +1,25 @@
+package transitgatewaypolicytableentry
+
+#Properties: {
+	// The policy rule associated with the entry.
+	PolicyRule: #TransitGatewayPolicyRule
+	// The rule number for the policy table entry.
+	PolicyRuleNumber: string
+	// The ID of the target route table.
+	TargetRouteTableId: string
+	// The ID of the transit gateway policy table.
+	TransitGatewayPolicyTableId: string
+}
+
+#TransitGatewayPolicyRule: {
+	// The destination CIDR block for the transit gateway policy rule.
+	DestinationCidrBlock?: string
+	// The destination port range for the transit gateway policy rule.
+	DestinationPortRange?: string
+	// The protocol for the transit gateway policy rule.
+	Protocol?: string
+	// The source CIDR block for the transit gateway policy rule.
+	SourceCidrBlock?: string
+	// The source port range for the transit gateway policy rule.
+	SourcePortRange?: string
+}

@@ -1,0 +1,17 @@
+// ncsc compliance constraints for this resource.
+// Generated from aws-guard-rules-registry Guard rules.
+package compliance
+
+import "github.com/brianterry/cfn-cue-modules/resources/replicationinstance"
+
+// #ncsc enforces all ncsc controls for this resource.
+// Unify with #Resource: myResource: replicationinstance.#Resource & compliance.#ncsc & { ... }
+#ncsc: replicationinstance.#Resource & #11__External_interface_protection
+
+// Guard rule: DMS_REPLICATION_NOT_PUBLIC
+#11__External_interface_protection: {
+	Properties: PubliclyAccessible: _ & !=_|_
+	Properties: PubliclyAccessible: false
+	...
+}
+

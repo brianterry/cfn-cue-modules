@@ -1,0 +1,17 @@
+// ens-high compliance constraints for this resource.
+// Generated from aws-guard-rules-registry Guard rules.
+package compliance
+
+import "github.com/brianterry/cfn-cue-modules/resources/replicationinstance"
+
+// #ens_high enforces all ens-high controls for this resource.
+// Unify with #Resource: myResource: replicationinstance.#Resource & compliance.#ens_high & { ... }
+#ens_high: replicationinstance.#Resource & #Anexo_II_4_3_2_b
+
+// Guard rule: DMS_REPLICATION_NOT_PUBLIC
+#Anexo_II_4_3_2_b: {
+	Properties: PubliclyAccessible: _ & !=_|_
+	Properties: PubliclyAccessible: false
+	...
+}
+

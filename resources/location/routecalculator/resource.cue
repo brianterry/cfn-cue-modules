@@ -1,0 +1,9 @@
+package routecalculator
+
+import "github.com/brianterry/cfn-cue-modules/cfn"
+
+// Definition of AWS::Location::RouteCalculator Resource Type
+#Resource: cfn.#ResourceBase & {
+	Type: "AWS::Location::RouteCalculator"
+	Properties: #Properties
+}

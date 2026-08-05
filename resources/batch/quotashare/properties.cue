@@ -1,0 +1,39 @@
+package quotashare
+
+import "strings"
+
+#Properties: {
+	// A list that specifies the quantity and type of compute capacity allocated to the quota share.
+	CapacityLimits: [...#QuotaShareCapacityLimit]
+	// The AWS Batch job queue associated with the quota share. This can be the job queue name or ARN. A job queue must be in the `VALID` state before you can associate it with a quota share.
+	JobQueue: string
+	// Specifies the preemption behavior for jobs in a quota share.
+	PreemptionConfiguration: #QuotaSharePreemptionConfiguration
+	// The name of the quota share. It can be up to 128 characters long. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).
+	QuotaShareName: string & strings.MinRunes(1) & strings.MaxRunes(128)
+	// Specifies whether a quota share reserves, lends, or both lends and borrows idle compute capacity.
+	ResourceSharingConfiguration: #QuotaShareResourceSharingConfiguration
+	// The state of the quota share. If the quota share is `ENABLED`, it is able to accept jobs. If the quota share is `DISABLED`, new jobs won't be accepted but jobs already submitted can finish. The default state is `ENABLED`.
+	State?: "ENABLED" | "DISABLED"
+	// The tags that you apply to the quota share to help you categorize and organize your resources. Each tag consists of a key and an optional value.
+	Tags?: {...}
+}
+
+#QuotaShareCapacityLimit: {
+	// The unit of compute capacity for the capacityLimit. For example, `ml.m5.large`.
+	CapacityUnit: string
+	// The maximum capacity available for the quota share. This value represents the maximum quantity of a resource that can be allocated to jobs in the quota share without borrowing.
+	MaxCapacity: int & >=1
+}
+
+#QuotaSharePreemptionConfiguration: {
+	// Specifies whether jobs within a quota share can be preempted by another, higher priority job in the same quota share.
+	InSharePreemption: "ENABLED" | "DISABLED"
+}
+
+#QuotaShareResourceSharingConfiguration: {
+	// The maximum percentage of additional capacity that the quota share can borrow from other shares. `BorrowLimit` can only be applied to quota shares with a strategy of `LEND_AND_BORROW`. This value is expressed as a percentage of the quota share's configured CapacityLimits. The `BorrowLimit` is applied uniformly across all capacity units. For example, if the `BorrowLimit` is 200, the quota share can borrow up to 200% of its configured `maxCapacity` for each capacity unit. The default `BorrowLimit` is -1, which indicates unlimited borrowing.
+	BorrowLimit?: int & >=-1
+	// The resource sharing strategy for the quota share. The `RESERVE` strategy allows a quota share to reserve idle capacity for itself. `LEND` configures the share to lend its idle capacity to another share in need of capacity. The `LEND_AND_BORROW` strategy configures the share to borrow idle capacity from an underutilized share, as well as lend to another share.
+	Strategy: "RESERVE" | "LEND" | "LEND_AND_BORROW"
+}

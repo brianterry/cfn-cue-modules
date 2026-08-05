@@ -1,0 +1,52 @@
+package ipamprefixlistresolver
+
+import "strings"
+
+#Properties: {
+	// The address family of the address space in this Prefix List Resolver. Either IPv4 or IPv6.
+	AddressFamily: string
+	Description?: string
+	// The Id of the IPAM this Prefix List Resolver is a part of.
+	IpamId?: string
+	// Rules define the business logic for selecting CIDRs from IPAM.
+	Rules?: [...#IpamPrefixListResolverRule]
+	// An array of key-value pairs to apply to this resource.
+	Tags?: [...#Tag]
+}
+
+#IpamPrefixListResolverRule: {
+	// Two of the rule types allow you to add conditions to the rules. (1) For IPAM Pool CIDR rules, you can specify an ipamPoolId; if not specified, the rule will apply to all IPAM Pool CIDRs in the scope.  (2) For IPAM Resource CIDR rules, you can specify resourceId, resourceOwner, resourceRegion, cidr, or resourceTag.
+	Conditions?: [...#IpamPrefixListResolverRuleCondition]
+	// This rule will only match resources that are in this IPAM Scope.
+	IpamScopeId?: string
+	// The resourceType property only applies to ipam-resource-cidr rules; this property specifies what type of resources this rule will apply to, such as VPCs or Subnets.
+	ResourceType?: "vpc" | "subnet" | "eip" | "public-ipv4-pool"
+	// There are three rule types: (1) Static CIDR: A fixed list of CIDRs that don't change (like a manual list replicated across Regions). (2) IPAM pool CIDR: CIDRs from specific IPAM pools (like all CIDRs from your IPAM production pool).  (3) IPAM resource CIDR: CIDRs for AWS resources like VPCs, subnets, and EIPs within a specific IPAM scope.
+	RuleType: "static-cidr" | "ipam-resource-cidr" | "ipam-pool-cidr"
+	// A fixed CIDR that doesn't change
+	StaticCidr?: string
+}
+
+#IpamPrefixListResolverRuleCondition: {
+	// Condition for the IPAM Resource CIDR rule type.  CIDR (like 10.24.34.0/23).
+	Cidr?: string
+	// Condition for the IPAM Pool CIDR rule type.  If not chosen, the resolver applies to all IPAM Pool CIDRs in the scope.
+	IpamPoolId?: string
+	// Equals, Not equals, or Subnet Of.  The subnet-of operation only applies to cidr conditions.
+	Operation?: "equals" | "not-equals" | "subnet-of"
+	// Condition for the IPAM Resource CIDR rule type.  The unique ID of a resource (like vpc-1234567890abcdef0).
+	ResourceId?: string
+	// Condition for the IPAM Resource CIDR rule type.  Resource owner (like 111122223333).
+	ResourceOwner?: string
+	// Condition for the IPAM Resource CIDR rule type.  Resource region (like us-east-1).
+	ResourceRegion?: string
+	// Condition for the IPAM Resource CIDR rule type.  Resource Tag (like dev-vpc-1).
+	ResourceTag?: #Tag
+}
+
+#Tag: {
+	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
+	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
+	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
+}

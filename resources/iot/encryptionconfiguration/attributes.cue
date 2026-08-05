@@ -1,0 +1,16 @@
+package encryptionconfiguration
+
+// #Attributes defines the read-only attributes returned by this resource.
+// These are the values available via Fn::GetAtt.
+//
+// Usage:
+//   fn.#GetAtt & {_logicalName: "MyResource", _attribute: "<attribute name>"}
+#Attributes: {
+	AccountId: string
+	ConfigurationDetails: {
+	ConfigurationStatus?: "HEALTHY" | "UNHEALTHY"
+	ErrorCode?: string
+	ErrorMessage?: string
+}
+	LastModifiedDate: string
+}

@@ -1,0 +1,12 @@
+package layerversionpermission
+
+#Properties: {
+	// The API action that grants access to the layer.
+	Action: string
+	// The name or Amazon Resource Name (ARN) of the layer.
+	LayerVersionArn: string
+	// With the principal set to *, grant permission to all accounts in the specified organization.
+	OrganizationId?: string
+	// An account ID, or * to grant layer usage permission to all accounts in an organization, or all AWS accounts (if organizationId is not specified).
+	Principal: string
+}
