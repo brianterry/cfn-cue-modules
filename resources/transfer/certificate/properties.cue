@@ -6,15 +6,15 @@ import "strings"
 	// Specifies the active date for the certificate.
 	ActiveDate?: string
 	// Specifies the certificate body to be imported.
-	Certificate: string & =~"^[\\t\\n\\r\\u0020-\\u00FF]+$" & strings.MinRunes(1) & strings.MaxRunes(16384)
+	Certificate: string & strings.MinRunes(1) & strings.MaxRunes(16384)
 	// Specifies the certificate chain to be imported.
-	CertificateChain?: string & =~"^[\\t\\n\\r\\u0020-\\u00FF]+$" & strings.MinRunes(1) & strings.MaxRunes(2097152)
+	CertificateChain?: string & strings.MinRunes(1) & strings.MaxRunes(2097152)
 	// A textual description for the certificate.
-	Description?: string & =~"^[\\u0021-\\u007E]+$" & strings.MinRunes(1) & strings.MaxRunes(200)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(200)
 	// Specifies the inactive date for the certificate.
 	InactiveDate?: string
 	// Specifies the private key for the certificate.
-	PrivateKey?: string & =~"^[\\t\\n\\r\\u0020-\\u00FF]+$" & strings.MinRunes(1) & strings.MaxRunes(16384)
+	PrivateKey?: string & strings.MinRunes(1) & strings.MaxRunes(16384)
 	// Key-value pairs that can be used to group and search for certificates. Tags are metadata attached to certificates for any purpose.
 	Tags?: [...#Tag]
 	// Specifies the usage type for the certificate.

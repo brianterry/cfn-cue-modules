@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	// AS2 identifier agreed with a trading partner.
-	As2Id: string & =~"^[\\u0020-\\u007E\\s]*$" & strings.MinRunes(1) & strings.MaxRunes(128)
+	As2Id: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// List of the certificate IDs associated with this profile to be used for encryption and signing of AS2 messages.
 	CertificateIds?: [...#CertificateId]
 	// Enum specifying whether the profile is local or associated with a trading partner.

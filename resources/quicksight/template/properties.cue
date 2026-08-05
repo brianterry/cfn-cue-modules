@@ -488,7 +488,7 @@ import "strings"
 
 #ConditionalFormattingCustomIconOptions: {
 	Icon?: #Icon
-	UnicodeIcon?: string & =~"^[^\\u0000-\\u00FF]$"
+	UnicodeIcon?: string
 }
 
 #ConditionalFormattingGradientColor: {

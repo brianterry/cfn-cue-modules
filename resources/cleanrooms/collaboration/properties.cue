@@ -11,11 +11,11 @@ import "strings"
 	CreatorMemberAbilities?: #MemberAbilities
 	CreatorPaymentConfiguration?: #PaymentConfiguration
 	DataEncryptionMetadata?: #DataEncryptionMetadata
-	Description: string & =~"^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$" & strings.MinRunes(1) & strings.MaxRunes(255)
+	Description: string & strings.MinRunes(1) & strings.MaxRunes(255)
 	IsMetricsEnabled?: bool
 	JobLogStatus?: #CollaborationJobLogStatus
 	Members?: [...#MemberSpecification]
-	Name: string & =~"^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$" & strings.MinRunes(1) & strings.MaxRunes(100)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(100)
 	QueryLogStatus: #CollaborationQueryLogStatus
 	// An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.
 	Tags?: [...#Tag]

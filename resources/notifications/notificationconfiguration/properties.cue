@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	AggregationDuration?: #AggregationDuration
-	Description: string & =~"^[^\\u0001-\\u001F\\u007F-\\u009F]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
+	Description: string & strings.MinRunes(0) & strings.MaxRunes(256)
 	Name: string & =~"^[A-Za-z0-9_\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 	Tags?: #TagMap
 }

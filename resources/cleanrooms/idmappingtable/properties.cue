@@ -3,7 +3,7 @@ package idmappingtable
 import "strings"
 
 #Properties: {
-	Description?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$" & strings.MaxRunes(255)
+	Description?: string & strings.MaxRunes(255)
 	InputReferenceConfig: #IdMappingTableInputReferenceConfig
 	KmsKeyArn?: string & strings.MinRunes(4) & strings.MaxRunes(2048)
 	MembershipIdentifier: #UUID

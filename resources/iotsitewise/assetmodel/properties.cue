@@ -46,7 +46,7 @@ import "strings"
 	// Customer provided actual ID for hierarchy
 	Id?: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" & strings.MinRunes(36) & strings.MaxRunes(36)
 	// Customer provided logical ID for hierarchy.
-	LogicalId?: string & =~"[^\\u0000-\\u001F\\u007F]+" & strings.MinRunes(1) & strings.MaxRunes(256)
+	LogicalId?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	// The name of the asset model hierarchy.
 	Name: string
 }
@@ -61,7 +61,7 @@ import "strings"
 	// The ID of the Asset Model Property
 	Id?: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" & strings.MinRunes(36) & strings.MaxRunes(36)
 	// Customer provided Logical ID for property.
-	LogicalId?: string & =~"[^\\u0000-\\u001F\\u007F]+" & strings.MinRunes(1) & strings.MaxRunes(256)
+	LogicalId?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	// The name of the asset model property.
 	Name: string
 	// The property type
@@ -144,12 +144,12 @@ import "strings"
 	HierarchyExternalId?: string & =~"[a-zA-Z0-9_][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9_]+" & strings.MinRunes(2) & strings.MaxRunes(128)
 	// The ID of the hierarchy that is trying to be referenced
 	HierarchyId?: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" & strings.MinRunes(36) & strings.MaxRunes(36)
-	HierarchyLogicalId?: string & =~"[^\\u0000-\\u001F\\u007F]+" & strings.MinRunes(1) & strings.MaxRunes(256)
+	HierarchyLogicalId?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	// The External ID of the property that is trying to be referenced
 	PropertyExternalId?: string & =~"[a-zA-Z0-9_][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9_]+" & strings.MinRunes(2) & strings.MaxRunes(128)
 	// The ID of the property that is trying to be referenced
 	PropertyId?: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" & strings.MinRunes(36) & strings.MaxRunes(36)
-	PropertyLogicalId?: string & =~"[^\\u0000-\\u001F\\u007F]+" & strings.MinRunes(1) & strings.MaxRunes(256)
+	PropertyLogicalId?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	// The path of the property that is trying to be referenced
 	PropertyPath?: [...#PropertyPathDefinition]
 }

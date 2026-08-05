@@ -4,10 +4,10 @@ import "strings"
 
 #Properties: {
 	AnalysisRules?: [...#IntermediateTableAnalysisRule]
-	Description?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$" & strings.MaxRunes(255)
+	Description?: string & strings.MaxRunes(255)
 	KmsKeyArn?: string & strings.MinRunes(4) & strings.MaxRunes(2048)
 	MembershipIdentifier: #UUID
-	Name: string & =~"^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$" & strings.MinRunes(1) & strings.MaxRunes(100)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(100)
 	PopulationAnalysisConfiguration: #PopulationAnalysisConfiguration
 	Tags?: [...#Tag]
 }

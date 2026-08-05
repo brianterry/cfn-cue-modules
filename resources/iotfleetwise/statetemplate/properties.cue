@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	DataExtraDimensions?: [...string & =~"^[a-zA-Z0-9_.]+$" & strings.MinRunes(1) & strings.MaxRunes(150)]
-	Description?: string & =~"^[^\\u0000-\\u001F\\u007F]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	MetadataExtraDimensions?: [...string & =~"^[a-zA-Z0-9_.]+$" & strings.MinRunes(1) & strings.MaxRunes(150)]
 	Name: string & =~"^[a-zA-Z\\d\\-_:]+$" & strings.MinRunes(1) & strings.MaxRunes(100)
 	SignalCatalogArn: string

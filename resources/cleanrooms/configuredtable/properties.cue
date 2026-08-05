@@ -6,8 +6,8 @@ import "strings"
 	AllowedColumns: [...string & =~"^[a-z0-9_](([a-z0-9_ ]+-)*([a-z0-9_ ]+))?$" & strings.MaxRunes(128)]
 	AnalysisMethod: #AnalysisMethod
 	AnalysisRules?: [...#AnalysisRule]
-	Description?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$" & strings.MaxRunes(255)
-	Name: string & =~"^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$" & strings.MinRunes(1) & strings.MaxRunes(100)
+	Description?: string & strings.MaxRunes(255)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(100)
 	SelectedAnalysisMethods?: #SelectedAnalysisMethods
 	TableReference: #TableReference
 	// An arbitrary set of tags (key-value pairs) for this cleanrooms collaboration.

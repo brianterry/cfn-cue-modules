@@ -34,7 +34,7 @@ import "strings"
 	// Group attribute for this saml integration
 	GroupAttribute?: string & =~"[\\w+=,.@-]+" & strings.MinRunes(1) & strings.MaxRunes(2048)
 	// The XML saml provider metadata document that you want to use
-	Metadata: string & =~"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]+" & strings.MinRunes(1) & strings.MaxRunes(51200)
+	Metadata: string & strings.MinRunes(1) & strings.MaxRunes(51200)
 	// Custom entity id attribute to override default entity id for this saml integration
 	OpenSearchServerlessEntityId?: string & =~"^aws:opensearch:[0-9]{12}:*" & strings.MinRunes(1) & strings.MaxRunes(1024)
 	// Defines the session timeout in minutes

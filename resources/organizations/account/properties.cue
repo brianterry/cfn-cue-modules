@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	// The friendly name of the member account.
-	AccountName: string & =~"[\\u0020-\\u007E]+" & strings.MinRunes(1) & strings.MaxRunes(50)
+	AccountName: string & strings.MinRunes(1) & strings.MaxRunes(50)
 	// The email address of the owner to assign to the new member account.
 	Email: string & =~"[^\\s@]+@[^\\s@]+\\.[^\\s@]+" & strings.MinRunes(6) & strings.MaxRunes(64)
 	// List of parent nodes for the member account. Currently only one parent at a time is supported. Default is root.

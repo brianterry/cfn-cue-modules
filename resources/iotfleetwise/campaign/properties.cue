@@ -9,7 +9,7 @@ import "strings"
 	DataDestinationConfigs?: [...#DataDestinationConfig]
 	DataExtraDimensions?: [...string & =~"^[a-zA-Z0-9_.]+$" & strings.MinRunes(1) & strings.MaxRunes(150)]
 	DataPartitions?: [...#DataPartition]
-	Description?: string & =~"^[^\\u0000-\\u001F\\u007F]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	DiagnosticsMode?: #DiagnosticsMode
 	ExpiryTime?: string
 	Name: string & =~"^[a-zA-Z\\d\\-_:]+$" & strings.MinRunes(1) & strings.MaxRunes(100)
@@ -54,7 +54,7 @@ import "strings"
 }
 
 #MqttTopicConfig: {
-	ExecutionRoleArn: string & =~"^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$" & strings.MinRunes(20) & strings.MaxRunes(2048)
+	ExecutionRoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 	MqttTopicArn: string & =~"^arn:.*" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
 
@@ -108,6 +108,6 @@ import "strings"
 }
 
 #TimestreamConfig: {
-	ExecutionRoleArn: string & =~"^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$" & strings.MinRunes(20) & strings.MaxRunes(2048)
+	ExecutionRoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 	TimestreamTableArn: string & =~"^arn:(aws[a-zA-Z0-9-]*):timestream:[a-zA-Z0-9-]+:[0-9]{12}:database\\/[a-zA-Z0-9_.-]+\\/table\\/[a-zA-Z0-9_.-]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }

@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	// The private key from your external identity provider
-	AddPrivateKey?: string & =~"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+" & strings.MinRunes(1) & strings.MaxRunes(16384)
+	AddPrivateKey?: string & strings.MinRunes(1) & strings.MaxRunes(16384)
 	// The encryption setting for the SAML provider
 	AssertionEncryptionMode?: "Allowed" | "Required"
 	Name?: string & =~"[\\w._-]+" & strings.MinRunes(1) & strings.MaxRunes(128)

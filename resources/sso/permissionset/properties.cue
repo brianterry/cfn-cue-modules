@@ -5,7 +5,7 @@ import "strings"
 #Properties: {
 	CustomerManagedPolicyReferences?: [...#CustomerManagedPolicyReference]
 	// The permission set description.
-	Description?: string & =~"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]*" & strings.MinRunes(1) & strings.MaxRunes(700)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(700)
 	// The inline policy to put in permission set.
 	InlinePolicy?: {...}
 	// The sso instance arn that the permission set is owned.

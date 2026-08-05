@@ -72,9 +72,9 @@ import "strings"
 	AuthenticationConfiguration?: #AuthenticationConfigurationInput
 	ConnectionProperties?: #ConnectionProperties
 	ConnectionType?: #GlueConnectionType
-	Description?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFF\\r\\n\\t]*$" & strings.MaxRunes(2048)
+	Description?: string & strings.MaxRunes(2048)
 	MatchCriteria?: string & strings.MinRunes(0) & strings.MaxRunes(10)
-	Name?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFF\\t]*$" & strings.MinRunes(1) & strings.MaxRunes(255)
+	Name?: string & strings.MinRunes(1) & strings.MaxRunes(255)
 	PhysicalConnectionRequirements?: #PhysicalConnectionRequirements
 	PythonProperties?: #PropertyMap
 	SparkProperties?: #PropertyMap

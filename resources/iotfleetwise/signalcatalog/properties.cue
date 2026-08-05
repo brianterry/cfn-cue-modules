@@ -3,7 +3,7 @@ package signalcatalog
 import "strings"
 
 #Properties: {
-	Description?: string & =~"^[^\\u0000-\\u001F\\u007F]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	Name?: string & =~"^[a-zA-Z\\d\\-_:]+$" & strings.MinRunes(1) & strings.MaxRunes(100)
 	Nodes?: [...#Node]
 	Tags?: [...#Tag]
@@ -13,7 +13,7 @@ import "strings"
 	AllowedValues?: #AllowedValues
 	AssignedValue?: string
 	DataType: #NodeDataType
-	Description?: string & =~"^[^\\u0000-\\u001F\\u007F]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	FullyQualifiedName: string
 	Max?: number
 	Min?: number
@@ -25,7 +25,7 @@ import "strings"
 	AssignedValue?: string
 	DataType: #NodeDataType
 	DefaultValue?: string
-	Description?: string & =~"^[^\\u0000-\\u001F\\u007F]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	FullyQualifiedName: string
 	Max?: number
 	Min?: number
@@ -33,7 +33,7 @@ import "strings"
 }
 
 #Branch: {
-	Description?: string & =~"^[^\\u0000-\\u001F\\u007F]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	FullyQualifiedName: string
 }
 
@@ -48,7 +48,7 @@ import "strings"
 #Sensor: {
 	AllowedValues?: #AllowedValues
 	DataType: #NodeDataType
-	Description?: string & =~"^[^\\u0000-\\u001F\\u007F]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	FullyQualifiedName: string
 	Max?: number
 	Min?: number

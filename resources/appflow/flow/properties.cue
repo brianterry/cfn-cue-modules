@@ -118,11 +118,11 @@ import "strings"
 
 #GlueDataCatalog: {
 	// A string containing the value for the tag
-	DatabaseName: string & =~"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*" & strings.MinRunes(0) & strings.MaxRunes(255)
+	DatabaseName: string & strings.MinRunes(0) & strings.MaxRunes(255)
 	// A string containing the value for the tag
 	RoleArn: string & =~"arn:aws:iam:.*:[0-9]+:.*" & strings.MinRunes(0) & strings.MaxRunes(512)
 	// A string containing the value for the tag
-	TablePrefix: string & =~"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*" & strings.MinRunes(0) & strings.MaxRunes(128)
+	TablePrefix: string & strings.MinRunes(0) & strings.MaxRunes(128)
 }
 
 #GoogleAnalyticsSourceProperties: {

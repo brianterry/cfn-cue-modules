@@ -9,7 +9,7 @@ import "strings"
 	IdentityProviderVpcConnectionProperties?: #IdentityProviderVpcConnectionProperties
 	Name: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	OAuthAuthorizationEndpointUrl?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
-	OAuthClientApplicationId: string & =~"[^/][^\\u0000-\\u001f]*" & strings.MinRunes(1) & strings.MaxRunes(256)
+	OAuthClientApplicationId: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	OAuthClientAuthenticationType: "TOKEN"
 	OAuthScopes?: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 	OAuthTokenEndpointUrl: string & strings.MinRunes(1) & strings.MaxRunes(2048)

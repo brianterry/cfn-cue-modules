@@ -23,7 +23,7 @@ import "strings"
 	// Customer provided actual UUID for property
 	Id?: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" & strings.MinRunes(36) & strings.MaxRunes(36)
 	// The LogicalID of a hierarchy in the parent asset's model.
-	LogicalId?: string & =~"[^\\u0000-\\u001F\\u007F]+" & strings.MinRunes(1) & strings.MaxRunes(256)
+	LogicalId?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
 #AssetProperty: {
@@ -34,7 +34,7 @@ import "strings"
 	// Customer provided actual UUID for property
 	Id?: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" & strings.MinRunes(36) & strings.MaxRunes(36)
 	// Customer provided ID for property.
-	LogicalId?: string & =~"[^\\u0000-\\u001F\\u007F]+" & strings.MinRunes(1) & strings.MaxRunes(256)
+	LogicalId?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	// The MQTT notification state (ENABLED or DISABLED) for this asset property.
 	NotificationState?: "ENABLED" | "DISABLED"
 	// The unit of measure (such as Newtons or RPM) of the asset property. If you don't specify a value for this parameter, the service uses the value of the assetModelProperty in the asset model.

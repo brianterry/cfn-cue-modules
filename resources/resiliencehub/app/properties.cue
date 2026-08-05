@@ -34,7 +34,7 @@ import "strings"
 	// Defines a list of role Amazon Resource Names (ARNs) to be used in other accounts. These ARNs are used for querying purposes while importing resources and assessing your application.
 	CrossAccountRoleArns?: [...#IamRoleArn]
 	// Existing AWS IAM role name in the primary AWS account that will be assumed by AWS Resilience Hub Service Principle to obtain a read-only access to your application resources while running an assessment.
-	InvokerRoleName?: string & =~"((\\u002F[\\u0021-\\u007E]+\\u002F){1,511})?[A-Za-z0-9+=,.@_/-]{1,64}"
+	InvokerRoleName?: string
 	// Defines how AWS Resilience Hub scans your resources. It can scan for the resources by using a pre-existing role in your AWS account, or by using the credentials of the current IAM user.
 	Type: "LegacyIAMUser" | "RoleBased"
 }

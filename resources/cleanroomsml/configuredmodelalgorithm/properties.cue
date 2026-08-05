@@ -3,10 +3,10 @@ package configuredmodelalgorithm
 import "strings"
 
 #Properties: {
-	Description?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$" & strings.MaxRunes(255)
+	Description?: string & strings.MaxRunes(255)
 	InferenceContainerConfig?: #InferenceContainerConfig
 	KmsKeyArn?: string & =~"^arn:aws[-a-z]*:kms:[-a-z0-9]+:[0-9]{12}:key/.+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
-	Name: string & =~"^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$" & strings.MinRunes(1) & strings.MaxRunes(63)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(63)
 	RoleArn: string & =~"^arn:aws[-a-z]*:iam::[0-9]{12}:role/.+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 	// An arbitrary set of tags (key-value pairs) for this cleanrooms-ml configured model algorithm.
 	Tags?: [...#Tag]

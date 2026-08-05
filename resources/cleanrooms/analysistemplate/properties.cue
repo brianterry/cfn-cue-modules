@@ -5,7 +5,7 @@ import "strings"
 #Properties: {
 	// The member who can query can provide this placeholder for a literal data value in an analysis template
 	AnalysisParameters?: [...#AnalysisParameter]
-	Description?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$" & strings.MaxRunes(255)
+	Description?: string & strings.MaxRunes(255)
 	ErrorMessageConfiguration?: #ErrorMessageConfiguration
 	Format: "SQL" | "PYSPARK_1_0"
 	MembershipIdentifier: string & =~"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}" & strings.MinRunes(36) & strings.MaxRunes(36)

@@ -14,7 +14,7 @@ import "strings"
 		LocalProfileId?: string & =~"^p-([0-9a-f]{17})$" & strings.MinRunes(19) & strings.MaxRunes(19)
 		MdnResponse?: "SYNC" | "ASYNC" | "NONE"
 		MdnSigningAlgorithm?: "SHA256" | "SHA384" | "SHA512" | "SHA1" | "NONE" | "DEFAULT"
-		MessageSubject?: string & =~"^[\\u0020-\\u007E\\t]+$" & strings.MinRunes(1) & strings.MaxRunes(1024)
+		MessageSubject?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 		PartnerProfileId?: string & =~"^p-([0-9a-f]{17})$" & strings.MinRunes(19) & strings.MaxRunes(19)
 		PreserveContentType?: "ENABLED" | "DISABLED"
 		SigningAlgorithm?: "SHA256" | "SHA384" | "SHA512" | "SHA1" | "NONE"

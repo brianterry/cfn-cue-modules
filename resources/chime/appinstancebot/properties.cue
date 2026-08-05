@@ -9,7 +9,7 @@ import "strings"
 	// The metadata of the AppInstanceBot.
 	Metadata?: string & =~".*" & strings.MinRunes(0) & strings.MaxRunes(1024)
 	// The name of the AppInstanceBot.
-	Name?: string & =~"^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
+	Name?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 	// The tags assigned to the AppInstanceBot.
 	Tags?: [...#Tag]
 }

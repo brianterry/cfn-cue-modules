@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	DefaultForUnmappedSignals?: #DefaultForUnmappedSignalsType
-	Description?: string & =~"^[^\\u0000-\\u001F\\u007F]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	ModelManifestArn: string
 	Name: string & =~"^[a-zA-Z\\d\\-_:]+$" & strings.MinRunes(1) & strings.MaxRunes(100)
 	NetworkInterfaces?: [...#CanNetworkInterface | #ObdNetworkInterface | #CustomDecodingNetworkInterface]

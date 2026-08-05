@@ -9,7 +9,7 @@ import "strings"
 	LanguageCode: "en" | "es" | "fr" | "it" | "de" | "pt"
 	Mode?: "MULTI_CLASS" | "MULTI_LABEL"
 	ModelKmsKeyId?: #KmsKeyId
-	ModelPolicy?: string & =~"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+" & strings.MinRunes(1) & strings.MaxRunes(20000)
+	ModelPolicy?: string & strings.MinRunes(1) & strings.MaxRunes(20000)
 	OutputDataConfig?: #DocumentClassifierOutputDataConfig
 	Tags?: [...#Tag]
 	VersionName?: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MinRunes(1) & strings.MaxRunes(63)

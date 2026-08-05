@@ -61,7 +61,7 @@ import "strings"
 	// The name of the primary attribute.
 	AttributeName?: string & =~"^(?!aws:|connect:)[\\p{L}\\p{Z}\\p{N}\\-_.:=@'|]+$" & strings.MinRunes(1) & strings.MaxRunes(127)
 	// An array of allowed primary values for the specified primary attribute.
-	Values?: [...string & =~"^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]+$" & strings.MinRunes(1) & strings.MaxRunes(1000)]
+	Values?: [...string & strings.MinRunes(1) & strings.MaxRunes(1000)]
 }
 
 #Tag: {

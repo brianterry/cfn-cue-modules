@@ -29,12 +29,12 @@ import "strings"
 
 #OntapUnixFileSystemUser: {
 	// The name of the UNIX user.
-	Name: string & =~"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,256}$" & strings.MinRunes(1) & strings.MaxRunes(256)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
 #OntapWindowsFileSystemUser: {
 	// The name of the Windows user.
-	Name: string & =~"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,256}$" & strings.MinRunes(1) & strings.MaxRunes(256)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
 #OpenZFSFileSystemIdentity: {

@@ -6,7 +6,7 @@ import "strings"
 	// The details that SSM Incident Manager uses when trying to engage the contact channel.
 	ChannelAddress?: string
 	// The device name. String of 6 to 50 alphabetical, numeric, dash, and underscore characters.
-	ChannelName?: string & =~"[a-zA-Z 0-9_\\-+'&amp;\\uD83C-\\uDBFF\\uDC00-\\uDFFF\\u2000-\\u3300]+" & strings.MinRunes(1) & strings.MaxRunes(255)
+	ChannelName?: string & strings.MinRunes(1) & strings.MaxRunes(255)
 	// Device type, which specify notification channel. Currently supported values: “SMS”, “VOICE”, “EMAIL”, “CHATBOT.
 	ChannelType?: "SMS" | "VOICE" | "EMAIL"
 	// ARN of the contact resource

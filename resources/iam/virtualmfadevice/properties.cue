@@ -3,7 +3,7 @@ package virtualmfadevice
 import "strings"
 
 #Properties: {
-	Path?: string & =~"(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)" & strings.MinRunes(1) & strings.MaxRunes(512)
+	Path?: string & strings.MinRunes(1) & strings.MaxRunes(512)
 	Tags?: [...#Tag]
 	Users: [...string]
 	VirtualMfaDeviceName?: string & =~"[\\w+=,.@-]+" & strings.MinRunes(1) & strings.MaxRunes(226)

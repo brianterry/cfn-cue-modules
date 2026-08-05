@@ -149,7 +149,7 @@ import "strings"
 
 #KeyPairCredentials: {
 	KeyPairUsername: string & strings.MinRunes(1) & strings.MaxRunes(64)
-	PrivateKey: string & =~"^-{5}BEGIN (ENCRYPTED )?PRIVATE KEY-{5}\\u000D?\\u000A([A-Za-z0-9/+]{64}\\u000D?\\u000A)*[A-Za-z0-9/+]{1,64}={0,2}\\u000D?\\u000A-{5}END (ENCRYPTED )?PRIVATE KEY-{5}(\\u000D?\\u000A)?$" & strings.MinRunes(1600) & strings.MaxRunes(8000)
+	PrivateKey: string & strings.MinRunes(1600) & strings.MaxRunes(8000)
 	PrivateKeyPassphrase?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
 

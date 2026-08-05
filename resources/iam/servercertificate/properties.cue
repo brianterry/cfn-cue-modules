@@ -3,10 +3,10 @@ package servercertificate
 import "strings"
 
 #Properties: {
-	CertificateBody?: string & =~"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+" & strings.MinRunes(1) & strings.MaxRunes(16384)
-	CertificateChain?: string & =~"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+" & strings.MinRunes(1) & strings.MaxRunes(2097152)
-	Path?: string & =~"(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)" & strings.MinRunes(1) & strings.MaxRunes(512)
-	PrivateKey?: string & =~"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+" & strings.MinRunes(1) & strings.MaxRunes(16384)
+	CertificateBody?: string & strings.MinRunes(1) & strings.MaxRunes(16384)
+	CertificateChain?: string & strings.MinRunes(1) & strings.MaxRunes(2097152)
+	Path?: string & strings.MinRunes(1) & strings.MaxRunes(512)
+	PrivateKey?: string & strings.MinRunes(1) & strings.MaxRunes(16384)
 	ServerCertificateName?: string & =~"[\\w+=,.@-]+" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Tags?: [...#Tag]
 }

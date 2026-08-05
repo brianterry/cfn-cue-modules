@@ -4,9 +4,9 @@ import "strings"
 
 #Properties: {
 	ConfiguredModelAlgorithmArn: string & =~"^arn:aws[-a-z]*:cleanrooms-ml:[-a-z0-9]+:[0-9]{12}:configured-model-algorithm/[-a-zA-Z0-9_/.]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
-	Description?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$" & strings.MaxRunes(255)
+	Description?: string & strings.MaxRunes(255)
 	MembershipIdentifier: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" & strings.MinRunes(36) & strings.MaxRunes(36)
-	Name: string & =~"^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$" & strings.MinRunes(1) & strings.MaxRunes(63)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(63)
 	PrivacyConfiguration?: #PrivacyConfiguration
 	// An arbitrary set of tags (key-value pairs) for this cleanrooms-ml configured model algorithm association.
 	Tags?: [...#Tag]

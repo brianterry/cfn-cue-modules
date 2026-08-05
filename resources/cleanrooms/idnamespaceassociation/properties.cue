@@ -3,11 +3,11 @@ package idnamespaceassociation
 import "strings"
 
 #Properties: {
-	Description?: string & =~"^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t\\r\\n]*$" & strings.MaxRunes(255)
+	Description?: string & strings.MaxRunes(255)
 	IdMappingConfig?: #IdMappingConfig
 	InputReferenceConfig: #IdNamespaceAssociationInputReferenceConfig
 	MembershipIdentifier: #UUID
-	Name: string & =~"^(?!\\s*$)[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDBFF-\\uDC00\\uDFFF\\t]*$" & strings.MinRunes(1) & strings.MaxRunes(100)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(100)
 	Tags?: [...#Tag]
 }
 

@@ -33,9 +33,9 @@ import "strings"
 }
 
 #DataCatalogConfig: {
-	Catalog: string & =~"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\t]*" & strings.MinRunes(1) & strings.MaxRunes(255)
-	Database: string & =~"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\t]*" & strings.MinRunes(1) & strings.MaxRunes(255)
-	TableName: string & =~"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\t]*" & strings.MinRunes(1) & strings.MaxRunes(255)
+	Catalog: string & strings.MinRunes(1) & strings.MaxRunes(255)
+	Database: string & strings.MinRunes(1) & strings.MaxRunes(255)
+	TableName: string & strings.MinRunes(1) & strings.MaxRunes(255)
 }
 
 #FeatureDefinition: {

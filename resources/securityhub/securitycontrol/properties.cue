@@ -2,7 +2,7 @@ package securitycontrol
 
 #Properties: {
 	// The most recent reason for updating the customizable properties of a security control. This differs from the UpdateReason field of the BatchUpdateStandardsControlAssociations API, which tracks the reason for updating the enablement status of a control. This field accepts alphanumeric characters in addition to white spaces, dashes, and underscores.
-	LastUpdateReason?: string & =~"^([^\x00-\x7f]|[-_ a-zA-Z0-9])+$"
+	LastUpdateReason?: string
 	// An object that identifies the name of a control parameter, its current value, and whether it has been customized.
 	Parameters: #Parameters
 	// The Amazon Resource Name (ARN) for a security control across standards, such as `arn:aws:securityhub:eu-central-1:123456789012:security-control/S3.1`. This parameter doesn't mention a specific standard.

@@ -16,7 +16,7 @@ import "strings"
 		TemporaryFilesDirectory: string & =~"(|/.*)"
 	}
 	// A textual description for the agreement.
-	Description?: string & =~"^[\\u0021-\\u007E]+$" & strings.MinRunes(1) & strings.MaxRunes(200)
+	Description?: string & strings.MinRunes(1) & strings.MaxRunes(200)
 	// Specifies whether to enforce an AS2 message is signed for this agreement.
 	EnforceMessageSigning?: "ENABLED" | "DISABLED"
 	// A unique identifier for the local profile.
