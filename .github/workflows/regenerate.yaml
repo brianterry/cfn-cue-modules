@@ -1,0 +1,101 @@
+name: Regenerate CUE Modules
+
+on:
+  schedule:
+    # Run weekly on Monday at 06:00 UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish to CUE registry after regeneration'
+        type: boolean
+        default: false
+
+env:
+  GO_VERSION: "1.22"
+  CUE_VERSION: "0.17.1"
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout modules repo
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Install CUE
+        run: |
+          go install cuelang.org/go/cmd/cue@v${{ env.CUE_VERSION }}
+
+      - name: Install cfn-cue-gen
+        run: |
+          git clone --depth 1 https://github.com/brianterry/cfn-cue-gen.git /tmp/cfn-cue-gen
+          cd /tmp/cfn-cue-gen
+          go install ./cmd/cfn-cue-gen
+
+      - name: Download CloudFormation schemas
+        run: |
+          curl -sL "https://schema.cloudformation.us-east-1.amazonaws.com/CloudformationSchema.zip" -o /tmp/schemas.zip
+          unzip -q -o /tmp/schemas.zip -d /tmp/schemas/
+
+      - name: Clone Guard rules registry
+        run: |
+          git clone --depth 1 https://github.com/aws-cloudformation/aws-guard-rules-registry.git /tmp/guard-rules
+
+      - name: Regenerate resource modules
+        run: |
+          rm -rf resources/
+          cfn-cue-gen schema --input /tmp/schemas --output ./resources
+          cfn-cue-gen guard \
+            --input /tmp/guard-rules/rules \
+            --mappings /tmp/guard-rules/mappings \
+            --output ./resources
+          # Remove per-module cue.mod dirs (not needed)
+          find resources -type d -name "cue.mod" -exec rm -rf {} + 2>/dev/null || true
+
+      - name: Validate CUE module
+        run: |
+          cue mod tidy
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git diff --stat | tail -5
+          fi
+
+      - name: Commit changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: Regenerate modules from latest AWS schemas $(date +%Y-%m-%d)"
+          git push
+
+      - name: Publish to CUE registry
+        if: steps.changes.outputs.changed == 'true' && inputs.publish == true
+        env:
+          CUE_REGISTRY_TOKEN: ${{ secrets.CUE_REGISTRY_TOKEN }}
+        run: |
+          # Bump patch version
+          LATEST=$(git tag -l 'v0.0.*' | sort -V | tail -1)
+          if [ -z "$LATEST" ]; then
+            NEXT="v0.0.2"
+          else
+            PATCH=$(echo $LATEST | cut -d. -f3)
+            NEXT="v0.0.$((PATCH + 1))"
+          fi
+          echo "Publishing $NEXT"
+          cue mod publish $NEXT
+          git tag $NEXT
+          git push --tags
