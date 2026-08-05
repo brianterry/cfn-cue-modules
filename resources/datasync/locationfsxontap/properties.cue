@@ -56,7 +56,7 @@ import "strings"
 	// The password of the user who can mount the share and has the permissions to access files and folders in the SMB share.
 	Password?: string & =~"^.{0,104}$" & strings.MaxRunes(104)
 	// The user who can mount the share, has the permissions to access files and folders in the SMB share.
-	User: string & =~"^[^\\x5B\\x5D\\\\/:;|=,+*?]{1,104}$" & strings.MaxRunes(104)
+	User: string & strings.MaxRunes(104)
 }
 
 #SmbMountOptions: {

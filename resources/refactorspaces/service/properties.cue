@@ -27,6 +27,6 @@ import "strings"
 }
 
 #UrlEndpointInput: {
-	HealthUrl?: string & =~"^https?://[-a-zA-Z0-9+\\x38@#/%?=~_|!:,.;]*[-a-zA-Z0-9+\\x38@#/%=~_|]$" & strings.MinRunes(1) & strings.MaxRunes(2048)
-	Url: string & =~"^https?://[-a-zA-Z0-9+\\x38@#/%?=~_|!:,.;]*[-a-zA-Z0-9+\\x38@#/%=~_|]$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	HealthUrl?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+	Url: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }

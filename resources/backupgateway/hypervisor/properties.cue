@@ -14,5 +14,5 @@ import "strings"
 
 #Tag: {
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
-	Value: string & =~"^[^\\x00]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
+	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }

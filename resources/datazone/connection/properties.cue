@@ -83,10 +83,10 @@ import "strings"
 }
 
 #GlueOAuth2Credentials: {
-	AccessToken?: string & =~"^[\\x20-\\x7E]*$" & strings.MaxRunes(4096)
+	AccessToken?: string & strings.MaxRunes(4096)
 	JwtToken?: string & =~"^([a-zA-Z0-9_=]+)\\.([a-zA-Z0-9_=]+)\\.([a-zA-Z0-9_\\-\\+\\/=]*)$" & strings.MaxRunes(8000)
-	RefreshToken?: string & =~"^[\\x20-\\x7E]*$" & strings.MaxRunes(4096)
-	UserManagedClientApplicationClientSecret?: string & =~"^[\\x20-\\x7E]*$" & strings.MaxRunes(512)
+	RefreshToken?: string & strings.MaxRunes(4096)
+	UserManagedClientApplicationClientSecret?: string & strings.MaxRunes(512)
 }
 
 #GluePropertiesInput: {

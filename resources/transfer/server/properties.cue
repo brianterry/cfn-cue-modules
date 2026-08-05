@@ -11,8 +11,8 @@ import "strings"
 	IdentityProviderType?: #IdentityProviderType
 	IpAddressType?: #IpAddressType
 	LoggingRole?: string & =~"^(|arn:.*role/\\S+)$" & strings.MinRunes(0) & strings.MaxRunes(2048)
-	PostAuthenticationLoginBanner?: string & =~"^[\\x09-\\x0D\\x20-\\x7E]*$" & strings.MinRunes(0) & strings.MaxRunes(4096)
-	PreAuthenticationLoginBanner?: string & =~"^[\\x09-\\x0D\\x20-\\x7E]*$" & strings.MinRunes(0) & strings.MaxRunes(4096)
+	PostAuthenticationLoginBanner?: string & strings.MinRunes(0) & strings.MaxRunes(4096)
+	PreAuthenticationLoginBanner?: string & strings.MinRunes(0) & strings.MaxRunes(4096)
 	ProtocolDetails?: #ProtocolDetails
 	Protocols?: [...#Protocol]
 	S3StorageOptions?: #S3StorageOptions

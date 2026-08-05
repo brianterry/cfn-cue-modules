@@ -17,7 +17,7 @@ import "strings"
 	// Specifies the EFS filesystem that contains the file.
 	FileSystemId?: string & =~"^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:(access-point/fsap|file-system/fs)-[0-9a-f]{8,40}|fs(ap)?-[0-9a-f]{8,40})$" & strings.MinRunes(0) & strings.MaxRunes(128)
 	// The name assigned to the file when it was created in EFS. You use the object path to retrieve the object.
-	Path?: string & =~"^[^\\x00]+$" & strings.MinRunes(1) & strings.MaxRunes(65536)
+	Path?: string & strings.MinRunes(1) & strings.MaxRunes(65536)
 }
 
 #InputFileLocation: {

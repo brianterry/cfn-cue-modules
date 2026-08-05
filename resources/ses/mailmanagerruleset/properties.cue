@@ -25,8 +25,8 @@ import "strings"
 
 #BounceAction: {
 	ActionFailurePolicy?: #ActionFailurePolicy
-	DiagnosticMessage: string & =~"^[\\x20-\\x7e]+$" & strings.MinRunes(1) & strings.MaxRunes(256)
-	Message?: string & =~"^[\\r\\n\\x20-\\x7e]+$" & strings.MinRunes(1) & strings.MaxRunes(500)
+	DiagnosticMessage: string & strings.MinRunes(1) & strings.MaxRunes(256)
+	Message?: string & strings.MinRunes(1) & strings.MaxRunes(500)
 	RoleArn: string & =~"^[a-zA-Z0-9:_/+=,@.#-]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 	Sender: string & =~"^[0-9A-Za-z@+.-]+$" & strings.MinRunes(0) & strings.MaxRunes(254)
 	SmtpReplyCode: string & =~"^[45][0-9][0-9]$" & strings.MinRunes(3) & strings.MaxRunes(3)

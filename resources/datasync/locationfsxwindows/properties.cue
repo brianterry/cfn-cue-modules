@@ -17,7 +17,7 @@ import "strings"
 	// An array of key-value pairs to apply to this resource.
 	Tags?: [...#Tag]
 	// The user who has the permissions to access files and folders in the FSx for Windows file system.
-	User: string & =~"^[^\\x5B\\x5D\\\\/:;|=,+*?]{1,104}$" & strings.MaxRunes(104)
+	User: string & strings.MaxRunes(104)
 }
 
 #CmkSecretConfig: {

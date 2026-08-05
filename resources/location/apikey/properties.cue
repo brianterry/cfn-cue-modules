@@ -23,7 +23,7 @@ import "strings"
 	AllowActions: [...string & =~"^(geo|geo-routes|geo-places|geo-maps):\\w*\\*?$" & strings.MinRunes(5) & strings.MaxRunes(200)]
 	AllowAndroidApps?: [...#AndroidApp]
 	AllowAppleApps?: [...#AppleApp]
-	AllowReferers?: [...string & =~"^([\\w!$&()*+,./:;=?@\\x{60}-]|%([\\dA-Fa-f]{2}|[\\dA-Fa-f]?\\*))+$" & strings.MaxRunes(253)]
+	AllowReferers?: [...string & strings.MaxRunes(253)]
 	AllowResources: [...string & =~"(^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0-9]+)*))(:[0-9]+):((\\*)|([-a-z]+[/][*-._\\w]+))$)|(^arn(:[a-z0-9]+([.-][a-z0-9]+)*):(geo-routes|geo-places|geo-maps)(:((\\*)|([a-z0-9]+([.-][a-z0-9]+)*)))::((provider[\\/][*-._\\w]+))$)" & strings.MaxRunes(1600)]
 }
 

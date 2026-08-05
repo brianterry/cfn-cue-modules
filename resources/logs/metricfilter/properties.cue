@@ -37,7 +37,7 @@ import "strings"
 	// You can also set up a billing alarm to alert you if your charges are higher than expected. For more information, see [Creating a Billing Alarm to Monitor Your Estimated Charges](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
 	Dimensions?: [...#Dimension]
 	// The name of the CloudWatch metric.
-	MetricName: string & =~"^((?![:*$])[\\x00-\\x7F]){1,255}" & strings.MinRunes(1) & strings.MaxRunes(255)
+	MetricName: string & strings.MinRunes(1) & strings.MaxRunes(255)
 	// A custom namespace to contain your metric in CloudWatch. Use namespaces to group together metrics that are similar. For more information, see [Namespaces](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Namespace).
 	MetricNamespace: string & =~"^[0-9a-zA-Z\\.\\-_\\/#]{1,256}" & strings.MinRunes(1) & strings.MaxRunes(256)
 	// The value that is published to the CloudWatch metric. For example, if you're counting the occurrences of a particular term like ``Error``, specify 1 for the metric value. If you're counting the number of bytes transferred, reference the value that is in the log event by using $. followed by the name of the field that you specified in the filter pattern, such as ``$.size``.

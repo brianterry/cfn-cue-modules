@@ -10,7 +10,7 @@ import "strings"
 	ThingGroupName?: string & =~"[a-zA-Z0-9:_-]+" & strings.MinRunes(1) & strings.MaxRunes(128)
 	ThingGroupProperties?: {
 		AttributePayload?: #AttributePayload
-		ThingGroupDescription?: string & =~"[\\p{Graph}\\x20]*" & strings.MaxRunes(2028)
+		ThingGroupDescription?: string & strings.MaxRunes(2028)
 	}
 }
 

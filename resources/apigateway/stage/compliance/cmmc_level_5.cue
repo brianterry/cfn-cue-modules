@@ -6,16 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/apigateway/stage"
 
 // #cmmc_level_5 enforces all cmmc-level-5 controls for this resource.
 // Unify with #Resource: myResource: stage.#Resource & compliance.#cmmc_level_5 & { ... }
-#cmmc_level_5: stage.#Resource & #IA_2_081 & #AC_3_018
+#cmmc_level_5: stage.#Resource & #IA_2_081
 
 // Guard rule: API_GW_CACHE_ENABLED_AND_ENCRYPTED
 #IA_2_081: {
-	// No clauses extracted — manual review needed
-	...
-}
-
-// Guard rule: API_GW_EXECUTION_LOGGING_ENABLED
-#AC_3_018: {
 	// No clauses extracted — manual review needed
 	...
 }

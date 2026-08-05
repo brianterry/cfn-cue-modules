@@ -6,7 +6,7 @@ import "strings"
 	// The ID of the AWS Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if manageAdminPassword is true.
 	AdminPasswordSecretKmsKeyId?: string
 	// The password associated with the admin user for the namespace that is being created. Password must be at least 8 characters in length, should be any printable ASCII character. Must contain at least one lowercase letter, one uppercase letter and one decimal digit. You can't use adminUserPassword if manageAdminPassword is true.
-	AdminUserPassword?: string & =~"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[^\\x00-\\x20\\x22\\x27\\x2f\\x40\\x5c\\x7f-\\uffff]+" & strings.MinRunes(8) & strings.MaxRunes(64)
+	AdminUserPassword?: string & strings.MinRunes(8) & strings.MaxRunes(64)
 	// The user name associated with the admin user for the namespace that is being created. Only alphanumeric characters and underscores are allowed. It should start with an alphabet.
 	AdminUsername?: string & =~"[a-zA-Z][a-zA-Z_0-9+.@-]*"
 	// The database name associated for the namespace that is being created. Only alphanumeric characters and underscores are allowed. It should start with an alphabet.

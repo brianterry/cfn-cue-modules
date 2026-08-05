@@ -49,7 +49,7 @@ import "strings"
 	RepositoryUrl: string
 	SourceCodeVersion: #SourceCodeVersion
 	// Source Directory
-	SourceDirectory?: string & =~"[^\\x00]+" & strings.MinRunes(1) & strings.MaxRunes(4096)
+	SourceDirectory?: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 }
 
 #EgressConfiguration: {

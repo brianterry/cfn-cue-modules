@@ -12,8 +12,8 @@ import "strings"
 }
 
 #ApiKeyAuthParameters: {
-	ApiKeyName: string & =~"^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$"
-	ApiKeyValue: string & =~"^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$"
+	ApiKeyName: string
+	ApiKeyValue: string
 }
 
 #AuthParameters: {
@@ -25,13 +25,13 @@ import "strings"
 }
 
 #BasicAuthParameters: {
-	Password: string & =~"^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$"
-	Username: string & =~"^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$"
+	Password: string
+	Username: string
 }
 
 #ClientParameters: {
-	ClientID: string & =~"^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$"
-	ClientSecret: string & =~"^[ \\t]*[^\\x00-\\x1F\\x7F]+([ \\t]+[^\\x00-\\x1F\\x7F]+)*[ \\t]*$"
+	ClientID: string
+	ClientSecret: string
 }
 
 #ConnectionHttpParameters: {
@@ -45,7 +45,7 @@ import "strings"
 }
 
 #OAuthParameters: {
-	AuthorizationEndpoint: string & =~"^((%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@\\x26=+$,A-Za-z0-9])+)([).!';/?:,])?$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+	AuthorizationEndpoint: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	ClientParameters: #ClientParameters
 	HttpMethod: "GET" | "POST" | "PUT"
 	OAuthHttpParameters?: #ConnectionHttpParameters

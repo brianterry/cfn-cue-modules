@@ -41,7 +41,7 @@ import "strings"
 
 #CrossAccountRoleConfiguration: {
 	// ARN of the cross-account IAM role.
-	CrossAccountRoleArn: string & =~"^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):iam::[0-9]{12}:role\\/(([^\\/][\\x21-\\x7E]+\\/){1,511})?[A-Za-z0-9_+=,.@-]{1,64}$" & strings.MinRunes(20) & strings.MaxRunes(2048)
+	CrossAccountRoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 	// External ID for cross-account access.
 	ExternalId?: string
 }

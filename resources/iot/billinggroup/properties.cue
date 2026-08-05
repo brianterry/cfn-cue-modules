@@ -5,7 +5,7 @@ import "strings"
 #Properties: {
 	BillingGroupName?: string & =~"[a-zA-Z0-9:_-]+" & strings.MinRunes(1) & strings.MaxRunes(128)
 	BillingGroupProperties?: {
-		BillingGroupDescription?: string & =~"[\\p{Graph}\\x20]*" & strings.MaxRunes(2028)
+		BillingGroupDescription?: string & strings.MaxRunes(2028)
 	}
 	// An array of key-value pairs to apply to this resource.
 	Tags?: [...#Tag]

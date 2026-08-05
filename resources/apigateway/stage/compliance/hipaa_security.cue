@@ -6,16 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/apigateway/stage"
 
 // #hipaa_security enforces all hipaa-security controls for this resource.
 // Unify with #Resource: myResource: stage.#Resource & compliance.#hipaa_security & { ... }
-#hipaa_security: stage.#Resource & #ctrl_164_312_a_2_iv & #ctrl_164_312_b
+#hipaa_security: stage.#Resource & #ctrl_164_312_a_2_iv
 
 // Guard rule: API_GW_CACHE_ENABLED_AND_ENCRYPTED
 #ctrl_164_312_a_2_iv: {
-	// No clauses extracted — manual review needed
-	...
-}
-
-// Guard rule: API_GW_EXECUTION_LOGGING_ENABLED
-#ctrl_164_312_b: {
 	// No clauses extracted — manual review needed
 	...
 }

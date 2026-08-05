@@ -5,7 +5,7 @@ import "strings"
 #Properties: {
 	ConnectorArn: string & =~"^arn:[\\w-]+:pca-connector-ad:[\\w-]+:[0-9]+:connector\\/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$" & strings.MinRunes(5) & strings.MaxRunes(200)
 	Definition: #TemplateDefinition
-	Name: string & =~"^(?!^\\s+$)((?![\\x5c'\\x2b,;<=>#\\x22])([\\x20-\\x7E]))+$" & strings.MinRunes(1) & strings.MaxRunes(64)
+	Name: string & strings.MinRunes(1) & strings.MaxRunes(64)
 	ReenrollAllCertificateHolders?: bool
 	Tags?: #Tags
 }
@@ -184,7 +184,7 @@ import "strings"
 	PrivateKeyAttributes: #PrivateKeyAttributesV2
 	PrivateKeyFlags: #PrivateKeyFlagsV2
 	SubjectNameFlags: #SubjectNameFlagsV2
-	SupersededTemplates?: [...string & =~"^(?!^\\s+$)((?![\\x5c'\\x2b,;<=>#\\x22])([\\x20-\\x7E]))+$" & strings.MinRunes(1) & strings.MaxRunes(64)]
+	SupersededTemplates?: [...string & strings.MinRunes(1) & strings.MaxRunes(64)]
 }
 
 #TemplateV3: {
@@ -196,7 +196,7 @@ import "strings"
 	PrivateKeyAttributes: #PrivateKeyAttributesV3
 	PrivateKeyFlags: #PrivateKeyFlagsV3
 	SubjectNameFlags: #SubjectNameFlagsV3
-	SupersededTemplates?: [...string & =~"^(?!^\\s+$)((?![\\x5c'\\x2b,;<=>#\\x22])([\\x20-\\x7E]))+$" & strings.MinRunes(1) & strings.MaxRunes(64)]
+	SupersededTemplates?: [...string & strings.MinRunes(1) & strings.MaxRunes(64)]
 }
 
 #TemplateV4: {
@@ -208,7 +208,7 @@ import "strings"
 	PrivateKeyAttributes: #PrivateKeyAttributesV4
 	PrivateKeyFlags: #PrivateKeyFlagsV4
 	SubjectNameFlags: #SubjectNameFlagsV4
-	SupersededTemplates?: [...string & =~"^(?!^\\s+$)((?![\\x5c'\\x2b,;<=>#\\x22])([\\x20-\\x7E]))+$" & strings.MinRunes(1) & strings.MaxRunes(64)]
+	SupersededTemplates?: [...string & strings.MinRunes(1) & strings.MaxRunes(64)]
 }
 
 #ValidityPeriod: {

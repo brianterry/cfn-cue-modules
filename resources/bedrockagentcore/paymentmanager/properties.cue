@@ -38,7 +38,7 @@ import "strings"
 #CustomJWTAuthorizerConfiguration: {
 	AllowedAudience?: [...string]
 	AllowedClients?: [...string]
-	AllowedScopes?: [...string & =~"^[\\x21\\x23-\\x5B\\x5D-\\x7E]+$" & strings.MinRunes(1) & strings.MaxRunes(255)]
+	AllowedScopes?: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
 	CustomClaims?: [...#CustomClaimValidationType]
 	DiscoveryUrl: string & =~"^.+/\\.well-known/openid-configuration$"
 }

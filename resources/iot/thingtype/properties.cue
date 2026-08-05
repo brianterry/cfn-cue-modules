@@ -12,7 +12,7 @@ import "strings"
 			PropagatingAttributes?: [...#PropagatingAttribute]
 		}
 		SearchableAttributes?: [...string & =~"[a-zA-Z0-9_.,@/:#-]+" & strings.MaxRunes(128)]
-		ThingTypeDescription?: string & =~"[\\p{Graph}\\x20]*" & strings.MaxRunes(2028)
+		ThingTypeDescription?: string & strings.MaxRunes(2028)
 	}
 }
 

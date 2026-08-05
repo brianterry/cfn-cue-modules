@@ -6,16 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/apigateway/stage"
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: stage.#Resource & compliance.#ens_low & { ... }
-#ens_low: stage.#Resource & #Anexo_II_4_1_2_a_b_c & #Anexo_II_4_2_6_c
+#ens_low: stage.#Resource & #Anexo_II_4_1_2_a_b_c
 
 // Guard rule: API_GW_CACHE_ENABLED_AND_ENCRYPTED
 #Anexo_II_4_1_2_a_b_c: {
-	// No clauses extracted — manual review needed
-	...
-}
-
-// Guard rule: API_GW_EXECUTION_LOGGING_ENABLED
-#Anexo_II_4_2_6_c: {
 	// No clauses extracted — manual review needed
 	...
 }

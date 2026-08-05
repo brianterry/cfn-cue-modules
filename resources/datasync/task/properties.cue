@@ -27,7 +27,7 @@ import "strings"
 	// The type of filter rule to apply. AWS DataSync only supports the SIMPLE_PATTERN rule type.
 	FilterType?: "SIMPLE_PATTERN"
 	// A single filter string that consists of the patterns to include or exclude. The patterns are delimited by "|".
-	Value?: string & =~"^[^\\x00]+$" & strings.MaxRunes(409600)
+	Value?: string & strings.MaxRunes(409600)
 }
 
 #ManifestConfig: {
