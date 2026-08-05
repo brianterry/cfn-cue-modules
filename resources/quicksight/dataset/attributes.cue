@@ -9,13 +9,13 @@ package dataset
 	// <p>The Amazon Resource Name (ARN) of the resource.</p>
 	Arn: string
 	// <p>The amount of SPICE capacity used by this dataset. This is 0 if the dataset isn't
-            imported into SPICE.</p>
+	// imported into SPICE.</p>
 	ConsumedSpiceCapacityInBytes: number
 	// <p>The time that this dataset was created.</p>
 	CreatedTime: string
 	// <p>The last time that this dataset was updated.</p>
 	LastUpdatedTime: string
 	// <p>The list of columns after all transforms. These columns are available in templates,
-            analyses, and dashboards.</p>
+	// analyses, and dashboards.</p>
 	OutputColumns: [...#OutputColumn]
 }

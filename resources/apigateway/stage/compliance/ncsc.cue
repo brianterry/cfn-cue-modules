@@ -6,10 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/apigateway/stage"
 
 // #ncsc enforces all ncsc controls for this resource.
 // Unify with #Resource: myResource: stage.#Resource & compliance.#ncsc & { ... }
-#ncsc: stage.#Resource & #2__Asset_protection_and_resilience
+#ncsc: stage.#Resource & #2__Asset_protection_and_resilience & #5__Operational_security
 
 // Guard rule: API_GW_CACHE_ENABLED_AND_ENCRYPTED
 #2__Asset_protection_and_resilience: {
+	// No clauses extracted — manual review needed
+	...
+}
+
+// Guard rule: API_GW_EXECUTION_LOGGING_ENABLED
+#5__Operational_security: {
 	// No clauses extracted — manual review needed
 	...
 }

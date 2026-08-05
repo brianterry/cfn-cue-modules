@@ -6,6 +6,6 @@ package vpcgatewayattachment
 // Usage:
 //   fn.#GetAtt & {_logicalName: "MyResource", _attribute: "<attribute name>"}
 #Attributes: {
-	// Used to identify if this resource is an Internet Gateway or Vpn Gateway Attachment 
+	// Used to identify if this resource is an Internet Gateway or Vpn Gateway Attachment
 	AttachmentType: string
 }

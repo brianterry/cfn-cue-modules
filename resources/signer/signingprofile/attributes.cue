@@ -6,7 +6,7 @@ package signingprofile
 // Usage:
 //   fn.#GetAtt & {_logicalName: "MyResource", _attribute: "<attribute name>"}
 #Attributes: {
-	// A name for the signing profile. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the signing profile name. 
+	// A name for the signing profile. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the signing profile name.
 	ProfileName: #ProfileName
 	// A version for the signing profile. AWS Signer generates a unique version for each profile of the same profile name.
 	ProfileVersion: #ProfileVersion

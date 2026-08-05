@@ -12,7 +12,7 @@ package ipamresourcediscovery
 	IpamResourceDiscoveryArn: string
 	// Owner Account ID of the Resource Discovery
 	OwnerId: string
-	// The region the resource discovery is setup in. 
+	// The region the resource discovery is setup in.
 	IpamResourceDiscoveryRegion: string
 	// Determines whether or not address space from this pool is publicly advertised. Must be set if and only if the pool is IPv6.
 	IsDefault: bool

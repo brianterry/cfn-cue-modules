@@ -8,7 +8,7 @@ package component
 #Attributes: {
 	// The Amazon Resource Name (ARN) of the component.
 	Arn: string & =~"^arn:[^:]+:imagebuilder:[^:]+:[^:]+:component/.+$"
-	// The type of the component denotes whether the component is used to build the image or only to test it. 
+	// The type of the component denotes whether the component is used to build the image or only to test it.
 	Type: "BUILD" | "TEST"
 	// The encryption status of the component.
 	Encrypted: bool

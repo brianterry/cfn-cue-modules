@@ -21,9 +21,7 @@ package moduleversion
 	// The version ID of the module represented by this module instance.
 	VersionId: string & =~"^[0-9]{8}$"
 	// The scope at which the type is visible and usable in CloudFormation operations.
-
-The only allowed value at present is:
-
-PRIVATE: The type is only visible and usable within the account in which it is registered. Currently, AWS CloudFormation marks any types you register as PRIVATE.
+	// The only allowed value at present is:
+	// PRIVATE: The type is only visible and usable within the account in which it is registered. Currently, AWS CloudFormation marks any types you register as PRIVATE.
 	Visibility: "PRIVATE"
 }

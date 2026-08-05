@@ -7,7 +7,7 @@ package anomalymonitor
 //   fn.#GetAtt & {_logicalName: "MyResource", _attribute: "<attribute name>"}
 #Attributes: {
 	MonitorArn: #Arn
-	// The date when the monitor was created. 
+	// The date when the monitor was created.
 	CreationDate: string & =~"(\\d{4}-\\d{2}-\\d{2})(T\\d{2}:\\d{2}:\\d{2}Z)?" & strings.MinRunes(0) & strings.MaxRunes(40)
 	// The date when the monitor last evaluated for anomalies.
 	LastEvaluatedDate: string & =~"(\\d{4}-\\d{2}-\\d{2})(T\\d{2}:\\d{2}:\\d{2}Z)?|(NOT_EVALUATED_YET)" & strings.MinRunes(0) & strings.MaxRunes(40)

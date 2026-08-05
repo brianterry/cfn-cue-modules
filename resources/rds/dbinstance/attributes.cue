@@ -17,7 +17,7 @@ package dbinstance
 	LatestRestorableTime: string
 	ListenerEndpoint: #Endpoint
 	// The secret managed by RDS in AWS Secrets Manager for the master user password.
- For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide.*
+	// For more information, see [Password management with Secrets Manager](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html) in the *Amazon RDS User Guide.*
 	MasterUserSecret: #MasterUserSecret
 	PercentProgress: string
 	ReadReplicaDBClusterIdentifiers: [...string]
