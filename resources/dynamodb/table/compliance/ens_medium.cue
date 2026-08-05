@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/dynamodb/table"
 
 // #ens_medium enforces all ens-medium controls for this resource.
 // Unify with #Resource: myResource: table.#Resource & compliance.#ens_medium & { ... }
-#ens_medium: table.#Resource & #Art__25
+#ens_medium: table.#Resource & #Art_25
 
 // Guard rule: DYNAMODB_PITR_ENABLED
-#Art__25: {
+#Art_25: {
 	Properties: PointInTimeRecoverySpecification: PointInTimeRecoveryEnabled: true
 	...
 }

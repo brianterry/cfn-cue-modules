@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/redshift/cluster"
 
 // #ens_medium enforces all ens-medium controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#ens_medium & { ... }
-#ens_medium: cluster.#Resource & #Anexo_II_4_1_2_a__b__c
+#ens_medium: cluster.#Resource & #Anexo_II_4_1_2_a_b_c
 
 // Guard rule: REDSHIFT_CLUSTER_CONFIGURATION_CHECK
-#Anexo_II_4_1_2_a__b__c: {
+#Anexo_II_4_1_2_a_b_c: {
 	Properties: Encrypted: true
 	...
 }

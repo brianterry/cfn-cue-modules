@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/ec2/route"
 
 // #ncsc enforces all ncsc controls for this resource.
 // Unify with #Resource: myResource: route.#Resource & compliance.#ncsc & { ... }
-#ncsc: route.#Resource & #ctrl_5__Operational_security
+#ncsc: route.#Resource & #ctrl_5_Operational_security
 
 // Guard rule: NO_UNRESTRICTED_ROUTE_TO_IGW
-#ctrl_5__Operational_security: {
+#ctrl_5_Operational_security: {
 	// No clauses extracted — manual review needed
 	...
 }

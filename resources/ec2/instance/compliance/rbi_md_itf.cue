@@ -6,7 +6,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/ec2/instance"
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: instance.#Resource & compliance.#rbi_md_itf & { ... }
-#rbi_md_itf: instance.#Resource & #ctrl_4_4_h & #ctrl_4_4_h_2 & #ctrl_8_I & #ctrl_3_1_c_ & #ctrl_8_I_2
+#rbi_md_itf: instance.#Resource & #ctrl_4_4_h & #ctrl_4_4_h_2 & #ctrl_8_I & #ctrl_3_1_c & #ctrl_8_I_2
 
 // Guard rule: EBS_OPTIMIZED_INSTANCE
 #ctrl_4_4_h: {
@@ -27,7 +27,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/ec2/instance"
 }
 
 // Guard rule: EC2_INSTANCE_PROFILE_ATTACHED
-#ctrl_3_1_c_: {
+#ctrl_3_1_c: {
 	Properties: IamInstanceProfile: _ & !=_|_
 	...
 }

@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/eks/cluster"
 
 // #ncsc enforces all ncsc controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#ncsc & { ... }
-#ncsc: cluster.#Resource & #ctrl_11__External_interface_protection
+#ncsc: cluster.#Resource & #ctrl_11_External_interface_protection
 
 // Guard rule: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
-#ctrl_11__External_interface_protection: {
+#ctrl_11_External_interface_protection: {
 	Properties: PubliclyAccessible: false
 	...
 }

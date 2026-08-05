@@ -6,22 +6,22 @@ import "github.com/brianterry/cfn-cue-modules/resources/lambda/function"
 
 // #ncsc_cafv3 enforces all ncsc-cafv3 controls for this resource.
 // Unify with #Resource: myResource: function.#Resource & compliance.#ncsc_cafv3 & { ... }
-#ncsc_cafv3: function.#Resource & #B4_a Secure by Design & #C1_a Monitoring Coverage & #B3_b Data in Transit
+#ncsc_cafv3: function.#Resource & #B4_a_Secure_by_Design & #C1_a_Monitoring_Coverage & #B3_b_Data_in_Transit
 
 // Guard rule: LAMBDA_CONCURRENCY_CHECK
-#B4_a Secure by Design: {
+#B4_a_Secure_by_Design: {
 	Properties: ReservedConcurrentExecutions: >=0
 	...
 }
 
 // Guard rule: LAMBDA_DLQ_CHECK
-#C1_a Monitoring Coverage: {
+#C1_a_Monitoring_Coverage: {
 	Properties: DeadLetterConfig: TargetArn: [_, ...]
 	...
 }
 
 // Guard rule: LAMBDA_INSIDE_VPC
-#B3_b Data in Transit: {
+#B3_b_Data_in_Transit: {
 	Properties: VpcConfig: SecurityGroupIds: [_, ...]
 	Properties: VpcConfig: SubnetIds: [_, ...]
 	...

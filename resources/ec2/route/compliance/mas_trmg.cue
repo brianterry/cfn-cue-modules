@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/ec2/route"
 
 // #mas_trmg enforces all mas-trmg controls for this resource.
 // Unify with #Resource: myResource: route.#Resource & compliance.#mas_trmg & { ... }
-#mas_trmg: route.#Resource & #ctrl_11_1_1__b
+#mas_trmg: route.#Resource & #ctrl_11_1_1_b
 
 // Guard rule: NO_UNRESTRICTED_ROUTE_TO_IGW
-#ctrl_11_1_1__b: {
+#ctrl_11_1_1_b: {
 	// No clauses extracted — manual review needed
 	...
 }

@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstan
 
 // #ncsc enforces all ncsc controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#ncsc & { ... }
-#ncsc: notebookinstance.#Resource & #ctrl_2__Asset_protection_and_resilience & #ctrl_11__External_interface_protection
+#ncsc: notebookinstance.#Resource & #ctrl_2_Asset_protection_and_resilience & #ctrl_11_External_interface_protection
 
 // Guard rule: SAGEMAKER_NOTEBOOK_INSTANCE_KMS_KEY_CONFIGURED
-#ctrl_2__Asset_protection_and_resilience: {
+#ctrl_2_Asset_protection_and_resilience: {
 	Properties: KmsKeyId: _ & !=_|_
 	...
 }
 
 // Guard rule: SAGEMAKER_NOTEBOOK_NO_DIRECT_INTERNET_ACCESS
-#ctrl_11__External_interface_protection: {
+#ctrl_11_External_interface_protection: {
 	Properties: DirectInternetAccess: _ & !=_|_
 	Properties: DirectInternetAccess: "Disabled"
 	...

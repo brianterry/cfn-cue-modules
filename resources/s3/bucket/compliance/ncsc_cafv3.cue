@@ -6,17 +6,17 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #ncsc_cafv3 enforces all ncsc-cafv3 controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#ncsc_cafv3 & { ... }
-#ncsc_cafv3: bucket.#Resource & #B3_c Stored Data & #B3_b Data in Transit & #C1_b Securing Logs & #B4_a Secure by Design & #B4_a Secure by Design_2 & #B3_c Stored Data_2 & #B3_c Stored Data_3 & #B3_c Stored Data_4
+#ncsc_cafv3: bucket.#Resource & #B3_c_Stored_Data & #B3_b_Data_in_Transit & #C1_b_Securing_Logs & #B4_a_Secure_by_Design & #B4_a_Secure_by_Design_2 & #B3_c_Stored_Data_2 & #B3_c_Stored_Data_3 & #B3_c_Stored_Data_4
 
 // Guard rule: S3_BUCKET_DEFAULT_LOCK_ENABLED
-#B3_c Stored Data: {
+#B3_c_Stored_Data: {
 	Properties: ObjectLockEnabled: _ & !=_|_
 	Properties: ObjectLockEnabled: true
 	...
 }
 
 // Guard rule: S3_BUCKET_LEVEL_PUBLIC_ACCESS_PROHIBITED
-#B3_b Data in Transit: {
+#B3_b_Data_in_Transit: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -26,13 +26,13 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_LOGGING_ENABLED
-#C1_b Securing Logs: {
+#C1_b_Securing_Logs: {
 	Properties: LoggingConfiguration: _ & !=_|_
 	...
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_READ_PROHIBITED
-#B4_a Secure by Design: {
+#B4_a_Secure_by_Design: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -42,7 +42,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
-#B4_a Secure by Design_2: {
+#B4_a_Secure_by_Design_2: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -52,13 +52,13 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_REPLICATION_ENABLED
-#B3_c Stored Data_2: {
+#B3_c_Stored_Data_2: {
 	Properties: ReplicationConfiguration: _ & !=_|_
 	...
 }
 
 // Guard rule: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
-#B3_c Stored Data_3: {
+#B3_c_Stored_Data_3: {
 	Properties: BucketEncryption: _ & !=_|_
 	Properties: BucketEncryption: ServerSideEncryptionConfiguration: [...{
 		ServerSideEncryptionByDefault: SSEAlgorithm: "aws:kms" | "AES256"
@@ -68,7 +68,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_VERSIONING_ENABLED
-#B3_c Stored Data_4: {
+#B3_c_Stored_Data_4: {
 	Properties: VersioningConfiguration: _ & !=_|_
 	Properties: VersioningConfiguration: Status: "Enabled"
 	...

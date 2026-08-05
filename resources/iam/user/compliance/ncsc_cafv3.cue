@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/iam/user"
 
 // #ncsc_cafv3 enforces all ncsc-cafv3 controls for this resource.
 // Unify with #Resource: myResource: user.#Resource & compliance.#ncsc_cafv3 & { ... }
-#ncsc_cafv3: user.#Resource & #B2_a Identity Verification_ Authentication_and Authorisation & #C1_b Securing Logs
+#ncsc_cafv3: user.#Resource & #B2_a_Identity_Verification_Authentication_and_Authorisation & #C1_b_Securing_Logs
 
 // Guard rule: IAM_NO_INLINE_POLICY_CHECK
-#B2_a Identity Verification_ Authentication_and Authorisation: {
+#B2_a_Identity_Verification_Authentication_and_Authorisation: {
 	Properties: Policies: []
 	...
 }
 
 // Guard rule: IAM_USER_NO_POLICIES_CHECK
-#C1_b Securing Logs: {
+#C1_b_Securing_Logs: {
 	Properties: Policies: []
 	...
 }

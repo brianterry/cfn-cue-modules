@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/secretsmanager/secret"
 
 // #ncsc_cafv3 enforces all ncsc-cafv3 controls for this resource.
 // Unify with #Resource: myResource: secret.#Resource & compliance.#ncsc_cafv3 & { ... }
-#ncsc_cafv3: secret.#Resource & #B3_c Stored Data
+#ncsc_cafv3: secret.#Resource & #B3_c_Stored_Data
 
 // Guard rule: SECRETSMANAGER_USING_CMK
-#B3_c Stored Data: {
+#B3_c_Stored_Data: {
 	Properties: KmsKeyId: _ & !=_|_
 	Properties: KmsKeyId: "alias/aws/secretsmanager"
 	...

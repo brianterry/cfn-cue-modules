@@ -6,7 +6,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 
 // #mas_trmg enforces all mas-trmg controls for this resource.
 // Unify with #Resource: myResource: domain.#Resource & compliance.#mas_trmg & { ... }
-#mas_trmg: domain.#Resource & #ctrl_10_1_1 & #ctrl_11_1_1__b & #ctrl_7_5_7 & #ctrl_6_4_5
+#mas_trmg: domain.#Resource & #ctrl_10_1_1 & #ctrl_11_1_1_b & #ctrl_7_5_7 & #ctrl_6_4_5
 
 // Guard rule: ELASTICSEARCH_ENCRYPTED_AT_REST
 #ctrl_10_1_1: {
@@ -15,7 +15,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 }
 
 // Guard rule: ELASTICSEARCH_IN_VPC_ONLY
-#ctrl_11_1_1__b: {
+#ctrl_11_1_1_b: {
 	Properties: VPCOptions: _ & !=_|_
 	...
 }

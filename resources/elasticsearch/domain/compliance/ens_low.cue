@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: domain.#Resource & compliance.#ens_low & { ... }
-#ens_low: domain.#Resource & #Anexo_II_4_1_2_a__b__c & #Anexo_II_4_3_2_b & #Anexo_II_4_2_6_c & #Anexo_II_4_1_2_a__b__c_2
+#ens_low: domain.#Resource & #Anexo_II_4_1_2_a_b_c & #Anexo_II_4_3_2_b & #Anexo_II_4_2_6_c & #Anexo_II_4_1_2_a_b_c_2
 
 // Guard rule: ELASTICSEARCH_ENCRYPTED_AT_REST
-#Anexo_II_4_1_2_a__b__c: {
+#Anexo_II_4_1_2_a_b_c: {
 	Properties: EncryptionAtRestOptions: Enabled: true
 	...
 }
@@ -30,7 +30,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 }
 
 // Guard rule: ELASTICSEARCH_NODE_TO_NODE_ENCRYPTION_CHECK
-#Anexo_II_4_1_2_a__b__c_2: {
+#Anexo_II_4_1_2_a_b_c_2: {
 	Properties: NodeToNodeEncryptionOptions: Enabled: true
 	...
 }

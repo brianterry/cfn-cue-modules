@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/secretsmanager/secret"
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: secret.#Resource & compliance.#ens_low & { ... }
-#ens_low: secret.#Resource & #Anexo_II_4_1_2_a__b__c
+#ens_low: secret.#Resource & #Anexo_II_4_1_2_a_b_c
 
 // Guard rule: SECRETSMANAGER_USING_CMK
-#Anexo_II_4_1_2_a__b__c: {
+#Anexo_II_4_1_2_a_b_c: {
 	Properties: KmsKeyId: _ & !=_|_
 	Properties: KmsKeyId: "alias/aws/secretsmanager"
 	...

@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/autoscaling/launchconfig
 
 // #mas_trmg enforces all mas-trmg controls for this resource.
 // Unify with #Resource: myResource: launchconfiguration.#Resource & compliance.#mas_trmg & { ... }
-#mas_trmg: launchconfiguration.#Resource & #ctrl_11_1_1__b
+#mas_trmg: launchconfiguration.#Resource & #ctrl_11_1_1_b
 
 // Guard rule: AUTOSCALING_LAUNCH_CONFIG_PUBLIC_IP_DISABLED
-#ctrl_11_1_1__b: {
+#ctrl_11_1_1_b: {
 	// No clauses extracted — manual review needed
 	...
 }

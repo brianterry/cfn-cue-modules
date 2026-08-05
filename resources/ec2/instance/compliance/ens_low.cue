@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/ec2/instance"
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: instance.#Resource & compliance.#ens_low & { ... }
-#ens_low: instance.#Resource & #Art__25 & #Anexo_II_4_3_2_b
+#ens_low: instance.#Resource & #Art_25 & #Anexo_II_4_3_2_b
 
 // Guard rule: EBS_OPTIMIZED_INSTANCE
-#Art__25: {
+#Art_25: {
 	Properties: EbsOptimized: true
 	...
 }

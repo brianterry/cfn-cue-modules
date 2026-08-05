@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/autoscaling/launchconfig
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: launchconfiguration.#Resource & compliance.#ens_low & { ... }
-#ens_low: launchconfiguration.#Resource & #Art__22
+#ens_low: launchconfiguration.#Resource & #Art_22
 
 // Guard rule: AUTOSCALING_LAUNCH_CONFIG_PUBLIC_IP_DISABLED
-#Art__22: {
+#Art_22: {
 	// No clauses extracted — manual review needed
 	...
 }

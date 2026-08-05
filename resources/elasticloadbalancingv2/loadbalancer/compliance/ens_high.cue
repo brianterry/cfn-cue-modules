@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancingv2/l
 
 // #ens_high enforces all ens-high controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#ens_high & { ... }
-#ens_high: loadbalancer.#Resource & #Anexo_II_4_1_2_a__b__c
+#ens_high: loadbalancer.#Resource & #Anexo_II_4_1_2_a_b_c
 
 // Guard rule: ELB_DELETION_PROTECTION_ENABLED
-#Anexo_II_4_1_2_a__b__c: {
+#Anexo_II_4_1_2_a_b_c: {
 	// No clauses extracted — manual review needed
 	...
 }

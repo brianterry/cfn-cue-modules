@@ -6,17 +6,17 @@ import "github.com/brianterry/cfn-cue-modules/resources/rds/dbinstance"
 
 // #ens_high enforces all ens-high controls for this resource.
 // Unify with #Resource: myResource: dbinstance.#Resource & compliance.#ens_high & { ... }
-#ens_high: dbinstance.#Resource & #Art__20_2 & #Anexo_II_4_1_2_a__b__c & #Anexo_II_4_3_2_b & #Anexo_II_4_2_6_c & #Anexo_II_4_1_2_a__b__c_2
+#ens_high: dbinstance.#Resource & #Art_20_2 & #Anexo_II_4_1_2_a_b_c & #Anexo_II_4_3_2_b & #Anexo_II_4_2_6_c & #Anexo_II_4_1_2_a_b_c_2
 
 // Guard rule: RDS_AUTOMATIC_MINOR_VERSION_UPGRADE_ENABLED
-#Art__20_2: {
+#Art_20_2: {
 	Properties: AutoMinorVersionUpgrade: _ & !=_|_
 	Properties: AutoMinorVersionUpgrade: true
 	...
 }
 
 // Guard rule: RDS_INSTANCE_DELETION_PROTECTION_ENABLED
-#Anexo_II_4_1_2_a__b__c: {
+#Anexo_II_4_1_2_a_b_c: {
 	Properties: DeletionProtection: _ & !=_|_
 	Properties: DeletionProtection: true
 	...
@@ -35,7 +35,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/rds/dbinstance"
 }
 
 // Guard rule: RDS_MULTI_AZ_SUPPORT
-#Anexo_II_4_1_2_a__b__c_2: {
+#Anexo_II_4_1_2_a_b_c_2: {
 	Properties: MultiAZ: _ & !=_|_
 	Properties: MultiAZ: true
 	...

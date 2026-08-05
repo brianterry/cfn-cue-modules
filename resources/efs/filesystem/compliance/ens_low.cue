@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/efs/filesystem"
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: filesystem.#Resource & compliance.#ens_low & { ... }
-#ens_low: filesystem.#Resource & #Anexo_II_4_1_2_a__b__c
+#ens_low: filesystem.#Resource & #Anexo_II_4_1_2_a_b_c
 
 // Guard rule: EFS_ENCRYPTED_CHECK
-#Anexo_II_4_1_2_a__b__c: {
+#Anexo_II_4_1_2_a_b_c: {
 	Properties: Encrypted: true
 	...
 }

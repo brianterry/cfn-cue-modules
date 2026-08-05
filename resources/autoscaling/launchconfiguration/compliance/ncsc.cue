@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/autoscaling/launchconfig
 
 // #ncsc enforces all ncsc controls for this resource.
 // Unify with #Resource: myResource: launchconfiguration.#Resource & compliance.#ncsc & { ... }
-#ncsc: launchconfiguration.#Resource & #ctrl_11__External_interface_protection
+#ncsc: launchconfiguration.#Resource & #ctrl_11_External_interface_protection
 
 // Guard rule: AUTOSCALING_LAUNCH_CONFIG_PUBLIC_IP_DISABLED
-#ctrl_11__External_interface_protection: {
+#ctrl_11_External_interface_protection: {
 	// No clauses extracted — manual review needed
 	...
 }

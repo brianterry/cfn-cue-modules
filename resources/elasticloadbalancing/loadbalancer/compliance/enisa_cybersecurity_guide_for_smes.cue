@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancing/loa
 
 // #enisa_cybersecurity_guide_for_smes enforces all enisa-cybersecurity-guide-for-smes controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#enisa_cybersecurity_guide_for_smes & { ... }
-#enisa_cybersecurity_guide_for_smes: loadbalancer.#Resource & #ctrl_7_SECURE_YOUR_NETWORK__REVIEW_REMOTE_ACCESS_SOLUTIONS & #ctrl_1_DEVELOP_GOOD_CYBERSECURITY_CULTURE__REMEMBER_DATA_PROTECTION
+#enisa_cybersecurity_guide_for_smes: loadbalancer.#Resource & #ctrl_7_SECURE_YOUR_NETWORK_REVIEW_REMOTE_ACCESS_SOLUTIONS & #ctrl_1_DEVELOP_GOOD_CYBERSECURITY_CULTURE_REMEMBER_DATA_PROTECTION
 
 // Guard rule: ELB_LOGGING_ENABLED
-#ctrl_7_SECURE_YOUR_NETWORK__REVIEW_REMOTE_ACCESS_SOLUTIONS: {
+#ctrl_7_SECURE_YOUR_NETWORK_REVIEW_REMOTE_ACCESS_SOLUTIONS: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_TLS_HTTPS_LISTENERS_ONLY
-#ctrl_1_DEVELOP_GOOD_CYBERSECURITY_CULTURE__REMEMBER_DATA_PROTECTION: {
+#ctrl_1_DEVELOP_GOOD_CYBERSECURITY_CULTURE_REMEMBER_DATA_PROTECTION: {
 	// No clauses extracted — manual review needed
 	...
 }
