@@ -26,9 +26,15 @@ import "strings"
 	SubnetId?: string & =~"^subnet-[0-9a-z]*$" & strings.MinRunes(1) & strings.MaxRunes(255)
 }
 
+#NetworkInterfaceStatus: "CREATING" | "AVAILABLE" | "CREATION_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETED" | "DELETION_FAILED" | "DELETION_SCHEDULED" | "ATTACHMENT_FAILED_ROLLBACK_FAILED"
+
 #Tag: {
 	// <p>Tag key.</p>
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// <p>Tag value.</p>
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#VPCConnectionAvailabilityStatus: "AVAILABLE" | "UNAVAILABLE" | "PARTIALLY_AVAILABLE"
+
+#VPCConnectionResourceStatus: "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "DELETION_IN_PROGRESS" | "DELETION_FAILED" | "DELETED"

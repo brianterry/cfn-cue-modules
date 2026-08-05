@@ -22,3 +22,5 @@ import "strings"
 	// Tag values of DevOps Guru app boundary.
 	TagValues?: [...string & strings.MinRunes(1) & strings.MaxRunes(256)]
 }
+
+#TagCollections: [...#TagCollection]

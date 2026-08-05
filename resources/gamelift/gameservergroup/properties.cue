@@ -27,10 +27,20 @@ package gameservergroup
 	VpcSubnets?: #VpcSubnets
 }
 
+#AutoScalingGroupArn: string & strings.MinRunes(0) & strings.MaxRunes(256)
+
 #AutoScalingPolicy: {
 	EstimatedInstanceWarmup?: #EstimatedInstanceWarmup
 	TargetTrackingConfiguration: #TargetTrackingConfiguration
 }
+
+#BalancingStrategy: "SPOT_ONLY" | "SPOT_PREFERRED" | "ON_DEMAND_ONLY"
+
+#CreationTime: string
+
+#DeleteOption: "SAFE_DELETE" | "FORCE_DELETE" | "RETAIN"
+
+#EstimatedInstanceWarmup: number
 
 #GameServerGroup: {
 	AutoScalingGroupArn?: #AutoScalingGroupArn
@@ -47,16 +57,44 @@ package gameservergroup
 	SuspendedActions?: #SuspendedActions
 }
 
+#GameServerGroupArn: string & =~"^arn:.*:gameservergroup\\/[a-zA-Z0-9-\\.]*" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#GameServerGroupName: string & =~"[a-zA-Z0-9-\\.]+" & strings.MinRunes(1) & strings.MaxRunes(128)
+
+#GameServerProtectionPolicy: "NO_PROTECTION" | "FULL_PROTECTION"
+
 #InstanceDefinition: {
 	InstanceType: #InstanceType
 	WeightedCapacity?: #WeightedCapacity
 }
+
+#InstanceDefinitions: [...#InstanceDefinition]
+
+#InstanceType: string
+
+#LastUpdatedTime: string
 
 #LaunchTemplate: {
 	LaunchTemplateId?: #LaunchTemplateId
 	LaunchTemplateName?: #LaunchTemplateName
 	Version?: #Version
 }
+
+#LaunchTemplateId: string
+
+#LaunchTemplateName: string
+
+#MaxSize: number & >=1
+
+#MinSize: number & >=0
+
+#RoleArn: string & =~"^arn:.*:role\\/[\\w+=,.@-]+" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#Status: "NEW" | "ACTIVATING" | "ACTIVE" | "DELETE_SCHEDULED" | "DELETING" | "DELETED" | "ERROR"
+
+#StatusReason: string & strings.MinRunes(1) & strings.MaxRunes(1024)
+
+#SuspendedActions: [..."REPLACE_INSTANCE_TYPES"]
 
 #Tag: {
 	// The key for a developer-defined key:value pair for tagging an AWS resource.
@@ -65,6 +103,16 @@ package gameservergroup
 	Value?: string
 }
 
+#Tags: [...#Tag]
+
 #TargetTrackingConfiguration: {
 	TargetValue: #TargetValue
 }
+
+#TargetValue: number
+
+#Version: string
+
+#VpcSubnets: [...string & =~"^subnet-[0-9a-z]+$" & strings.MinRunes(15) & strings.MaxRunes(24)]
+
+#WeightedCapacity: string

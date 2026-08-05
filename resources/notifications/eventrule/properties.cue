@@ -10,7 +10,13 @@ import "strings"
 	Source: string & =~"^aws.([a-z0-9\\-])+$" & strings.MinRunes(1) & strings.MaxRunes(36)
 }
 
+#EventRuleStatus: "ACTIVE" | "INACTIVE" | "CREATING" | "UPDATING" | "DELETING"
+
 #EventRuleStatusSummary: {
 	Reason: string
 	Status: #EventRuleStatus
 }
+
+#StatusSummaryByRegion: {...}
+
+#Unit: {...}

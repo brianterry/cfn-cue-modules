@@ -85,6 +85,8 @@ import "strings"
 	ToPort: int & >=1 & <=60000
 }
 
+#Location: string & =~"^[A-Za-z0-9\\-]+" & strings.MinRunes(1) & strings.MaxRunes(64)
+
 #LocationCapacity: {
 	// Defaults to MinSize if not defined. The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits.
 	DesiredEC2Instances?: int & >=0

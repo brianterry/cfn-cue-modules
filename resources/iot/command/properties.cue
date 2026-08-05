@@ -46,6 +46,14 @@ import "strings"
 	ValueConditions?: #CommandParameterValueConditionList
 }
 
+#CommandParameterDescription: string & strings.MaxRunes(2028)
+
+#CommandParameterList: [...#CommandParameter]
+
+#CommandParameterName: string & =~"^[.$a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(192)
+
+#CommandParameterType: "STRING" | "INTEGER" | "DOUBLE" | "LONG" | "UNSIGNEDLONG" | "BOOLEAN" | "BINARY"
+
 #CommandParameterValue: {
 	B?: bool
 	BIN?: string & strings.MinRunes(1)
@@ -64,24 +72,36 @@ import "strings"
 	Strings?: #CommandParameterValueStringList
 }
 
+#CommandParameterValueComparisonOperator: "EQUALS" | "NOT_EQUALS" | "LESS_THAN" | "LESS_THAN_EQUALS" | "GREATER_THAN" | "GREATER_THAN_EQUALS" | "IN_SET" | "NOT_IN_SET" | "IN_RANGE" | "NOT_IN_RANGE"
+
 #CommandParameterValueCondition: {
 	ComparisonOperator: #CommandParameterValueComparisonOperator
 	Operand: #CommandParameterValueComparisonOperand
 }
+
+#CommandParameterValueConditionList: [...#CommandParameterValueCondition]
 
 #CommandParameterValueNumberRange: {
 	Max: string & strings.MinRunes(1)
 	Min: string & strings.MinRunes(1)
 }
 
+#CommandParameterValueStringList: [...string]
+
 #CommandPayload: {
 	Content?: #CommandPayloadContent
 	ContentType?: #MimeType
 }
 
+#CommandPayloadContent: string
+
 #CommandPreprocessor: {
 	AwsJsonSubstitution?: #AwsJsonSubstitutionCommandPreprocessorConfig
 }
+
+#MimeType: string & strings.MinRunes(1)
+
+#OutputFormat: "JSON" | "CBOR"
 
 #Tag: {
 	// The tag's key.

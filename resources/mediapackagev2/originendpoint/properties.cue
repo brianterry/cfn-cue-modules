@@ -21,6 +21,22 @@ import "strings"
 	UriSeparator?: #UriSeparator
 }
 
+#AdMarkerDash: "BINARY" | "XML"
+
+#AdMarkerHls: "DATERANGE" | "SCTE35_ENHANCED"
+
+#CmafEncryptionMethod: "CENC" | "CBCS"
+
+#ContainerType: "TS" | "CMAF" | "ISM"
+
+#CustomAdType: "PROGRAM" | "CHAPTER" | "UNSCHEDULED_EVENT" | "ALTERNATE_CONTENT_OPPORTUNITY" | "NETWORK"
+
+#DashAudioTimelinePattern: "NONE" | "PATTERNED"
+
+#DashAvailabilityStartTimeConfiguration: {
+	FixedAvailabilityStartTime: string
+}
+
 #DashBaseUrl: {
 	// <p>For use with DVB-DASH profiles only. The priority of this location for servings segments. The lower the number, the higher the priority.</p>
 	DvbPriority?: int & >=1 & <=15000
@@ -31,6 +47,10 @@ import "strings"
 	// <p>A source location for segments.</p>
 	Url: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#DashCompactness: "STANDARD" | "NONE"
+
+#DashDrmSignaling: "INDIVIDUAL" | "REFERENCED"
 
 #DashDvbFontDownload: {
 	// <p>The <code>fontFamily</code> name for subtitles, as described in <a href="https://tech.ebu.ch/publications/tech3380">EBU-TT-D Subtitling Distribution Format</a>. </p>
@@ -85,6 +105,10 @@ import "strings"
 	UtcTiming?: #DashUtcTiming
 }
 
+#DashPeriodTrigger: "AVAILS" | "DRM_KEY_ROTATION" | "SOURCE_CHANGES" | "SOURCE_DISRUPTIONS" | "NONE"
+
+#DashProfile: "DVB_DASH"
+
 #DashProgramInformation: {
 	// <p>A copyright statement about the content.</p>
 	Copyright?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -98,6 +122,8 @@ import "strings"
 	Title?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
 
+#DashSegmentTemplateFormat: "NUMBER_WITH_TIMELINE"
+
 #DashSubtitleConfiguration: {
 	TtmlConfiguration?: #DashTtmlConfiguration
 }
@@ -106,11 +132,17 @@ import "strings"
 	TtmlProfile: #DashTtmlProfile
 }
 
+#DashTtmlProfile: "IMSC_1" | "EBU_TT_D_101"
+
 #DashUtcTiming: {
 	TimingMode?: #DashUtcTimingMode
 	// <p>The the method that the player uses to synchronize to coordinated universal time (UTC) wall clock time.</p>
 	TimingSource?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 }
+
+#DashUtcTimingMode: "HTTP_HEAD" | "HTTP_ISO" | "HTTP_XSDATE" | "UTC_DIRECT"
+
+#DrmSystem: "CLEAR_KEY_AES_128" | "FAIRPLAY" | "PLAYREADY" | "WIDEVINE" | "IRDETO"
 
 #Encryption: {
 	// <p>Excludes SEIG and SGPD boxes from segment metadata in CMAF containers.</p> <p>When set to <code>true</code>, MediaPackage omits these DRM metadata boxes from CMAF segments, which can improve compatibility with certain devices and players that don't support these boxes.</p> <p>Important considerations:</p> <ul> <li> <p>This setting only affects CMAF container formats</p> </li> <li> <p>Key rotation can still be handled through media playlist signaling</p> </li> <li> <p>PSSH and TENC boxes remain unaffected</p> </li> <li> <p>Default behavior is preserved when this setting is disabled</p> </li> </ul> <p>Valid values: <code>true</code> | <code>false</code> </p> <p>Default: <code>false</code> </p>
@@ -133,6 +165,8 @@ import "strings"
 	IsmEncryptionMethod?: #IsmEncryptionMethod
 	TsEncryptionMethod?: #TsEncryptionMethod
 }
+
+#EndpointErrorCondition: "STALE_MANIFEST" | "INCOMPLETE_MANIFEST" | "MISSING_DRM_KEY" | "SLATE_INPUT"
 
 #FilterConfiguration: {
 	// <p>Optionally specify the clip start time for all of your manifest egress requests. When you include clip start time, note that you cannot use clip start time query parameters for this manifest's endpoint URL.</p>
@@ -173,6 +207,8 @@ import "strings"
 	UrlEncodeChildManifest?: bool
 }
 
+#IsmEncryptionMethod: "CENC"
+
 #LowLatencyHlsManifestConfiguration: {
 	// <p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
 	ChildManifestName?: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(256)
@@ -201,6 +237,14 @@ import "strings"
 	ManifestWindowSeconds?: int
 }
 
+#MssManifestLayout: "FULL" | "COMPACT"
+
+#OutputTimestampMode: "PASSTHROUGH" | "REBASED_TO_CHANNEL_START"
+
+#PresetSpeke20Audio: "PRESET_AUDIO_1" | "PRESET_AUDIO_2" | "PRESET_AUDIO_3" | "SHARED" | "UNENCRYPTED"
+
+#PresetSpeke20Video: "PRESET_VIDEO_1" | "PRESET_VIDEO_2" | "PRESET_VIDEO_3" | "PRESET_VIDEO_4" | "PRESET_VIDEO_5" | "PRESET_VIDEO_6" | "PRESET_VIDEO_7" | "PRESET_VIDEO_8" | "SHARED" | "UNENCRYPTED"
+
 #Scte: {
 	// <p>A list of additional non-Ad SCTE-35 event types to treat as advertisements. When configured, events matching these types produce ad markers (such as <code>SCTE35-OUT</code> and <code>SCTE35-IN</code> in HLS DATERANGE tags) in manifests.</p> <p>Valid values: <code>PROGRAM</code> | <code>CHAPTER</code> | <code>UNSCHEDULED_EVENT</code> | <code>ALTERNATE_CONTENT_OPPORTUNITY</code> | <code>NETWORK</code> </p> <p>If you don't specify any values, the default is empty (only default ad types are used).</p>
 	CustomAdTypes?: [...#CustomAdType]
@@ -214,10 +258,16 @@ import "strings"
 	ScteInManifests?: #ScteInManifests
 }
 
+#ScteFilter: "SPLICE_INSERT" | "BREAK" | "PROVIDER_ADVERTISEMENT" | "DISTRIBUTOR_ADVERTISEMENT" | "PROVIDER_PLACEMENT_OPPORTUNITY" | "DISTRIBUTOR_PLACEMENT_OPPORTUNITY" | "PROVIDER_OVERLAY_PLACEMENT_OPPORTUNITY" | "DISTRIBUTOR_OVERLAY_PLACEMENT_OPPORTUNITY" | "PROGRAM" | "CHAPTER" | "UNSCHEDULED_EVENT" | "ALTERNATE_CONTENT_OPPORTUNITY" | "NETWORK" | "PROVIDER_PROMO" | "DISTRIBUTOR_PROMO" | "PROVIDER_AD_BLOCK" | "DISTRIBUTOR_AD_BLOCK" | "CONTENT_IDENTIFICATION" | "CALL_AD_SERVER"
+
 #ScteHls: {
 	AdMarkerHls?: #AdMarkerHls
 	ScteInManifests?: #ScteInManifests
 }
+
+#ScteInManifests: "ALL" | "MATCHES_FILTER"
+
+#ScteInSegments: "NONE" | "ALL" | "MATCHES_FILTER"
 
 #Segment: {
 	Encryption?: #Encryption
@@ -260,3 +310,9 @@ import "strings"
 	Key?: string
 	Value?: string
 }
+
+#TsEncryptionMethod: "AES_128" | "SAMPLE_AES"
+
+#UriPathType: "LEAF" | "ROOT"
+
+#UriSeparator: "UNDERSCORE" | "HYPHEN"

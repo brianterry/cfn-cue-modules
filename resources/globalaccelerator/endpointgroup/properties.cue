@@ -32,6 +32,8 @@ package endpointgroup
 	Weight?: int & >=0 & <=255
 }
 
+#Port: int & >=0 & <=65535
+
 #PortOverride: {
 	EndpointPort: #Port
 	ListenerPort: #Port

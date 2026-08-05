@@ -56,6 +56,10 @@ package endpointconfig
 	ShapConfig: #ClarifyShapConfig
 }
 
+#ClarifyFeatureType: {...}
+
+#ClarifyHeader: {...}
+
 #ClarifyInferenceConfig: {
 	ContentTemplate?: string
 	FeatureHeaders?: [...#ClarifyHeader]

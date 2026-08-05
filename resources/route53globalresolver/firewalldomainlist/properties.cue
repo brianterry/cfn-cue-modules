@@ -13,6 +13,14 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#CRResourceStatus: "CREATING" | "OPERATIONAL" | "UPDATING" | "DELETING"
+
+#Domains: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
+
+#ResourceDescription: string & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#ResourceName: string & =~"(?!^[0-9]+$)([a-zA-Z0-9-_' ']+)" & strings.MinRunes(1) & strings.MaxRunes(64)
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

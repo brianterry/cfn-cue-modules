@@ -37,3 +37,5 @@ import "strings"
 	// The tag's value
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#iso8601UTC: string & =~"^([0-2]\\d{3})-(0[0-9]|1[0-2])-([0-2]\\d|3[01])T([01]\\d|2[0-4]):([0-5]\\d):([0-6]\\d)((\\.\\d{3})?)Z$"

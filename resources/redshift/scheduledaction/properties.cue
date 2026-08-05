@@ -34,3 +34,13 @@ package scheduledaction
 #ResumeClusterMessage: {
 	ClusterIdentifier: string
 }
+
+#ScheduledActionType: {
+	ResizeCluster?: #ResizeClusterMessage
+} | {
+	PauseCluster?: #PauseClusterMessage
+} | {
+	ResumeCluster?: #ResumeClusterMessage
+}
+
+#timestamp: string

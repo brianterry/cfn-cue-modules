@@ -16,6 +16,10 @@ package componentversion
 	Name?: string
 }
 
+#FilesystemPath: string
+
+#LambdaAddGroupOwnerBoolean: bool
+
 #LambdaContainerParams: {
 	Devices?: [...#LambdaDeviceMount]
 	MemorySizeInKB?: int
@@ -47,6 +51,8 @@ package componentversion
 	StatusTimeoutInSeconds?: int
 	TimeoutInSeconds?: int
 }
+
+#LambdaFilesystemPermission: "ro" | "rw"
 
 #LambdaFunctionRecipeSource: {
 	ComponentDependencies?: {...}

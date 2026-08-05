@@ -101,6 +101,8 @@ package packagingconfiguration
 	UseAudioRenditionGroup?: bool
 }
 
+#ManifestName: string
+
 #MssEncryption: {
 	SpekeKeyProvider: #SpekeKeyProvider
 }
@@ -116,6 +118,10 @@ package packagingconfiguration
 	MssManifests: [...#MssManifest]
 	SegmentDurationSeconds?: #SegmentDurationSeconds
 }
+
+#RoleArn: string
+
+#SegmentDurationSeconds: int
 
 #SpekeKeyProvider: {
 	EncryptionContractConfiguration?: #EncryptionContractConfiguration

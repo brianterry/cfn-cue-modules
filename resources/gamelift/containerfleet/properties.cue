@@ -75,6 +75,8 @@ import "strings"
 	ToPort: int & >=1 & <=60000
 }
 
+#Location: string & =~"^[A-Za-z0-9\\-]+" & strings.MinRunes(1) & strings.MaxRunes(64)
+
 #LocationCapacity: {
 	// Defaults to MinSize if not defined. The number of EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits. If any auto-scaling policy is defined for the container fleet, the desired instance will only be applied once during fleet creation and will be ignored in updates to avoid conflicts with auto-scaling. During updates with any auto-scaling policy defined, if current desired instance is lower than the new MinSize, it will be increased to the new MinSize; if current desired instance is larger than the new MaxSize, it will be decreased to the new MaxSize.
 	DesiredEC2Instances?: int & >=0
@@ -101,6 +103,8 @@ import "strings"
 	// The name of the S3 bucket to pull logs from if S3 is the LogDestination
 	S3BucketName?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 }
+
+#LogDestination: "NONE" | "CLOUDWATCH" | "S3"
 
 #ManagedCapacityConfiguration: {
 	// Length of time, in minutes, that Amazon GameLift Servers will wait before scaling in your MinSize and DesiredInstances to 0 after a period with no game session activity.
@@ -129,6 +133,8 @@ import "strings"
 	// Metric value used to trigger a scaling event.
 	Threshold?: number
 }
+
+#StoppedActions: [..."AUTO_SCALING"]
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.

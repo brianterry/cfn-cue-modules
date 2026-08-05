@@ -12,6 +12,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#OnChangeStateTemplateUpdateStrategy: {...}
+
 #PeriodicStateTemplateUpdateStrategy: {
 	StateTemplateUpdateRate: #TimePeriod
 }
@@ -19,6 +21,12 @@ import "strings"
 #StateTemplateAssociation: {
 	Identifier: string & strings.MinRunes(1) & strings.MaxRunes(100)
 	StateTemplateUpdateStrategy: #StateTemplateUpdateStrategy
+}
+
+#StateTemplateUpdateStrategy: {
+	Periodic: #PeriodicStateTemplateUpdateStrategy
+} | {
+	OnChange: #OnChangeStateTemplateUpdateStrategy
 }
 
 #Tag: {
@@ -30,3 +38,9 @@ import "strings"
 	Unit: #TimeUnit
 	Value: number & >=1
 }
+
+#TimeUnit: "MILLISECOND" | "SECOND" | "MINUTE" | "HOUR"
+
+#VehicleAssociationBehavior: "CreateIotThing" | "ValidateIotThingExists"
+
+#attributesMap: {...}

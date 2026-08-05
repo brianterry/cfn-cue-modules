@@ -13,6 +13,10 @@ package userhierarchystructure
 	}
 }
 
+#HierarchyLevelArn: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/agent-group-level/[-0-9]*$"
+
+#HierarchyLevelId: string
+
 #LevelFive: {
 	HierarchyLevelArn?: #HierarchyLevelArn
 	HierarchyLevelId?: #HierarchyLevelId
@@ -42,3 +46,5 @@ package userhierarchystructure
 	HierarchyLevelId?: #HierarchyLevelId
 	Name: #Name
 }
+
+#Name: string

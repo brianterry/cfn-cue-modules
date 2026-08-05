@@ -20,6 +20,8 @@ import "strings"
 	MappingRules: [...#MappingRule]
 }
 
+#CertificateField: "x509Subject" | "x509Issuer" | "x509SAN"
+
 #MappingRule: {
 	Specifier: string
 }

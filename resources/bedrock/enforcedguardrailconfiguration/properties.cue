@@ -11,6 +11,8 @@ import "strings"
 	SelectiveContentGuarding?: #SelectiveContentGuarding
 }
 
+#ConfigOwner: "ACCOUNT" | "ORGANIZATION"
+
 #ModelEnforcement: {
 	// Models to exclude from enforcement. If a model is in both lists, it is excluded
 	ExcludedModels: [...string & =~"^([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2}(/[a-z0-9]{12}){0,1}$"]

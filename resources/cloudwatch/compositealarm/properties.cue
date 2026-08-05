@@ -27,6 +27,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AlarmActionARN: string & strings.MinRunes(1) & strings.MaxRunes(1024)
+
 #Tag: {
 	// A unique identifier for the tag. The combination of tag keys and values can help you organize and categorize your resources.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

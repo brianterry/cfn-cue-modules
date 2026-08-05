@@ -10,3 +10,7 @@ import "strings"
 	ResourceKey: string & =~"^[a-zA-Z0-9-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 	Tags?: #TagsMap
 }
+
+#AutomationParameters: {...}
+
+#TagsMap: {...}

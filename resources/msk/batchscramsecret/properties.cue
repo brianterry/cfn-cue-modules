@@ -4,3 +4,5 @@ package batchscramsecret
 	ClusterArn: string
 	SecretArnList?: #SecretArnList
 }
+
+#SecretArnList: [...string]

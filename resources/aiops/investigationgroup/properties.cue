@@ -35,7 +35,15 @@ import "strings"
 	KmsKeyId?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#InvestigationGroupArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
+
+#RoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
+
+#StringWithPatternAndLengthLimits: string & strings.MinRunes(1) & strings.MaxRunes(512)
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#Timestamp: string

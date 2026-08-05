@@ -17,12 +17,28 @@ import "strings"
 	Type?: #CampaignType
 }
 
+#AgentAction: "DISCARD"
+
+#AgentActions: [...#AgentAction]
+
+#AgentlessConfig: {...}
+
 #AnswerMachineDetectionConfig: {
 	// Enables detection of prompts (e.g., beep after after a voicemail greeting)
 	AwaitAnswerMachinePrompt?: bool
 	// Flag to decided whether outbound calls should have answering machine detection enabled or not
 	EnableAnswerMachineDetection: bool
 }
+
+#Arn: string & =~"^arn:.*$" & strings.MinRunes(20) & strings.MaxRunes(500)
+
+#BandwidthAllocation: number & >=0 & <=1
+
+#CampaignName: string & strings.MinRunes(1) & strings.MaxRunes(127)
+
+#CampaignType: "MANAGED" | "JOURNEY"
+
+#Capacity: number & >=0.01 & <=1
 
 #ChannelSubtypeConfig: {
 	Email?: #EmailChannelSubtypeConfig
@@ -36,6 +52,10 @@ import "strings"
 	MaxCountPerRecipient: int & >=1
 	Unit: #CommunicationLimitTimeUnit
 }
+
+#CommunicationLimitList: [...#CommunicationLimit]
+
+#CommunicationLimitTimeUnit: "DAY"
 
 #CommunicationLimits: {
 	CommunicationLimitList?: #CommunicationLimitList
@@ -54,10 +74,18 @@ import "strings"
 	WhatsApp?: #TimeWindow
 }
 
+#ContactFlowId: string & strings.MaxRunes(500)
+
 #DailyHour: {
 	Key?: #DayOfWeek
 	Value?: #TimeRangeList
 }
+
+#DailyHours: [...#DailyHour]
+
+#DayOfWeek: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY"
+
+#EmailAddress: string & =~"^[\\w-\\.\\+]+@([\\w-]+\\.)+[\\w-]{2,4}$" & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #EmailChannelSubtypeConfig: {
 	Capacity?: #Capacity
@@ -86,11 +114,27 @@ import "strings"
 	CustomerProfilesDomainArn?: #Arn
 }
 
+#InstanceId: string & =~"^[a-zA-Z0-9_\\-.]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
+
+#InstanceLimitsHandling: "OPT_IN" | "OPT_OUT"
+
+#Iso8601Date: string & =~"^\\d{4}-\\d{2}-\\d{2}$"
+
+#Iso8601Duration: string & =~"^P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?$" & strings.MinRunes(0) & strings.MaxRunes(50)
+
+#Iso8601Time: string & =~"^T\\d{2}:\\d{2}$"
+
 #LocalTimeZoneConfig: {
 	DefaultTimeZone?: #TimeZone
 	LocalTimeZoneDetection?: #LocalTimeZoneDetection
 	LocalTimeZoneDetectionScope?: #LocalTimeZoneDetectionScope
 }
+
+#LocalTimeZoneDetection: [...#LocalTimeZoneDetectionType]
+
+#LocalTimeZoneDetectionScope: "PRIMARY_ONLY" | "ALL_AVAILABLE"
+
+#LocalTimeZoneDetectionType: "ZIP_CODE" | "AREA_CODE"
 
 #OpenHours: {
 	DailyHours: #DailyHours
@@ -110,6 +154,8 @@ import "strings"
 	BandwidthAllocation: #BandwidthAllocation
 }
 
+#QueueId: string & strings.MaxRunes(500)
+
 #RestrictedPeriod: {
 	EndDate: #Iso8601Date
 	// The name of a restricted period
@@ -117,9 +163,13 @@ import "strings"
 	StartDate: #Iso8601Date
 }
 
+#RestrictedPeriodList: [...#RestrictedPeriod]
+
 #RestrictedPeriods: {
 	RestrictedPeriodList?: #RestrictedPeriodList
 }
+
+#RingTimeout: int & >=15 & <=60
 
 #Schedule: {
 	EndTime: #TimeStamp
@@ -146,6 +196,10 @@ import "strings"
 	CustomerProfilesSegmentArn?: #Arn
 	EventTrigger?: #EventTrigger
 }
+
+#SourceEmailAddressDisplayName: string & strings.MinRunes(0) & strings.MaxRunes(256)
+
+#SourcePhoneNumber: string & strings.MaxRunes(100)
 
 #Tag: {
 	// The key name of the tag.
@@ -180,14 +234,22 @@ import "strings"
 	StartTime: #Iso8601Time
 }
 
+#TimeRangeList: [...#TimeRange]
+
+#TimeStamp: string & strings.MaxRunes(100)
+
 #TimeWindow: {
 	OpenHours: #OpenHours
 	RestrictedPeriods?: #RestrictedPeriods
 }
 
+#TimeZone: string
+
 #TimeoutConfig: {
 	DurationInSeconds?: #TimeoutDuration
 }
+
+#TimeoutDuration: int & >=1 & <=300
 
 #WhatsAppChannelSubtypeConfig: {
 	Capacity?: #Capacity

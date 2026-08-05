@@ -13,6 +13,10 @@ package gateway
 	Tags?: [...#Tag]
 }
 
+#CapabilityConfiguration: string
+
+#CapabilityNamespace: string
+
 #GatewayCapabilitySummary: {
 	CapabilityConfiguration?: #CapabilityConfiguration
 	CapabilityNamespace: #CapabilityNamespace
@@ -24,6 +28,8 @@ package gateway
 	// A gateway that runs on Siemens Industrial Edge.
 	SiemensIE?: #SiemensIE
 }
+
+#GatewayVersion: string
 
 #GreengrassV2: {
 	// The operating system of the core device in AWS IoT Greengrass V2.

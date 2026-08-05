@@ -11,3 +11,5 @@ import "strings"
 	Policy: string & strings.MinRunes(1) & strings.MaxRunes(20480)
 	Type: #LifecyclePolicyType
 }
+
+#LifecyclePolicyType: "retention"

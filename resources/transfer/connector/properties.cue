@@ -50,12 +50,22 @@ import "strings"
 	VpcLattice: #ConnectorVpcLatticeEgressConfig
 }
 
+#ConnectorEgressType: "SERVICE_MANAGED" | "VPC_LATTICE"
+
+#ConnectorStatus: "ACTIVE" | "PENDING" | "ERRORED"
+
 #ConnectorVpcLatticeEgressConfig: {
 	// Port to connect to on the target VPC Lattice resource
 	PortNumber?: int & >=1 & <=65535
 	// ARN of the VPC Lattice resource configuration
 	ResourceConfigurationArn: string & =~"^arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#IpAddressType: "IPV4" | "DUALSTACK"
+
+#ServerId: string & =~"^s-([0-9a-f]{17})$" & strings.MinRunes(19) & strings.MaxRunes(19)
+
+#SftpConnectorTrustedHostKey: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 
 #Tag: {
 	// The name assigned to the tag that you create.

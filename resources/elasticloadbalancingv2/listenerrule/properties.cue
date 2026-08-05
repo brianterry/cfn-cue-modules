@@ -147,6 +147,8 @@ package listenerrule
 	JwksEndpoint: string
 }
 
+#ListOfStrings: [...string]
+
 #PathPatternConfig: {
 	RegexValues?: #ListOfStrings
 	// The path patterns to compare against the request URL. The maximum size of each string is 128 characters. The comparison is case sensitive. The following wildcard characters are supported: * (matches 0 or more characters) and ? (matches exactly 1 character).
@@ -188,6 +190,8 @@ package listenerrule
 	// The replacement string to use when rewriting the matched input. The maximum length of the string is 1,024 characters. You can specify capture groups in the regular expression (for example, $1 and $2).
 	Replace: string
 }
+
+#RewriteConfigList: [...#RewriteConfig]
 
 #RewriteConfigObject: {
 	Rewrites: #RewriteConfigList

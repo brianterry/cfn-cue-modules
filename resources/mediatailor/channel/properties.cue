@@ -15,6 +15,8 @@ package channel
 	TimeShiftConfiguration?: #TimeShiftConfiguration
 }
 
+#AdMarkupType: "DATERANGE" | "SCTE35_ENHANCED"
+
 #DashPlaylistSettings: {
 	// <p>The total duration (in seconds) of each manifest. Minimum value: <code>30</code> seconds. Maximum value: <code>3600</code> seconds.</p>
 	ManifestWindowSeconds?: number
@@ -38,6 +40,10 @@ package channel
 	LogTypes?: [...#LogType]
 }
 
+#LogType: "AS_RUN"
+
+#PlaybackMode: "LOOP" | "LINEAR"
+
 #RequestOutputItem: {
 	DashPlaylistSettings?: #DashPlaylistSettings
 	HlsPlaylistSettings?: #HlsPlaylistSettings
@@ -58,6 +64,8 @@ package channel
 	Key: string
 	Value: string
 }
+
+#Tier: "BASIC" | "STANDARD"
 
 #TimeShiftConfiguration: {
 	// <p>The maximum time delay for time-shifted viewing. The minimum allowed maximum time delay is 0 seconds, and the maximum allowed maximum time delay is 21600 seconds (6 hours).</p>

@@ -10,6 +10,8 @@ import "strings"
 	VpcId: string & strings.MinRunes(1) & strings.MaxRunes(32)
 }
 
+#LicenseEndpointStatus: "CREATE_IN_PROGRESS" | "DELETE_IN_PROGRESS" | "READY" | "NOT_READY"
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(127)

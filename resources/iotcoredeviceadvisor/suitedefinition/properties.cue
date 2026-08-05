@@ -14,10 +14,20 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#DevicePermissionRoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
+
 #DeviceUnderTest: {
 	CertificateArn?: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 	ThingArn?: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
+
+#Devices: [...#DeviceUnderTest]
+
+#IntendedForQualification: bool
+
+#RootGroup: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+
+#SuiteDefinitionName: string & strings.MinRunes(1) & strings.MaxRunes(256)
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

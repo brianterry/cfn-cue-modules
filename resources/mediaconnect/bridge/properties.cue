@@ -62,6 +62,8 @@ package bridge
 	NetworkSource?: #BridgeNetworkSource
 }
 
+#BridgeStateEnum: "CREATING" | "STANDBY" | "STARTING" | "DEPLOYING" | "ACTIVE" | "STOPPING" | "DELETING" | "DELETED" | "START_FAILED" | "START_PENDING" | "UPDATING"
+
 #EgressGatewayBridge: {
 	// The maximum expected bitrate of the egress bridge.
 	MaxBitrate: int
@@ -75,6 +77,10 @@ package bridge
 	State?: #FailoverConfigStateEnum
 }
 
+#FailoverConfigStateEnum: "ENABLED" | "DISABLED"
+
+#FailoverModeEnum: "FAILOVER"
+
 #IngressGatewayBridge: {
 	// The maximum expected bitrate of the ingress bridge.
 	MaxBitrate: int
@@ -86,6 +92,8 @@ package bridge
 	// The IP address of the source for source-specific multicast (SSM).
 	MulticastSourceIp?: string
 }
+
+#ProtocolEnum: "rtp-fec" | "rtp" | "udp"
 
 #SourcePriority: {
 	// The name of the source you choose as the primary source for this flow.

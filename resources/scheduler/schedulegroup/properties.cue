@@ -8,6 +8,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#ScheduleGroupState: "ACTIVE" | "DELETING"
+
 #Tag: {
 	// Key for the tag
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

@@ -23,6 +23,8 @@ import "strings"
 	WarmThroughputMiBps?: int
 }
 
+#EnhancedMetric: "IncomingBytes" | "IncomingRecords" | "OutgoingBytes" | "OutgoingRecords" | "WriteProvisionedThroughputExceeded" | "ReadProvisionedThroughputExceeded" | "IteratorAgeMilliseconds" | "ALL"
+
 #StreamEncryption: {
 	// The encryption type to use. The only valid value is KMS.
 	EncryptionType: "KMS"

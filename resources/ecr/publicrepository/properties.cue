@@ -20,9 +20,25 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AboutText: string & strings.MaxRunes(10240)
+
+#Architecture: string & strings.MinRunes(1) & strings.MaxRunes(50)
+
+#ArchitectureList: [...#Architecture]
+
+#OperatingSystem: string & strings.MinRunes(1) & strings.MaxRunes(50)
+
+#OperatingSystemList: [...#OperatingSystem]
+
+#RegistryId: string & =~"^[0-9]{12}$" & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#RepositoryDescription: string & strings.MaxRunes(1024)
+
 #Tag: {
 	// One part of a key-value pair that make up a tag. A ``key`` is a general label that acts like a category for more specific tag values.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(127)
 	// A ``value`` acts as a descriptor within a tag category (key).
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(255)
 }
+
+#UsageText: string & strings.MaxRunes(10240)

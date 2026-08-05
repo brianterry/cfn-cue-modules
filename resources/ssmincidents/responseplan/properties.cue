@@ -27,6 +27,8 @@ import "strings"
 	ChatbotSns?: #ChatbotSns
 }
 
+#ChatbotSns: [...#SnsArn]
+
 #DynamicSsmParameter: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(50)
 	Value: #DynamicSsmParameterValue
@@ -72,6 +74,10 @@ import "strings"
 	ServiceId: string & strings.MinRunes(1) & strings.MaxRunes(200)
 }
 
+#SSMContact: string & =~"^arn:aws(-(cn|us-gov))?:ssm-contacts:(([a-z]+-)+[0-9])?:([0-9]{12})?:[^.]+$" & strings.MaxRunes(1000)
+
+#SnsArn: string & =~"^arn:aws(-(cn|us-gov))?:sns:(([a-z]+-)+[0-9])?:([0-9]{12})?:[^.]+$" & strings.MaxRunes(1000)
+
 #SsmAutomation: {
 	// The document name to use when starting the SSM automation document.
 	DocumentName: string & strings.MaxRunes(128)
@@ -92,7 +98,11 @@ import "strings"
 	Values: [...#SsmParameterValue]
 }
 
+#SsmParameterValue: string & strings.MaxRunes(10000)
+
 #Tag: {
 	Key: string & =~"^(?!aws:)[a-zA-Z+-=._:/]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#VariableType: "INCIDENT_RECORD_ARN" | "INVOLVED_RESOURCES"

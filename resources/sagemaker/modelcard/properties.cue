@@ -22,6 +22,10 @@ import "strings"
 	EthicalConsiderations?: string & strings.MaxRunes(2048)
 }
 
+#AxisNameArray: [...string & strings.MaxRunes(63)]
+
+#AxisNameString: string & strings.MaxRunes(63)
+
 #BarChartMetric: {
 	Name: string & =~".{1,255}"
 	Notes?: string & strings.MaxRunes(1024)
@@ -68,6 +72,8 @@ import "strings"
 	MetricGroups?: [...#MetricGroup]
 	Name: string & =~".{1,63}"
 }
+
+#EvaluationDetails: [...#EvaluationDetail]
 
 #InferenceSpecification: {
 	// Contains inference related information which were used to create model package.
@@ -176,6 +182,8 @@ import "strings"
 	Notes?: string & strings.MaxRunes(1024)
 }
 
+#RiskRating: "High" | "Medium" | "Low" | "Unknown"
+
 #SecurityConfig: {
 	// A Key Management Service key ID to use for encrypting a model card.
 	KmsKeyId?: string & =~".*" & strings.MaxRunes(2048)
@@ -196,6 +204,8 @@ import "strings"
 	// The Amazon S3 path where the model artifacts, which result from model training, are stored.
 	ModelDataUrl?: string & strings.MaxRunes(1024)
 }
+
+#SourceAlgorithms: [...#SourceAlgorithm]
 
 #Tag: {
 	// The tag key. Tag keys must be unique per resource.

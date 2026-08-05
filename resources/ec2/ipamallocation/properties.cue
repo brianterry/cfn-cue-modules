@@ -8,3 +8,5 @@ package ipamallocation
 	// The desired netmask length of the allocation. If set, IPAM will choose a block of free space with this size and return the CIDR representing it.
 	NetmaskLength?: int
 }
+
+#Cidr: string

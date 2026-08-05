@@ -24,6 +24,12 @@ import "strings"
 	AvailabilityZone: string
 }
 
+#EnabledAnalysisType: "TLS_SNI" | "HTTP_HOST"
+
+#EndpointId: string
+
+#ResourceArn: string & =~"^arn:aws.*$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
 #SubnetMapping: {
 	// A IPAddressType
 	IPAddressType?: string

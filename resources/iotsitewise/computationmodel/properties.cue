@@ -41,6 +41,8 @@ import "strings"
 	AnomalyDetection?: #AnomalyDetectionComputationModelConfiguration
 }
 
+#ComputationModelDataBinding: {...}
+
 #ComputationModelDataBindingValue: {
 	// Defines an asset model property binding.
 	AssetModelProperty?: #AssetModelPropertyBindingValue

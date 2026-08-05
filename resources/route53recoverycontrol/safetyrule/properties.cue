@@ -38,6 +38,10 @@ import "strings"
 	Type: #RuleType
 }
 
+#RuleType: "AND" | "OR" | "ATLEAST"
+
+#SafetyRuleName: string
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MaxRunes(256)

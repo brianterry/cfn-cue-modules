@@ -25,6 +25,8 @@ import "strings"
 	Unlimited?: bool
 }
 
+#ServiceManagedS3: {...}
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)

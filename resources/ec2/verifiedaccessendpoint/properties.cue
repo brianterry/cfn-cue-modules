@@ -96,12 +96,16 @@ import "strings"
 	SubnetIds?: [...#SubnetId]
 }
 
+#SecurityGroupId: string
+
 #SseSpecification: {
 	// Whether to encrypt the policy with the provided key or disable encryption
 	CustomerManagedKeyEnabled?: bool
 	// KMS Key Arn used to encrypt the group policy
 	KmsKeyArn?: string
 }
+
+#SubnetId: string
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

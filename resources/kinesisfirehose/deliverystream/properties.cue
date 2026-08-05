@@ -105,10 +105,14 @@ import "strings"
 	SchemaConfiguration?: #SchemaConfiguration
 }
 
+#DatabaseColumnName: string & strings.MinRunes(1) & strings.MaxRunes(194)
+
 #DatabaseColumns: {
 	Exclude?: [...#DatabaseColumnName]
 	Include?: [...#DatabaseColumnName]
 }
+
+#DatabaseName: string & strings.MinRunes(1) & strings.MaxRunes(64)
 
 #DatabaseSourceAuthenticationConfiguration: {
 	SecretsManagerConfiguration: #SecretsManagerConfiguration
@@ -133,6 +137,8 @@ import "strings"
 #DatabaseSourceVPCConfiguration: {
 	VpcEndpointServiceName: #VpcEndpointServiceName
 }
+
+#DatabaseTableName: string & strings.MinRunes(1) & strings.MaxRunes(129)
 
 #DatabaseTables: {
 	Exclude?: [...#DatabaseTableName]
@@ -163,6 +169,8 @@ import "strings"
 	S3ErrorOutputPrefix?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 	UniqueKeys?: [...#UniqueKey]
 }
+
+#DestinationTableConfigurationList: [...#DestinationTableConfiguration]
 
 #DirectPutSourceConfiguration: {
 	ThroughputHintInMBs?: int & >=1 & <=100
@@ -476,8 +484,12 @@ import "strings"
 	Value?: string & =~"^[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@%]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
 
+#UniqueKey: string & strings.MinRunes(1) & strings.MaxRunes(512)
+
 #VpcConfiguration: {
 	RoleARN: string & =~"arn:.*" & strings.MinRunes(1) & strings.MaxRunes(512)
 	SecurityGroupIds: [...string & strings.MinRunes(1) & strings.MaxRunes(1024)]
 	SubnetIds: [...string & strings.MinRunes(1) & strings.MaxRunes(1024)]
 }
+
+#VpcEndpointServiceName: string & =~"([a-zA-Z0-9\\-\\_]+\\.){2,3}vpce\\.[a-zA-Z0-9\\-]*\\.vpce-svc\\-[a-zA-Z0-9\\-]{17}$" & strings.MinRunes(47) & strings.MaxRunes(255)

@@ -92,6 +92,10 @@ import "strings"
 	Source: #TransformOperationSource
 }
 
+#ColumnDataSubType: "FLOAT" | "FIXED"
+
+#ColumnDataType: "STRING" | "INTEGER" | "DECIMAL" | "DATETIME"
+
 #ColumnDescription: {
 	// <p>The text of a description for a column.</p>
 	Text?: string & strings.MinRunes(0) & strings.MaxRunes(500)
@@ -122,6 +126,8 @@ import "strings"
 	ColumnDescription?: #ColumnDescription
 	ColumnGeographicRole?: #GeoSpatialDataRole
 }
+
+#ColumnTagName: "COLUMN_GEOGRAPHIC_ROLE" | "COLUMN_DESCRIPTION"
 
 #ColumnToUnpivot: {
 	ColumnName?: string & strings.MinRunes(1) & strings.MaxRunes(127)
@@ -178,6 +184,8 @@ import "strings"
 	InputColumnName?: string & strings.MinRunes(1) & strings.MaxRunes(127)
 }
 
+#DataPrepSimpleAggregationFunctionType: "COUNT" | "DISTINCT_COUNT" | "SUM" | "AVERAGE" | "MEDIAN" | "MAX" | "MIN" | "VARIANCE" | "STANDARD_DEVIATION"
+
 #DataSetColumnIdMapping: {
 	SourceColumnId: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	TargetColumnId: string & strings.MinRunes(1) & strings.MaxRunes(64)
@@ -187,6 +195,8 @@ import "strings"
 	Operator: #DataSetDateComparisonFilterOperator
 	Value?: #DataSetDateFilterValue
 }
+
+#DataSetDateComparisonFilterOperator: "BEFORE" | "BEFORE_OR_EQUALS_TO" | "AFTER" | "AFTER_OR_EQUALS_TO"
 
 #DataSetDateFilterCondition: {
 	ColumnName?: string & strings.MinRunes(1) & strings.MaxRunes(127)
@@ -205,10 +215,14 @@ import "strings"
 	RangeMinimum?: #DataSetDateFilterValue
 }
 
+#DataSetImportMode: "SPICE" | "DIRECT_QUERY"
+
 #DataSetNumericComparisonFilterCondition: {
 	Operator: #DataSetNumericComparisonFilterOperator
 	Value?: #DataSetNumericFilterValue
 }
+
+#DataSetNumericComparisonFilterOperator: "EQUALS" | "DOES_NOT_EQUAL" | "GREATER_THAN" | "GREATER_THAN_OR_EQUALS_TO" | "LESS_THAN" | "LESS_THAN_OR_EQUALS_TO"
 
 #DataSetNumericFilterCondition: {
 	ColumnName?: string & strings.MinRunes(1) & strings.MaxRunes(127)
@@ -246,6 +260,8 @@ import "strings"
 	Value?: #DataSetStringFilterValue
 }
 
+#DataSetStringComparisonFilterOperator: "EQUALS" | "DOES_NOT_EQUAL" | "CONTAINS" | "DOES_NOT_CONTAIN" | "STARTS_WITH" | "ENDS_WITH"
+
 #DataSetStringFilterCondition: {
 	ColumnName?: string & strings.MinRunes(1) & strings.MaxRunes(127)
 	ComparisonFilterCondition?: #DataSetStringComparisonFilterCondition
@@ -261,6 +277,8 @@ import "strings"
 	Values?: #DataSetStringListFilterValue
 }
 
+#DataSetStringListFilterOperator: "INCLUDE" | "EXCLUDE"
+
 #DataSetStringListFilterValue: {
 	StaticValues?: [...string & strings.MinRunes(0) & strings.MaxRunes(512)]
 }
@@ -272,12 +290,16 @@ import "strings"
 	DisableUseAsImportedSource?: bool
 }
 
+#DataSetUseAs: "RLS_RULES"
+
 #DatasetParameter: {
 	DateTimeDatasetParameter?: #DateTimeDatasetParameter
 	DecimalDatasetParameter?: #DecimalDatasetParameter
 	IntegerDatasetParameter?: #IntegerDatasetParameter
 	StringDatasetParameter?: #StringDatasetParameter
 }
+
+#DatasetParameterValueType: "MULTI_VALUED" | "SINGLE_VALUED"
 
 #DateTimeDatasetParameter: {
 	DefaultValues?: #DateTimeDatasetParameterDefaultValues
@@ -313,6 +335,8 @@ import "strings"
 	Source: #DestinationTableSource
 }
 
+#DestinationTableMap: {...}
+
 #DestinationTableSource: {
 	TransformOperationId: string & =~"^[0-9a-zA-Z-]*$" & strings.MinRunes(1) & strings.MaxRunes(64)
 }
@@ -323,6 +347,10 @@ import "strings"
 	// <p>The description for a field folder.</p>
 	Description?: string & strings.MinRunes(0) & strings.MaxRunes(500)
 }
+
+#FieldFolderMap: {...}
+
+#FileFormat: "CSV" | "TSV" | "CLF" | "ELF" | "XLSX" | "JSON"
 
 #FilterOperation: {
 	// <p>An expression that must evaluate to a Boolean value. Rows for which the expression
@@ -346,6 +374,10 @@ import "strings"
 	// <p>A display name for the hierarchy.</p>
 	Name: string & strings.MinRunes(1) & strings.MaxRunes(64)
 }
+
+#GeoSpatialCountryCode: "US"
+
+#GeoSpatialDataRole: "COUNTRY" | "STATE" | "COUNTY" | "CITY" | "POSTCODE" | "LONGITUDE" | "LATITUDE" | "POLITICAL1" | "CENSUS_TRACT" | "CENSUS_BLOCK_GROUP" | "CENSUS_BLOCK"
 
 #ImportTableOperation: {
 	Alias: string & strings.MinRunes(1) & strings.MaxRunes(64)
@@ -382,6 +414,8 @@ import "strings"
 	SubType?: #ColumnDataSubType
 	Type: #InputColumnDataType
 }
+
+#InputColumnDataType: "STRING" | "INTEGER" | "DECIMAL" | "DATETIME" | "BIT" | "BOOLEAN" | "JSON" | "SEMISTRUCT"
 
 #IntegerDatasetParameter: {
 	DefaultValues?: #IntegerDatasetParameterDefaultValues
@@ -429,6 +463,10 @@ import "strings"
 	Type: #JoinOperationType
 }
 
+#JoinOperationType: "INNER" | "OUTER" | "LEFT" | "RIGHT"
+
+#JoinType: "INNER" | "OUTER" | "LEFT" | "RIGHT"
+
 #LogicalTable: {
 	// <p>A display name for the logical table.</p>
 	Alias: string & strings.MinRunes(1) & strings.MaxRunes(64)
@@ -436,6 +474,8 @@ import "strings"
 	DataTransforms?: [...#TransformOperation]
 	Source: #LogicalTableSource
 }
+
+#LogicalTableMap: {...}
 
 #LogicalTableSource: {
 	// <p>The Amazon Resource Number (ARN) of the parent dataset.</p>
@@ -452,6 +492,8 @@ import "strings"
 	Size: number & >=1
 	SizeUnit: #LookbackWindowSizeUnit
 }
+
+#LookbackWindowSizeUnit: "HOUR" | "DAY" | "WEEK"
 
 #NewDefaultValues: {
 	// <p>A list of static default values for a given date time parameter.</p>
@@ -503,6 +545,8 @@ import "strings"
 	SaaSTable?: #SaaSTable
 }
 
+#PhysicalTableMap: {...}
+
 #PivotConfiguration: {
 	LabelColumnName?: string & strings.MinRunes(1) & strings.MaxRunes(127)
 	PivotedLabels: [...#PivotedLabel]
@@ -532,6 +576,8 @@ import "strings"
 #RefreshConfiguration: {
 	IncrementalRefresh: #IncrementalRefresh
 }
+
+#RefreshFailureAlertStatus: "ENABLED" | "DISABLED"
 
 #RefreshFailureConfiguration: {
 	EmailAlert?: #RefreshFailureEmailAlert
@@ -603,6 +649,10 @@ import "strings"
 	Status?: #Status
 }
 
+#RowLevelPermissionFormatVersion: "VERSION_1" | "VERSION_2"
+
+#RowLevelPermissionPolicy: "GRANT_ACCESS" | "DENY_ACCESS"
+
 #RowLevelPermissionTagConfiguration: {
 	Status?: #Status
 	// <p>A list of tag configuration rules to apply to a dataset. All tag configurations have the OR condition. Tags within each tile will be joined (AND). At least one rule in this structure must have all tag values assigned to it to apply Row-level security (RLS) to the dataset.</p>
@@ -651,6 +701,8 @@ import "strings"
 	SemanticMetadata?: #TableSemanticMetadata
 }
 
+#SemanticTableMap: {...}
+
 #SharedColumnSemanticMetadata: {
 	ColumnNames?: [...string]
 	ColumnProperties: [...#ColumnSemanticProperty]
@@ -660,6 +712,10 @@ import "strings"
 	DataSet?: #ParentDataSet
 	PhysicalTableId?: string & =~"^[0-9a-zA-Z-]*$" & strings.MinRunes(1) & strings.MaxRunes(64)
 }
+
+#SourceTableMap: {...}
+
+#Status: "ENABLED" | "DISABLED"
 
 #StringDatasetParameter: {
 	DefaultValues?: #StringDatasetParameterDefaultValues
@@ -701,6 +757,10 @@ import "strings"
 	Tags: [...#ColumnTag]
 }
 
+#TextQualifier: "DOUBLE_QUOTE" | "SINGLE_QUOTE"
+
+#TimeGranularity: "YEAR" | "QUARTER" | "MONTH" | "WEEK" | "DAY" | "HOUR" | "MINUTE" | "SECOND" | "MILLISECOND"
+
 #TransformOperation: {
 	CastColumnTypeOperation?: #CastColumnTypeOperation
 	CreateColumnsOperation?: #CreateColumnsOperation
@@ -730,6 +790,8 @@ import "strings"
 	RenameColumnsStep?: #RenameColumnsOperation
 	UnpivotStep?: #UnpivotOperation
 }
+
+#TransformStepMap: {...}
 
 #UniqueKey: {
 	ColumnNames: [...string & strings.MinRunes(1) & strings.MaxRunes(127)]

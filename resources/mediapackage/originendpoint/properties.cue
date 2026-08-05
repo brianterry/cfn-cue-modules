@@ -28,6 +28,8 @@ import "strings"
 	Whitelist?: [...string]
 }
 
+#AdsOnDeliveryRestrictions: "NONE" | "RESTRICTED" | "UNRESTRICTED" | "BOTH"
+
 #Authorization: {
 	// The Amazon Resource Name (ARN) for the secret in Secrets Manager that your Content Distribution Network (CDN) uses for authorization to access your endpoint.
 	CdnIdentifierSecret: string

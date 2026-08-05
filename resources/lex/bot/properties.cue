@@ -35,6 +35,10 @@ import "strings"
 	AllowDTMFInput: bool
 }
 
+#AttachmentTitle: string & strings.MinRunes(1) & strings.MaxRunes(250)
+
+#AttachmentUrl: string & strings.MinRunes(1) & strings.MaxRunes(250)
+
 #AudioAndDTMFInputSpecification: {
 	AudioSpecification?: #AudioSpecification
 	DTMFSpecification?: #DTMFSpecification
@@ -57,6 +61,10 @@ import "strings"
 	Destination: #AudioLogDestination
 	Enabled: bool
 }
+
+#AudioLogSettings: [...#AudioLogSetting]
+
+#AudioRecognitionStrategy: "UseSlotValuesAsCustomVocabulary"
 
 #AudioSpecification: {
 	EndTimeoutMs: int & >=1
@@ -93,6 +101,10 @@ import "strings"
 	BotAliasLocaleSetting: #BotAliasLocaleSettings
 	LocaleId: string & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#BotAliasLocaleSettingsList: [...#BotAliasLocaleSettingsItem]
+
+#BotArn: string & =~"^arn:aws[a-zA-Z-]*:lex:[a-z]+-(?:[a-z]+-)*[0-9]:[0-9]{12}:bot/[0-9a-zA-Z]+$" & strings.MinRunes(1) & strings.MaxRunes(1011)
 
 #BotLocale: {
 	AudioFillerSettings?: #AudioFillerSettings
@@ -144,6 +156,8 @@ import "strings"
 	ExpressionString: #ConditionExpression
 }
 
+#ConditionExpression: string & strings.MinRunes(1) & strings.MaxRunes(1024)
+
 #Conditional: {
 	ConditionalBranches: #ConditionalBranches
 	IsActive: bool
@@ -156,11 +170,19 @@ import "strings"
 	Response?: #ResponseSpecification
 }
 
+#ConditionalBranches: [...#ConditionalBranch]
+
 #ConditionalSpecification: {
 	ConditionalBranches: #ConditionalBranches
 	DefaultBranch: #DefaultConditionalBranch
 	IsActive: bool
 }
+
+#ConfidenceThreshold: number & >=0 & <=1
+
+#ContextTimeToLiveInSeconds: int & >=5 & <=86400
+
+#ContextTurnsToLive: int & >=1 & <=20
 
 #ConversationLogSettings: {
 	AudioLogSettings?: #AudioLogSettings
@@ -181,6 +203,8 @@ import "strings"
 	Weight?: int & >=0 & <=3
 }
 
+#CustomVocabularyItems: [...#CustomVocabularyItem]
+
 #DTMFSpecification: {
 	DeletionCharacter: string & =~"^[A-D0-9#*]{1}$"
 	EndCharacter: string & =~"^[A-D0-9#*]{1}$"
@@ -192,6 +216,8 @@ import "strings"
 	ChildDirected: bool
 }
 
+#DeepgramModelId: string & =~"[A-Za-z0-9-_]+" & strings.MinRunes(4) & strings.MaxRunes(32)
+
 #DeepgramSpeechModelConfig: {
 	ApiTokenSecretArn: #SecretsManagerSecretArn
 	ModelId?: #DeepgramModelId
@@ -202,11 +228,15 @@ import "strings"
 	Response?: #ResponseSpecification
 }
 
+#Description: string & strings.MaxRunes(2000)
+
 #DialogAction: {
 	SlotToElicit?: #Name
 	SuppressNextMessage?: bool
 	Type: #DialogActionType
 }
+
+#DialogActionType: "CloseIntent" | "ConfirmIntent" | "ElicitIntent" | "ElicitSlot" | "StartIntent" | "FulfillIntent" | "EndConversation" | "EvaluateConditional" | "InvokeDialogCodeHook"
 
 #DialogCodeHookInvocationSetting: {
 	EnableCodeHookInvocation: bool
@@ -224,6 +254,8 @@ import "strings"
 	Intent?: #IntentOverride
 	SessionAttributes?: [...#SessionAttribute]
 }
+
+#DisplayName: string & strings.MinRunes(1) & strings.MaxRunes(100)
 
 #ElicitationCodeHookInvocationSetting: {
 	EnableCodeHookInvocation: bool
@@ -299,6 +331,10 @@ import "strings"
 	S3ObjectKey: #S3ObjectKey
 }
 
+#Id: string & =~"^[0-9a-zA-Z]+$" & strings.MinRunes(10) & strings.MaxRunes(10)
+
+#IdleSessionTTLInSeconds: int & >=60 & <=86400
+
 #ImageResponseCard: {
 	Buttons?: [...#Button]
 	ImageUrl?: #AttachmentUrl
@@ -316,6 +352,8 @@ import "strings"
 #InputContext: {
 	Name: #Name
 }
+
+#InputContextsList: [...#InputContext]
 
 #Intent: {
 	BedrockAgentIntentConfiguration?: #BedrockAgentIntentConfiguration
@@ -379,10 +417,14 @@ import "strings"
 	QueryFilterStringEnabled?: bool
 }
 
+#KendraIndexArn: string & =~"^arn:aws[a-zA-Z-]*:kendra:[a-z]+-(?:[a-z]+-)*[0-9]:[0-9]{12}:index/[a-zA-Z0-9][a-zA-Z0-9_-]*$" & strings.MinRunes(32) & strings.MaxRunes(2048)
+
 #LambdaCodeHook: {
 	CodeHookInterfaceVersion: string & strings.MinRunes(1) & strings.MaxRunes(5)
 	LambdaArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
+
+#LocaleId: string
 
 #Message: {
 	CustomPayload?: #CustomPayload
@@ -396,9 +438,15 @@ import "strings"
 	Variations?: [...#Message]
 }
 
+#MessageGroupsList: [...#MessageGroup]
+
+#MessageSelectionStrategy: "Random" | "Ordered"
+
 #MultipleValuesSetting: {
 	AllowMultipleValues?: bool
 }
+
+#Name: string & =~"^([0-9a-zA-Z][_-]?)+$" & strings.MinRunes(1) & strings.MaxRunes(100)
 
 #ObfuscationSetting: {
 	ObfuscationSettingType: "None" | "DefaultObfuscation"
@@ -409,6 +457,12 @@ import "strings"
 	TimeToLiveInSeconds: #ContextTimeToLiveInSeconds
 	TurnsToLive: #ContextTurnsToLive
 }
+
+#OutputContextsList: [...#OutputContext]
+
+#ParentIntentSignature: string
+
+#ParentSlotTypeSignature: string
 
 #PlainTextMessage: {
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(1000)
@@ -438,12 +492,16 @@ import "strings"
 	TimeoutResponse?: #ResponseSpecification
 }
 
+#PriorityValue: int & >=0 & <=100
+
 #PromptAttemptSpecification: {
 	AllowInterrupt?: bool
 	AllowedInputTypes: #AllowedInputTypes
 	AudioAndDTMFInputSpecification?: #AudioAndDTMFInputSpecification
 	TextInputSpecification?: #TextInputSpecification
 }
+
+#PromptMaxRetries: int & >=0 & <=5
 
 #PromptSpecification: {
 	AllowInterrupt?: bool
@@ -490,6 +548,10 @@ import "strings"
 	QueryFilterStringEnabled: bool
 }
 
+#QueryFilterString: string & strings.MinRunes(1) & strings.MaxRunes(5000)
+
+#ReplicaRegion: string & strings.MinRunes(2) & strings.MaxRunes(25)
+
 #Replication: {
 	ReplicaRegions: [...#ReplicaRegion]
 }
@@ -499,17 +561,23 @@ import "strings"
 	MessageGroupsList: #MessageGroupsList
 }
 
+#RoleArn: string & =~"^arn:aws[a-zA-Z-]*:iam::[0-9]{12}:role/.*$" & strings.MinRunes(32) & strings.MaxRunes(2048)
+
 #S3BucketLogDestination: {
 	KmsKeyArn?: string & =~"^arn:[\\w\\-]+:kms:[\\w\\-]+:[\\d]{12}:(?:key\\/[\\w\\-]+|alias\\/[a-zA-Z0-9:\\/_\\-]{1,256})$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 	LogPrefix: string & strings.MinRunes(0) & strings.MaxRunes(1024)
 	S3BucketArn: string & =~"^arn:[\\w\\-]+:s3:::[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
 
+#S3BucketName: string & =~"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$" & strings.MinRunes(3) & strings.MaxRunes(63)
+
 #S3Location: {
 	S3Bucket: #S3BucketName
 	S3ObjectKey: #S3ObjectKey
 	S3ObjectVersion?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 }
+
+#S3ObjectKey: string & =~"[\\.\\-\\!\\*\\_\\'\\(\\)a-zA-Z0-9][\\.\\-\\!\\*\\_\\'\\(\\)\\/a-zA-Z0-9]*$" & strings.MinRunes(1) & strings.MaxRunes(1024)
 
 #SSMLMessage: {
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(1000)
@@ -519,9 +587,13 @@ import "strings"
 	Utterance: #Utterance
 }
 
+#SampleUtterancesList: [...#SampleUtterance]
+
 #SampleValue: {
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(140)
 }
+
+#SecretsManagerSecretArn: string & =~"^arn:aws[A-Za-z-]*:secretsmanager:[a-z0-9-]{1,20}:[0-9]{12}:secret:[A-Za-z0-9/_+=.@-]{1,512}-[A-Za-z0-9]{6}$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 
 #SessionAttribute: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(1024)
@@ -549,6 +621,8 @@ import "strings"
 	FailureResponse?: #ResponseSpecification
 }
 
+#SlotConstraint: "Required" | "Optional"
+
 #SlotDefaultValue: {
 	DefaultValue: string & strings.MinRunes(1) & strings.MaxRunes(202)
 }
@@ -557,10 +631,14 @@ import "strings"
 	DefaultValueList: [...#SlotDefaultValue]
 }
 
+#SlotPrioritiesList: [...#SlotPriority]
+
 #SlotPriority: {
 	Priority: #PriorityValue
 	SlotName: #Name
 }
+
+#SlotShape: "Scalar" | "List"
 
 #SlotType: {
 	CompositeSlotTypeSetting?: #CompositeSlotTypeSetting
@@ -572,10 +650,16 @@ import "strings"
 	ValueSelectionSetting?: #SlotValueSelectionSetting
 }
 
+#SlotTypeId: string & =~"^((AMAZON\\.)[a-zA-Z_]+?|[0-9a-zA-Z]+)$" & strings.MinRunes(1) & strings.MaxRunes(25)
+
+#SlotTypeName: string
+
 #SlotTypeValue: {
 	SampleValue: #SampleValue
 	Synonyms?: #SynonymList
 }
+
+#SlotTypeValues: [...#SlotTypeValue]
 
 #SlotValue: {
 	InterpretedValue?: string & strings.MinRunes(1) & strings.MaxRunes(202)
@@ -605,11 +689,15 @@ import "strings"
 	Pattern: string & strings.MinRunes(1) & strings.MaxRunes(300)
 }
 
+#SlotValueResolutionStrategy: "ORIGINAL_VALUE" | "TOP_RESOLUTION" | "CONCATENATION"
+
 #SlotValueSelectionSetting: {
 	AdvancedRecognitionSetting?: #AdvancedRecognitionSetting
 	RegexFilter?: #SlotValueRegexFilter
 	ResolutionStrategy: #SlotValueResolutionStrategy
 }
+
+#SlotValues: [...#SlotValueOverride]
 
 #Specifications: {
 	SlotTypeId?: #SlotTypeId
@@ -617,14 +705,20 @@ import "strings"
 	ValueElicitationSetting: #SubSlotValueElicitationSetting
 }
 
+#SpeechDetectionSensitivity: "Default" | "HighNoiseTolerance" | "MaximumNoiseTolerance"
+
 #SpeechModelConfig: {
 	DeepgramConfig?: #DeepgramSpeechModelConfig
 }
+
+#SpeechModelPreference: "Standard" | "Neural" | "Deepgram" | "Advanced"
 
 #SpeechRecognitionSettings: {
 	SpeechModelConfig?: #SpeechModelConfig
 	SpeechModelPreference?: #SpeechModelPreference
 }
+
+#StillWaitingResponseFrequency: int & >=1 & <=300
 
 #StillWaitingResponseSpecification: {
 	AllowInterrupt?: bool
@@ -632,6 +726,8 @@ import "strings"
 	MessageGroupsList: #MessageGroupsList
 	TimeoutInSeconds: #StillWaitingResponseTimeout
 }
+
+#StillWaitingResponseTimeout: int & >=1 & <=900
 
 #SubSlotSetting: {
 	Expression?: string & =~"[0-9A-Za-z_\\-\\s\\(\\)]+" & strings.MinRunes(1) & strings.MaxRunes(1000)
@@ -650,6 +746,8 @@ import "strings"
 	SampleUtterances?: #SampleUtterancesList
 	WaitAndContinueSpecification?: #WaitAndContinueSpecification
 }
+
+#SynonymList: [...#SampleValue]
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
@@ -678,12 +776,16 @@ import "strings"
 	Enabled: bool
 }
 
+#TextLogSettings: [...#TextLogSetting]
+
 #UnifiedSpeechSettings: {
 	SpeechFoundationModel: {
 		ModelArn: string
 		VoiceId?: string
 	}
 }
+
+#Utterance: string
 
 #VoiceSettings: {
 	Engine?: "standard" | "neural" | "long-form" | "generative"

@@ -9,6 +9,12 @@ import "strings"
 	Tags?: #TagList
 }
 
+#NodePackageArn: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
+#NodePackageId: string & =~"^[a-zA-Z0-9\\-\\_\\/]+$" & strings.MinRunes(1) & strings.MaxRunes(255)
+
+#NodePackageName: string & =~"^[a-zA-Z0-9\\-\\_]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
+
 #StorageLocation: {
 	// The location's binary prefix.
 	BinaryPrefixLocation?: string
@@ -26,3 +32,7 @@ import "strings"
 	Key: string & =~"^.+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^.+$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#TagList: [...#Tag]
+
+#Timestamp: int

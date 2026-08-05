@@ -11,6 +11,12 @@ package securitycontrol
 	SecurityControlId?: #NonEmptyString
 }
 
+#IntegerList: [...int]
+
+#NonEmptyString: string & =~".*\\S.*"
+
+#NonEmptyStringList: [...#NonEmptyString]
+
 #ParameterConfiguration: {
 	Value?: #ParameterValue
 	ValueType: "DEFAULT" | "CUSTOM"
@@ -34,3 +40,5 @@ package securitycontrol
 	// A control parameter that is a list of strings.
 	StringList?: #NonEmptyStringList
 }
+
+#Parameters: {...}

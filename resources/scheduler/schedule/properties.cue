@@ -23,6 +23,8 @@ import "strings"
 	Target: #Target
 }
 
+#AssignPublicIp: "ENABLED" | "DISABLED"
+
 #AwsVpcConfiguration: {
 	AssignPublicIp?: #AssignPublicIp
 	// Specifies the security groups associated with the task. These security groups must all be in the same VPC. You can specify as many as five security groups. If you do not specify a security group, the default security group for the VPC is used.
@@ -86,10 +88,14 @@ import "strings"
 	Mode: #FlexibleTimeWindowMode
 }
 
+#FlexibleTimeWindowMode: "OFF" | "FLEXIBLE"
+
 #KinesisParameters: {
 	// The custom parameter used as the Kinesis partition key. For more information, see Amazon Kinesis Streams Key Concepts in the Amazon Kinesis Streams Developer Guide.
 	PartitionKey: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#LaunchType: "EC2" | "FARGATE" | "EXTERNAL"
 
 #NetworkConfiguration: {
 	AwsvpcConfiguration?: #AwsVpcConfiguration
@@ -101,11 +107,17 @@ import "strings"
 	Type?: #PlacementConstraintType
 }
 
+#PlacementConstraintType: "distinctInstance" | "memberOf"
+
 #PlacementStrategy: {
 	// The field to apply the placement strategy against. For the spread placement strategy, valid values are instanceId (or host, which has the same effect), or any platform or custom attribute that is applied to a container instance, such as attribute:ecs.availability-zone. For the binpack placement strategy, valid values are cpu and memory. For the random placement strategy, this field is not used.
 	Field?: string & strings.MaxRunes(255)
 	Type?: #PlacementStrategyType
 }
+
+#PlacementStrategyType: "random" | "spread" | "binpack"
+
+#PropagateTags: "TASK_DEFINITION"
 
 #RetryPolicy: {
 	// The maximum amount of time, in seconds, to continue to make retry attempts.
@@ -126,10 +138,14 @@ import "strings"
 	PipelineParameterList?: [...#SageMakerPipelineParameter]
 }
 
+#ScheduleState: "ENABLED" | "DISABLED"
+
 #SqsParameters: {
 	// The FIFO message group ID to use as the target.
 	MessageGroupId?: string & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#TagMap: {...}
 
 #Target: {
 	// The Amazon Resource Name (ARN) of the target.

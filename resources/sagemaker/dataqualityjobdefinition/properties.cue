@@ -97,6 +97,10 @@ import "strings"
 	S3InputMode?: "Pipe" | "File"
 }
 
+#EndpointName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*" & strings.MaxRunes(63)
+
+#JobDefinitionName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MaxRunes(63)
+
 #Json: {
 	// A boolean flag indicating if it is JSON line format
 	Line?: bool
@@ -125,6 +129,10 @@ import "strings"
 	VpcConfig?: #VpcConfig
 }
 
+#Parquet: bool
+
+#ProcessingJobName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MinRunes(1) & strings.MaxRunes(63)
+
 #S3Output: {
 	// The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
 	LocalPath: string & =~".*" & strings.MaxRunes(256)
@@ -133,6 +141,8 @@ import "strings"
 	// A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
 	S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(512)
 }
+
+#S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(1024)
 
 #StatisticsResource: {
 	// The Amazon S3 URI for the baseline statistics file in Amazon S3 that the current monitoring job should be validated against.

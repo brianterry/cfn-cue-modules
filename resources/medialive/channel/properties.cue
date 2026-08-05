@@ -82,6 +82,10 @@ package channel
 	CannedAcl?: string
 }
 
+#AribDestinationSettings: {...}
+
+#AribSourceSettings: {...}
+
 #AudioChannelMapping: {
 	InputChannelLevels?: [...#InputChannelLevel]
 	OutputChannel?: int
@@ -392,9 +396,13 @@ package channel
 	GlobalColorCorrections?: [...#ColorCorrection]
 }
 
+#ColorSpacePassthroughSettings: {...}
+
 #DisabledLockingSettings: {
 	CustomEpoch?: string
 }
+
+#DolbyVision81Settings: {...}
 
 #DvbNitSettings: {
 	NetworkId?: int
@@ -481,6 +489,10 @@ package channel
 	StyleControl?: string
 }
 
+#EmbeddedDestinationSettings: {...}
+
+#EmbeddedPlusScte20DestinationSettings: {...}
+
 #EmbeddedSourceSettings: {
 	Convert608To708?: string
 	Scte20Detection?: string
@@ -559,6 +571,8 @@ package channel
 	Destination?: #OutputLocationRef
 	FrameCaptureCdnSettings?: #FrameCaptureCdnSettings
 }
+
+#FrameCaptureHlsSettings: {...}
 
 #FrameCaptureOutputSettings: {
 	NameModifier?: string
@@ -706,6 +720,8 @@ package channel
 	MaxFall?: int
 }
 
+#Hlg2020Settings: {...}
+
 #HlsAkamaiSettings: {
 	ConnectionRetryInterval?: int
 	FilecacheDuration?: int
@@ -818,6 +834,8 @@ package channel
 	NumRetries?: int
 	RestartDelay?: int
 }
+
+#HtmlMotionGraphicsSettings: {...}
 
 #InferenceSettings: {
 	AudioFeedInputs?: [...#AudioFeedInput]
@@ -1102,6 +1120,8 @@ package channel
 	MultiplexM2tsSettings?: #MultiplexM2tsSettings
 }
 
+#MultiplexGroupSettings: {...}
+
 #MultiplexM2tsSettings: {
 	AbsentInputAudioBehavior?: string
 	Arib?: string
@@ -1227,6 +1247,8 @@ package channel
 	UdpOutputSettings?: #UdpOutputSettings
 }
 
+#PassThroughSettings: {...}
+
 #PipelineLockingSettings: {
 	CustomEpoch?: string
 	PipelineLockingMethod?: string
@@ -1236,11 +1258,19 @@ package channel
 	LinkedChannelType?: string
 }
 
+#RawSettings: {...}
+
+#Rec601Settings: {...}
+
+#Rec709Settings: {...}
+
 #RemixSettings: {
 	ChannelMappings?: [...#AudioChannelMapping]
 	ChannelsIn?: int
 	ChannelsOut?: int
 }
+
+#RtmpCaptionInfoDestinationSettings: {...}
 
 #RtmpGroupSettings: {
 	AdMarkers?: [...string]
@@ -1260,10 +1290,14 @@ package channel
 	NumRetries?: int
 }
 
+#Scte20PlusEmbeddedDestinationSettings: {...}
+
 #Scte20SourceSettings: {
 	Convert608To708?: string
 	Source608ChannelNumber?: int
 }
+
+#Scte27DestinationSettings: {...}
 
 #Scte27SourceSettings: {
 	OcrLanguage?: string
@@ -1286,6 +1320,8 @@ package channel
 	CaptionSynchronizationMode?: string
 	InferenceFeedOutput?: string
 }
+
+#SmpteTtDestinationSettings: {...}
 
 #SrtGroupSettings: {
 	InputLossAction?: string
@@ -1316,6 +1352,8 @@ package channel
 	KeyProviderServer?: #InputLocation
 	StaticKeyValue?: string
 }
+
+#TeletextDestinationSettings: {...}
 
 #TeletextSourceSettings: {
 	OutputRectangle?: #CaptionRectangle

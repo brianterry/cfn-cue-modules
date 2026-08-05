@@ -84,9 +84,13 @@ import "strings"
 	JobSchedule?: #JobSchedule
 }
 
+#MatchingAttributes: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
+
 #MatchingRule: {
 	Rule: #MatchingRuleAttributeList
 }
+
+#MatchingRuleAttributeList: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
 
 #Readiness: {
 	// A message describing the current progress.

@@ -26,6 +26,8 @@ import "strings"
 	Status?: #SnapshotStatus
 }
 
+#SnapshotStatus: "AVAILABLE" | "CREATING" | "DELETED" | "CANCELLED" | "FAILED" | "COPYING"
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

@@ -9,9 +9,15 @@ import "strings"
 	VpcEndpointId?: string & strings.MinRunes(5) & strings.MaxRunes(200)
 }
 
+#ConnectorType: "GENERAL_PURPOSE" | "INTUNE"
+
 #IntuneConfiguration: {
 	AzureApplicationId: string & =~"^[a-zA-Z0-9]{2,15}-[a-zA-Z0-9]{2,15}-[a-zA-Z0-9]{2,15}-[a-zA-Z0-9]{2,15}-[a-zA-Z0-9]{2,15}$" & strings.MinRunes(15) & strings.MaxRunes(100)
 	Domain: string & =~"^[a-zA-Z0-9._-]+$" & strings.MinRunes(1) & strings.MaxRunes(256)
+}
+
+#MobileDeviceManagement: {
+	Intune: #IntuneConfiguration
 }
 
 #OpenIdConfiguration: {
@@ -19,3 +25,7 @@ import "strings"
 	Issuer?: string
 	Subject?: string
 }
+
+#Tags: {...}
+
+#Unit: {...}

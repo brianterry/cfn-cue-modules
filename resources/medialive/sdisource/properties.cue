@@ -9,6 +9,12 @@ package sdisource
 	Type: #SdiSourceType
 }
 
+#SdiSourceMode: "QUADRANT" | "INTERLEAVE"
+
+#SdiSourceState: "IDLE" | "IN_USE" | "DELETED"
+
+#SdiSourceType: "SINGLE" | "QUAD"
+
 #Tags: {
 	Key?: string
 	Value?: string

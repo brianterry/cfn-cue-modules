@@ -12,9 +12,19 @@ import "strings"
 	Tags?: #Tags
 }
 
+#Arn: string & strings.MaxRunes(1000)
+
 #CapacityUnitsConfiguration: {
 	RescoreCapacityUnits: #RescoreCapacityUnits
 }
+
+#Description: string & strings.MaxRunes(1000)
+
+#Id: string & strings.MinRunes(36) & strings.MaxRunes(36)
+
+#Name: string & strings.MinRunes(1) & strings.MaxRunes(1000)
+
+#RescoreCapacityUnits: int & >=0
 
 #Tag: {
 	// A string used to identify this tag
@@ -22,3 +32,5 @@ import "strings"
 	// A string containing the value for the tag
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]

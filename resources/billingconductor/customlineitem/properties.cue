@@ -19,6 +19,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AttributeValue: string & =~"^[a-zA-Z0-9]+$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
 #BillingPeriodRange: {
 	ExclusiveEndBillingPeriod?: #ExclusiveEndBillingPeriod
 	InclusiveStartBillingPeriod?: #InclusiveStartBillingPeriod
@@ -40,6 +42,10 @@ import "strings"
 	PercentageValue: number & >=0 & <=10000
 }
 
+#ExclusiveEndBillingPeriod: string & =~"\\d{4}-(0?[1-9]|1[012])"
+
+#InclusiveStartBillingPeriod: string & =~"\\d{4}-(0?[1-9]|1[012])"
+
 #LineItemFilter: {
 	Attribute: "LINE_ITEM_TYPE" | "SERVICE"
 	AttributeValues?: [...#AttributeValue]
@@ -47,7 +53,13 @@ import "strings"
 	Values?: [...#LineItemFilterValue]
 }
 
+#LineItemFilterValue: "SAVINGS_PLAN_NEGATION"
+
+#LineItemFilters: [...#LineItemFilter]
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#Type: "FEE" | "CREDIT"

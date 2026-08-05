@@ -43,6 +43,8 @@ import "strings"
 	Name?: string & strings.MaxRunes(256)
 }
 
+#SolutionArn: string & =~"arn:([a-z\\d-]+):personalize:.*:.*:.+" & strings.MaxRunes(256)
+
 #SolutionConfig: {
 	// Lists the hyperparameter names and ranges.
 	AlgorithmHyperParameters?: {...}

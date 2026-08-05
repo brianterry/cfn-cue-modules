@@ -27,6 +27,10 @@ package instanceconnectendpoint
 	Ipv4?: #InstanceConnectEndpointDnsNames
 }
 
+#NetworkInterfaceId: string
+
+#SecurityGroupId: string
+
 #Tag: {
 	Key: string
 	Value: string

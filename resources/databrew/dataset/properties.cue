@@ -18,6 +18,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#BucketOwner: string & strings.MinRunes(12) & strings.MaxRunes(12)
+
 #CsvOptions: {
 	Delimiter?: string & strings.MinRunes(1) & strings.MaxRunes(1)
 	HeaderRow?: bool
@@ -121,6 +123,8 @@ import "strings"
 	DatasetParameter: #DatasetParameter
 	PathParameterName: #PathParameterName
 }
+
+#PathParameterName: string & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #S3Location: {
 	Bucket: string

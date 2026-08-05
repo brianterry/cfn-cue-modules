@@ -19,3 +19,5 @@ import "strings"
 #LoggingConfiguration: {
 	LogDestinationConfigs: [...#LogDestinationConfig]
 }
+
+#ResourceArn: string & =~"^arn:aws.*$" & strings.MinRunes(1) & strings.MaxRunes(256)

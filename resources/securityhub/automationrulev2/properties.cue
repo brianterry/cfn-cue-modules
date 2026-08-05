@@ -17,6 +17,8 @@ import "strings"
 	Tags?: #Tags
 }
 
+#AllowedOperators: "AND" | "OR"
+
 #AutomationRulesActionV2: {
 	ExternalIntegrationConfiguration?: #ExternalIntegrationConfiguration
 	FindingFieldsUpdate?: #AutomationRulesFindingFieldsUpdateV2
@@ -74,6 +76,8 @@ import "strings"
 	ConnectorArn?: string & =~".*\\S.*"
 }
 
+#ISO8601DateString: string & =~"^(\\d\\d\\d\\d)-([0][1-9]|[1][0-2])-([0][1-9]|[1-2](\\d)|[3][0-1])[T](?:([0-1](\\d)|[2][0-3]):[0-5](\\d):[0-5](\\d)|23:59:60)(?:\\.(\\d)+)?([Z]|[+-](\\d\\d)(:?(\\d\\d))?)$"
+
 #MapFilter: {
 	// The condition to apply to the key value when filtering findings with a map filter
 	Comparison: "EQUALS" | "NOT_EQUALS"
@@ -122,6 +126,8 @@ import "strings"
 	Filter: #NumberFilter
 }
 
+#OcsfStringField: "activity_name" | "cloud.account.name" | "cloud.account.uid" | "cloud.provider" | "cloud.region" | "compliance.assessments.category" | "compliance.assessments.name" | "compliance.control" | "compliance.status" | "compliance.standards" | "finding_info.desc" | "finding_info.src_url" | "finding_info.title" | "finding_info.types" | "finding_info.uid" | "finding_info.related_events.uid" | "finding_info.related_events.product.uid" | "finding_info.related_events.title" | "metadata.product.feature.uid" | "metadata.product.name" | "metadata.product.uid" | "metadata.product.vendor_name" | "remediation.desc" | "remediation.references" | "resources.cloud_partition" | "resources.name" | "resources.region" | "resources.type" | "resources.uid" | "vulnerabilities.fix_coverage" | "class_name" | "vendor_attributes.severity"
+
 #OcsfStringFilter: {
 	FieldName: #OcsfStringField
 	Filter: #StringFilter
@@ -133,3 +139,5 @@ import "strings"
 	// The string filter value
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 }
+
+#Tags: {...}

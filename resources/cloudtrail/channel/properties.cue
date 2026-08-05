@@ -12,6 +12,10 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#ChannelArn: string & =~"(^[a-zA-Z0-9._/\\-:]+$)" & strings.MinRunes(3) & strings.MaxRunes(256)
+
+#ChannelName: string & =~"(^[a-zA-Z0-9._\\-]+$)" & strings.MinRunes(3) & strings.MaxRunes(128)
+
 #Destination: {
 	// The ARN of a resource that receives events from a channel.
 	Location: string & =~"(^[a-zA-Z0-9._/\\-:]+$)" & strings.MinRunes(3) & strings.MaxRunes(1024)
@@ -25,3 +29,7 @@ import "strings"
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Timestamp: string
+
+#UUID: string & =~"(^[a-f0-9\\-]+$)" & strings.MinRunes(36) & strings.MaxRunes(36)

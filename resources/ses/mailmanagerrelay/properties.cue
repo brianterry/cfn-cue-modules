@@ -10,6 +10,14 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#NoAuthentication: {...}
+
+#RelayAuthentication: {
+	SecretArn: string & =~"^arn:(aws|aws-cn|aws-us-gov|aws-eusc):secretsmanager:[a-z0-9-]+:\\d{12}:secret:[a-zA-Z0-9/_+=,.@-]+$"
+} | {
+	NoAuthentication: #NoAuthentication
+}
+
 #Tag: {
 	Key: string & =~"^[a-zA-Z0-9/_\\+=\\.:@\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^[a-zA-Z0-9/_\\+=\\.:@\\-]*$" & strings.MinRunes(0) & strings.MaxRunes(256)

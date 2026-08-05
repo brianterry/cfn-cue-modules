@@ -13,6 +13,8 @@ package topicruledestination
 	ConfirmationUrl?: string
 }
 
+#TopicRuleDestinationStatus: "ENABLED" | "IN_PROGRESS" | "DISABLED"
+
 #VpcDestinationProperties: {
 	RoleArn?: string
 	SecurityGroups?: [...string]

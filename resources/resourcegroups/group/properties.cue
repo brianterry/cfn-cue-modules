@@ -13,6 +13,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Configuration: [...#ConfigurationItem]
+
 #ConfigurationItem: {
 	Parameters?: [...#ConfigurationParameter]
 	Type?: string

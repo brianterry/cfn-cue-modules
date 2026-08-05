@@ -9,3 +9,5 @@ import "strings"
 	Name: string & =~"^[^\\s]+$" & strings.MinRunes(1) & strings.MaxRunes(255)
 	Tags?: #TagMap
 }
+
+#TagMap: {...}

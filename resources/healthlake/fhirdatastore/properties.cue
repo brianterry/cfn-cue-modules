@@ -18,6 +18,18 @@ import "strings"
 	Seconds: string
 }
 
+#DatastoreArn: string & =~"^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:healthlake:[a-zA-Z0-9-]+:[0-9]{12}:datastore/.+?"
+
+#DatastoreEndpoint: string & strings.MaxRunes(10000)
+
+#DatastoreId: string & strings.MinRunes(1) & strings.MaxRunes(32)
+
+#DatastoreName: string & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#DatastoreStatus: "CREATING" | "ACTIVE" | "DELETING" | "DELETED"
+
+#DatastoreTypeVersion: "R4"
+
 #IdentityProviderConfiguration: {
 	// Type of Authorization Strategy. The two types of supported Authorization strategies are SMART_ON_FHIR_V1 and AWS_AUTH.
 	AuthorizationStrategy: "SMART_ON_FHIR_V1" | "AWS_AUTH" | "SMART_ON_FHIR"

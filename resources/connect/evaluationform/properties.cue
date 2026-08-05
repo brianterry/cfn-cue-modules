@@ -351,6 +351,8 @@ import "strings"
 	Label: "OVERALL_CUSTOMER_SENTIMENT_SCORE" | "OVERALL_AGENT_SENTIMENT_SCORE" | "NON_TALK_TIME" | "NON_TALK_TIME_PERCENTAGE" | "NUMBER_OF_INTERRUPTIONS" | "CONTACT_DURATION" | "AGENT_INTERACTION_DURATION" | "CUSTOMER_HOLD_TIME" | "LONGEST_HOLD_DURATION" | "NUMBER_OF_HOLDS" | "AGENT_INTERACTION_AND_HOLD_DURATION" | "CUSTOMER_SENTIMENT_SCORE_WITHOUT_AGENT" | "CUSTOMER_SENTIMENT_SCORE_WITH_AGENT"
 }
 
+#PointValue: int & >=0 & <=100
+
 #QuestionOptionPointsConfiguration: {
 	// The flag to mark the option as a bonus option.
 	IsBonus?: bool
@@ -366,6 +368,12 @@ import "strings"
 	// The minimum point value.
 	MinPointValue?: #PointValue
 }
+
+#RefId: string & =~"^[a-zA-Z0-9._-]{1,40}$"
+
+#ReferenceIdList: [...#RefId]
+
+#Score: int & >=0 & <=10
 
 #ScoringStrategy: {
 	// The scoring mode of the evaluation form.
@@ -397,3 +405,5 @@ import "strings"
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
 	Value: string & strings.MaxRunes(256)
 }
+
+#Weight: number & >=0 & <=100

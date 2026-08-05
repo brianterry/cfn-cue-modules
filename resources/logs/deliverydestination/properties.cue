@@ -19,6 +19,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Arn: string & =~"[\\w#+=/:,.@-]*\\*?" & strings.MinRunes(16) & strings.MaxRunes(2048)
+
 #DestinationPolicy: {
 	// The name of the delivery destination to assign this policy to
 	DeliveryDestinationName?: string & strings.MinRunes(1) & strings.MaxRunes(60)

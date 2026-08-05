@@ -34,6 +34,8 @@ package bridgesource
 	MulticastSourceIp?: string
 }
 
+#ProtocolEnum: "rtp-fec" | "rtp" | "udp"
+
 #VpcInterfaceAttachment: {
 	// The name of the VPC interface to use for this resource.
 	VpcInterfaceName?: string

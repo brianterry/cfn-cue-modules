@@ -19,6 +19,28 @@ import "strings"
 	TargetUrlPrivateConnectionName?: string & =~"^[a-z0-9]([a-z0-9-]*[a-z0-9])?$" & strings.MinRunes(3) & strings.MaxRunes(30)
 }
 
+#AdditionalServiceDetails: {
+	MCPServer: #RegisteredMCPServerDetails
+} | {
+	GitLab: #RegisteredGitLabServiceDetails
+} | {
+	MCPServerSplunk: #RegisteredMCPServerDetails
+} | {
+	MCPServerNewRelic: #RegisteredNewRelicDetails
+} | {
+	Dynatrace: #RegisteredDynatraceDetails
+} | {
+	ServiceNow: #RegisteredServiceNowDetails
+} | {
+	PagerDuty: #RegisteredPagerDutyDetails
+} | {
+	AzureIdentity: #RegisteredAzureIdentityDetails
+} | {
+	MCPServerSigV4: #RegisteredMCPServerSigV4Details
+} | {
+	MCPServerGrafana: #RegisteredMCPServerGrafanaDetails
+}
+
 #ApiKeyDetails: {
 	// HTTP header name to send the API key
 	ApiKeyHeader: string & =~"^[a-zA-Z0-9-]+$"
@@ -69,6 +91,14 @@ import "strings"
 	TokenValue: string & =~"^glpat-[a-zA-Z0-9._-]+$"
 }
 
+#MCPServerAuthorizationConfig: {
+	OAuthClientCredentials: #MCPServerOAuthClientCredentialsConfig
+} | {
+	ApiKey: #ApiKeyDetails
+} | {
+	BearerToken: #BearerTokenDetails
+}
+
 #MCPServerDetails: {
 	AuthorizationConfig: #MCPServerAuthorizationConfig
 	// Optional description for the MCP server
@@ -77,6 +107,10 @@ import "strings"
 	Endpoint: string & =~"^https://[a-zA-Z0-9.-]+(?::[0-9]+)?(?:/.*)?$"
 	// MCP server name
 	Name: string & =~"^[a-zA-Z0-9_-]+$"
+}
+
+#MCPServerGrafanaAuthorizationConfig: {
+	BearerToken: #BearerTokenDetails
 }
 
 #MCPServerGrafanaDetails: {
@@ -125,6 +159,10 @@ import "strings"
 	Endpoint: string & =~"^https://[a-zA-Z0-9.-]+(?::[0-9]+)?(?:/.*)?$"
 	// MCP server name
 	Name: string & =~"^[a-zA-Z0-9_-]+$"
+}
+
+#MCPServerSplunkAuthorizationConfig: {
+	BearerToken: #BearerTokenDetails
 }
 
 #MCPServerSplunkDetails: {
@@ -268,6 +306,30 @@ import "strings"
 	InstanceUrl: string
 }
 
+#ServiceDetails: {
+	Dynatrace: #DynatraceServiceDetails
+} | {
+	MCPServer: #MCPServerDetails
+} | {
+	MCPServerSplunk: #MCPServerSplunkDetails
+} | {
+	MCPServerNewRelic: #NewRelicServiceDetails
+} | {
+	GitLab: #GitLabDetails
+} | {
+	ServiceNow: #ServiceNowServiceDetails
+} | {
+	PagerDuty: #PagerDutyDetails
+} | {
+	AzureIdentity: #AzureIdentityServiceDetails
+} | {
+	MCPServerSigV4: #MCPServerSigV4Details
+} | {
+	MCPServerGrafana: #MCPServerGrafanaDetails
+}
+
+#ServiceId: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
 #ServiceNowAuthorizationConfig: {
 	OAuthClientCredentials?: #OAuthClientDetails
 }
@@ -277,6 +339,8 @@ import "strings"
 	// ServiceNow instance URL
 	InstanceUrl: string & =~"^https://[a-zA-Z0-9-]+\\.service-now\\.com/?$"
 }
+
+#ServiceType: "dynatrace" | "mcpserver" | "mcpserversplunk" | "mcpservernewrelic" | "gitlab" | "servicenow" | "pagerduty" | "azureidentity" | "mcpserversigv4" | "mcpservergrafana"
 
 #Tag: {
 	// The key name of the tag.

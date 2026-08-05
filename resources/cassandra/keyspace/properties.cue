@@ -11,6 +11,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#RegionList: [...string & =~"^[a-z]{2,}-[a-z]+-[0-9]+$"]
+
 #ReplicationSpecification: {
 	RegionList?: #RegionList
 	ReplicationStrategy?: "SINGLE_REGION" | "MULTI_REGION"

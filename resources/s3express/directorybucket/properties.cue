@@ -24,6 +24,8 @@ import "strings"
 	DaysAfterInitiation: int & >=0
 }
 
+#Arn: string
+
 #BucketEncryption: {
 	// Specifies the default server-side-encryption configuration.
 	ServerSideEncryptionConfiguration: [...#ServerSideEncryptionRule]

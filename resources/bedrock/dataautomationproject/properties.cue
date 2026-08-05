@@ -26,9 +26,13 @@ import "strings"
 	Types?: [...#AudioExtractionCategoryType]
 }
 
+#AudioExtractionCategoryType: "AUDIO_CONTENT_MODERATION" | "TRANSCRIPT" | "TOPIC_CONTENT_MODERATION"
+
 #AudioExtractionCategoryTypeConfiguration: {
 	Transcript?: #TranscriptConfiguration
 }
+
+#AudioGenerativeOutputLanguage: "DEFAULT" | "EN"
 
 #AudioLanguageConfiguration: {
 	GenerativeOutputLanguage?: #AudioGenerativeOutputLanguage
@@ -51,6 +55,8 @@ import "strings"
 	Types?: [...#AudioStandardGenerativeFieldType]
 }
 
+#AudioStandardGenerativeFieldType: "AUDIO_SUMMARY" | "IAB" | "TOPIC_SUMMARY"
+
 #AudioStandardOutputConfiguration: {
 	Extraction?: #AudioStandardExtraction
 	GenerativeField?: #AudioStandardGenerativeField
@@ -64,6 +70,8 @@ import "strings"
 	BlueprintVersion?: string & =~"^[0-9]*$" & strings.MinRunes(1) & strings.MaxRunes(128)
 }
 
+#BlueprintStage: "DEVELOPMENT" | "LIVE"
+
 #ChannelLabelingConfiguration: {
 	State: #State
 }
@@ -72,6 +80,12 @@ import "strings"
 	Blueprints?: [...#BlueprintItem]
 }
 
+#DataAutomationProjectStage: "DEVELOPMENT" | "LIVE"
+
+#DataAutomationProjectStatus: "COMPLETED" | "IN_PROGRESS" | "FAILED"
+
+#DesiredModality: "DOCUMENT" | "IMAGE" | "VIDEO" | "AUDIO"
+
 #DocumentBoundingBox: {
 	State: #State
 }
@@ -79,6 +93,8 @@ import "strings"
 #DocumentExtractionGranularity: {
 	Types?: [...#DocumentExtractionGranularityType]
 }
+
+#DocumentExtractionGranularityType: "DOCUMENT" | "PAGE" | "ELEMENT" | "WORD" | "LINE"
 
 #DocumentOutputAdditionalFileFormat: {
 	State: #State
@@ -92,6 +108,8 @@ import "strings"
 #DocumentOutputTextFormat: {
 	Types?: [...#DocumentOutputTextFormatType]
 }
+
+#DocumentOutputTextFormatType: "PLAIN_TEXT" | "MARKDOWN" | "HTML" | "CSV"
 
 #DocumentOverrideConfiguration: {
 	ModalityProcessing?: #ModalityProcessingConfiguration
@@ -123,6 +141,8 @@ import "strings"
 	Types?: [...#ImageExtractionCategoryType]
 }
 
+#ImageExtractionCategoryType: "CONTENT_MODERATION" | "TEXT_DETECTION" | "LOGOS"
+
 #ImageOverrideConfiguration: {
 	ModalityProcessing?: #ModalityProcessingConfiguration
 	SensitiveDataConfiguration?: #SensitiveDataConfiguration
@@ -138,10 +158,14 @@ import "strings"
 	Types?: [...#ImageStandardGenerativeFieldType]
 }
 
+#ImageStandardGenerativeFieldType: "IMAGE_SUMMARY" | "IAB"
+
 #ImageStandardOutputConfiguration: {
 	Extraction?: #ImageStandardExtraction
 	GenerativeField?: #ImageStandardGenerativeField
 }
+
+#Language: "EN" | "DE" | "ES" | "FR" | "IT" | "PT" | "JA" | "KO" | "CN" | "TW" | "HK"
 
 #ModalityProcessingConfiguration: {
 	State?: #State
@@ -167,11 +191,19 @@ import "strings"
 	RedactionMaskMode?: #PIIRedactionMaskMode
 }
 
+#PIIEntityTypes: "ALL" | "ADDRESS" | "AGE" | "NAME" | "EMAIL" | "PHONE" | "USERNAME" | "PASSWORD" | "DRIVER_ID" | "LICENSE_PLATE" | "VEHICLE_IDENTIFICATION_NUMBER" | "CREDIT_DEBIT_CARD_CVV" | "CREDIT_DEBIT_CARD_EXPIRY" | "CREDIT_DEBIT_CARD_NUMBER" | "PIN" | "INTERNATIONAL_BANK_ACCOUNT_NUMBER" | "SWIFT_CODE" | "IP_ADDRESS" | "MAC_ADDRESS" | "URL" | "AWS_ACCESS_KEY" | "AWS_SECRET_KEY" | "US_BANK_ACCOUNT_NUMBER" | "US_BANK_ROUTING_NUMBER" | "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER" | "US_PASSPORT_NUMBER" | "US_SOCIAL_SECURITY_NUMBER" | "CA_HEALTH_NUMBER" | "CA_SOCIAL_INSURANCE_NUMBER" | "UK_NATIONAL_HEALTH_SERVICE_NUMBER" | "UK_NATIONAL_INSURANCE_NUMBER" | "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER"
+
+#PIIRedactionMaskMode: "PII" | "ENTITY_TYPE"
+
 #SensitiveDataConfiguration: {
 	DetectionMode?: #SensitiveDataDetectionMode
 	DetectionScope?: [...#SensitiveDataDetectionScope]
 	PiiEntitiesConfiguration?: #PIIEntitiesConfiguration
 }
+
+#SensitiveDataDetectionMode: "DETECTION" | "DETECTION_AND_REDACTION"
+
+#SensitiveDataDetectionScope: "STANDARD" | "CUSTOM"
 
 #SpeakerLabelingConfiguration: {
 	State: #State
@@ -188,6 +220,8 @@ import "strings"
 	Video?: #VideoStandardOutputConfiguration
 }
 
+#State: "ENABLED" | "DISABLED"
+
 #Tag: {
 	// Key for the tag
 	Key: string & =~"^[a-zA-Z0-9\\s._:/=+@-]*$" & strings.MinRunes(1) & strings.MaxRunes(128)
@@ -200,6 +234,8 @@ import "strings"
 	SpeakerLabeling?: #SpeakerLabelingConfiguration
 }
 
+#Unit: {...}
+
 #VideoBoundingBox: {
 	State: #State
 }
@@ -208,6 +244,8 @@ import "strings"
 	State: #State
 	Types?: [...#VideoExtractionCategoryType]
 }
+
+#VideoExtractionCategoryType: "CONTENT_MODERATION" | "TEXT_DETECTION" | "TRANSCRIPT" | "LOGOS"
 
 #VideoOverrideConfiguration: {
 	ModalityProcessing?: #ModalityProcessingConfiguration
@@ -223,6 +261,8 @@ import "strings"
 	State: #State
 	Types?: [...#VideoStandardGenerativeFieldType]
 }
+
+#VideoStandardGenerativeFieldType: "VIDEO_SUMMARY" | "IAB" | "CHAPTER_SUMMARY"
 
 #VideoStandardOutputConfiguration: {
 	Extraction?: #VideoStandardExtraction

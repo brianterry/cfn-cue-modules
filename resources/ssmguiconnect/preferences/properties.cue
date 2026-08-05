@@ -8,6 +8,12 @@ package preferences
 	}
 }
 
+#BucketName: string & =~"(?=^.{3,63}$)(?!^(\\d+\\.)+\\d+$)(^(([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$)"
+
+#BucketOwner: string & =~"^[0-9]{12}$"
+
+#KMSKeyArn: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+
 #RecordingDestinations: {
 	S3Buckets: #S3Buckets
 }
@@ -16,3 +22,5 @@ package preferences
 	BucketName: #BucketName
 	BucketOwner: #BucketOwner
 }
+
+#S3Buckets: [...#S3Bucket]

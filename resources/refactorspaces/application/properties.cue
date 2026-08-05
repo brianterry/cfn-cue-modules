@@ -12,10 +12,14 @@ import "strings"
 	VpcId: string & =~"^vpc-[-a-f0-9]{8}([-a-f0-9]{9})?$" & strings.MinRunes(12) & strings.MaxRunes(21)
 }
 
+#ApiGatewayEndpointType: "REGIONAL" | "PRIVATE"
+
 #ApiGatewayProxyInput: {
 	EndpointType?: #ApiGatewayEndpointType
 	StageName?: string & =~"^[-a-zA-Z0-9_]*$" & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#ProxyType: "API_GATEWAY"
 
 #Tag: {
 	// A string used to identify this tag

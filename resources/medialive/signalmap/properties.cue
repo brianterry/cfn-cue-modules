@@ -16,12 +16,16 @@ import "strings"
 	Tags?: #TagMap
 }
 
+#FailedMediaResourceMap: {...}
+
 #MediaResource: {
 	Destinations?: [...#MediaResourceNeighbor]
 	// The logical name of an AWS media resource.
 	Name?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 	Sources?: [...#MediaResourceNeighbor]
 }
+
+#MediaResourceMap: {...}
 
 #MediaResourceNeighbor: {
 	// The ARN of a resource used in AWS media workflows.
@@ -38,8 +42,16 @@ import "strings"
 	Status: #SignalMapMonitorDeploymentStatus
 }
 
+#SignalMapMonitorDeploymentStatus: "NOT_DEPLOYED" | "DRY_RUN_DEPLOYMENT_COMPLETE" | "DRY_RUN_DEPLOYMENT_FAILED" | "DRY_RUN_DEPLOYMENT_IN_PROGRESS" | "DEPLOYMENT_COMPLETE" | "DEPLOYMENT_FAILED" | "DEPLOYMENT_IN_PROGRESS" | "DELETE_COMPLETE" | "DELETE_FAILED" | "DELETE_IN_PROGRESS"
+
+#SignalMapStatus: "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_COMPLETE" | "UPDATE_REVERTED" | "UPDATE_FAILED" | "READY" | "NOT_READY"
+
 #SuccessfulMonitorDeployment: {
 	// URI associated with a signal map's monitor deployment.
 	DetailsUri: string & strings.MinRunes(0) & strings.MaxRunes(2048)
 	Status: #SignalMapMonitorDeploymentStatus
 }
+
+#TagMap: {...}
+
+#Unit: {...}

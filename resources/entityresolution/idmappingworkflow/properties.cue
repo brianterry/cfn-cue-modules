@@ -15,6 +15,14 @@ import "strings"
 	WorkflowName: #EntityName
 }
 
+#AttributeName: string & =~"^[a-zA-Z_0-9- \\t]*$" & strings.MinRunes(0) & strings.MaxRunes(255)
+
+#CreatedAt: string
+
+#Description: string & strings.MinRunes(0) & strings.MaxRunes(255)
+
+#EntityName: string & =~"^[a-zA-Z_0-9-]*$" & strings.MinRunes(0) & strings.MaxRunes(255)
+
 #IdMappingIncrementalRunConfig: {
 	IncrementalRunType: "ON_DEMAND"
 }
@@ -32,6 +40,8 @@ import "strings"
 	ProviderProperties?: #ProviderProperties
 	RuleBasedProperties?: #IdMappingRuleBasedProperties
 }
+
+#IdMappingWorkflowArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):entityresolution:.*:[0-9]+:(idmappingworkflow/.*)$"
 
 #IdMappingWorkflowInputSource: {
 	// An Glue table ARN for the input source table, MatchingWorkflow arn or IdNamespace ARN
@@ -51,6 +61,8 @@ import "strings"
 	IntermediateS3Path: string
 }
 
+#KMSArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):kms:.*:[0-9]+:.*$"
+
 #ProviderProperties: {
 	IntermediateSourceConfiguration?: #IntermediateSourceConfiguration
 	// Additional Provider configuration that would be required for the provider service. The Configuration must be in JSON string format
@@ -64,9 +76,13 @@ import "strings"
 	RuleName: string & =~"^[a-zA-Z_0-9- \\t]*$" & strings.MinRunes(0) & strings.MaxRunes(255)
 }
 
+#SchemaMappingArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):entityresolution:.*:[0-9]+:(schemamapping/.*)$"
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#UpdatedAt: string

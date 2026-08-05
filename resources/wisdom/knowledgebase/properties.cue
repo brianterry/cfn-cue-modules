@@ -39,6 +39,12 @@ import "strings"
 	MaxTokens: number & >=1 & <=8192
 }
 
+#KnowledgeBaseType: "EXTERNAL" | "CUSTOM" | "MESSAGE_TEMPLATES" | "MANAGED" | "QUICK_RESPONSES"
+
+#ManagedSourceConfiguration: {
+	WebCrawlerConfiguration: #WebCrawlerConfiguration
+}
+
 #RenderingConfiguration: {
 	TemplateUri?: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 }
@@ -57,10 +63,20 @@ import "strings"
 	KmsKeyId?: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 }
 
+#SourceConfiguration: {
+	AppIntegrations: #AppIntegrationsConfiguration
+} | {
+	ManagedSourceConfiguration: #ManagedSourceConfiguration
+}
+
 #Tag: {
 	Key: string & =~"^(?!aws:)[a-zA-Z+-=._:/]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#UrlFilterList: [...#UrlFilterPattern]
+
+#UrlFilterPattern: string & strings.MinRunes(1) & strings.MaxRunes(1000)
 
 #VectorIngestionConfiguration: {
 	ChunkingConfiguration?: {

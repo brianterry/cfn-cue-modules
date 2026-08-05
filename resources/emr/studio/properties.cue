@@ -39,9 +39,15 @@ import "strings"
 	WorkspaceSecurityGroupId: string & =~"^sg-[a-zA-Z0-9\\-._]+$"
 }
 
+#Arn: string & =~"^arn:aws(-(cn|us-gov|iso-f|iso-e))?:[a-z-]+:(([a-z]+-)+[0-9])?:([0-9]{12})?:[^.]+$"
+
+#SubnetId: string & =~"^(subnet-[a-f0-9]{13})|(subnet-[a-f0-9]{8})\\Z"
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & =~"^(?!aws:)[a-zA-Z+-=._:/]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The value for the tag. You can specify a value that is 0 to 255 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & =~"[a-zA-Z+-=._:/]+$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]

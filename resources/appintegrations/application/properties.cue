@@ -33,6 +33,8 @@ import "strings"
 	ContactHandling?: #ContactHandling
 }
 
+#ApprovedOrigins: string & =~"^\\w+\\:\\/\\/.*$" & strings.MinRunes(1) & strings.MaxRunes(1000)
+
 #ContactHandling: {
 	Scope: "CROSS_CONTACTS" | "PER_CONTACT"
 }
@@ -46,6 +48,8 @@ import "strings"
 	Allow?: [...string]
 	Sandbox?: [...string]
 }
+
+#Permissions: string & =~"^[a-zA-Z0-9\\/\\._\\-\\*]+$" & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #Tag: {
 	// A key to identify the tag.

@@ -24,10 +24,18 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#ArnResource: string & =~"^arn.*" & strings.MaxRunes(1224)
+
 #DnsResource: {
 	DomainName: string & strings.MinRunes(3) & strings.MaxRunes(255)
 	IpAddressType: "IPV4" | "IPV6" | "DUALSTACK"
 }
+
+#Id: string & =~"^rcfg-[0-9a-z]{17}$" & strings.MinRunes(22) & strings.MaxRunes(22)
+
+#IpResource: string & strings.MinRunes(4) & strings.MaxRunes(39)
+
+#PortRange: string & =~"^((\\d{1,5}\\-\\d{1,5})|(\\d+))$" & strings.MinRunes(1) & strings.MaxRunes(11)
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

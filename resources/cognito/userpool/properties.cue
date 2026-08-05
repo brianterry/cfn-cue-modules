@@ -74,6 +74,10 @@ import "strings"
 	SourceArn?: string
 }
 
+#EncryptionKeyArnType: string & =~"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:([\\w+=/,.@-]*)?:[0-9]+:[\\w+=/,.@-]+(:[\\w+=/,.@-]+)?(:[\\w+=/,.@-]+)?"
+
+#EncryptionKeyType: "AWS_OWNED_KEY" | "CUSTOMER_MANAGED_KEY"
+
 #EumsSmsConfiguration: {
 	CallerArn: string
 	ConfigurationSetName?: string

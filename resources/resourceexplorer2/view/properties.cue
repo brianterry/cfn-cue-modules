@@ -17,3 +17,5 @@ import "strings"
 #SearchFilter: {
 	FilterString: string & strings.MinRunes(0) & strings.MaxRunes(2048)
 }
+
+#TagMap: {...}

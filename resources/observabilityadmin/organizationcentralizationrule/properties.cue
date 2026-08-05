@@ -9,6 +9,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AccountIdentifier: string & =~"^[0-9]{12}$" & strings.MinRunes(12) & strings.MaxRunes(12)
+
 #CentralizationRule: {
 	Destination: #CentralizationRuleDestination
 	Source: #CentralizationRuleSource
@@ -56,6 +58,12 @@ import "strings"
 #MetricsBackupConfiguration: {
 	Region: #Region
 }
+
+#Region: string & strings.MinRunes(1)
+
+#Regions: [...#Region]
+
+#ResourceArn: string & =~"^arn:aws([a-z0-9\\-]+)?:([a-zA-Z0-9\\-]+):([a-z0-9\\-]+)?:([0-9]{12})?:(.+)$" & strings.MinRunes(1) & strings.MaxRunes(1011)
 
 #SourceLogsConfiguration: {
 	DataSourceSelectionCriteria?: string & strings.MinRunes(1) & strings.MaxRunes(2000)

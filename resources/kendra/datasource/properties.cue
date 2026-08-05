@@ -24,6 +24,10 @@ import "strings"
 	AllowedGroupsColumnName: #ColumnName
 }
 
+#Arn: string & strings.MaxRunes(1000)
+
+#ChangeDetectingColumns: [...#ColumnName]
+
 #ColumnConfiguration: {
 	ChangeDetectingColumns: #ChangeDetectingColumns
 	DocumentDataColumnName: #ColumnName
@@ -32,10 +36,18 @@ import "strings"
 	FieldMappings?: #DataSourceToIndexFieldMappingList
 }
 
+#ColumnName: string & strings.MinRunes(1) & strings.MaxRunes(100)
+
+#ConditionOperator: "GreaterThan" | "GreaterThanOrEquals" | "LessThan" | "LessThanOrEquals" | "Equals" | "NotEquals" | "Contains" | "NotContains" | "Exists" | "NotExists" | "BeginsWith"
+
 #ConfluenceAttachmentConfiguration: {
 	AttachmentFieldMappings?: #ConfluenceAttachmentFieldMappingsList
 	CrawlAttachments?: bool
 }
+
+#ConfluenceAttachmentFieldMappingsList: [...#ConfluenceAttachmentToIndexFieldMapping]
+
+#ConfluenceAttachmentFieldName: "AUTHOR" | "CONTENT_TYPE" | "CREATED_DATE" | "DISPLAY_URL" | "FILE_SIZE" | "ITEM_TYPE" | "PARENT_ID" | "SPACE_KEY" | "SPACE_NAME" | "URL" | "VERSION"
 
 #ConfluenceAttachmentToIndexFieldMapping: {
 	DataSourceFieldName: #ConfluenceAttachmentFieldName
@@ -46,6 +58,10 @@ import "strings"
 #ConfluenceBlogConfiguration: {
 	BlogFieldMappings?: #ConfluenceBlogFieldMappingsList
 }
+
+#ConfluenceBlogFieldMappingsList: [...#ConfluenceBlogToIndexFieldMapping]
+
+#ConfluenceBlogFieldName: "AUTHOR" | "DISPLAY_URL" | "ITEM_TYPE" | "LABELS" | "PUBLISH_DATE" | "SPACE_KEY" | "SPACE_NAME" | "URL" | "VERSION"
 
 #ConfluenceBlogToIndexFieldMapping: {
 	DataSourceFieldName: #ConfluenceBlogFieldName
@@ -70,6 +86,10 @@ import "strings"
 	PageFieldMappings?: #ConfluencePageFieldMappingsList
 }
 
+#ConfluencePageFieldMappingsList: [...#ConfluencePageToIndexFieldMapping]
+
+#ConfluencePageFieldName: "AUTHOR" | "CONTENT_STATUS" | "CREATED_DATE" | "DISPLAY_URL" | "ITEM_TYPE" | "LABELS" | "MODIFIED_DATE" | "PARENT_ID" | "SPACE_KEY" | "SPACE_NAME" | "URL" | "VERSION"
+
 #ConfluencePageToIndexFieldMapping: {
 	DataSourceFieldName: #ConfluencePageFieldName
 	DateFieldFormat?: #DateFieldFormat
@@ -84,11 +104,21 @@ import "strings"
 	SpaceFieldMappings?: #ConfluenceSpaceFieldMappingsList
 }
 
+#ConfluenceSpaceFieldMappingsList: [...#ConfluenceSpaceToIndexFieldMapping]
+
+#ConfluenceSpaceFieldName: "DISPLAY_URL" | "ITEM_TYPE" | "SPACE_KEY" | "URL"
+
+#ConfluenceSpaceIdentifier: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
+#ConfluenceSpaceList: [...#ConfluenceSpaceIdentifier]
+
 #ConfluenceSpaceToIndexFieldMapping: {
 	DataSourceFieldName: #ConfluenceSpaceFieldName
 	DateFieldFormat?: #DateFieldFormat
 	IndexFieldName: #IndexFieldName
 }
+
+#ConfluenceVersion: "CLOUD" | "SERVER"
 
 #ConnectionConfiguration: {
 	DatabaseHost: #DatabaseHost
@@ -119,11 +149,17 @@ import "strings"
 	WorkDocsConfiguration?: #WorkDocsConfiguration
 }
 
+#DataSourceFieldName: string & strings.MinRunes(1) & strings.MaxRunes(100)
+
+#DataSourceInclusionsExclusionsStrings: [...string & strings.MinRunes(1) & strings.MaxRunes(50)]
+
 #DataSourceToIndexFieldMapping: {
 	DataSourceFieldName: #DataSourceFieldName
 	DateFieldFormat?: #DateFieldFormat
 	IndexFieldName: #IndexFieldName
 }
+
+#DataSourceToIndexFieldMappingList: [...#DataSourceToIndexFieldMapping]
 
 #DataSourceVpcConfiguration: {
 	SecurityGroupIds: [...string & =~"[\\-0-9a-zA-Z]+" & strings.MinRunes(1) & strings.MaxRunes(200)]
@@ -139,11 +175,27 @@ import "strings"
 	VpcConfiguration?: #DataSourceVpcConfiguration
 }
 
+#DatabaseEngineType: "RDS_AURORA_MYSQL" | "RDS_AURORA_POSTGRESQL" | "RDS_MYSQL" | "RDS_POSTGRESQL"
+
+#DatabaseHost: string & strings.MinRunes(1) & strings.MaxRunes(253)
+
+#DatabaseName: string & strings.MinRunes(1) & strings.MaxRunes(100)
+
+#DatabasePort: int & >=1 & <=65535
+
+#DateFieldFormat: string & strings.MinRunes(4) & strings.MaxRunes(40)
+
+#Description: string & strings.MinRunes(1) & strings.MaxRunes(1000)
+
+#DisableLocalGroups: bool
+
 #DocumentAttributeCondition: {
 	ConditionDocumentAttributeKey: #DocumentAttributeKey
 	ConditionOnValue?: #DocumentAttributeValue
 	Operator: #ConditionOperator
 }
+
+#DocumentAttributeKey: string & =~"[a-zA-Z0-9_][a-zA-Z0-9_-]*" & strings.MinRunes(1) & strings.MaxRunes(200)
 
 #DocumentAttributeTarget: {
 	TargetDocumentAttributeKey: #DocumentAttributeKey
@@ -162,6 +214,12 @@ import "strings"
 	S3Prefix?: #S3ObjectKey
 }
 
+#ExcludeMimeTypesList: [...#MimeType]
+
+#ExcludeSharedDrivesList: [...#SharedDriveId]
+
+#ExcludeUserAccountsList: [...#UserAccount]
+
 #GoogleDriveConfiguration: {
 	ExcludeMimeTypes?: #ExcludeMimeTypesList
 	ExcludeSharedDrives?: #ExcludeSharedDrivesList
@@ -178,11 +236,29 @@ import "strings"
 	S3Bucket: #S3BucketName
 }
 
+#Id: string & strings.MinRunes(1) & strings.MaxRunes(100)
+
+#IndexFieldName: string & strings.MinRunes(1) & strings.MaxRunes(30)
+
+#IndexId: string & strings.MinRunes(36) & strings.MaxRunes(36)
+
+#InlineConfigurations: [...#InlineCustomDocumentEnrichmentConfiguration]
+
 #InlineCustomDocumentEnrichmentConfiguration: {
 	Condition?: #DocumentAttributeCondition
 	DocumentContentDeletion?: bool
 	Target?: #DocumentAttributeTarget
 }
+
+#LambdaArn: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+
+#LanguageCode: string & =~"[a-zA-Z-]*" & strings.MinRunes(2) & strings.MaxRunes(10)
+
+#Long: int
+
+#MimeType: string & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#Name: string & strings.MinRunes(1) & strings.MaxRunes(1000)
 
 #OneDriveConfiguration: {
 	DisableLocalGroups?: #DisableLocalGroups
@@ -193,6 +269,10 @@ import "strings"
 	SecretArn: #SecretArn
 	TenantDomain: #TenantDomain
 }
+
+#OneDriveUser: string & =~"^(?!\\s).+@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#OneDriveUserList: [...#OneDriveUser]
 
 #OneDriveUsers: {
 	OneDriveUserList?: #OneDriveUserList
@@ -205,6 +285,12 @@ import "strings"
 	Port: int & >=1 & <=65535
 }
 
+#QueryIdentifiersEnclosingOption: "DOUBLE_QUOTES" | "NONE"
+
+#RoleArn: string & =~"arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}" & strings.MinRunes(1) & strings.MaxRunes(1284)
+
+#S3BucketName: string & =~"[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]" & strings.MinRunes(3) & strings.MaxRunes(63)
+
 #S3DataSourceConfiguration: {
 	AccessControlListConfiguration?: #AccessControlListConfiguration
 	BucketName: #S3BucketName
@@ -213,6 +299,8 @@ import "strings"
 	InclusionPatterns?: #DataSourceInclusionsExclusionsStrings
 	InclusionPrefixes?: #DataSourceInclusionsExclusionsStrings
 }
+
+#S3ObjectKey: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 
 #S3Path: {
 	Bucket: #S3BucketName
@@ -225,6 +313,10 @@ import "strings"
 	FieldMappings?: #DataSourceToIndexFieldMappingList
 	IncludeFilterTypes?: #SalesforceChatterFeedIncludeFilterTypes
 }
+
+#SalesforceChatterFeedIncludeFilterType: "ACTIVE_USER" | "STANDARD_USER"
+
+#SalesforceChatterFeedIncludeFilterTypes: [...#SalesforceChatterFeedIncludeFilterType]
 
 #SalesforceConfiguration: {
 	ChatterFeedConfiguration?: #SalesforceChatterFeedConfiguration
@@ -245,11 +337,19 @@ import "strings"
 	Name: #SalesforceCustomKnowledgeArticleTypeName
 }
 
+#SalesforceCustomKnowledgeArticleTypeConfigurationList: [...#SalesforceCustomKnowledgeArticleTypeConfiguration]
+
+#SalesforceCustomKnowledgeArticleTypeName: string & strings.MinRunes(1) & strings.MaxRunes(100)
+
 #SalesforceKnowledgeArticleConfiguration: {
 	CustomKnowledgeArticleTypeConfigurations?: #SalesforceCustomKnowledgeArticleTypeConfigurationList
 	IncludedStates: #SalesforceKnowledgeArticleStateList
 	StandardKnowledgeArticleTypeConfiguration?: #SalesforceStandardKnowledgeArticleTypeConfiguration
 }
+
+#SalesforceKnowledgeArticleState: "DRAFT" | "PUBLISHED" | "ARCHIVED"
+
+#SalesforceKnowledgeArticleStateList: [...#SalesforceKnowledgeArticleState]
 
 #SalesforceStandardKnowledgeArticleTypeConfiguration: {
 	DocumentDataFieldName: #DataSourceFieldName
@@ -269,6 +369,18 @@ import "strings"
 	Name: #SalesforceStandardObjectName
 }
 
+#SalesforceStandardObjectConfigurationList: [...#SalesforceStandardObjectConfiguration]
+
+#SalesforceStandardObjectName: "ACCOUNT" | "CAMPAIGN" | "CASE" | "CONTACT" | "CONTRACT" | "DOCUMENT" | "GROUP" | "IDEA" | "LEAD" | "OPPORTUNITY" | "PARTNER" | "PRICEBOOK" | "PRODUCT" | "PROFILE" | "SOLUTION" | "TASK" | "USER"
+
+#Schedule: string & strings.MaxRunes(1000)
+
+#SecretArn: string & =~"arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}" & strings.MinRunes(1) & strings.MaxRunes(1284)
+
+#ServiceNowAuthenticationType: "HTTP_BASIC" | "OAUTH2"
+
+#ServiceNowBuildVersionType: "LONDON" | "OTHERS"
+
 #ServiceNowConfiguration: {
 	AuthenticationType?: #ServiceNowAuthenticationType
 	HostUrl: #ServiceNowHostUrl
@@ -277,6 +389,8 @@ import "strings"
 	ServiceCatalogConfiguration?: #ServiceNowServiceCatalogConfiguration
 	ServiceNowBuildVersion: #ServiceNowBuildVersionType
 }
+
+#ServiceNowHostUrl: string & =~"^(?!(^(https?|ftp|file):\\/\\/))[a-z0-9-]+(\\.service-now\\.com)$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 
 #ServiceNowKnowledgeArticleConfiguration: {
 	CrawlAttachments?: bool
@@ -287,6 +401,8 @@ import "strings"
 	FilterQuery?: #ServiceNowKnowledgeArticleFilterQuery
 	IncludeAttachmentFilePatterns?: #DataSourceInclusionsExclusionsStrings
 }
+
+#ServiceNowKnowledgeArticleFilterQuery: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 
 #ServiceNowServiceCatalogConfiguration: {
 	CrawlAttachments?: bool
@@ -312,9 +428,13 @@ import "strings"
 	VpcConfiguration?: #DataSourceVpcConfiguration
 }
 
+#SharedDriveId: string & strings.MinRunes(1) & strings.MaxRunes(256)
+
 #SqlConfiguration: {
 	QueryIdentifiersEnclosingOption?: #QueryIdentifiersEnclosingOption
 }
+
+#TableName: string & strings.MinRunes(1) & strings.MaxRunes(100)
 
 #Tag: {
 	// A string used to identify this tag
@@ -323,9 +443,21 @@ import "strings"
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
 
+#TagList: [...#Tag]
+
 #TemplateConfiguration: {
 	Template: {...}
 }
+
+#TenantDomain: string & =~"^([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\\.)+[a-z]{2,}$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#Timestamp: string
+
+#Type: "S3" | "SHAREPOINT" | "SALESFORCE" | "ONEDRIVE" | "SERVICENOW" | "DATABASE" | "CUSTOM" | "CONFLUENCE" | "GOOGLEDRIVE" | "WEBCRAWLER" | "WORKDOCS" | "TEMPLATE"
+
+#Url: string & =~"^(https?|ftp|file)://([^\\s]*)" & strings.MinRunes(1) & strings.MaxRunes(2048)
+
+#UserAccount: string & strings.MinRunes(1) & strings.MaxRunes(256)
 
 #WebCrawlerAuthenticationConfiguration: {
 	BasicAuthentication?: #WebCrawlerBasicAuthenticationList
@@ -336,6 +468,8 @@ import "strings"
 	Host: string & =~"([^\\s]*)" & strings.MinRunes(1) & strings.MaxRunes(253)
 	Port: int & >=1 & <=65535
 }
+
+#WebCrawlerBasicAuthenticationList: [...#WebCrawlerBasicAuthentication]
 
 #WebCrawlerConfiguration: {
 	AuthenticationConfiguration?: #WebCrawlerAuthenticationConfiguration
@@ -349,10 +483,18 @@ import "strings"
 	Urls: #WebCrawlerUrls
 }
 
+#WebCrawlerSeedUrl: string & =~"^(https?)://([^\\s]*)" & strings.MinRunes(1) & strings.MaxRunes(2048)
+
 #WebCrawlerSeedUrlConfiguration: {
 	SeedUrls: #WebCrawlerSeedUrlList
 	WebCrawlerMode?: "HOST_ONLY" | "SUBDOMAINS" | "EVERYTHING"
 }
+
+#WebCrawlerSeedUrlList: [...#WebCrawlerSeedUrl]
+
+#WebCrawlerSiteMap: string & =~"^(https?):\\/\\/([^\\s]*)" & strings.MinRunes(1) & strings.MaxRunes(2048)
+
+#WebCrawlerSiteMaps: [...#WebCrawlerSiteMap]
 
 #WebCrawlerSiteMapsConfiguration: {
 	SiteMaps: #WebCrawlerSiteMaps

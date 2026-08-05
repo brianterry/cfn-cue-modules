@@ -10,10 +10,18 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Arn: string & =~"^arn:aws(-(cn|us-gov|iso(-b)?))?:[a-z-]+:(([a-z]+-)+[0-9])?:([0-9]{12})?:[^.]+$" & strings.MaxRunes(1000)
+
+#DeletionProtected: bool
+
 #RegionConfiguration: {
 	// The AWS Key Management Service key ID or Key Alias to use to encrypt your replication set.
 	SseKmsKeyId: string & strings.MaxRunes(2048)
 }
+
+#RegionList: [...#ReplicationRegion]
+
+#RegionName: string & strings.MaxRunes(20)
 
 #ReplicationRegion: {
 	RegionConfiguration?: #RegionConfiguration

@@ -13,6 +13,8 @@ import "strings"
 	}
 }
 
+#Arn: string & =~"[\\w#+=/:,.@-]*\\*?" & strings.MinRunes(20) & strings.MaxRunes(2048)
+
 #OpenSearchResourceConfig: {
 	ApplicationARN?: #Arn
 	DashboardViewerPrincipals: [...#Arn]

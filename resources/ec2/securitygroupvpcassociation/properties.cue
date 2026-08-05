@@ -6,3 +6,5 @@ package securitygroupvpcassociation
 	// The ID of the VPC in the security group vpc association.
 	VpcId: string
 }
+
+#SecurityGroupVpcAssociationState: "associating" | "associated" | "association-failed" | "disassociating" | "disassociated" | "disassociation-failed"

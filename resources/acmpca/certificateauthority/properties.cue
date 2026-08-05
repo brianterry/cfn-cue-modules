@@ -30,6 +30,10 @@ package certificateauthority
 	CustomObjectIdentifier?: #CustomObjectIdentifier
 }
 
+#AccessMethodType: string
+
+#Arn: string
+
 #CrlConfiguration: {
 	CrlDistributionPointExtensionConfiguration?: #CrlDistributionPointExtensionConfiguration
 	CrlType?: string
@@ -55,6 +59,12 @@ package certificateauthority
 	Value: string
 }
 
+#CustomAttributeList: [...#CustomAttribute]
+
+#CustomObjectIdentifier: string
+
+#DnsName: string
+
 #EdiPartyName: {
 	NameAssigner?: string
 	PartyName: string
@@ -70,6 +80,8 @@ package certificateauthority
 	Rfc822Name?: #Rfc822Name
 	UniformResourceIdentifier?: #UniformResourceIdentifier
 }
+
+#IpAddress: string
 
 #KeyUsage: {
 	CRLSign?: bool
@@ -98,6 +110,8 @@ package certificateauthority
 	OcspConfiguration?: #OcspConfiguration
 }
 
+#Rfc822Name: string
+
 #Subject: {
 	CommonName?: string
 	Country?: string
@@ -116,7 +130,11 @@ package certificateauthority
 	Title?: string
 }
 
+#SubjectInformationAccess: [...#AccessDescription]
+
 #Tag: {
 	Key: string
 	Value?: string
 }
+
+#UniformResourceIdentifier: string

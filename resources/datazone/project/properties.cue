@@ -45,6 +45,8 @@ import "strings"
 	Message: string
 }
 
+#EnvironmentFailureReasons: {...}
+
 #EnvironmentParameter: {
 	Name?: string
 	Value?: string
@@ -61,6 +63,8 @@ import "strings"
 	UserIdentifier?: string
 }
 
+#OverallDeploymentStatus: "PENDING_DEPLOYMENT" | "IN_PROGRESS" | "SUCCESSFUL" | "FAILED_VALIDATION" | "FAILED_DEPLOYMENT"
+
 #ProjectDeletionError: {
 	// Project Deletion Error Code
 	Code?: string
@@ -73,7 +77,13 @@ import "strings"
 	Member: #Member
 }
 
+#ProjectStatus: "ACTIVE" | "MOVING" | "DELETING" | "DELETE_FAILED" | "UPDATING" | "UPDATE_FAILED"
+
 #ResourceTag: {
 	Key: string & =~"^[\\w \\.:/=+@-]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^[\\w \\.:/=+@-]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: {...}
+
+#UserDesignation: "PROJECT_OWNER" | "PROJECT_CONTRIBUTOR"

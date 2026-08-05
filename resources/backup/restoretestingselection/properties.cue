@@ -20,3 +20,5 @@ package restoretestingselection
 	StringEquals?: [...#KeyValue]
 	StringNotEquals?: [...#KeyValue]
 }
+
+#SensitiveStringMap: {...}

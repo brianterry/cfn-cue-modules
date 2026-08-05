@@ -26,6 +26,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#EmptyOnDelete: bool
+
 #EncryptionConfiguration: {
 	// The encryption type to use.
 	// If you use the ``KMS`` encryption type, the contents of the repository will be encrypted using server-side encryption with KMSlong key stored in KMS. When you use KMS to encrypt your data, you can either use the default AWS managed KMS key for Amazon ECR, or specify your own KMS key, which you already created.
@@ -37,6 +39,8 @@ import "strings"
 	KmsKey?: #KmsKey
 }
 
+#EncryptionType: "AES256" | "KMS" | "KMS_DSSE"
+
 #ImageScanningConfiguration: {
 	// The setting that determines whether images are scanned after being pushed to a repository. If set to ``true``, images will be scanned after being pushed. If this parameter is not specified, it will default to ``false`` and images will not be scanned unless a scan is manually started.
 	ScanOnPush?: #ScanOnPush
@@ -47,12 +51,24 @@ import "strings"
 	ImageTagMutabilityExclusionFilterValue: #ImageTagMutabilityExclusionFilterValue
 }
 
+#ImageTagMutabilityExclusionFilterType: "WILDCARD"
+
+#ImageTagMutabilityExclusionFilterValue: string & =~"^[0-9a-zA-Z._*-]{1,128}" & strings.MinRunes(1) & strings.MaxRunes(128)
+
+#KmsKey: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+
 #LifecyclePolicy: {
 	// The JSON repository policy text to apply to the repository.
 	LifecyclePolicyText?: #LifecyclePolicyText
 	// The AWS account ID associated with the registry that contains the repository. If you do  not specify a registry, the default registry is assumed.
 	RegistryId?: #RegistryId
 }
+
+#LifecyclePolicyText: string & strings.MinRunes(100) & strings.MaxRunes(30720)
+
+#RegistryId: string & =~"^[0-9]{12}$" & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#ScanOnPush: bool
 
 #Tag: {
 	// One part of a key-value pair that make up a tag. A ``key`` is a general label that acts like a category for more specific tag values.

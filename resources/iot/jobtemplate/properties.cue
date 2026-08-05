@@ -50,6 +50,14 @@ import "strings"
 	ThresholdPercentage: #ThresholdPercentage
 }
 
+#Action: "CANCEL"
+
+#BaseRatePerMinute: int & >=1
+
+#DestinationPackageVersion: string & strings.MinRunes(1) & strings.MaxRunes(1600)
+
+#ExpiresInSec: int & >=60 & <=3600
+
 #ExponentialRolloutRate: {
 	// The minimum number of things that will be notified of a pending job, per minute at the start of job rollout. This parameter allows you to define the initial rate of rollout.
 	BaseRatePerMinute: #BaseRatePerMinute
@@ -59,10 +67,26 @@ import "strings"
 	RateIncreaseCriteria: #RateIncreaseCriteria
 }
 
+#FailureType: "FAILED" | "REJECTED" | "TIMED_OUT" | "ALL"
+
+#InProgressTimeoutInMinutes: int & >=1 & <=10080
+
+#IncrementFactor: number & >=1 & <=5
+
+#JobRetryFailureType: "FAILED" | "TIMED_OUT" | "ALL"
+
 #MaintenanceWindow: {
 	DurationInMinutes?: int & >=1 & <=1430
 	StartTime?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#MaximumPerMinute: int & >=1
+
+#MinNumberOfExecutedThings: int & >=1
+
+#NumberOfNotifiedThings: int & >=1
+
+#NumberOfSucceededThings: int & >=1
 
 #RateIncreaseCriteria: {
 	NumberOfNotifiedThings?: #NumberOfNotifiedThings
@@ -74,9 +98,13 @@ import "strings"
 	NumberOfRetries?: int & >=0 & <=10
 }
 
+#RoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
+
 #Tag: {
 	// The tag's key.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The tag's value.
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#ThresholdPercentage: number & <=100

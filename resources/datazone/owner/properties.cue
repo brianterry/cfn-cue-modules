@@ -21,6 +21,12 @@ package owner
 	GroupId?: string
 }
 
+#OwnerProperties: {
+	Group?: #OwnerGroupProperties
+} | {
+	User?: #OwnerUserProperties
+}
+
 #OwnerPropertiesOutput: {
 	Group?: #OwnerGroupPropertiesOutput
 	User?: #OwnerUserPropertiesOutput

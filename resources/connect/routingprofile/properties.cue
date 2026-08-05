@@ -23,15 +23,27 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#BehaviorType: "ROUTE_CURRENT_CHANNEL_ONLY" | "ROUTE_ANY_CHANNEL"
+
+#Channel: "VOICE" | "CHAT" | "TASK" | "EMAIL"
+
+#Concurrency: int & >=1 & <=10
+
 #CrossChannelBehavior: {
 	BehaviorType: #BehaviorType
 }
+
+#Delay: int & >=0 & <=9999
 
 #MediaConcurrency: {
 	Channel: #Channel
 	Concurrency: #Concurrency
 	CrossChannelBehavior?: #CrossChannelBehavior
 }
+
+#Priority: int & >=1 & <=99
+
+#QueueArn: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/queue/[-a-zA-Z0-9]*$"
 
 #RoutingProfileManualAssignmentQueueConfig: {
 	QueueReference: #RoutingProfileQueueReference

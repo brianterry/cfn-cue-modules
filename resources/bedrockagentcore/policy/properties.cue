@@ -19,6 +19,8 @@ import "strings"
 	Statement: string & strings.MinRunes(35) & strings.MaxRunes(10000)
 }
 
+#EnforcementMode: "ACTIVE" | "LOG_ONLY"
+
 #PolicyDefinition: {
 	Cedar?: #CedarPolicy
 	Policy?: #PolicyStatement
@@ -28,3 +30,7 @@ import "strings"
 	// The policy statement.
 	Statement: string & strings.MinRunes(35) & strings.MaxRunes(10000)
 }
+
+#PolicyStatus: "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED"
+
+#PolicyValidationMode: "FAIL_ON_ANY_FINDINGS" | "IGNORE_ALL_FINDINGS"

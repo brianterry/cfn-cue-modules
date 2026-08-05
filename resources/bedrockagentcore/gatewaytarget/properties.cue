@@ -35,11 +35,23 @@ import "strings"
 	Path: string
 }
 
+#ApiKeyCredentialLocation: "HEADER" | "QUERY_PARAMETER"
+
 #ApiKeyCredentialProvider: {
 	CredentialLocation?: #ApiKeyCredentialLocation
 	CredentialParameterName?: string & strings.MinRunes(1) & strings.MaxRunes(64)
 	CredentialPrefix?: string & strings.MinRunes(1) & strings.MaxRunes(64)
 	ProviderArn: string & =~"^arn:([^:]*):([^:]*):([^:]*):([0-9]{12})?:(.+)$"
+}
+
+#ApiSchemaConfiguration: {
+	S3: #S3Configuration
+} | {
+	InlinePayload: string
+}
+
+#AuthorizationData: {
+	Oauth2: #OAuth2AuthorizationData
 }
 
 #ConnectorConfiguration: {
@@ -65,13 +77,31 @@ import "strings"
 	Source: #ConnectorSource
 }
 
+#CredentialProvider: {
+	OauthCredentialProvider: #OAuthCredentialProvider
+} | {
+	ApiKeyCredentialProvider: #ApiKeyCredentialProvider
+} | {
+	IamCredentialProvider: #IamCredentialProvider
+}
+
 #CredentialProviderConfiguration: {
 	CredentialProvider?: #CredentialProvider
 	CredentialProviderType: #CredentialProviderType
 }
 
+#CredentialProviderType: "GATEWAY_IAM_ROLE" | "OAUTH" | "API_KEY" | "CALLER_IAM_CREDENTIALS" | "JWT_PASSTHROUGH"
+
+#EndpointIpAddressType: "IPV4" | "IPV6"
+
 #HttpApiSchemaConfiguration: {
 	Source: #ApiSchemaConfiguration
+}
+
+#HttpTargetConfiguration: {
+	AgentcoreRuntime: #RuntimeTargetConfiguration
+} | {
+	Passthrough: #PassthroughTargetConfiguration
 }
 
 #IamCredentialProvider: {
@@ -99,6 +129,12 @@ import "strings"
 	Operations?: [...#InferenceOperationConfiguration]
 }
 
+#InferenceTargetConfiguration: {
+	Connector: #InferenceConnectorTargetConfiguration
+} | {
+	Provider: #InferenceProviderTargetConfiguration
+}
+
 #ManagedResourceDetails: {
 	Domain?: string
 	ResourceAssociationArn?: string & =~"^(arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:servicenetworkresourceassociation/)?snra-[0-9a-f]{17}$"
@@ -118,11 +154,33 @@ import "strings"
 	ToolSchema: #ToolSchema
 }
 
+#McpServerListingMode: "DEFAULT" | "DYNAMIC"
+
 #McpServerTargetConfiguration: {
 	Endpoint: string & =~"^https://.*"
 	ListingMode?: #McpServerListingMode
 	McpToolSchema?: #McpToolSchemaConfiguration
 	ResourcePriority?: int & >=0 & <=1000
+}
+
+#McpTargetConfiguration: {
+	OpenApiSchema: #ApiSchemaConfiguration
+} | {
+	SmithyModel: #ApiSchemaConfiguration
+} | {
+	Lambda: #McpLambdaTargetConfiguration
+} | {
+	McpServer: #McpServerTargetConfiguration
+} | {
+	ApiGateway: #ApiGatewayTargetConfiguration
+} | {
+	Connector: #ConnectorTargetConfiguration
+}
+
+#McpToolSchemaConfiguration: {
+	S3: #S3Configuration
+} | {
+	InlinePayload: string
 }
 
 #MetadataConfiguration: {
@@ -153,6 +211,12 @@ import "strings"
 	Scopes: [...string & strings.MinRunes(1) & strings.MaxRunes(128)]
 }
 
+#OAuthCustomParameters: {...}
+
+#OAuthGrantType: "AUTHORIZATION_CODE" | "CLIENT_CREDENTIALS" | "TOKEN_EXCHANGE"
+
+#PassthroughProtocolType: "MCP" | "A2A" | "INFERENCE" | "CUSTOM"
+
 #PassthroughTargetConfiguration: {
 	Endpoint: string & =~"^https://[a-zA-Z0-9\\-\\.]+(:[0-9]{1,5})?(/.*)?$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 	ProtocolType: #PassthroughProtocolType
@@ -160,10 +224,18 @@ import "strings"
 	StickinessConfiguration?: #StickinessConfiguration
 }
 
+#PrivateEndpoint: {
+	SelfManagedLatticeResource: #SelfManagedLatticeResource
+} | {
+	ManagedVpcResource: #ManagedVpcResource
+}
+
 #ProviderPrefix: {
 	Separator?: string & strings.MinRunes(1) & strings.MaxRunes(1)
 	Strip?: bool
 }
+
+#RestApiMethod: "GET" | "DELETE" | "HEAD" | "OPTIONS" | "PATCH" | "PUT" | "POST"
 
 #RuntimeTargetConfiguration: {
 	Arn: string & =~"^arn:aws(-[^:]+)?:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:runtime/[a-zA-Z][a-zA-Z0-9_]{0,47}-[a-zA-Z0-9]{10}$"
@@ -184,14 +256,40 @@ import "strings"
 	Type: #SchemaType
 }
 
+#SchemaProperties: {...}
+
+#SchemaType: "string" | "number" | "object" | "array" | "boolean" | "integer"
+
+#SelfManagedLatticeResource: {
+	ResourceConfigurationIdentifier: string & =~"^((rcfg-[0-9a-z]{17})|(arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}))$" & strings.MinRunes(20) & strings.MaxRunes(2048)
+}
+
 #StickinessConfiguration: {
 	Identifier: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	Timeout?: int & >=1 & <=86400
 }
+
+#TargetConfiguration: {
+	Mcp: #McpTargetConfiguration
+} | {
+	Http: #HttpTargetConfiguration
+} | {
+	Inference: #InferenceTargetConfiguration
+}
+
+#TargetProtocolType: "MCP" | "HTTP" | "INFERENCE"
+
+#TargetStatus: "CREATING" | "UPDATING" | "UPDATE_UNSUCCESSFUL" | "DELETING" | "READY" | "FAILED" | "SYNCHRONIZING" | "SYNCHRONIZE_UNSUCCESSFUL" | "CREATE_PENDING_AUTH" | "UPDATE_PENDING_AUTH" | "SYNCHRONIZE_PENDING_AUTH"
 
 #ToolDefinition: {
 	Description: string
 	InputSchema: #SchemaDefinition
 	Name: string
 	OutputSchema?: #SchemaDefinition
+}
+
+#ToolSchema: {
+	S3: #S3Configuration
+} | {
+	InlinePayload: [...#ToolDefinition]
 }

@@ -13,6 +13,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Arn: string & =~"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+
 #KinesisConfiguration: {
 	AggregationEnabled?: bool
 	StreamArn?: #Arn

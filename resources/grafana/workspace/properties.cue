@@ -39,6 +39,8 @@ import "strings"
 	VpcConfiguration?: #VpcConfiguration
 }
 
+#AccountAccessType: "CURRENT_ACCOUNT" | "ORGANIZATION"
+
 #AssertionAttributes: {
 	// Name of the attribute within the SAML assert to use as the users email in Grafana.
 	Email?: string & strings.MinRunes(1) & strings.MaxRunes(256)
@@ -54,6 +56,10 @@ import "strings"
 	Role?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#AuthenticationProviderTypes: "AWS_SSO" | "SAML"
+
+#DataSourceType: "AMAZON_OPENSEARCH_SERVICE" | "CLOUDWATCH" | "PROMETHEUS" | "XRAY" | "TIMESTREAM" | "SITEWISE" | "ATHENA" | "REDSHIFT"
+
 #IdpMetadata: {
 	// URL that vends the IdPs metadata.
 	Url?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -67,6 +73,10 @@ import "strings"
 	// The list of Amazon VPC endpoint IDs for the workspace. If a NetworkAccessConfiguration is specified then only VPC endpoints specified here will be allowed to access the workspace.
 	VpceIds?: [...string & strings.MinRunes(1)]
 }
+
+#NotificationDestinationType: "SNS"
+
+#PermissionType: "CUSTOMER_MANAGED" | "SERVICE_MANAGED"
 
 #RoleValues: {
 	// List of SAML roles which will be mapped into the Grafana Admin role.
@@ -85,9 +95,13 @@ import "strings"
 	RoleValues?: #RoleValues
 }
 
+#SamlConfigurationStatus: "CONFIGURED" | "NOT_CONFIGURED"
+
 #VpcConfiguration: {
 	// The list of Amazon EC2 security group IDs attached to the Amazon VPC for your Grafana workspace to connect.
 	SecurityGroupIds: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
 	// The list of Amazon EC2 subnet IDs created in the Amazon VPC for your Grafana workspace to connect.
 	SubnetIds: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
 }
+
+#WorkspaceStatus: "ACTIVE" | "CREATING" | "DELETING" | "FAILED" | "UPDATING" | "UPGRADING" | "VERSION_UPDATING" | "DELETION_FAILED" | "CREATION_FAILED" | "UPDATE_FAILED" | "UPGRADE_FAILED" | "LICENSE_REMOVAL_FAILED" | "VERSION_UPDATE_FAILED"

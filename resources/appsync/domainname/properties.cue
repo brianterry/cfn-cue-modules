@@ -15,3 +15,5 @@ import "strings"
 	// A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
 	Value: string & =~"^[\\s\\w+-=\\.:/@]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]

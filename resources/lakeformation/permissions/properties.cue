@@ -39,6 +39,8 @@ package permissions
 	TableWildcard?: #TableWildcard
 }
 
+#TableWildcard: {...}
+
 #TableWithColumnsResource: {
 	CatalogId?: string
 	ColumnNames?: [...string]

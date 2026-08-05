@@ -24,6 +24,10 @@ import "strings"
 	HandOffTime: #HandOffTime
 }
 
+#DayOfWeek: "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT" | "SUN"
+
+#HandOffTime: string & =~"^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+
 #MonthlySetting: {
 	// The day of the month when monthly recurring on-call rotations begin.
 	DayOfMonth: int & >=1 & <=31

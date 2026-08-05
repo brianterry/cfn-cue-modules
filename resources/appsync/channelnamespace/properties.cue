@@ -21,6 +21,16 @@ import "strings"
 	AuthType?: #AuthenticationType
 }
 
+#AuthModes: [...#AuthMode]
+
+#AuthenticationType: "AMAZON_COGNITO_USER_POOLS" | "AWS_IAM" | "API_KEY" | "OPENID_CONNECT" | "AWS_LAMBDA"
+
+#ChannelNamespaceArn: string
+
+#Code: string & strings.MinRunes(1) & strings.MaxRunes(32768)
+
+#HandlerBehavior: "CODE" | "DIRECT"
+
 #HandlerConfig: {
 	Behavior: #HandlerBehavior
 	Integration: #Integration
@@ -37,9 +47,13 @@ import "strings"
 	LambdaConfig?: #LambdaConfig
 }
 
+#InvokeType: "REQUEST_RESPONSE" | "EVENT"
+
 #LambdaConfig: {
 	InvokeType: #InvokeType
 }
+
+#Namespace: string & =~"([A-Za-z0-9](?:[A-Za-z0-9\\-]{0,48}[A-Za-z0-9])?)" & strings.MinRunes(1) & strings.MaxRunes(50)
 
 #Tag: {
 	// A string used to identify this tag. You can specify a maximum of 128 characters for a tag key.
@@ -47,3 +61,5 @@ import "strings"
 	// A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
 	Value: string & =~"^[\\s\\w+-=\\.:/@]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]

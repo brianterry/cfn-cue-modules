@@ -17,6 +17,10 @@ import "strings"
 	Workflows: [...#Workflow]
 }
 
+#AlarmCondition: "red" | "green"
+
+#AlarmType: "applicationHealth" | "trigger"
+
 #ArcRoutingControlConfiguration: {
 	CrossAccountRole?: string & =~"^arn:aws[a-zA-Z0-9-]*:iam::[0-9]{12}:role/.+$"
 	ExternalId?: string
@@ -41,6 +45,8 @@ import "strings"
 	ExternalId?: string
 	ResourceIdentifier: string
 }
+
+#AssociatedAlarmMap: {...}
 
 #AuroraProvisionedScalingConfiguration: {
 	CrossAccountRole?: string & =~"^arn:aws[a-zA-Z0-9-]*:iam::[0-9]{12}:role/.+$"
@@ -78,9 +84,13 @@ import "strings"
 	Ungraceful?: #DocumentDbUngraceful
 }
 
+#DocumentDbDefaultBehavior: "switchoverOnly" | "failover"
+
 #DocumentDbUngraceful: {
 	Ungraceful?: #DocumentDbUngracefulBehavior
 }
+
+#DocumentDbUngracefulBehavior: "failover"
 
 #Ec2AsgCapacityIncreaseConfiguration: {
 	Asgs: [...#Asg]
@@ -89,6 +99,8 @@ import "strings"
 	TimeoutMinutes?: number & >=1
 	Ungraceful?: #Ec2Ungraceful
 }
+
+#Ec2AsgCapacityMonitoringApproach: "sampledMaxInLast24Hours" | "autoscalingMaxInLast24Hours"
 
 #Ec2Ungraceful: {
 	MinimumSuccessPercentage: number & >=0 & <=99
@@ -102,9 +114,13 @@ import "strings"
 	Ungraceful?: #EcsUngraceful
 }
 
+#EcsCapacityMonitoringApproach: "sampledMaxInLast24Hours" | "containerInsightsMaxInLast24Hours"
+
 #EcsUngraceful: {
 	MinimumSuccessPercentage: number & >=0 & <=99
 }
+
+#EksCapacityMonitoringApproach: "sampledMaxInLast24Hours"
 
 #EksCluster: {
 	ClusterArn: string & =~"^arn:aws[a-zA-Z-]*:eks:[a-z0-9-]+:\\d{12}:cluster/[a-zA-Z0-9][a-zA-Z0-9-_]{0,99}$"
@@ -137,6 +153,44 @@ import "strings"
 	TimeoutMinutes?: number & >=1
 }
 
+#ExecutionBlockConfiguration: {
+	CustomActionLambdaConfig: #CustomActionLambdaConfiguration
+} | {
+	Ec2AsgCapacityIncreaseConfig: #Ec2AsgCapacityIncreaseConfiguration
+} | {
+	ExecutionApprovalConfig: #ExecutionApprovalConfiguration
+} | {
+	ArcRoutingControlConfig: #ArcRoutingControlConfiguration
+} | {
+	AuroraProvisionedScalingConfig: #AuroraProvisionedScalingConfiguration
+} | {
+	AuroraServerlessScalingConfig: #AuroraServerlessScalingConfiguration
+} | {
+	GlobalAuroraConfig: #GlobalAuroraConfiguration
+} | {
+	ParallelConfig: #ParallelExecutionBlockConfiguration
+} | {
+	RegionSwitchPlanConfig: #RegionSwitchPlanConfiguration
+} | {
+	EcsCapacityIncreaseConfig: #EcsCapacityIncreaseConfiguration
+} | {
+	EksResourceScalingConfig: #EksResourceScalingConfiguration
+} | {
+	Route53HealthCheckConfig: #Route53HealthCheckConfiguration
+} | {
+	DocumentDbConfig: #DocumentDbConfiguration
+} | {
+	RdsPromoteReadReplicaConfig: #RdsPromoteReadReplicaConfiguration
+} | {
+	RdsCreateCrossRegionReadReplicaConfig: #RdsCreateCrossRegionReplicaConfiguration
+} | {
+	LambdaEventSourceMappingConfig: #LambdaEventSourceMappingConfiguration
+} | {
+	NeptuneGlobalDatabaseConfig: #NeptuneGlobalDatabaseConfiguration
+}
+
+#ExecutionBlockType: "ARCRegionSwitchPlan" | "ARCRoutingControl" | "AuroraGlobalDatabase" | "AuroraProvisionedScaling" | "AuroraServerlessScaling" | "CustomActionLambda" | "DocumentDb" | "EC2AutoScaling" | "ECSServiceScaling" | "EKSResourceScaling" | "LambdaEventSourceMapping" | "ManualApproval" | "NeptuneGlobalDatabase" | "Parallel" | "RdsCreateCrossRegionReplica" | "RdsPromoteReadReplica" | "Route53HealthCheck"
+
 #GlobalAuroraConfiguration: {
 	Behavior: string
 	CrossAccountRole?: string & =~"^arn:aws[a-zA-Z0-9-]*:iam::[0-9]{12}:role/.+$"
@@ -147,19 +201,35 @@ import "strings"
 	Ungraceful?: #GlobalAuroraUngraceful
 }
 
+#GlobalAuroraDefaultBehavior: "switchoverOnly" | "failover"
+
 #GlobalAuroraUngraceful: {
 	Ungraceful?: #GlobalAuroraUngracefulBehavior
 }
+
+#GlobalAuroraUngracefulBehavior: "failover"
+
+#HealthCheckIds: [...string]
+
+#HealthCheckRecordNames: [...string]
+
+#HealthCheckRegions: [...string]
 
 #HealthCheckState: {
 	HealthCheckId?: string
 	Region?: string
 }
 
+#HealthChecks: [...#HealthCheckState]
+
+#HostedZoneIds: [...string]
+
 #KubernetesResourceType: {
 	ApiVersion: string
 	Kind: string
 }
+
+#KubernetesScalingApplication: {...}
 
 #KubernetesScalingResource: {
 	HpaName?: string
@@ -182,11 +252,15 @@ import "strings"
 	Behavior?: string
 }
 
+#LambdaUngracefulBehavior: "skip"
+
 #Lambdas: {
 	Arn?: string
 	CrossAccountRole?: string & =~"^arn:aws[a-zA-Z0-9-]*:iam::[0-9]{12}:role/.+$"
 	ExternalId?: string
 }
+
+#NeptuneDefaultBehavior: "failover" | "switchoverOnly"
 
 #NeptuneGlobalDatabaseConfiguration: {
 	Behavior: string
@@ -202,6 +276,8 @@ import "strings"
 	Ungraceful?: #NeptuneUngracefulBehavior
 }
 
+#NeptuneUngracefulBehavior: "failover"
+
 #ParallelExecutionBlockConfiguration: {
 	Steps: [...#Step]
 }
@@ -213,6 +289,8 @@ import "strings"
 	TimeoutMinutes?: number & >=1
 }
 
+#RdsDbInstanceArnMap: {...}
+
 #RdsPromoteReadReplicaConfiguration: {
 	CrossAccountRole?: string & =~"^arn:aws[a-zA-Z0-9-]*:iam::[0-9]{12}:role/.+$"
 	DbInstanceArnMap: #RdsDbInstanceArnMap
@@ -220,14 +298,34 @@ import "strings"
 	TimeoutMinutes?: number & >=1
 }
 
+#RecoveryApproach: "activeActive" | "activePassive"
+
+#RegionAndRoutingControls: {...}
+
+#RegionAuroraClusterMap: {...}
+
+#RegionAuroraInstanceArnMap: {...}
+
+#RegionEventSourceMappingMap: {...}
+
+#RegionNeptuneClusterArnMap: {...}
+
 #RegionSwitchPlanConfiguration: {
 	Arn: string & =~"^arn:aws[a-zA-Z-]*:arc-region-switch::[0-9]{12}:plan/([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,30}[a-zA-Z0-9])?):([a-z0-9]{6})$"
 	CrossAccountRole?: string & =~"^arn:aws[a-zA-Z0-9-]*:iam::[0-9]{12}:role/.+$"
 	ExternalId?: string
 }
 
+#RegionToRunIn: "activatingRegion" | "deactivatingRegion" | "activeRegion" | "inactiveRegion"
+
+#RegionalScalingResource: {...}
+
 #ReportConfiguration: {
 	ReportOutput?: [...#ReportOutputConfiguration]
+}
+
+#ReportOutputConfiguration: {
+	S3Configuration: #S3ReportOutputConfiguration
 }
 
 #Route53HealthCheckConfiguration: {
@@ -243,6 +341,8 @@ import "strings"
 	RecordSetIdentifier?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 	Region?: string & =~"^[a-z]{2}-[a-z-]+-\\d+$"
 }
+
+#RoutingControlStateChange: "On" | "Off"
 
 #S3ReportOutputConfiguration: {
 	BucketOwner?: string & =~"^\\d{12}$"
@@ -263,6 +363,8 @@ import "strings"
 	Name: string
 }
 
+#Tags: {...}
+
 #Trigger: {
 	Action: #WorkflowTargetAction
 	Conditions: [...#TriggerCondition]
@@ -282,3 +384,5 @@ import "strings"
 	WorkflowTargetAction: #WorkflowTargetAction
 	WorkflowTargetRegion?: string & =~"^[a-z]{2}-[a-z-]+-\\d+$"
 }
+
+#WorkflowTargetAction: "activate" | "deactivate" | "postRecovery"

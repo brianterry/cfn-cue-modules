@@ -36,6 +36,24 @@ import "strings"
 	TestAliasTags?: #TagsMap
 }
 
+#APISchema: {
+	S3: #S3Identifier
+} | {
+	Payload: string
+}
+
+#ActionGroupExecutor: {
+	Lambda: string & =~"^arn:(aws[a-zA-Z-]*)?:lambda:[a-z0-9-]{1,20}:\\d{12}:function:[a-zA-Z0-9-_\\.]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$" & strings.MaxRunes(2048)
+} | {
+	CustomControl: #CustomControlMethod
+}
+
+#ActionGroupSignature: "AMAZON.UserInput" | "AMAZON.CodeInterpreter"
+
+#ActionGroupState: "ENABLED" | "DISABLED"
+
+#AdditionalModelRequestFields: {...}
+
 #AgentActionGroup: {
 	ActionGroupExecutor?: #ActionGroupExecutor
 	// Name of the action group
@@ -49,6 +67,8 @@ import "strings"
 	// Specifies whether to allow deleting action group while it is in use.
 	SkipResourceInUseCheckOnDelete?: bool
 }
+
+#AgentCollaboration: "DISABLED" | "SUPERVISOR" | "SUPERVISOR_ROUTER"
 
 #AgentCollaborator: {
 	// Agent descriptor for agent collaborator
@@ -70,9 +90,19 @@ import "strings"
 	KnowledgeBaseState?: #KnowledgeBaseState
 }
 
+#AgentStatus: "CREATING" | "PREPARING" | "PREPARED" | "NOT_PREPARED" | "DELETING" | "FAILED" | "VERSIONING" | "UPDATING"
+
+#CreationMode: "DEFAULT" | "OVERRIDDEN"
+
+#CustomControlMethod: "RETURN_CONTROL"
+
 #CustomOrchestration: {
 	Executor?: #OrchestrationExecutor
 }
+
+#EnabledMemoryTypes: [...#MemoryType]
+
+#FoundationModel: string & =~"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}(([:][a-z0-9-]{1,63}){0,2})?/[a-z0-9]{12})|(:foundation-model/([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2}))|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+))|(([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2}))|(([0-9a-zA-Z][_-]?)+)$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 
 #Function: {
 	// Description of function
@@ -108,6 +138,8 @@ import "strings"
 	TopP?: number & >=0 & <=1
 }
 
+#KnowledgeBaseState: "ENABLED" | "DISABLED"
+
 #MemoryConfiguration: {
 	EnabledMemoryTypes?: #EnabledMemoryTypes
 	SessionSummaryConfiguration?: #SessionSummaryConfiguration
@@ -115,10 +147,14 @@ import "strings"
 	StorageDays?: number
 }
 
+#MemoryType: "SESSION_SUMMARY"
+
 #OrchestrationExecutor: {
 	// ARN of a Lambda.
 	Lambda: string & =~"^arn:(aws[a-zA-Z-]*)?:lambda:[a-z0-9-]{1,20}:\\d{12}:function:[a-zA-Z0-9-_\\.]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$" & strings.MaxRunes(2048)
 }
+
+#OrchestrationType: "DEFAULT" | "CUSTOM_ORCHESTRATION"
 
 #ParameterDetail: {
 	// Description of function parameter.
@@ -127,6 +163,8 @@ import "strings"
 	Required?: bool
 	Type: #Type
 }
+
+#ParameterMap: {...}
 
 #PromptConfiguration: {
 	AdditionalModelRequestFields?: #AdditionalModelRequestFields
@@ -147,6 +185,14 @@ import "strings"
 	PromptConfigurations: [...#PromptConfiguration]
 }
 
+#PromptState: "ENABLED" | "DISABLED"
+
+#PromptType: "PRE_PROCESSING" | "ORCHESTRATION" | "POST_PROCESSING" | "ROUTING_CLASSIFIER" | "MEMORY_SUMMARIZATION" | "KNOWLEDGE_BASE_RESPONSE_GENERATION"
+
+#RelayConversationHistory: "TO_COLLABORATOR" | "DISABLED"
+
+#RequireConfirmation: "ENABLED" | "DISABLED"
+
 #S3Identifier: {
 	// A bucket in S3.
 	S3BucketName?: string & =~"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$" & strings.MinRunes(3) & strings.MaxRunes(63)
@@ -158,3 +204,7 @@ import "strings"
 	// Maximum number of Sessions to Summarize
 	MaxRecentSessions?: number
 }
+
+#TagsMap: {...}
+
+#Type: "string" | "number" | "integer" | "boolean" | "array"

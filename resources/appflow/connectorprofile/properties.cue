@@ -17,21 +17,59 @@ import "strings"
 	KMSArn?: string & =~"arn:aws:kms:.*:[0-9]+:.*" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
 
+#AccessKeyId: string & =~"\\S+" & strings.MaxRunes(256)
+
+#AccessToken: string & =~"\\S+" & strings.MaxRunes(4096)
+
+#AccountName: string & =~"\\S+" & strings.MaxRunes(512)
+
 #AmplitudeConnectorProfileCredentials: {
 	// A unique alphanumeric identiﬁer used to authenticate a user, developer, or calling program to your API.
 	ApiKey: #ApiKey
 	SecretKey: #SecretKey
 }
 
+#ApiKey: string & =~"\\S+" & strings.MaxRunes(256)
+
 #ApiKeyCredentials: {
 	ApiKey: #ApiKey
 	ApiSecretKey?: #ApiSecretKey
 }
 
+#ApiSecretKey: string & =~"\\S+" & strings.MaxRunes(256)
+
+#ApiToken: string & =~"\\S+" & strings.MaxRunes(256)
+
+#ApplicationHostUrl: string & =~"^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]" & strings.MaxRunes(256)
+
+#ApplicationKey: string & =~"\\S+" & strings.MaxRunes(512)
+
+#ApplicationServicePath: string & =~"\\S+" & strings.MaxRunes(512)
+
+#AuthCode: string & =~"\\S+" & strings.MaxRunes(4096)
+
+#AuthenticationType: "OAUTH2" | "APIKEY" | "BASIC" | "CUSTOM"
+
 #BasicAuthCredentials: {
 	Password: #Password
 	Username: #Username
 }
+
+#BucketName: string & =~"\\S+" & strings.MinRunes(3) & strings.MaxRunes(63)
+
+#BucketPrefix: string & strings.MaxRunes(128)
+
+#BusinessUnitId: string & =~"\\S+" & strings.MaxRunes(18)
+
+#ClientCredentialsArn: string & =~"arn:aws:secretsmanager:.*:[0-9]+:.*" & strings.MaxRunes(2048)
+
+#ClientId: string & =~"\\S+" & strings.MaxRunes(512)
+
+#ClientNumber: string & =~"^\\d{3}$" & strings.MinRunes(3) & strings.MaxRunes(3)
+
+#ClientSecret: string & =~"\\S+" & strings.MaxRunes(512)
+
+#ClusterIdentifier: string & =~"\\S+" & strings.MaxRunes(512)
 
 #ConnectorOAuthRequest: {
 	// The code provided by the connector when it has been authenticated via the connected app.
@@ -84,10 +122,16 @@ import "strings"
 	Zendesk?: #ZendeskConnectorProfileProperties
 }
 
+#ConnectorType: "Salesforce" | "Pardot" | "Singular" | "Slack" | "Redshift" | "Marketo" | "Googleanalytics" | "Zendesk" | "Servicenow" | "SAPOData" | "Datadog" | "Trendmicro" | "Snowflake" | "Dynatrace" | "Infornexus" | "Amplitude" | "Veeva" | "CustomConnector"
+
+#CredentialsMap: {...}
+
 #CustomAuthCredentials: {
 	CredentialsMap?: #CredentialsMap
 	CustomAuthenticationType: #CustomAuthenticationType
 }
+
+#CustomAuthenticationType: string & =~"\\S+" & strings.MaxRunes(256)
 
 #CustomConnectorProfileCredentials: {
 	ApiKey?: #ApiKeyCredentials
@@ -101,6 +145,12 @@ import "strings"
 	OAuth2Properties?: #OAuth2Properties
 	ProfileProperties?: #ProfileProperties
 }
+
+#DataApiRoleArn: string & =~"arn:aws:iam:.*:[0-9]+:.*" & strings.MaxRunes(512)
+
+#DatabaseName: string & =~"\\S+" & strings.MaxRunes(512)
+
+#DatabaseUrl: string & =~"\\S+" & strings.MaxRunes(512)
 
 #DatadogConnectorProfileCredentials: {
 	// A unique alphanumeric identiﬁer used to authenticate a user, developer, or calling program to your API.
@@ -153,6 +203,14 @@ import "strings"
 	InstanceUrl: #InstanceUrl
 }
 
+#InstanceUrl: string & =~"\\S+" & strings.MaxRunes(256)
+
+#JwtToken: string & =~"^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_.+/=]*$" & strings.MaxRunes(8000)
+
+#Key: string & =~"\\S+" & strings.MaxRunes(512)
+
+#LogonLanguage: string & =~"^[a-zA-Z0-9_]*$" & strings.MaxRunes(2)
+
 #MarketoConnectorProfileCredentials: {
 	// The credentials used to access protected resources.
 	AccessToken?: #AccessToken
@@ -176,6 +234,8 @@ import "strings"
 	OAuthRequest?: #ConnectorOAuthRequest
 	RefreshToken?: #RefreshToken
 }
+
+#OAuth2GrantType: "CLIENT_CREDENTIALS" | "AUTHORIZATION_CODE" | "JWT_BEARER"
 
 #OAuth2Properties: {
 	OAuth2GrantType?: #OAuth2GrantType
@@ -209,6 +269,14 @@ import "strings"
 	IsSandboxEnvironment?: bool
 }
 
+#Password: string & =~"\\S+" & strings.MaxRunes(512)
+
+#PortNumber: int & >=1 & <=65535
+
+#PrivateLinkServiceName: string & =~"\\S+" & strings.MaxRunes(512)
+
+#ProfileProperties: {...}
+
 #RedshiftConnectorProfileCredentials: {
 	// The password that corresponds to the username.
 	Password?: #Password
@@ -236,6 +304,12 @@ import "strings"
 	// The name of the Amazon Redshift serverless workgroup
 	WorkgroupName?: #WorkgroupName
 }
+
+#RefreshToken: string & =~"\\S+" & strings.MaxRunes(4096)
+
+#Region: string & =~"\\S+" & strings.MaxRunes(64)
+
+#RoleArn: string & =~"arn:aws:iam:.*:[0-9]+:.*" & strings.MaxRunes(512)
 
 #SAPODataConnectorProfileCredentials: {
 	BasicAuthCredentials?: #BasicAuthCredentials
@@ -283,6 +357,8 @@ import "strings"
 	// Indicates whether to make Metadata And Authorization calls over Pivate Network
 	usePrivateLinkForMetadataAndAuthorization?: bool
 }
+
+#SecretKey: string & =~"\\S+" & strings.MaxRunes(256)
 
 #ServiceNowConnectorProfileCredentials: {
 	// The OAuth 2.0 credentials required to authenticate the user.
@@ -344,10 +420,16 @@ import "strings"
 	Warehouse: #Warehouse
 }
 
+#Stage: string & =~"\\S+" & strings.MaxRunes(512)
+
+#TokenUrlCustomProperties: {...}
+
 #TrendmicroConnectorProfileCredentials: {
 	// The Secret Access Key portion of the credentials.
 	ApiSecretKey: #ApiSecretKey
 }
+
+#Username: string & =~"\\S+" & strings.MaxRunes(512)
 
 #VeevaConnectorProfileCredentials: {
 	// The password that corresponds to the username.
@@ -360,6 +442,10 @@ import "strings"
 	// The location of the Veeva resource
 	InstanceUrl: #InstanceUrl
 }
+
+#Warehouse: string & =~"[\\s\\w/!@#+=.-]*" & strings.MaxRunes(512)
+
+#WorkgroupName: string & =~"\\S+" & strings.MaxRunes(512)
 
 #ZendeskConnectorProfileCredentials: {
 	// The credentials used to access protected resources.

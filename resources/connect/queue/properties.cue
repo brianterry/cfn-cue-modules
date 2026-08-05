@@ -32,17 +32,31 @@ import "strings"
 	EmailAddressArn: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-f0-9]{8}-[-a-f0-9]{4}-[-a-f0-9]{4}-[-a-f0-9]{4}-[-a-f0-9]{12}/email-address/[-a-f0-9]{8}-[-a-f0-9]{4}-[-a-f0-9]{4}-[-a-f0-9]{4}-[-a-f0-9]{12}$"
 }
 
+#Key: string & =~"^(?!aws:)[a-zA-Z+-=._:/]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
+
 #OutboundCallerConfig: {
 	OutboundCallerIdName?: #OutboundCallerIdName
 	OutboundCallerIdNumberArn?: #OutboundCallerIdNumberArn
 	OutboundFlowArn?: #OutboundFlowArn
 }
 
+#OutboundCallerIdName: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
+#OutboundCallerIdNumberArn: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:phone-number/[-a-zA-Z0-9]*$"
+
+#OutboundEmailAddressId: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/email-address/[-a-zA-Z0-9]*$"
+
 #OutboundEmailConfig: {
 	OutboundEmailAddressId?: #OutboundEmailAddressId
 }
+
+#OutboundFlowArn: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/contact-flow/[-a-zA-Z0-9]*$" & strings.MinRunes(1) & strings.MaxRunes(500)
+
+#QuickConnectArn: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/transfer-destination/[-a-zA-Z0-9]*$"
 
 #Tag: {
 	Key: #Key
 	Value: #Value
 }
+
+#Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

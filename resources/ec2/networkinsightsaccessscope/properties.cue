@@ -27,6 +27,8 @@ package networkinsightsaccessscope
 	ResourceStatement?: #ResourceStatementRequest
 }
 
+#Protocol: "tcp" | "udp"
+
 #ResourceStatementRequest: {
 	ResourceTypes?: [...string]
 	Resources?: [...string]

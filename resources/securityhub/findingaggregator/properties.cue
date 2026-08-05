@@ -12,3 +12,5 @@ package findingaggregator
 	// If ``RegionLinkingMode`` is ``SPECIFIED_REGIONS``, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region.
 	Regions?: [...#Region]
 }
+
+#Region: string & =~"^[a-zA-Z0-9-]{1,32}$"

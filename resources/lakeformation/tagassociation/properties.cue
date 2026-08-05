@@ -7,20 +7,36 @@ package tagassociation
 	Resource: #Resource
 }
 
+#CatalogIdString: string & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#CatalogResource: {...}
+
+#ColumnNames: [...#NameString]
+
 #DataLakePrincipal: {
 	DataLakePrincipalIdentifier?: #DataLakePrincipalString
 }
+
+#DataLakePrincipalString: string & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #DatabaseResource: {
 	CatalogId: #CatalogIdString
 	Name: #NameString
 }
 
+#LFTagKey: string & strings.MinRunes(1) & strings.MaxRunes(128)
+
 #LFTagPair: {
 	CatalogId: #CatalogIdString
 	TagKey: #LFTagKey
 	TagValues: #TagValueList
 }
+
+#LFTagValue: string & strings.MinRunes(0) & strings.MaxRunes(256)
+
+#LFTagsList: [...#LFTagPair]
+
+#NameString: string & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #Resource: {
 	Catalog?: #CatalogResource
@@ -29,6 +45,8 @@ package tagassociation
 	TableWithColumns?: #TableWithColumnsResource
 }
 
+#ResourceType: "DATABASE" | "TABLE"
+
 #TableResource: {
 	CatalogId: #CatalogIdString
 	DatabaseName: #NameString
@@ -36,9 +54,13 @@ package tagassociation
 	TableWildcard?: #TableWildcard
 }
 
+#TableWildcard: {...}
+
 #TableWithColumnsResource: {
 	CatalogId: #CatalogIdString
 	ColumnNames: #ColumnNames
 	DatabaseName: #NameString
 	Name: #NameString
 }
+
+#TagValueList: [...#LFTagValue]

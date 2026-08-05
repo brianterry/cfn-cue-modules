@@ -51,10 +51,14 @@ import "strings"
 	S3Uri?: #S3Uri
 }
 
+#ContainerArgument: string & strings.MinRunes(1) & strings.MaxRunes(256)
+
 #Csv: {
 	// A boolean flag indicating if given CSV has header
 	Header?: bool
 }
+
+#DataAnalysisTimeString: string & =~"^.?P.*" & strings.MinRunes(1) & strings.MaxRunes(15)
 
 #DatasetFormat: {
 	Csv?: #Csv
@@ -73,6 +77,8 @@ import "strings"
 	// Whether the Pipe or File is used as the input mode for transfering data for the monitoring job. Pipe mode is recommended for large datasets. File mode is useful for small files that fit in memory. Defaults to File.
 	S3InputMode?: "Pipe" | "File"
 }
+
+#EndpointName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*" & strings.MaxRunes(63)
 
 #Json: {
 	// A boolean flag indicating if it is JSON line format
@@ -114,6 +120,8 @@ import "strings"
 	EndpointInput?: #EndpointInput
 }
 
+#MonitoringInputs: [...#MonitoringInput]
+
 #MonitoringJobDefinition: {
 	BaselineConfig?: #BaselineConfig
 	// Sets the environment variables in the Docker container
@@ -151,6 +159,10 @@ import "strings"
 	ScheduleConfig?: #ScheduleConfig
 }
 
+#MonitoringScheduleName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MaxRunes(63)
+
+#MonitoringType: "DataQuality" | "ModelQuality" | "ModelBias" | "ModelExplainability"
+
 #NetworkConfig: {
 	// Whether to encrypt all communications between distributed processing jobs. Choose True to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.
 	EnableInterContainerTrafficEncryption?: bool
@@ -158,6 +170,8 @@ import "strings"
 	EnableNetworkIsolation?: bool
 	VpcConfig?: #VpcConfig
 }
+
+#Parquet: bool
 
 #S3Output: {
 	// The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
@@ -167,6 +181,8 @@ import "strings"
 	// A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
 	S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(512)
 }
+
+#S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(1024)
 
 #ScheduleConfig: {
 	// Data Analysis end time, e.g. PT0H

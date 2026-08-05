@@ -11,6 +11,10 @@ package appblock
 	Tags?: [...#Tag]
 }
 
+#Arn: string
+
+#PackagingType: string
+
 #S3Location: {
 	S3Bucket: string
 	S3Key?: string
@@ -21,4 +25,12 @@ package appblock
 	ExecutablePath: string
 	ScriptS3Location: #S3Location
 	TimeoutInSeconds: int
+}
+
+#Tag: {
+	Key: string
+	Value: string
+} | {
+	TagKey: string
+	TagValue: string
 }

@@ -19,3 +19,5 @@ package routeresponse
 	// Specifies whether the parameter is required.
 	Required: bool
 }
+
+#RouteParameters: string

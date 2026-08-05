@@ -31,10 +31,28 @@ import "strings"
 	Type: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#AccountId: string & =~"^\\d{12}$" & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#DataAccessRole: string & =~"^arn:aws[^:]*:iam::\\d{12}:role(/[a-zA-Z0-9+=,.@_-]+)*/[a-zA-Z0-9+=,.@_-]+$"
+
+#DataSourceConfigurationInput: {
+	GlueRunConfiguration?: #GlueRunConfigurationInput
+} | {
+	RedshiftRunConfiguration?: #RedshiftRunConfigurationInput
+} | {
+	SageMakerRunConfiguration?: #SageMakerRunConfigurationInput
+}
+
+#DataSourceStatus: "CREATING" | "FAILED_CREATION" | "READY" | "UPDATING" | "FAILED_UPDATE" | "RUNNING" | "DELETING" | "FAILED_DELETION"
+
+#EnableSetting: "ENABLED" | "DISABLED"
+
 #FilterExpression: {
 	Expression: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	Type: #FilterExpressionType
 }
+
+#FilterExpressionType: "INCLUDE" | "EXCLUDE"
 
 #FormInput: {
 	// The content of the metadata form.
@@ -46,6 +64,8 @@ import "strings"
 	// The revision of the metadata form type.
 	TypeRevision?: #TypeRevision
 }
+
+#FormName: string & =~"^(?![0-9_])\\w+$|^_\\w*[a-zA-Z0-9]\\w*$" & strings.MinRunes(1) & strings.MaxRunes(128)
 
 #GlueRunConfigurationInput: {
 	// Specifies whether to automatically import data quality metrics as part of the data source run.
@@ -88,6 +108,14 @@ import "strings"
 	WorkgroupName: string & =~"^[a-z0-9-]+$" & strings.MinRunes(3) & strings.MaxRunes(64)
 }
 
+#RedshiftStorage: {
+	RedshiftClusterSource: #RedshiftClusterStorage
+} | {
+	RedshiftServerlessSource: #RedshiftServerlessStorage
+}
+
+#Region: string & =~"[a-z]{2}-?(iso|gov)?-{1}[a-z]*-{1}[0-9]" & strings.MinRunes(4) & strings.MaxRunes(16)
+
 #RelationalFilterConfiguration: {
 	// The database name specified in the relational filter configuration for the data source.
 	DatabaseName: string & strings.MinRunes(1) & strings.MaxRunes(128)
@@ -96,6 +124,8 @@ import "strings"
 	// The schema name specified in the relational filter configuration for the data source.
 	SchemaName?: string & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#RelationalFilterConfigurations: [...#RelationalFilterConfiguration]
 
 #SageMakerRunConfigurationInput: {
 	// The tracking assets of the Amazon SageMaker run.
@@ -108,3 +138,9 @@ import "strings"
 	// The timezone of the data source run.
 	Timezone?: #Timezone
 }
+
+#Timezone: string
+
+#TrackingAssets: {...}
+
+#TypeRevision: string & strings.MinRunes(1) & strings.MaxRunes(64)

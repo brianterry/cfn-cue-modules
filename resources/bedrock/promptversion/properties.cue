@@ -10,9 +10,17 @@ import "strings"
 	Tags?: #TagsMap
 }
 
+#AdditionalModelRequestFields: {...}
+
+#AnyToolChoice: {...}
+
+#AutoToolChoice: {...}
+
 #CachePointBlock: {
 	Type: #CachePointType
 }
+
+#CachePointType: "default"
 
 #ChatPromptTemplateConfiguration: {
 	// List of input variables
@@ -23,6 +31,14 @@ import "strings"
 	System?: [...#SystemContentBlock]
 	ToolConfiguration?: #ToolConfiguration
 }
+
+#ContentBlock: {
+	Text: string & strings.MinRunes(1)
+} | {
+	CachePoint: #CachePointBlock
+}
+
+#ConversationRole: "user" | "assistant"
 
 #Message: {
 	// List of Content Blocks
@@ -35,6 +51,14 @@ import "strings"
 	AgentIdentifier: string & =~"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent-alias/[0-9a-zA-Z]{10}/[0-9a-zA-Z]{10}$" & strings.MaxRunes(2048)
 }
 
+#PromptGenAiResource: {
+	Agent: #PromptAgentResource
+}
+
+#PromptInferenceConfiguration: {
+	Text: #PromptModelInferenceConfiguration
+}
+
 #PromptInputVariable: {
 	// Name for an input variable
 	Name?: string & =~"^([0-9a-zA-Z][_-]?){1,100}$"
@@ -44,6 +68,12 @@ import "strings"
 	Key: #PromptMetadataKey
 	Value: #PromptMetadataValue
 }
+
+#PromptMetadataKey: string & =~"^[a-zA-Z0-9\\s._:/=+@-]*$" & strings.MinRunes(1) & strings.MaxRunes(128)
+
+#PromptMetadataList: [...#PromptMetadataEntry]
+
+#PromptMetadataValue: string & =~"^[a-zA-Z0-9\\s._:/=+@-]*$" & strings.MinRunes(1) & strings.MaxRunes(1024)
 
 #PromptModelInferenceConfiguration: {
 	// Maximum length of output
@@ -55,6 +85,14 @@ import "strings"
 	// Cumulative probability cutoff for token selection
 	TopP?: number & >=0 & <=1
 }
+
+#PromptTemplateConfiguration: {
+	Text: #TextPromptTemplateConfiguration
+} | {
+	Chat: #ChatPromptTemplateConfiguration
+}
+
+#PromptTemplateType: "TEXT" | "CHAT"
 
 #PromptVariant: {
 	AdditionalModelRequestFields?: #AdditionalModelRequestFields
@@ -74,6 +112,14 @@ import "strings"
 	Name: string & =~"^[a-zA-Z][a-zA-Z0-9_]*$" & strings.MinRunes(1) & strings.MaxRunes(64)
 }
 
+#SystemContentBlock: {
+	Text: string & strings.MinRunes(1)
+} | {
+	CachePoint: #CachePointBlock
+}
+
+#TagsMap: {...}
+
 #TextPromptTemplateConfiguration: {
 	CachePoint?: #CachePointBlock
 	// List of input variables
@@ -82,10 +128,28 @@ import "strings"
 	Text: string & strings.MinRunes(1) & strings.MaxRunes(200000)
 }
 
+#Tool: {
+	ToolSpec: #ToolSpecification
+} | {
+	CachePoint: #CachePointBlock
+}
+
+#ToolChoice: {
+	Auto: #AutoToolChoice
+} | {
+	Any: #AnyToolChoice
+} | {
+	Tool: #SpecificToolChoice
+}
+
 #ToolConfiguration: {
 	ToolChoice?: #ToolChoice
 	// List of Tools
 	Tools: [...#Tool]
+}
+
+#ToolInputSchema: {
+	Json: {...}
 }
 
 #ToolSpecification: {

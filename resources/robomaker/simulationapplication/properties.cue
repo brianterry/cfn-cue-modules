@@ -20,6 +20,8 @@ import "strings"
 	Tags?: #Tags
 }
 
+#Arn: string & =~"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+
 #RenderingEngine: {
 	// The name of the rendering engine.
 	Name: "OGRE"
@@ -49,3 +51,5 @@ import "strings"
 	// The s3 object key.
 	S3Key: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 }
+
+#Tags: {...}

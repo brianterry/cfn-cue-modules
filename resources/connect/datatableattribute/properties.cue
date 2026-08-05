@@ -25,3 +25,11 @@ import "strings"
 	}
 	ValueType: "TEXT" | "NUMBER" | "BOOLEAN" | "TEXT_LIST" | "NUMBER_LIST"
 }
+
+#AttributeId: string & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#Description: string & =~"^[\\P{C}\r\n\t]+$" & strings.MinRunes(0) & strings.MaxRunes(250)
+
+#LengthBoundary: int & >=0
+
+#ValueBoundary: int & >=0

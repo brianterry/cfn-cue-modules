@@ -42,3 +42,5 @@ import "strings"
 	// The ID of the field that this rule applies to.
 	FieldId?: string & strings.MinRunes(1) & strings.MaxRunes(500)
 }
+
+#TemplateStatus: "Active" | "Inactive"

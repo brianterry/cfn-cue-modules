@@ -17,6 +17,12 @@ import "strings"
 	id?: string
 }
 
+#ConfigurationParametersMap: {...}
+
+#Status: "INITIALIZING" | "DEPLOYING" | "SUCCEEDED" | "DELETING" | "STOPPING" | "FAILED" | "STOPPED" | "DELETE_FAILED" | "STOP_FAILED" | "NONE"
+
+#StatusDetails: {...}
+
 #StatusSummary: {
 	LastUpdatedAt: string
 	Status?: #Status
@@ -24,3 +30,7 @@ import "strings"
 	StatusMessage?: string
 	StatusType: #StatusType
 }
+
+#StatusType: "Deployment" | "AsyncExecutions"
+
+#TagsMap: {...}

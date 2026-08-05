@@ -20,6 +20,8 @@ import "strings"
 	Unit?: string
 }
 
+#AllowedValues: [...string]
+
 #Attribute: {
 	AllowedValues?: #AllowedValues
 	AssignedValue?: string
@@ -37,6 +39,16 @@ import "strings"
 	FullyQualifiedName: string
 }
 
+#Node: {
+	Branch?: #Branch
+} | {
+	Sensor?: #Sensor
+} | {
+	Actuator?: #Actuator
+} | {
+	Attribute?: #Attribute
+}
+
 #NodeCounts: {
 	TotalActuators?: number
 	TotalAttributes?: number
@@ -44,6 +56,8 @@ import "strings"
 	TotalNodes?: number
 	TotalSensors?: number
 }
+
+#NodeDataType: "INT8" | "UINT8" | "INT16" | "UINT16" | "INT32" | "UINT32" | "INT64" | "UINT64" | "BOOLEAN" | "FLOAT" | "DOUBLE" | "STRING" | "UNIX_TIMESTAMP" | "INT8_ARRAY" | "UINT8_ARRAY" | "INT16_ARRAY" | "UINT16_ARRAY" | "INT32_ARRAY" | "UINT32_ARRAY" | "INT64_ARRAY" | "UINT64_ARRAY" | "BOOLEAN_ARRAY" | "FLOAT_ARRAY" | "DOUBLE_ARRAY" | "STRING_ARRAY" | "UNIX_TIMESTAMP_ARRAY" | "UNKNOWN"
 
 #Sensor: {
 	AllowedValues?: #AllowedValues

@@ -602,6 +602,8 @@ package launchtemplate
 	InstanceFamily?: string
 }
 
+#References: [...#Reference]
+
 #SpotOptions: {
 	// Deprecated.
 	BlockDurationMinutes?: int

@@ -19,6 +19,16 @@ import "strings"
 	IndexId: string & =~"^[a-zA-Z0-9][a-zA-Z0-9-]{35}$" & strings.MinRunes(36) & strings.MaxRunes(36)
 }
 
+#RetrieverConfiguration: {
+	NativeIndexConfiguration: #NativeIndexConfiguration
+} | {
+	KendraIndexConfiguration: #KendraIndexConfiguration
+}
+
+#RetrieverStatus: "CREATING" | "ACTIVE" | "FAILED"
+
+#RetrieverType: "NATIVE_INDEX" | "KENDRA_INDEX"
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

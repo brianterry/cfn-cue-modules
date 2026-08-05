@@ -100,6 +100,10 @@ import "strings"
 	TableName?: string
 }
 
+#Arn: string
+
+#BlockedEncryptionTypeList: [..."NONE" | "SSE-C"]
+
 #BlockedEncryptionTypes: {
 	// The object encryption type that you want to block or unblock for an Amazon S3 general purpose bucket.
 	// Currently, this parameter only supports blocking or unblocking server side encryption with customer-provided keys (SSE-C). For more information about SSE-C, see [Using server-side encryption with customer-provided keys (SSE-C)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html).
@@ -649,6 +653,12 @@ import "strings"
 	Value: string
 }
 
+#TargetObjectKeyFormat: {
+	SimplePrefix: {...}
+} | {
+	PartitionedPrefix: #PartitionedPrefix
+}
+
 #Tiering: {
 	// S3 Intelligent-Tiering access tier. See [Storage class for automatically optimizing frequently and infrequently accessed objects](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access) for a list of access tiers in the S3 Intelligent-Tiering storage class.
 	AccessTier: "ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS"
@@ -690,3 +700,5 @@ import "strings"
 	// Rules that define when a redirect is applied and the redirect behavior.
 	RoutingRules?: [...#RoutingRule]
 }
+
+#iso8601UTC: string & =~"^(\\d{4})-(0[0-9]|1[0-2])-([0-2]\\d|3[01])T([01]\\d|2[0-4]):([0-5]\\d):([0-6]\\d)((\\.\\d{3})?)Z$"

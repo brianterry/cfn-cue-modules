@@ -31,12 +31,18 @@ import "strings"
 	Subject?: #Subject
 }
 
+#Arn: string
+
+#CertificatePolicyList: [...#PolicyInformation]
+
 #CustomAttribute: {
 	// Specifies the object identifier (OID) of the attribute type of the relative distinguished name (RDN).
 	ObjectIdentifier: #CustomObjectIdentifier
 	// Specifies the attribute value of relative distinguished name (RDN).
 	Value: string
 }
+
+#CustomAttributeList: [...#CustomAttribute]
 
 #CustomExtension: {
 	// Specifies the critical flag of the X.509 extension.
@@ -46,6 +52,12 @@ import "strings"
 	// Specifies the base64-encoded value of the X.509 extension.
 	Value: string
 }
+
+#CustomExtensionList: [...#CustomExtension]
+
+#CustomObjectIdentifier: string
+
+#DnsName: string
 
 #EdiPartyName: {
 	// Specifies the name assigner.
@@ -60,6 +72,8 @@ import "strings"
 	// Specifies a standard ``ExtendedKeyUsage`` as defined as in [RFC 5280](https://docs.aws.amazon.com/https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.12).
 	ExtendedKeyUsageType?: string
 }
+
+#ExtendedKeyUsageList: [...#ExtendedKeyUsage]
 
 #Extensions: {
 	// Contains a sequence of one or more policy information terms, each of which consists of an object identifier (OID) and optional qualifiers. For more information, see NIST's definition of [Object Identifier (OID)](https://docs.aws.amazon.com/https://csrc.nist.gov/glossary/term/Object_Identifier).
@@ -93,6 +107,10 @@ import "strings"
 	// Represents ``GeneralName`` as a URI.
 	UniformResourceIdentifier?: #UniformResourceIdentifier
 }
+
+#GeneralNameList: [...#GeneralName]
+
+#IpAddress: string
 
 #KeyUsage: {
 	// Key can be used to sign CRLs.
@@ -136,10 +154,14 @@ import "strings"
 	Qualifier: #Qualifier
 }
 
+#PolicyQualifierInfoList: [...#PolicyQualifierInfo]
+
 #Qualifier: {
 	// Contains a pointer to a certification practice statement (CPS) published by the CA.
 	CpsUri: string
 }
+
+#Rfc822Name: string
 
 #Subject: {
 	// For CA and end-entity certificates in a private PKI, the common name (CN) can be any string within the length limit.
@@ -175,6 +197,8 @@ import "strings"
 	// A title such as Mr. or Ms., which is pre-pended to the name to refer formally to the certificate subject.
 	Title?: string
 }
+
+#UniformResourceIdentifier: string
 
 #Validity: {
 	// Specifies whether the ``Value`` parameter represents days, months, or years.

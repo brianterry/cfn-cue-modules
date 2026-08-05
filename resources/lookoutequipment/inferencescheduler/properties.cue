@@ -30,12 +30,16 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Bucket: string & =~"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$" & strings.MinRunes(3) & strings.MaxRunes(63)
+
 #InputNameConfiguration: {
 	// Indicates the delimiter character used between items in the data.
 	ComponentTimestampDelimiter?: string & =~"^(\\-|\\_|\\s)?$" & strings.MinRunes(0) & strings.MaxRunes(1)
 	// The format of the timestamp, whether Epoch time, or standard, with or without hyphens (-).
 	TimestampFormat?: string & =~"^EPOCH|yyyy-MM-dd-HH-mm-ss|yyyyMMddHHmmss$"
 }
+
+#Prefix: string & strings.MinRunes(0) & strings.MaxRunes(1024)
 
 #S3InputConfiguration: {
 	Bucket: #Bucket

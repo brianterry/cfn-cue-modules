@@ -15,6 +15,8 @@ import "strings"
 	Tags?: #TagsMap
 }
 
+#ConcurrencyType: "Automatic" | "Manual"
+
 #FlowAliasConcurrencyConfiguration: {
 	// Number of nodes executed concurrently at a time
 	MaxConcurrency?: number & >=1 & <=100
@@ -25,3 +27,5 @@ import "strings"
 	// Version.
 	FlowVersion?: string & =~"^(DRAFT|[0-9]{0,4}[1-9][0-9]{0,4})$" & strings.MinRunes(1) & strings.MaxRunes(5)
 }
+
+#TagsMap: {...}

@@ -68,10 +68,14 @@ import "strings"
 	Tier?: "standard" | "tier-xl" | "tier-2xl" | "tier-4xl" | "tier-8xl" | "tier-ultra"
 }
 
+#DeletionProtection: bool
+
 #ElasticLoadBalancing: {
 	// Todo: add description
 	Enabled?: bool
 }
+
+#EnabledTypes: [...#LoggingTypeConfig]
 
 #EncryptionConfig: {
 	// The encryption provider for the cluster.
@@ -136,10 +140,14 @@ import "strings"
 	Cidrs: [...string]
 }
 
+#RemoteNodeNetworks: [...#RemoteNodeNetwork]
+
 #RemotePodNetwork: {
 	// Specifies the list of remote pod CIDRs.
 	Cidrs: [...string]
 }
+
+#RemotePodNetworks: [...#RemotePodNetwork]
 
 #ResourcesVpcConfig: {
 	// Specify the egress mode for the cluster control plane. If you set this to CUSTOMER_ROUTED, the control plane routes traffic through your VPC subnets instead of using AWS managed networking.

@@ -24,6 +24,8 @@ import "strings"
 	Type: "LINEAR" | "ALL_AT_ONCE" | "CANARY"
 }
 
+#RoutingConfiguration: [...#RoutingConfigurationVersion]
+
 #RoutingConfigurationVersion: {
 	// The Amazon Resource Name (ARN) that identifies one or two state machine versions defined in the routing configuration.
 	StateMachineVersionArn: string & strings.MinRunes(1) & strings.MaxRunes(2048)

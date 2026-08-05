@@ -25,3 +25,5 @@ package trafficmirrorsession
 	Key: string
 	Value: string
 }
+
+#TrafficMirrorSessionField: "packet-length" | "description" | "virtual-network-id"

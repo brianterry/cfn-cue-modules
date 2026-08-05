@@ -63,6 +63,8 @@ import "strings"
 	Port: number & >=1 & <=65535
 }
 
+#AuthenticationType: "PASSWORD" | "TOKEN" | "X509" | "KEYPAIR"
+
 #AwsIotAnalyticsParameters: {
 	// <p>Dataset name.</p>
 	DataSetName: string & strings.MinRunes(1) & strings.MaxRunes(128)
@@ -103,6 +105,8 @@ import "strings"
 	Type?: #DataSourceErrorInfoType
 }
 
+#DataSourceErrorInfoType: "ACCESS_DENIED" | "COPY_SOURCE_NOT_FOUND" | "TIMEOUT" | "ENGINE_VERSION_NOT_SUPPORTED" | "UNKNOWN_HOST" | "GENERIC_SQL_FAILURE" | "CONFLICT" | "UNKNOWN"
+
 #DataSourceParameters: {
 	AmazonElasticsearchParameters?: #AmazonElasticsearchParameters
 	AmazonOpenSearchParameters?: #AmazonOpenSearchParameters
@@ -126,6 +130,8 @@ import "strings"
 	TeradataParameters?: #TeradataParameters
 	TrinoParameters?: #TrinoParameters
 }
+
+#DataSourceType: "ADOBE_ANALYTICS" | "AMAZON_ELASTICSEARCH" | "AMAZON_OPENSEARCH" | "ATHENA" | "AURORA" | "AURORA_POSTGRESQL" | "AWS_IOT_ANALYTICS" | "DATABRICKS" | "DENODO" | "DREMIO" | "DYNAMODB" | "SAPHANA" | "DB2_AS400" | "EXASOL" | "FILE" | "FULLY_MANAGED_KNOWLEDGE_BASE" | "GITHUB" | "INTERNATIONAL_DATA_CORPORATION" | "JIRA" | "MARIADB" | "MYSQL" | "ORACLE" | "POSTGRESQL" | "PRESTO" | "QBUSINESS" | "REDSHIFT" | "S3" | "S3_TABLES" | "S3_KNOWLEDGE_BASE" | "SALESFORCE" | "SERVICENOW" | "SNOWFLAKE" | "SPARK" | "SPICE" | "SQLSERVER" | "TERADATA" | "TIMESTREAM" | "TWITTER" | "BIGQUERY" | "GOOGLE_ANALYTICS" | "TRINO" | "STARBURST" | "MONGO" | "MONGO_ATLAS" | "DOCUMENTDB" | "APPFLOW" | "IMPALA" | "GLUE" | "GOOGLE_DRIVE" | "CONFLUENCE" | "SHAREPOINT" | "ONE_DRIVE" | "WEB_CRAWLER" | "BOX" | "GOOGLESHEETS"
 
 #DatabricksParameters: {
 	// <p>The host name of the Databricks data source.</p>
@@ -267,6 +273,8 @@ import "strings"
 	Resource?: string
 }
 
+#ResourceStatus: "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "PENDING_UPDATE" | "DELETED"
+
 #S3Parameters: {
 	ManifestFileLocation: #ManifestFileLocation
 	// <p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific S3 data source. For example, say an account administrator has turned off all S3 access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow S3 access for the single S3 data source that is specified in the structure, even if the account-wide role forbidding S3 access is still active.</p>
@@ -322,6 +330,8 @@ import "strings"
 	Port: number & >=1 & <=65535
 	ProductType?: #StarburstProductType
 }
+
+#StarburstProductType: "GALAXY" | "ENTERPRISE"
 
 #Tag: {
 	// <p>Tag key.</p>

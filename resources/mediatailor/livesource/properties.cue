@@ -21,3 +21,5 @@ package livesource
 	Key: string
 	Value: string
 }
+
+#Type: "DASH" | "HLS"

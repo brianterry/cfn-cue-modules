@@ -10,6 +10,8 @@ package listener
 	Protocol: "TCP" | "UDP"
 }
 
+#Port: int & >=0 & <=65535
+
 #PortRange: {
 	FromPort: #Port
 	ToPort: #Port

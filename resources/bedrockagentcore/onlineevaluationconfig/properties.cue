@@ -42,6 +42,8 @@ import "strings"
 	Frequencies: [...#ClusteringFrequency]
 }
 
+#ClusteringFrequency: "DAILY" | "WEEKLY" | "MONTHLY"
+
 #DataSourceConfig: {
 	CloudWatchLogs: #CloudWatchLogsInputConfig
 }
@@ -50,6 +52,8 @@ import "strings"
 	// The unique identifier of the evaluator.
 	EvaluatorId: string & =~"^(Builtin\\.[a-zA-Z0-9_-]+|[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9]{10})$"
 }
+
+#ExecutionStatus: "ENABLED" | "DISABLED"
 
 #Filter: {
 	// The key or field name to filter on within the agent trace data.
@@ -72,6 +76,8 @@ import "strings"
 	// The unique identifier of the insight.
 	InsightId: string & =~"^[a-zA-Z][a-zA-Z0-9._]+$" & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#OnlineEvaluationConfigStatus: "ACTIVE" | "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING"
 
 #OutputConfig: {
 	CloudWatchConfig?: #CloudWatchOutputConfig

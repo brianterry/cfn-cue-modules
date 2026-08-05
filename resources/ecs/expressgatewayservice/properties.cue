@@ -16,6 +16,8 @@ package expressgatewayservice
 	TaskRoleArn?: string
 }
 
+#AccessType: "PUBLIC" | "PRIVATE"
+
 #AutoScalingArns: {
 	ApplicationAutoScalingPolicies?: [...string]
 	ScalableTarget?: string
@@ -75,9 +77,13 @@ package expressgatewayservice
 	Subnets?: [...string]
 }
 
+#ExpressGatewayServiceScalingMetric: "AVERAGE_CPU" | "AVERAGE_MEMORY" | "REQUEST_COUNT_PER_TARGET"
+
 #ExpressGatewayServiceStatus: {
 	StatusCode?: #ExpressGatewayServiceStatusCode
 }
+
+#ExpressGatewayServiceStatusCode: "ACTIVE" | "DRAINING" | "INACTIVE"
 
 #IngressPathArns: {
 	CertificateArn?: string

@@ -48,11 +48,39 @@ import "strings"
 	Channel: #Channel
 }
 
+#AfterContactWorkMode: "ON" | "OFF" | "ON_DEMAND"
+
+#AfterContactWorkTimeLimit: int & >=0
+
+#AgentFirstCallbackAutoAccept: bool
+
+#AttributeName: string & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#AttributeValue: string & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#AutoAccept: bool
+
 #AutoAcceptConfig: {
 	AgentFirstCallbackAutoAccept?: #AgentFirstCallbackAutoAccept
 	AutoAccept: #AutoAccept
 	Channel: #Channel
 }
+
+#Channel: "VOICE" | "CHAT" | "TASK" | "EMAIL"
+
+#DeskPhoneNumber: string
+
+#Email: string
+
+#FirstName: string
+
+#LastName: string
+
+#Level: number & >=0 & <=10
+
+#Mobile: string & =~"^\\+[1-9]\\d{1,14}$"
+
+#PersistentConnection: bool
 
 #PersistentConnectionConfig: {
 	Channel: #Channel
@@ -64,6 +92,12 @@ import "strings"
 	PhoneNumber?: #DeskPhoneNumber
 	PhoneType: #PhoneType
 }
+
+#PhoneType: "SOFT_PHONE" | "DESK_PHONE"
+
+#SecondaryEmail: string & =~"(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,63}"
+
+#SecurityProfileArn: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/security-profile/[-a-zA-Z0-9]*$"
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
@@ -98,3 +132,5 @@ import "strings"
 	Channel: #Channel
 	VoiceEnhancementMode: #VoiceEnhancementMode
 }
+
+#VoiceEnhancementMode: "NONE" | "VOICE_ISOLATION" | "NOISE_SUPPRESSION"

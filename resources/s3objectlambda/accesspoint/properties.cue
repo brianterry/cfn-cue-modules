@@ -9,6 +9,8 @@ import "strings"
 	ObjectLambdaConfiguration: #ObjectLambdaConfiguration
 }
 
+#Action: string
+
 #Alias: {
 	// The status of the Object Lambda alias.
 	Status?: string & =~"^[A-Z]*$"

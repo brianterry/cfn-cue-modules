@@ -9,6 +9,10 @@ import "strings"
 	VpcInformation: #VpcInformation
 }
 
+#Tags: {...}
+
+#Unit: {...}
+
 #VpcInformation: {
 	IpAddressType?: "IPV4" | "DUALSTACK"
 	SecurityGroupIds: [...string & =~"^(?:sg-[0-9a-f]{8}|sg-[0-9a-f]{17})$" & strings.MinRunes(11) & strings.MaxRunes(20)]

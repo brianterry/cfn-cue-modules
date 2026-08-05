@@ -25,6 +25,8 @@ import "strings"
 	ResourceTags?: [...#Tag]
 }
 
+#AppliedForItem: "REPLICATION" | "PULL_THROUGH_CACHE" | "CREATE_ON_PUSH"
+
 #EncryptionConfiguration: {
 	// The encryption type to use.
 	// If you use the ``KMS`` encryption type, the contents of the repository will be encrypted using server-side encryption with KMSlong key stored in KMS. When you use KMS to encrypt your data, you can either use the default AWS managed KMS key for Amazon ECR, or specify your own KMS key, which you already created.
@@ -36,10 +38,14 @@ import "strings"
 	KmsKey?: #KmsKey
 }
 
+#EncryptionType: "AES256" | "KMS" | "KMS_DSSE"
+
 #ImageTagMutabilityExclusionFilter: {
 	ImageTagMutabilityExclusionFilterType: "WILDCARD"
 	ImageTagMutabilityExclusionFilterValue: string & =~"^[0-9a-zA-Z._*-]{1,128}" & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#KmsKey: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 
 #Tag: {
 	// One part of a key-value pair that make up a tag. A ``key`` is a general label that acts like a category for more specific tag values.

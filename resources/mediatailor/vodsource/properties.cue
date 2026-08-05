@@ -21,3 +21,5 @@ package vodsource
 	Key: string
 	Value: string
 }
+
+#Type: "DASH" | "HLS"

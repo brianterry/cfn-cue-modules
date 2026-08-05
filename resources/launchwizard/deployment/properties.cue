@@ -15,6 +15,10 @@ import "strings"
 	WorkloadName: string & =~"^[A-Za-z][a-zA-Z0-9-_]*$" & strings.MinRunes(1) & strings.MaxRunes(100)
 }
 
+#DeploymentSpecifications: {...}
+
+#DeploymentStatus: "COMPLETED" | "CREATING" | "DELETE_IN_PROGRESS" | "DELETE_INITIATING" | "DELETE_FAILED" | "DELETED" | "FAILED" | "IN_PROGRESS" | "VALIDATING"
+
 #Tags: {
 	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & =~"^[a-zA-Z+-=._:/]+$" & strings.MinRunes(1) & strings.MaxRunes(128)

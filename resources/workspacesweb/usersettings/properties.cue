@@ -31,6 +31,8 @@ import "strings"
 	WallpaperMetadata?: #ImageMetadata
 }
 
+#ColorTheme: "Light" | "Dark"
+
 #CookieSpecification: {
 	Domain: string & =~"^(\\.?)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)*[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$" & strings.MinRunes(0) & strings.MaxRunes(253)
 	Name?: string & strings.MinRunes(0) & strings.MaxRunes(4096)
@@ -42,11 +44,19 @@ import "strings"
 	Blocklist?: [...#CookieSpecification]
 }
 
+#EnabledType: "Disabled" | "Enabled"
+
+#EncryptionContextMap: {...}
+
 #ImageMetadata: {
 	FileExtension: string & =~"^[\\s\\S]*$" & strings.MinRunes(0) & strings.MaxRunes(131072)
 	LastUploadTimestamp: string
 	MimeType: #MimeType
 }
+
+#Locale: "de-DE" | "en-US" | "es-ES" | "fr-FR" | "id-ID" | "it-IT" | "ja-JP" | "ko-KR" | "pt-BR" | "zh-CN" | "zh-TW"
+
+#LocalizedBrandingStringMap: {...}
 
 #LocalizedBrandingStrings: {
 	BrowserTabTitle: string & =~"^[^<>&'`~\\\\]*$"
@@ -59,6 +69,10 @@ import "strings"
 	WelcomeText: string & =~"^[^<>&'`~\\\\]*$"
 }
 
+#MaxDisplayResolution: "size4096X2160" | "size3840X2160" | "size3440X1440" | "size2560X1440" | "size1920X1080" | "size1280X720" | "size1024X768" | "size800X600"
+
+#MimeType: "image/png" | "image/jpeg" | "image/x-icon"
+
 #Tag: {
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(0) & strings.MaxRunes(256)
@@ -70,3 +84,9 @@ import "strings"
 	ToolbarType?: #ToolbarType
 	VisualMode?: #VisualMode
 }
+
+#ToolbarItem: "Windows" | "DualMonitor" | "FullScreen" | "Webcam" | "Microphone"
+
+#ToolbarType: "Floating" | "Docked"
+
+#VisualMode: "Dark" | "Light"

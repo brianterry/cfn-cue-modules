@@ -7,3 +7,5 @@ import "strings"
 	// The revision ID of robot application.
 	CurrentRevisionId?: string & =~"[a-zA-Z0-9_.\\-]*" & strings.MinRunes(1) & strings.MaxRunes(40)
 }
+
+#Arn: string & =~"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"

@@ -17,6 +17,8 @@ import "strings"
 	VpcConfig?: #VpcConfig
 }
 
+#TagMap: {...}
+
 #VpcConfig: {
 	SecurityGroupIds?: [...string & =~"^sg-[0-9a-f]+$"]
 	SubnetIds?: [...string & =~"^subnet-[0-9a-f]+$"]

@@ -18,6 +18,12 @@ import "strings"
 	UserPoolArn: string & =~"^arn:[a-zA-Z0-9-]+:cognito-idp:(([a-zA-Z0-9-]+:\\d{12}:userpool/[\\w-]+_[0-9a-zA-Z]+))$" & strings.MinRunes(1) & strings.MaxRunes(255)
 }
 
+#IdentitySourceConfiguration: {
+	CognitoUserPoolConfiguration: #CognitoUserPoolConfiguration
+} | {
+	OpenIdConnectConfiguration: #OpenIdConnectConfiguration
+}
+
 #IdentitySourceDetails: {
 	ClientIds?: [...string & =~"^.*$" & strings.MinRunes(1) & strings.MaxRunes(255)]
 	DiscoveryUrl?: string & =~"^https://.*$" & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -46,3 +52,11 @@ import "strings"
 	ClientIds?: [...string & =~"^.*$" & strings.MinRunes(1) & strings.MaxRunes(255)]
 	PrincipalIdClaim?: string & strings.MinRunes(1)
 }
+
+#OpenIdConnectTokenSelection: {
+	AccessTokenOnly: #OpenIdConnectAccessTokenConfiguration
+} | {
+	IdentityTokenOnly: #OpenIdConnectIdentityTokenConfiguration
+}
+
+#OpenIdIssuer: "COGNITO"

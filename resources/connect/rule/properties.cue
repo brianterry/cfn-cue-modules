@@ -36,6 +36,10 @@ import "strings"
 	UpdateCaseActions?: #UpdateCaseActions
 }
 
+#AssignContactCategoryAction: {...}
+
+#AssignContactCategoryActions: [...#AssignContactCategoryAction]
+
 #AssignSlaAction: {
 	CaseSlaConfiguration: {
 		FieldId?: string & strings.MinRunes(1) & strings.MaxRunes(500)
@@ -47,15 +51,25 @@ import "strings"
 	SlaAssignmentType: "CASES"
 }
 
+#AssignSlaActions: [...#AssignSlaAction]
+
 #CreateCaseAction: {
 	Fields: #Fields
 	TemplateId: string & strings.MinRunes(1) & strings.MaxRunes(500)
 }
 
+#CreateCaseActions: [...#CreateCaseAction]
+
+#EndAssociatedTasksAction: {...}
+
+#EndAssociatedTasksActions: [...#EndAssociatedTasksAction]
+
 #EventBridgeAction: {
 	// The name.
 	Name: string & =~"^[a-zA-Z0-9._-]{1,100}$"
 }
+
+#EventBridgeActions: [...#EventBridgeAction]
 
 #Field: {
 	Id: string & strings.MinRunes(1) & strings.MaxRunes(500)
@@ -68,6 +82,8 @@ import "strings"
 	EmptyValue?: {...}
 	StringValue?: string
 }
+
+#Fields: [...#Field]
 
 #NotificationRecipientType: {
 	// The Amazon Resource Name (ARN) of the user account.
@@ -107,6 +123,8 @@ import "strings"
 	Subject?: string & strings.MinRunes(1) & strings.MaxRunes(200)
 }
 
+#SendNotificationActions: [...#SendNotificationAction]
+
 #SlaTargetFieldValue: {
 	StringValue?: string
 }
@@ -114,6 +132,8 @@ import "strings"
 #SubmitAutoEvaluationAction: {
 	EvaluationFormArn: string & =~"^$|arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/evaluation-form/[-a-zA-Z0-9]*$"
 }
+
+#SubmitAutoEvaluationActions: [...#SubmitAutoEvaluationAction]
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -
@@ -133,6 +153,12 @@ import "strings"
 	References?: string
 }
 
+#TaskActions: [...#TaskAction]
+
 #UpdateCaseAction: {
 	Fields: #Fields
 }
+
+#UpdateCaseActions: [...#UpdateCaseAction]
+
+#UserArn: string & =~"^$|arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*/agent/[-a-zA-Z0-9]*$|^\\$\\..+$"

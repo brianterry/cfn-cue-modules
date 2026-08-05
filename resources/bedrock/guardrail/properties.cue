@@ -31,6 +31,8 @@ import "strings"
 	Policies: [...string & =~"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:automated-reasoning-policy\\/[a-z0-9]{12}(:([1-9][0-9]{0,11}))?$" & strings.MinRunes(15) & strings.MaxRunes(2048)]
 }
 
+#ContentFilterAction: "BLOCK" | "NONE"
+
 #ContentFilterConfig: {
 	InputAction?: #ContentFilterAction
 	InputEnabled?: bool
@@ -45,6 +47,10 @@ import "strings"
 	Type: #ContentFilterType
 }
 
+#ContentFilterType: "SEXUAL" | "VIOLENCE" | "HATE" | "INSULTS" | "MISCONDUCT" | "PROMPT_ATTACK"
+
+#ContentFiltersTierName: "CLASSIC" | "STANDARD"
+
 #ContentPolicyConfig: {
 	// Guardrail tier config for content policy
 	ContentFiltersTierConfig?: {
@@ -54,6 +60,8 @@ import "strings"
 	FiltersConfig: [...#ContentFilterConfig]
 }
 
+#ContextualGroundingAction: "BLOCK" | "NONE"
+
 #ContextualGroundingFilterConfig: {
 	Action?: #ContextualGroundingAction
 	Enabled?: bool
@@ -62,15 +70,21 @@ import "strings"
 	Type: #ContextualGroundingFilterType
 }
 
+#ContextualGroundingFilterType: "GROUNDING" | "RELEVANCE"
+
 #ContextualGroundingPolicyConfig: {
 	// List of contextual grounding filter configs.
 	FiltersConfig: [...#ContextualGroundingFilterConfig]
 }
 
+#FilterStrength: "NONE" | "LOW" | "MEDIUM" | "HIGH"
+
 #GuardrailCrossRegionConfig: {
 	// The Amazon Resource Name (ARN) of the guardrail profile
 	GuardrailProfileArn: string & =~"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail-profile/[a-z0-9-]+[.]{1}guardrail[.]{1}v[0-9:]+$" & strings.MinRunes(15) & strings.MaxRunes(2048)
 }
+
+#GuardrailStatus: "CREATING" | "UPDATING" | "VERSIONING" | "READY" | "FAILED" | "DELETING"
 
 #ManagedWordsConfig: {
 	InputAction?: #WordAction
@@ -80,6 +94,10 @@ import "strings"
 	Type: #ManagedWordsType
 }
 
+#ManagedWordsType: "PROFANITY"
+
+#Modality: "TEXT" | "IMAGE"
+
 #PiiEntityConfig: {
 	Action: #SensitiveInformationAction
 	InputAction?: #SensitiveInformationAction
@@ -88,6 +106,8 @@ import "strings"
 	OutputEnabled?: bool
 	Type: #PiiEntityType
 }
+
+#PiiEntityType: "ADDRESS" | "AGE" | "AWS_ACCESS_KEY" | "AWS_SECRET_KEY" | "CA_HEALTH_NUMBER" | "CA_SOCIAL_INSURANCE_NUMBER" | "CREDIT_DEBIT_CARD_CVV" | "CREDIT_DEBIT_CARD_EXPIRY" | "CREDIT_DEBIT_CARD_NUMBER" | "DRIVER_ID" | "EMAIL" | "INTERNATIONAL_BANK_ACCOUNT_NUMBER" | "IP_ADDRESS" | "LICENSE_PLATE" | "MAC_ADDRESS" | "NAME" | "PASSWORD" | "PHONE" | "PIN" | "SWIFT_CODE" | "UK_NATIONAL_HEALTH_SERVICE_NUMBER" | "UK_NATIONAL_INSURANCE_NUMBER" | "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER" | "URL" | "USERNAME" | "US_BANK_ACCOUNT_NUMBER" | "US_BANK_ROUTING_NUMBER" | "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER" | "US_PASSPORT_NUMBER" | "US_SOCIAL_SECURITY_NUMBER" | "VEHICLE_IDENTIFICATION_NUMBER"
 
 #RegexConfig: {
 	Action: #SensitiveInformationAction
@@ -103,6 +123,8 @@ import "strings"
 	Pattern: string & strings.MinRunes(1)
 }
 
+#SensitiveInformationAction: "BLOCK" | "ANONYMIZE" | "NONE"
+
 #SensitiveInformationPolicyConfig: {
 	// List of entities.
 	PiiEntitiesConfig?: [...#PiiEntityConfig]
@@ -116,6 +138,8 @@ import "strings"
 	// Tag Value
 	Value: string & =~"^[a-zA-Z0-9\\s._:/=+@-]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#TopicAction: "BLOCK" | "NONE"
 
 #TopicConfig: {
 	// Definition of topic in topic policy
@@ -139,6 +163,12 @@ import "strings"
 		TierName: #TopicsTierName
 	}
 }
+
+#TopicType: "DENY"
+
+#TopicsTierName: "CLASSIC" | "STANDARD"
+
+#WordAction: "BLOCK" | "NONE"
 
 #WordConfig: {
 	InputAction?: #WordAction

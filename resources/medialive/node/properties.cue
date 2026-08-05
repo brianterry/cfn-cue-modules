@@ -14,6 +14,8 @@ package node
 	Tags?: [...#Tag]
 }
 
+#NodeConnectionState: "CONNECTED" | "DISCONNECTED"
+
 #NodeInterfaceMapping: {
 	// The logical name for this interface.
 	LogicalInterfaceName?: string
@@ -31,6 +33,10 @@ package node
 	// The physical interface name.
 	PhysicalInterfaceName?: string
 }
+
+#NodeRole: "BACKUP" | "ACTIVE"
+
+#NodeState: "CREATED" | "REGISTERING" | "READY_TO_ACTIVATE" | "REGISTRATION_FAILED" | "ACTIVATION_FAILED" | "ACTIVE" | "READY" | "IN_USE" | "DEREGISTERING" | "DRAINING" | "DEREGISTRATION_FAILED" | "DEREGISTERED"
 
 #SdiSourceMapping: {
 	// The card number.

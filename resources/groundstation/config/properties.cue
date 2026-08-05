@@ -22,6 +22,10 @@ package config
 	TransmitDisabled?: bool
 }
 
+#BandwidthUnits: "GHz" | "MHz" | "kHz"
+
+#BucketArn: string & =~"^arn:aws[A-Za-z0-9-]{0,64}:s3:::[A-Za-z0-9-]{1,64}$"
+
 #ConfigData: {
 	AntennaDownlinkConfig?: #AntennaDownlinkConfig
 	AntennaDownlinkDemodDecodeConfig?: #AntennaDownlinkDemodDecodeConfig
@@ -51,6 +55,8 @@ package config
 	Value?: number
 }
 
+#EirpUnits: "dBW"
+
 #Frequency: {
 	Units?: #FrequencyUnits
 	Value?: number
@@ -61,10 +67,22 @@ package config
 	Value?: number
 }
 
+#FrequencyUnits: "GHz" | "MHz" | "kHz"
+
+#JsonString: string & =~"^[{}\\[\\]:.,\"0-9A-z\\-_\\s]{1,8192}$"
+
+#KinesisDataStreamArn: string & =~"^arn:[a-z0-9-.]{1,63}:kinesis:[-a-z0-9]{1,50}:[0-9]{12}:stream/[a-zA-Z0-9_.-]{1,128}$"
+
 #KinesisDataStreamData: {
 	KinesisDataStreamArn: #KinesisDataStreamArn
 	KinesisRoleArn: #RoleArn
 }
+
+#Polarization: "LEFT_HAND" | "RIGHT_HAND" | "NONE"
+
+#RoleArn: string & =~"^arn:[^:\\n]+:iam::[^:\\n]+:role\\/.+$"
+
+#S3KeyPrefix: string & =~"^([a-zA-Z0-9_\\-=/]|\\{satellite_id\\}|\\{config\\-name}|\\{s3\\-config-id}|\\{year\\}|\\{month\\}|\\{day\\}){1,900}$"
 
 #S3RecordingConfig: {
 	BucketArn?: #BucketArn
@@ -91,6 +109,8 @@ package config
 #TelemetrySinkData: {
 	KinesisDataStreamData?: #KinesisDataStreamData
 }
+
+#TelemetrySinkType: "KINESIS_DATA_STREAM"
 
 #TrackingConfig: {
 	Autotrack?: "REQUIRED" | "PREFERRED" | "REMOVED"

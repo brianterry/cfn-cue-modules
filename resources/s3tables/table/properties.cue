@@ -44,6 +44,8 @@ import "strings"
 	Transform: string
 }
 
+#IcebergPartitionFieldList: [...#IcebergPartitionField]
+
 #IcebergPartitionSpec: {
 	// List of partition fields
 	Fields: #IcebergPartitionFieldList
@@ -77,12 +79,18 @@ import "strings"
 	Transform: string
 }
 
+#IcebergSortFieldList: [...#IcebergSortField]
+
 #IcebergSortOrder: {
 	// List of sort fields
 	Fields: #IcebergSortFieldList
 	// The sort order ID (defaults to 1 if not specified, 0 is reserved for unsorted)
 	OrderId?: int
 }
+
+#Namespace: string
+
+#OpenTableFormat: "ICEBERG"
 
 #SchemaField: {
 	// The unique identifier for the field
@@ -94,6 +102,8 @@ import "strings"
 	// The field type
 	Type: string
 }
+
+#SchemaFieldList: [...#SchemaField]
 
 #SchemaV2Field: {
 	// Optional documentation for the field
@@ -107,6 +117,8 @@ import "strings"
 	// The field type. For primitive types, use a string (e.g., 'int', 'string', 'long'). For nested types, use an object (e.g., {'type': 'struct', 'fields': [...]} for struct, {'type': 'list', 'element-id': N, 'element': 'type'} for list, {'type': 'map', 'key-id': N, 'key': 'type', 'value-id': N, 'value': 'type'} for map).
 	Type: string | {...}
 }
+
+#SchemaV2FieldList: [...#SchemaV2Field]
 
 #SnapshotManagement: {
 	// The maximum age of a snapshot before it can be expired.
@@ -122,9 +134,23 @@ import "strings"
 	StorageClass?: "STANDARD" | "INTELLIGENT_TIERING"
 }
 
+#TableARN: string
+
+#TableBucketARN: string
+
+#TableName: string
+
+#TableProperties: {...}
+
 #Tag: {
 	// Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.
 	Value: string & strings.MaxRunes(256)
 }
+
+#VersionToken: string
+
+#WarehouseLocation: string
+
+#WithoutMetadata: "Yes"

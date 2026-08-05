@@ -7,6 +7,10 @@ import "strings"
 	Rules: [...#Rule]
 }
 
+#Filter: string & =~"^(?:[a-z0-9*]+(?:[._-][a-z0-9*]+)*/)*[a-z0-9*]+(?:[._-][a-z0-9*]+)*$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#FilterType: "WILDCARD_MATCH"
+
 #RepositoryFilter: {
 	Filter: #Filter
 	FilterType: #FilterType

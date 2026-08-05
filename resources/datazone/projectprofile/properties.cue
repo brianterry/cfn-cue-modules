@@ -18,6 +18,8 @@ import "strings"
 	AwsAccountId: string & =~"^\\d{12}$"
 }
 
+#DeploymentMode: "ON_CREATE" | "ON_DEMAND"
+
 #DesignationConfiguration: {
 	DesignationId: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(36)
 }
@@ -60,3 +62,5 @@ import "strings"
 	Key: string & =~"^[\\w \\.:/=+@-]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^[\\w \\.:/=+@-]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Status: "ENABLED" | "DISABLED"

@@ -32,15 +32,21 @@ import "strings"
 	Values: [...string]
 }
 
+#DashboardType: "CUSTOM"
+
 #DateTimeRange: {
 	EndTime: #DateTimeValue
 	StartTime: #DateTimeValue
 }
 
+#DateTimeType: "ABSOLUTE" | "RELATIVE"
+
 #DateTimeValue: {
 	Type: #DateTimeType
 	Value: string
 }
+
+#Dimension: "AZ" | "INSTANCE_TYPE" | "LINKED_ACCOUNT" | "OPERATION" | "PURCHASE_TYPE" | "REGION" | "SERVICE" | "USAGE_TYPE" | "USAGE_TYPE_GROUP" | "RECORD_TYPE" | "OPERATING_SYSTEM" | "TENANCY" | "SCOPE" | "PLATFORM" | "SUBSCRIPTION_ID" | "LEGAL_ENTITY_NAME" | "DEPLOYMENT_OPTION" | "DATABASE_ENGINE" | "CACHE_ENGINE" | "INSTANCE_TYPE_FAMILY" | "BILLING_ENTITY" | "RESERVATION_ID" | "RESOURCE_ID" | "SAVINGS_PLANS_TYPE" | "TAG_KEY" | "COST_CATEGORY_NAME"
 
 #DimensionValues: {
 	Key: #Dimension
@@ -61,14 +67,24 @@ import "strings"
 	Tags?: #TagValues
 }
 
+#Granularity: "HOURLY" | "DAILY" | "MONTHLY"
+
 #GraphDisplayConfig: {
 	VisualType: #VisualType
 }
+
+#GraphDisplayConfigMap: {...}
 
 #GroupDefinition: {
 	Key: string & =~"^[\\S\\s]*$" & strings.MinRunes(1) & strings.MaxRunes(1024)
 	Type?: #GroupDefinitionType
 }
+
+#GroupDefinitionType: "DIMENSION" | "TAG" | "COST_CATEGORY"
+
+#MatchOption: "EQUALS" | "ABSENT" | "STARTS_WITH" | "ENDS_WITH" | "CONTAINS" | "GREATER_THAN_OR_EQUAL" | "CASE_SENSITIVE" | "CASE_INSENSITIVE"
+
+#MetricName: "AmortizedCost" | "BlendedCost" | "NetAmortizedCost" | "NetUnblendedCost" | "NormalizedUsageAmount" | "UnblendedCost" | "UsageQuantity" | "SpendCoveredBySavingsPlans" | "Hour" | "Unit" | "Cost"
 
 #QueryParameters: {
 	CostAndUsage?: #CostAndUsageQuery
@@ -107,6 +123,8 @@ import "strings"
 	TimeRange: #DateTimeRange
 }
 
+#TableDisplayConfigStruct: {...}
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
@@ -117,6 +135,8 @@ import "strings"
 	MatchOptions?: [...#MatchOption]
 	Values: [...string]
 }
+
+#VisualType: "LINE" | "BAR" | "STACK"
 
 #Widget: {
 	Configs: [...#WidgetConfig]

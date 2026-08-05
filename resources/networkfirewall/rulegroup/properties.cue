@@ -31,6 +31,8 @@ import "strings"
 	Value: string & =~"^[a-zA-Z0-9-_ ]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 }
 
+#GeneratedRulesType: "ALLOWLIST" | "DENYLIST" | "ALERTLIST" | "REJECTLIST"
+
 #Header: {
 	Destination: string & =~"^.*$" & strings.MinRunes(1) & strings.MaxRunes(1024)
 	DestinationPort: #Port
@@ -57,14 +59,20 @@ import "strings"
 	TCPFlags?: [...#TCPFlagField]
 }
 
+#Port: string & =~"^.*$" & strings.MinRunes(1) & strings.MaxRunes(1024)
+
 #PortRange: {
 	FromPort: #PortRangeBound
 	ToPort: #PortRangeBound
 }
 
+#PortRangeBound: int & >=0 & <=65535
+
 #PortSet: {
 	Definition?: [...#VariableDefinition]
 }
+
+#ProtocolNumber: int & >=0 & <=255
 
 #PublishMetricAction: {
 	Dimensions: [...#Dimension]
@@ -73,6 +81,8 @@ import "strings"
 #ReferenceSets: {
 	IPSetReferences?: {...}
 }
+
+#ResourceArn: string & =~"^(arn:aws.*)$" & strings.MinRunes(1) & strings.MaxRunes(256)
 
 #RuleDefinition: {
 	Actions: [...string]
@@ -91,6 +101,8 @@ import "strings"
 	Settings?: [...#Setting]
 }
 
+#RuleOrder: "DEFAULT_ACTION_ORDER" | "STRICT_ORDER"
+
 #RuleVariables: {
 	IPSets?: {...}
 	PortSets?: {...}
@@ -108,6 +120,10 @@ import "strings"
 	TargetTypes: [...#TargetType]
 	Targets: [...string]
 }
+
+#RulesString: string & strings.MinRunes(0) & strings.MaxRunes(1000000)
+
+#Setting: string & =~"^.*$" & strings.MinRunes(1) & strings.MaxRunes(8192)
 
 #StatefulRule: {
 	Action: "PASS" | "DROP" | "ALERT" | "REJECT"
@@ -129,6 +145,10 @@ import "strings"
 	StatelessRules: [...#StatelessRule]
 }
 
+#SummaryRuleOption: "SID" | "MSG" | "METADATA"
+
+#TCPFlag: "FIN" | "SYN" | "RST" | "PSH" | "ACK" | "URG" | "ECE" | "CWR"
+
 #TCPFlagField: {
 	Flags: [...#TCPFlag]
 	Masks?: [...#TCPFlag]
@@ -138,3 +158,7 @@ import "strings"
 	Key: string & =~"^.*$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^.*$" & strings.MinRunes(0) & strings.MaxRunes(255)
 }
+
+#TargetType: "TLS_SNI" | "HTTP_HOST"
+
+#VariableDefinition: string & =~"^.*$" & strings.MinRunes(1)

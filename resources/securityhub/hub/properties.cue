@@ -9,3 +9,5 @@ package hub
 	EnableDefaultStandards?: bool
 	Tags?: #Tags
 }
+
+#Tags: {...}

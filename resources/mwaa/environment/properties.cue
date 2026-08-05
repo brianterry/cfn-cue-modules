@@ -35,6 +35,40 @@ package environment
 	WorkerReplacementStrategy?: #WorkerReplacementStrategy
 }
 
+#AirflowArn: string & =~"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b)(-[a-z]+)?:airflow:[a-z0-9\\-]+:\\d{12}:environment/\\w+" & strings.MinRunes(1) & strings.MaxRunes(1224)
+
+#AirflowVersion: string & =~"^[0-9a-z.]+$" & strings.MaxRunes(32)
+
+#CeleryExecutorQueue: string & strings.MaxRunes(1224)
+
+#CloudWatchLogGroupArn: string & =~"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b)(-[a-z]+)?:logs:[a-z0-9\\-]+:\\d{12}:log-group:\\w+" & strings.MaxRunes(1224)
+
+#ConfigKey: string & =~"^[a-z]+([a-z._]*[a-z]+)?$" & strings.MaxRunes(64)
+
+#ConfigValue: string & =~".*" & strings.MaxRunes(256)
+
+#CreatedAt: string
+
+#DatabaseVpcEndpointService: string & strings.MaxRunes(1224)
+
+#EndpointManagement: "CUSTOMER" | "SERVICE"
+
+#EnvironmentArn: string & =~"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b)(-[a-z]+)?:airflow:[a-z0-9\\-]+:\\d{12}:environment/\\w+" & strings.MinRunes(1) & strings.MaxRunes(1224)
+
+#EnvironmentClass: string & strings.MinRunes(1) & strings.MaxRunes(1024)
+
+#EnvironmentName: string & =~"^[a-zA-Z][0-9a-zA-Z\\-_]*$" & strings.MinRunes(1) & strings.MaxRunes(80)
+
+#EnvironmentStatus: "CREATING" | "CREATE_FAILED" | "AVAILABLE" | "UPDATING" | "DELETING" | "DELETED" | "UPDATE_FAILED" | "UNAVAILABLE" | "PENDING"
+
+#ErrorCode: string
+
+#ErrorMessage: string & =~"^.+$" & strings.MinRunes(1) & strings.MaxRunes(1024)
+
+#ExecutionRoleArn: string & =~"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b)(-[a-z]+)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$" & strings.MaxRunes(1224)
+
+#KmsKey: string & =~"^(((arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b)(-[a-z]+)?:kms:[a-z]{2}-[a-z]+-\\d:\\d+:)?key\\/)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|(arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):kms:[a-z]{2}-[a-z]+-\\d:\\d+:)?alias/.+)$" & strings.MaxRunes(1224)
+
 #LastUpdate: {
 	CreatedAt?: #UpdateCreatedAt
 	Error?: #UpdateError
@@ -58,6 +92,18 @@ package environment
 	WorkerLogs?: #ModuleLoggingConfigurationInput
 }
 
+#LoggingEnabled: bool
+
+#LoggingLevel: "CRITICAL" | "ERROR" | "WARNING" | "INFO" | "DEBUG"
+
+#MaxWebservers: int & >=1
+
+#MaxWorkers: int & >=1
+
+#MinWebservers: int & >=1
+
+#MinWorkers: int & >=1
+
 #ModuleLoggingConfiguration: {
 	CloudWatchLogGroupArn?: #CloudWatchLogGroupArn
 	Enabled?: #LoggingEnabled
@@ -76,7 +122,35 @@ package environment
 	SubnetIds?: [...#SubnetId]
 }
 
+#RelativePath: string & =~".*" & strings.MaxRunes(1024)
+
+#S3BucketArn: string & =~"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b)(-[a-z]+)?:s3:::[a-z0-9.\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(1224)
+
+#S3ObjectVersion: string & strings.MaxRunes(1024)
+
+#Schedulers: int & >=1
+
+#SecurityGroupId: string & =~"^sg-[a-zA-Z0-9\\-._]+$" & strings.MinRunes(1) & strings.MaxRunes(1024)
+
+#ServiceRoleArn: string & =~"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b)(-[a-z]+)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$" & strings.MaxRunes(1224)
+
+#SubnetId: string & =~"^subnet-[a-zA-Z0-9\\-._]+$" & strings.MaxRunes(1024)
+
+#UpdateCreatedAt: string
+
 #UpdateError: {
 	ErrorCode?: #ErrorCode
 	ErrorMessage?: #ErrorMessage
 }
+
+#UpdateStatus: "SUCCESS" | "PENDING" | "FAILED"
+
+#WebserverAccessMode: "PRIVATE_ONLY" | "PUBLIC_ONLY" | "PUBLIC_AND_PRIVATE"
+
+#WebserverUrl: string & =~"^https://.+$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#WebserverVpcEndpointService: string & strings.MaxRunes(1224)
+
+#WeeklyMaintenanceWindowStart: string & =~"(MON|TUE|WED|THU|FRI|SAT|SUN):([01]\\d|2[0-3]):(00|30)" & strings.MaxRunes(9)
+
+#WorkerReplacementStrategy: "FORCED" | "GRACEFUL"

@@ -90,6 +90,8 @@ import "strings"
 	Size?: #JobSize
 }
 
+#JobSize: int
+
 #Output: {
 	CompressionFormat?: "GZIP" | "LZ4" | "SNAPPY" | "BZIP2" | "DEFLATE" | "LZO" | "BROTLI" | "ZSTD" | "ZLIB"
 	Format?: "CSV" | "JSON" | "PARQUET" | "GLUEPARQUET" | "AVRO" | "ORC" | "XML" | "TABLEAUHYPER"
@@ -109,6 +111,8 @@ import "strings"
 	BucketOwner?: string & strings.MinRunes(12) & strings.MaxRunes(12)
 	Key?: string
 }
+
+#ParameterMap: {...}
 
 #ProfileConfiguration: {
 	ColumnStatisticsConfigurations?: [...#ColumnStatisticsConfiguration]
@@ -134,6 +138,10 @@ import "strings"
 	Location: #S3Location
 }
 
+#SampleMode: "FULL_DATASET" | "CUSTOM_ROWS"
+
+#Statistic: string & =~"^[A-Z\\_]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
+
 #StatisticOverride: {
 	Parameters: #ParameterMap
 	Statistic: #Statistic
@@ -154,3 +162,5 @@ import "strings"
 	RulesetArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 	ValidationMode?: #ValidationMode
 }
+
+#ValidationMode: "CHECK_ALL"

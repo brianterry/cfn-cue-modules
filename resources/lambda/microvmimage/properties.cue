@@ -46,6 +46,8 @@ import "strings"
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(4096)
 }
 
+#HookState: "DISABLED" | "ENABLED"
+
 #Hooks: {
 	MicrovmHooks?: #MicrovmHooks
 	MicrovmImageHooks?: #MicrovmImageHooks
@@ -74,6 +76,8 @@ import "strings"
 	Validate?: #HookState
 	ValidateTimeoutInSeconds?: int & >=1 & <=3600
 }
+
+#MicrovmImageState: "CREATING" | "CREATED" | "CREATE_FAILED" | "UPDATING" | "UPDATED" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED" | "DELETED"
 
 #Resources: {
 	MinimumMemoryInMiB: int

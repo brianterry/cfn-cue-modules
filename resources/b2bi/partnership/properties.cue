@@ -21,10 +21,18 @@ import "strings"
 	X12?: #X12InboundEdiOptions
 }
 
+#LineTerminator: "CRLF" | "LF" | "CR"
+
+#OutboundEdiOptions: {
+	X12: #X12Envelope
+}
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#WrapFormat: "SEGMENT" | "ONE_LINE" | "LINE_LENGTH"
 
 #WrapOptions: {
 	LineLength?: number & >=1
@@ -54,11 +62,15 @@ import "strings"
 	WrapOptions?: #WrapOptions
 }
 
+#X12FunctionalAcknowledgment: "DO_NOT_GENERATE" | "GENERATE_ALL_SEGMENTS" | "GENERATE_WITHOUT_TRANSACTION_SET_RESPONSE_LOOP"
+
 #X12FunctionalGroupHeaders: {
 	ApplicationReceiverCode?: string & =~"^[a-zA-Z0-9 ]*$" & strings.MinRunes(2) & strings.MaxRunes(15)
 	ApplicationSenderCode?: string & =~"^[a-zA-Z0-9 ]*$" & strings.MinRunes(2) & strings.MaxRunes(15)
 	ResponsibleAgencyCode?: string & =~"^[a-zA-Z0-9]*$" & strings.MinRunes(1) & strings.MaxRunes(2)
 }
+
+#X12GS05TimeFormat: "HHMM" | "HHMMSS" | "HHMMSSDD"
 
 #X12InboundEdiOptions: {
 	AcknowledgmentOptions?: #X12AcknowledgmentOptions
@@ -82,3 +94,5 @@ import "strings"
 	InterchangeControlHeaders?: #X12InterchangeControlHeaders
 	ValidateEdi?: bool
 }
+
+#X12TechnicalAcknowledgment: "DO_NOT_GENERATE" | "GENERATE_ALL_SEGMENTS"

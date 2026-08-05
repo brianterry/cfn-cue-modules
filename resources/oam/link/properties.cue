@@ -19,3 +19,5 @@ import "strings"
 #LinkFilter: {
 	Filter: string & strings.MinRunes(1) & strings.MaxRunes(2000)
 }
+
+#ResourceType: "AWS::CloudWatch::Metric" | "AWS::Logs::LogGroup" | "AWS::XRay::Trace" | "AWS::ApplicationInsights::Application" | "AWS::InternetMonitor::Monitor" | "AWS::ApplicationSignals::Service" | "AWS::ApplicationSignals::ServiceLevelObjective"

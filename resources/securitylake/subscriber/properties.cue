@@ -21,6 +21,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AccessTypes: [..."LAKEFORMATION" | "S3"]
+
 #AwsLogSource: {
 	// The name for a AWS source. This must be a Regionally unique value.
 	SourceName?: string

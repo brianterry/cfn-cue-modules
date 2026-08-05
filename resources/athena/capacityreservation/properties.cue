@@ -12,6 +12,8 @@ import "strings"
 	TargetDpus: int & >=1
 }
 
+#Arn: string
+
 #CapacityAssignment: {
 	WorkgroupNames: #WorkgroupNames
 }
@@ -20,7 +22,15 @@ import "strings"
 	CapacityAssignments: #CapacityAssignments
 }
 
+#CapacityAssignments: [...#CapacityAssignment]
+
+#CapacityReservationStatus: "PENDING" | "ACTIVE" | "CANCELLING" | "CANCELLED" | "FAILED" | "UPDATE_PENDING"
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#WorkgroupName: string & =~"[a-zA-Z0-9._-]{1,128}"
+
+#WorkgroupNames: [...#WorkgroupName]

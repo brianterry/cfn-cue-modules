@@ -74,6 +74,10 @@ import "strings"
 	DefaultValue?: string
 }
 
+#DataType: "STRING" | "INTEGER" | "DOUBLE" | "BOOLEAN" | "STRUCT"
+
+#DataTypeSpec: "AWS/ALARM_STATE"
+
 #EnforcedAssetModelInterfacePropertyMapping: {
 	// The external ID of the enforced asset model property
 	AssetModelPropertyExternalId?: string
@@ -97,6 +101,8 @@ import "strings"
 	Value: #VariableValue
 }
 
+#Interval: string
+
 #Metric: {
 	// The mathematical expression that defines the metric aggregation function. You can specify up to 10 functions per expression.
 	Expression: string
@@ -109,6 +115,8 @@ import "strings"
 #MetricWindow: {
 	Tumbling?: #TumblingWindow
 }
+
+#Offset: string
 
 #PropertyPathDefinition: {
 	// The name of the property
@@ -138,6 +146,8 @@ import "strings"
 	Interval: #Interval
 	Offset?: #Offset
 }
+
+#TypeName: "Measurement" | "Attribute" | "Transform" | "Metric"
 
 #VariableValue: {
 	// The External ID of the hierarchy that is trying to be referenced

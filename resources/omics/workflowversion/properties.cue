@@ -28,6 +28,8 @@ import "strings"
 	readmeUri?: string & =~"^s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/((.{1,1024}))$"
 }
 
+#Accelerators: "GPU"
+
 #ContainerRegistryMap: {
 	ImageMappings?: [...#ImageMapping]
 	RegistryMappings?: [...#RegistryMapping]
@@ -57,7 +59,19 @@ import "strings"
 	value?: string
 }
 
+#StorageType: "STATIC" | "DYNAMIC"
+
+#TagMap: {...}
+
+#WorkflowEngine: "WDL" | "NEXTFLOW" | "CWL"
+
 #WorkflowParameter: {
 	Description?: string & =~"^[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+$" & strings.MinRunes(0) & strings.MaxRunes(256)
 	Optional?: bool
 }
+
+#WorkflowParameterTemplate: {...}
+
+#WorkflowStatus: "CREATING" | "ACTIVE" | "UPDATING" | "DELETED" | "FAILED" | "INACTIVE"
+
+#WorkflowType: "PRIVATE" | "READY2RUN"

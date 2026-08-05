@@ -15,10 +15,22 @@ import "strings"
 	WorkflowName: #EntityName
 }
 
+#AttributeName: string & =~"^[a-zA-Z_0-9- \\t]*$" & strings.MinRunes(0) & strings.MaxRunes(255)
+
+#CreatedAt: string
+
+#CustomerProfilesDomainArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):profile:[a-z]{2}-[a-z]{1,10}-[0-9]:[0-9]{12}:(domains/[a-zA-Z_0-9-]{1,255})$"
+
 #CustomerProfilesIntegrationConfig: {
 	DomainArn: #CustomerProfilesDomainArn
 	ObjectTypeArn: #CustomerProfilesObjectTypeArn
 }
+
+#CustomerProfilesObjectTypeArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):profile:[a-z]{2}-[a-z]{1,10}-[0-9]:[0-9]{12}:(domains/[a-zA-Z_0-9-]{1,255}/object-types/[a-zA-Z_0-9-]{1,255})$"
+
+#Description: string & strings.MinRunes(0) & strings.MaxRunes(255)
+
+#EntityName: string & =~"^[a-zA-Z_0-9-]*$" & strings.MinRunes(0) & strings.MaxRunes(255)
 
 #IncrementalRunConfig: {
 	IncrementalRunType: "IMMEDIATE"
@@ -36,10 +48,14 @@ import "strings"
 	IntermediateS3Path: string
 }
 
+#KMSArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):kms:.*:[0-9]+:.*$"
+
 #MatchingConfig: {
 	// Enables transitive matching to process records across all rule levels and connect unmatched records to existing match groups
 	EnableTransitiveMatching?: bool
 }
+
+#MatchingWorkflowArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):entityresolution:.*:[0-9]+:(matchingworkflow/.*)$"
 
 #OutputAttribute: {
 	Hashed?: bool
@@ -72,6 +88,8 @@ import "strings"
 	RuleConditionProperties?: #RuleConditionProperties
 }
 
+#ResolutionType: "RULE_MATCHING" | "ML_MATCHING" | "PROVIDER"
+
 #Rule: {
 	MatchingKeys: [...#AttributeName]
 	RuleName: string & =~"^[a-zA-Z_0-9- \\t]*$" & strings.MinRunes(0) & strings.MaxRunes(255)
@@ -93,9 +111,13 @@ import "strings"
 	Rules: [...#RuleCondition]
 }
 
+#SchemaMappingArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):entityresolution:.*:[0-9]+:(schemamapping/.*)$"
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#UpdatedAt: string

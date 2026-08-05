@@ -13,3 +13,7 @@ import "strings"
 	Name?: string & strings.MinRunes(1) & strings.MaxRunes(255)
 	Tags?: #Tags
 }
+
+#Arn: string & =~"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+
+#Tags: {...}

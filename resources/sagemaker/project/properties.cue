@@ -30,6 +30,8 @@ import "strings"
 	Value: string & strings.MaxRunes(4096)
 }
 
+#CfnStackParameters: [...#CfnStackParameter]
+
 #CfnTemplateProviderDetail: {
 	Parameters?: #CfnStackParameters
 	// The Amazon Resource Name (ARN) of the IAM role used by the template provider.
@@ -39,6 +41,22 @@ import "strings"
 	// The URL of the CloudFormation template.
 	TemplateURL: string & =~"(?=.{1,1024}$)(https)://([^/]+)/(.+)" & strings.MinRunes(1) & strings.MaxRunes(1024)
 }
+
+#PathId: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MaxRunes(100)
+
+#ProductId: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MaxRunes(100)
+
+#ProjectArn: string & =~"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:project.*" & strings.MinRunes(1) & strings.MaxRunes(2048)
+
+#ProjectDescription: string & =~".*" & strings.MaxRunes(1024)
+
+#ProjectId: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*" & strings.MaxRunes(20)
+
+#ProjectName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MinRunes(1) & strings.MaxRunes(32)
+
+#ProvisionedProductStatusMessage: string
+
+#ProvisioningArtifactId: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MaxRunes(100)
 
 #ProvisioningParameter: {
 	// The parameter key.

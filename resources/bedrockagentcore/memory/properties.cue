@@ -14,6 +14,10 @@ import "strings"
 	Tags?: #TagsMap
 }
 
+#Arn: string & =~"^arn:(aws(?:-cn|-us-gov|-iso(?:-[bef])?)?):[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$"
+
+#ConsolidationConfiguration: #CustomConsolidationConfiguration
+
 #ContentConfiguration: {
 	// The level of content detail to deliver
 	Level?: "METADATA_ONLY" | "FULL_CONTENT"
@@ -28,6 +32,10 @@ import "strings"
 	SummaryOverride?: #SummaryOverride
 	UserPreferenceOverride?: #UserPreferenceOverride
 }
+
+#CustomConsolidationConfiguration: #SemanticConsolidationOverride | #SummaryConsolidationOverride | #UserPreferenceConsolidationOverride
+
+#CustomExtractionConfiguration: #SemanticExtractionOverride | #UserPreferenceExtractionOverride
 
 #CustomMemoryStrategy: {
 	Configuration?: #CustomConfigurationInput
@@ -47,6 +55,10 @@ import "strings"
 	// Last update timestamp of the memory strategy
 	UpdatedAt?: string
 }
+
+#Definition: string & strings.MinRunes(1) & strings.MaxRunes(1000)
+
+#Description: string
 
 #EpisodicMemoryStrategy: {
 	// Creation timestamp of the memory strategy
@@ -101,10 +113,14 @@ import "strings"
 	LlmExtractionConfig?: #LlmExtractionConfig
 }
 
+#ExtractionConfiguration: #CustomExtractionConfiguration
+
 #IndexedKey: {
 	Key: #MetadataKey
 	Type: #MetadataValueType
 }
+
+#IndexedKeysList: [...#IndexedKey]
 
 #InvocationConfigurationInput: {
 	PayloadDeliveryBucketName?: string & =~"^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$"
@@ -122,9 +138,19 @@ import "strings"
 	Validation?: #Validation
 }
 
+#LlmExtractionInstruction: string & strings.MinRunes(1) & strings.MaxRunes(1000)
+
+#MemoryArn: string & =~"^arn:(aws(?:-cn|-us-gov|-iso(?:-[bef])?)?):bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:memory/[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9]{10}$"
+
+#MemoryId: string & =~"^[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9]{10}$" & strings.MinRunes(12)
+
 #MemoryRecordSchema: {
 	MetadataSchema?: #MetadataSchemaList
 }
+
+#MemoryStatus: "CREATING" | "ACTIVE" | "FAILED" | "DELETING"
+
+#MemoryStrategies: [...#MemoryStrategy]
 
 #MemoryStrategy: {
 	CustomMemoryStrategy?: #CustomMemoryStrategy
@@ -138,16 +164,30 @@ import "strings"
 	MessageCount?: int & >=1 & <=50
 }
 
+#MetadataKey: string & =~"^[a-zA-Z0-9\\s._:/=+@-]*$" & strings.MinRunes(1) & strings.MaxRunes(128)
+
 #MetadataSchemaEntry: {
 	ExtractionConfig?: #ExtractionConfig
 	Key: #MetadataKey
 	Type?: #MetadataValueType
 }
 
+#MetadataSchemaList: [...#MetadataSchemaEntry]
+
+#MetadataValueType: "STRING" | "STRINGLIST" | "NUMBER"
+
+#Name: string & =~"^[a-zA-Z][a-zA-Z0-9_]{0,47}$"
+
+#Namespace: string & =~"^[a-zA-Z0-9\\-_/]*(\\{(actorId|sessionId|memoryStrategyId)\\}[a-zA-Z0-9\\-_/]*)*$"
+
+#NamespacesList: [...#Namespace]
+
 #NumberValidation: {
 	MaxValue?: number
 	MinValue?: number
 }
+
+#Prompt: string & strings.MinRunes(1) & strings.MaxRunes(30000)
 
 #SelfManagedConfiguration: {
 	HistoricalContextWindowSize?: int & >=0 & <=50
@@ -257,6 +297,8 @@ import "strings"
 	ModelId: string
 }
 
+#TagsMap: {...}
+
 #TimeBasedTriggerInput: {
 	IdleSessionTimeout?: int & >=10 & <=3000
 }
@@ -270,6 +312,8 @@ import "strings"
 	TimeBasedTrigger?: #TimeBasedTriggerInput
 	TokenBasedTrigger?: #TokenBasedTriggerInput
 }
+
+#TriggerConditionList: [...#TriggerConditionInput]
 
 #UserPreferenceConsolidationOverride: {
 	AppendToPrompt: #Prompt

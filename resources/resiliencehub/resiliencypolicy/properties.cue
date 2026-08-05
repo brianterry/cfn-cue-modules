@@ -28,3 +28,7 @@ import "strings"
 	Region?: #FailurePolicy
 	Software: #FailurePolicy
 }
+
+#TagMap: {...}
+
+#TagValue: string & strings.MaxRunes(256)

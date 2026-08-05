@@ -34,6 +34,8 @@ import "strings"
 	WorkerTypeSpecifications?: #WorkerTypeSpecificationInputMap
 }
 
+#Architecture: "ARM64" | "X86_64"
+
 #AutoStartConfiguration: {
 	// If set to true, the Application will automatically start. Defaults to true.
 	Enabled?: bool
@@ -45,6 +47,8 @@ import "strings"
 	// The amount of time [in minutes] to wait before auto stopping the Application when idle. Defaults to 15 minutes.
 	IdleTimeoutMinutes?: int
 }
+
+#Classification: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(1024)
 
 #CloudWatchLoggingConfiguration: {
 	// If set to false, CloudWatch logging will be turned off. Defaults to false.
@@ -59,12 +63,22 @@ import "strings"
 	LogTypeMap?: [...#LogTypeMapKeyValuePair]
 }
 
+#ConfigurationList: [...#ConfigurationObject]
+
 #ConfigurationObject: {
 	// String with a maximum length of 1024.
 	Classification: #Classification
 	Configurations?: [...#ConfigurationObject]
 	Properties?: {...}
 }
+
+#CpuSize: string & =~"^[1-9][0-9]*(\\s)?(vCPU|vcpu|VCPU)?$" & strings.MinRunes(1) & strings.MaxRunes(15)
+
+#DiskSize: string & =~"^[1-9][0-9]*(\\s)?(GB|gb|gB|Gb)$" & strings.MinRunes(1) & strings.MaxRunes(15)
+
+#DiskType: string & =~"^(SHUFFLE_OPTIMIZED|[Ss]huffle_[Oo]ptimized|STANDARD|[Ss]tandard)$"
+
+#EncryptionKeyArn: string & =~"^arn:(aws[a-zA-Z0-9-]*):kms:[a-zA-Z0-9\\-]*:(\\d{12})?:key\\/[a-zA-Z0-9-]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 
 #IdentityCenterConfiguration: {
 	// The IAM IdentityCenter instance arn
@@ -88,6 +102,8 @@ import "strings"
 	Value: #InitialCapacityConfig
 }
 
+#InitialCapacityConfigMap: [...#InitialCapacityConfigKeyValuePair]
+
 #InteractiveConfiguration: {
 	// Enables an Apache Livy endpoint that you can connect to and run interactive jobs
 	LivyEndpointEnabled?: bool
@@ -97,10 +113,18 @@ import "strings"
 	StudioEnabled?: bool
 }
 
+#LogGroupName: string & =~"^[\\.\\-_/#A-Za-z0-9]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
+
+#LogStreamNamePrefix: string & =~"^[^:*]*$" & strings.MinRunes(1) & strings.MaxRunes(512)
+
+#LogTypeList: [...#LogTypeString]
+
 #LogTypeMapKeyValuePair: {
 	Key: #WorkerTypeString
 	Value: #LogTypeList
 }
+
+#LogTypeString: string & =~"^[a-zA-Z]+[-_]*[a-zA-Z]+$" & strings.MinRunes(1) & strings.MaxRunes(50)
 
 #ManagedPersistenceMonitoringConfiguration: {
 	// If set to false, managed logging will be turned off. Defaults to true.
@@ -117,6 +141,8 @@ import "strings"
 	// Per worker memory resource. GB is the only supported unit and specifying GB is optional.
 	Memory: #MemorySize
 }
+
+#MemorySize: string & =~"^[1-9][0-9]*(\\s)?(GB|gb|gB|Gb)?$" & strings.MinRunes(1) & strings.MaxRunes(15)
 
 #MonitoringConfiguration: {
 	// CloudWatch logging configurations for a JobRun.
@@ -141,6 +167,8 @@ import "strings"
 	RemoteWriteUrl?: #RemoteWriteUrl
 }
 
+#RemoteWriteUrl: string & =~"^https://aps-workspaces.([a-z]{2}-[a-z-]{1,20}-[1-9]).amazonaws(.[0-9A-Za-z]{2,4})+/workspaces/[-_.0-9A-Za-z]{1,100}/api/v1/remote_write$" & strings.MinRunes(1) & strings.MaxRunes(10280)
+
 #S3MonitoringConfiguration: {
 	// KMS key ARN to encrypt the logs stored in given s3
 	EncryptionKeyArn?: #EncryptionKeyArn
@@ -154,12 +182,22 @@ import "strings"
 	QueueTimeoutMinutes?: int
 }
 
+#SecurityGroupId: string & =~"^[-0-9a-zA-Z]+" & strings.MinRunes(1) & strings.MaxRunes(32)
+
+#SensitivePropertiesKeyValuePair: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(1024)
+
+#SensitivePropertiesMap: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(1024)
+
+#SubnetId: string & =~"^[-0-9a-zA-Z]+" & strings.MinRunes(1) & strings.MaxRunes(32)
+
 #Tag: {
 	// The value for the tag. You can specify a value that is 1 to 128 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & =~"^[A-Za-z0-9 /_.:=+@-]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & =~"^[A-Za-z0-9 /_.:=+@-]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#UriString: string & strings.MinRunes(1) & strings.MaxRunes(10280)
 
 #WorkerConfiguration: {
 	// Per worker CPU resource. vCPU is the only supported unit and specifying vCPU is optional.
@@ -175,3 +213,7 @@ import "strings"
 #WorkerTypeSpecificationInput: {
 	ImageConfiguration?: #ImageConfigurationInput
 }
+
+#WorkerTypeSpecificationInputMap: {...}
+
+#WorkerTypeString: string & =~"^[a-zA-Z]+[-_]*[a-zA-Z]+$" & strings.MinRunes(1) & strings.MaxRunes(50)

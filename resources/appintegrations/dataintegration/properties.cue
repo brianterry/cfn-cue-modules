@@ -28,6 +28,8 @@ import "strings"
 	Folders: [...string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(200)]
 }
 
+#ObjectConfiguration: {...}
+
 #ScheduleConfig: {
 	// The start date for objects to import in the first flow run. Epoch or ISO timestamp format is supported.
 	FirstExecutionFrom?: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(255)

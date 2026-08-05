@@ -11,6 +11,10 @@ import "strings"
 	Targets: #CisTargets
 }
 
+#CisSecurityLevel: "LEVEL_1" | "LEVEL_2"
+
+#CisTagMap: {...}
+
 #CisTargets: {
 	AccountIds: [...string & =~"^\\d{12}|ALL_ACCOUNTS|SELF$"]
 	TargetResourceTags: #TargetResourceTags
@@ -20,10 +24,16 @@ import "strings"
 	StartTime: #Time
 }
 
+#Day: "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT" | "SUN"
+
+#DaysList: [...#Day]
+
 #MonthlySchedule: {
 	Day: #Day
 	StartTime: #Time
 }
+
+#OneTimeSchedule: {...}
 
 #Schedule: {
 	Daily?: #DailySchedule
@@ -31,6 +41,10 @@ import "strings"
 	OneTime?: #OneTimeSchedule
 	Weekly?: #WeeklySchedule
 }
+
+#TagValueList: [...string]
+
+#TargetResourceTags: string
 
 #Time: {
 	TimeOfDay: string & =~"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"

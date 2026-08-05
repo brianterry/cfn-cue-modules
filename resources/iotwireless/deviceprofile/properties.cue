@@ -11,6 +11,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#FactoryPresetFreq: int & >=1000000 & <=16700000
+
 #LoRaWANDeviceProfile: {
 	ClassBTimeout?: int & >=0 & <=1000
 	ClassCTimeout?: int & >=0 & <=1000

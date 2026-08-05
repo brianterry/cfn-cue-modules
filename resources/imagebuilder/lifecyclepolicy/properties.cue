@@ -90,3 +90,5 @@ package lifecyclepolicy
 	// The Image Builder resources to select by tag.
 	TagMap?: {...}
 }
+
+#TimeUnit: "DAYS" | "WEEKS" | "MONTHS" | "YEARS"

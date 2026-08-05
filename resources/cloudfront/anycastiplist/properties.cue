@@ -36,6 +36,8 @@ import "strings"
 	Status: string
 }
 
+#IpAddressType: "ipv4" | "dualstack"
+
 #IpamCidrConfig: {
 	// The CIDR that specifies the IP address range for this IPAM configuration.
 	Cidr: string
@@ -53,6 +55,10 @@ import "strings"
 	// The current status of the IPAM CIDR configuration.
 	Status?: string
 }
+
+#IpamCidrConfigResults: [...#IpamCidrConfigResult]
+
+#IpamCidrConfigs: [...#IpamCidrConfig]
 
 #Tag: {
 	// A string that contains ``Tag`` key.

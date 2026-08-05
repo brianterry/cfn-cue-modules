@@ -9,6 +9,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#PricingRuleArn: string & =~"arn:aws(-cn)?:billingconductor::[0-9]{12}:pricingrule/[a-zA-Z0-9]{10}"
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)

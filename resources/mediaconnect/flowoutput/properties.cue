@@ -45,6 +45,8 @@ package flowoutput
 	VpcInterfaceAttachment?: #VpcInterfaceAttachment
 }
 
+#AutomaticEncryptionKeyConfiguration: {...}
+
 #DestinationConfiguration: {
 	// The IP address where contents of the media stream will be sent.
 	DestinationIp: string
@@ -76,6 +78,14 @@ package flowoutput
 	EncryptionKeyConfiguration: #FlowTransitEncryptionKeyConfiguration
 	EncryptionKeyType?: #FlowTransitEncryptionKeyType
 }
+
+#FlowTransitEncryptionKeyConfiguration: {
+	SecretsManager: #SecretsManagerEncryptionKeyConfiguration
+} | {
+	Automatic: #AutomaticEncryptionKeyConfiguration
+}
+
+#FlowTransitEncryptionKeyType: "SECRETS_MANAGER" | "AUTOMATIC"
 
 #Interface: {
 	// The name of the VPC interface that you want to use for the media stream associated with the output.

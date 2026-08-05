@@ -27,3 +27,7 @@ import "strings"
 	// Agent Version.
 	AgentVersion: string & =~"^(DRAFT|[0-9]{0,4}[1-9][0-9]{0,4})$" & strings.MinRunes(1) & strings.MaxRunes(5)
 }
+
+#AgentAliasStatus: "CREATING" | "PREPARED" | "FAILED" | "UPDATING" | "DELETING"
+
+#TagsMap: {...}

@@ -173,6 +173,8 @@ import "strings"
 	SystemLogLevel?: "DEBUG" | "INFO" | "WARN"
 }
 
+#RecursiveLoop: "Allow" | "Terminate"
+
 #RuntimeManagementConfig: {
 	// The ARN of the runtime version you want the function to use.
 	// This is only required if you're using the *Manual* runtime update mode.

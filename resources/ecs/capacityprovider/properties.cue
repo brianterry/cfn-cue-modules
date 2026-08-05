@@ -85,6 +85,8 @@ import "strings"
 	UseLocalStorage?: bool
 }
 
+#ManagedInstancesMonitoringOptions: "BASIC" | "DETAILED"
+
 #ManagedInstancesNetworkConfiguration: {
 	SecurityGroups: [...string]
 	Subnets: [...string]

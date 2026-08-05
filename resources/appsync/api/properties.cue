@@ -9,9 +9,13 @@ import "strings"
 	Tags?: #Tags
 }
 
+#ApiName: string & =~"[A-Za-z0-9_\\-\\ ]+" & strings.MinRunes(1) & strings.MaxRunes(50)
+
 #AuthMode: {
 	AuthType?: #AuthenticationType
 }
+
+#AuthModes: [...#AuthMode]
 
 #AuthProvider: {
 	AuthType: #AuthenticationType
@@ -19,6 +23,10 @@ import "strings"
 	LambdaAuthorizerConfig?: #LambdaAuthorizerConfig
 	OpenIDConnectConfig?: #OpenIDConnectConfig
 }
+
+#AuthProviders: [...#AuthProvider]
+
+#AuthenticationType: "AMAZON_COGNITO_USER_POOLS" | "AWS_IAM" | "API_KEY" | "OPENID_CONNECT" | "AWS_LAMBDA"
 
 #CognitoConfig: {
 	AppIdClientRegex?: string
@@ -44,6 +52,8 @@ import "strings"
 	LogLevel: #EventLogLevel
 }
 
+#EventLogLevel: "NONE" | "ERROR" | "ALL" | "INFO" | "DEBUG"
+
 #LambdaAuthorizerConfig: {
 	AuthorizerResultTtlInSeconds?: int & >=0 & <=3600
 	AuthorizerUri: string
@@ -57,9 +67,13 @@ import "strings"
 	Issuer: string
 }
 
+#OwnerContact: string & =~"[A-Za-z0-9_\\-\\ \\.]+" & strings.MinRunes(1) & strings.MaxRunes(250)
+
 #Tag: {
 	// A string used to identify this tag. You can specify a maximum of 128 characters for a tag key.
 	Key: string & =~"^(?!aws:)[ a-zA-Z+-=._:/]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	// A string containing the value for this tag. You can specify a maximum of 256 characters for a tag value.
 	Value: string & =~"^[\\s\\w+-=\\.:/@]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]

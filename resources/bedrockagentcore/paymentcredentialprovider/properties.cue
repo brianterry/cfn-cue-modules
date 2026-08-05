@@ -37,6 +37,8 @@ import "strings"
 	WalletSecretSource?: #SecretSourceType
 }
 
+#PaymentCredentialProviderVendorType: "CoinbaseCDP" | "StripePrivy"
+
 #PaymentProviderConfigurationInput: {
 	CoinbaseCdpConfiguration?: #CoinbaseCdpConfigurationInput
 	StripePrivyConfiguration?: #StripePrivyConfigurationInput
@@ -58,6 +60,8 @@ import "strings"
 	// The ID or ARN of the secret in AWS Secrets Manager
 	SecretId: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#SecretSourceType: "MANAGED" | "EXTERNAL"
 
 #StripePrivyConfigurationInput: {
 	// The app ID provided by Privy

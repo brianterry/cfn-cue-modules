@@ -23,6 +23,10 @@ import "strings"
 	VariableName: string
 }
 
+#CustomActionAttachmentCriteriaOperator: "HAS_VALUE" | "EQUALS"
+
+#CustomActionAttachmentVariables: {...}
+
 #CustomActionDefinition: {
 	CommandText: string & strings.MinRunes(1) & strings.MaxRunes(5000)
 }

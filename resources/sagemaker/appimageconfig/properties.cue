@@ -29,6 +29,10 @@ import "strings"
 	ContainerEnvironmentVariables?: [...#CustomImageContainerEnvironmentVariable]
 }
 
+#CustomImageContainerArguments: string & =~"^(?!\\s*$).+" & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#CustomImageContainerEntrypoint: string & =~"^(?!\\s*$).+" & strings.MinRunes(1) & strings.MaxRunes(256)
+
 #CustomImageContainerEnvironmentVariable: {
 	Key: string & =~"^(?!\\s*$).+" & strings.MinRunes(1) & strings.MaxRunes(256)
 	Value: string & =~"^(?!\\s*$).+" & strings.MinRunes(1) & strings.MaxRunes(256)

@@ -10,6 +10,8 @@ import "strings"
 	Tags?: #TagMap
 }
 
+#EncryptionType: "KMS"
+
 #ReferenceItem: {
 	ReferenceArn: string & =~"^arn:.+$" & strings.MinRunes(1) & strings.MaxRunes(127)
 }
@@ -18,3 +20,7 @@ import "strings"
 	KeyArn?: string & =~"arn:([^:\n]*):([^:\n]*):([^:\n]*):([0-9]{12}):([^:\n]*)" & strings.MinRunes(20) & strings.MaxRunes(2048)
 	Type: #EncryptionType
 }
+
+#StoreStatus: "CREATING" | "UPDATING" | "DELETING" | "ACTIVE" | "FAILED"
+
+#TagMap: {...}

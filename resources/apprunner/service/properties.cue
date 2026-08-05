@@ -123,6 +123,8 @@ import "strings"
 	IpAddressType?: "IPV4" | "DUAL_STACK"
 }
 
+#RoleArn: string & =~"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):iam::[0-9]{12}:role/[\\w+=,.@-]{1,64}" & strings.MinRunes(29) & strings.MaxRunes(1024)
+
 #ServiceObservabilityConfiguration: {
 	// The Amazon Resource Name (ARN) of the App Runner ObservabilityConfiguration.
 	ObservabilityConfigurationArn?: string & =~"arn:aws(-[\\w]+)*:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[0-9]{12}:(\\w|/|-){1,1011}" & strings.MinRunes(1) & strings.MaxRunes(1011)

@@ -9,6 +9,8 @@ import "strings"
 	VectorBucketName?: #VectorBucketName
 }
 
+#CreationTime: string
+
 #EncryptionConfiguration: {
 	// AWS Key Management Service (KMS) customer managed key ID to use for the encryption configuration. This parameter is allowed if and only if sseType is set to aws:kms
 	KmsKeyArn?: string & =~"^(arn:aws[-a-z0-9]*:kms:[-a-z0-9]*:[0-9]{12}:key/.+)$" & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -22,3 +24,7 @@ import "strings"
 	// Tag value must be between 0 to 256 characters in length. Tag value can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.
 	Value: string & strings.MaxRunes(256)
 }
+
+#VectorBucketArn: string
+
+#VectorBucketName: string & strings.MinRunes(3) & strings.MaxRunes(63)

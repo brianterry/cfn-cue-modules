@@ -60,6 +60,10 @@ import "strings"
 	Type: "KEY_REUSE" | "KEY_COVERAGE" | "REACHABILITY" | "VCF_VERSION" | "HOST_COUNT"
 }
 
+#CheckResult: "PASSED" | "FAILED" | "UNKNOWN"
+
+#EnvironmentState: "CREATING" | "CREATED" | "DELETING" | "DELETED" | "CREATE_FAILED"
+
 #HostInfoForCreate: {
 	DedicatedHostId?: string & =~"^h-[a-f0-9]{8}([a-f0-9]{9})?$" & strings.MinRunes(1) & strings.MaxRunes(25)
 	HostName: #HostName
@@ -68,13 +72,21 @@ import "strings"
 	PlacementGroupId?: string & =~"^pg-[a-f0-9]{8}([a-f0-9]{9})?$" & strings.MinRunes(1) & strings.MaxRunes(25)
 }
 
+#HostName: string & =~"^([a-zA-Z0-9\\-]*)$"
+
 #InitialVlanInfo: {
 	Cidr: string & =~"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/(3[0-2]|[1-2][0-9]|[0-9])$"
 }
 
+#NetworkAclId: string & =~"^acl-[a-zA-Z0-9_-]+$"
+
+#RouteServerPeering: string & strings.MinRunes(3) & strings.MaxRunes(21)
+
 #Secret: {
 	SecretArn?: string
 }
+
+#SecurityGroupId: string & =~"^sg-[0-9a-zA-Z]*$" & strings.MinRunes(3) & strings.MaxRunes(25)
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
@@ -82,3 +94,5 @@ import "strings"
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Timestamp: string

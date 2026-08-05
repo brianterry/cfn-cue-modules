@@ -10,3 +10,5 @@ import "strings"
 	Name: string & =~"\\w+" & strings.MinRunes(1) & strings.MaxRunes(256)
 	Tags?: #Tags
 }
+
+#Tags: {...}

@@ -53,6 +53,10 @@ import "strings"
 	ViewType?: #CdcViewType
 }
 
+#CdcStatus: "ENABLED" | "DISABLED"
+
+#CdcViewType: "NEW_IMAGE" | "OLD_IMAGE" | "KEYS_ONLY" | "NEW_AND_OLD_IMAGES"
+
 #ClusteringKeyColumn: {
 	Column: #Column
 	OrderBy?: "ASC" | "DESC"
@@ -67,6 +71,12 @@ import "strings"
 	EncryptionType: #EncryptionType
 	KmsKeyIdentifier?: #KmsKeyIdentifier
 }
+
+#EncryptionType: "AWS_OWNED_KMS_KEY" | "CUSTOMER_MANAGED_KMS_KEY"
+
+#KmsKeyIdentifier: string
+
+#Mode: "PROVISIONED" | "ON_DEMAND"
 
 #ProvisionedThroughput: {
 	ReadCapacityUnits: int & >=1

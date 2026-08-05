@@ -13,6 +13,12 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#ConnectionConfiguration: {
+	SelfManaged: #SelfManagedMode
+} | {
+	ServiceManaged: #ServiceManagedMode
+}
+
 #SelfManagedMode: {
 	// The ARN of the Resource Configuration.
 	ResourceConfigurationId: string & =~"^arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}$" & strings.MinRunes(20) & strings.MaxRunes(2048)

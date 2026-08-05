@@ -20,6 +20,8 @@ package schedulingpolicy
 	IdleResourceAssignmentStrategy?: "FIFO"
 }
 
+#ResourceArn: string
+
 #ShareAttributes: {
 	ShareIdentifier?: string
 	WeightFactor?: number & >=0 & <=1000

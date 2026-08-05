@@ -63,3 +63,5 @@ import "strings"
 	// Indicates whether Security Hub is enabled in the policy.
 	ServiceEnabled?: bool
 }
+
+#Tags: {...}

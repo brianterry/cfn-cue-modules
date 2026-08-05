@@ -46,3 +46,9 @@ import "strings"
 	// Specifies a title to display on the web app.
 	Title?: string & strings.MinRunes(0) & strings.MaxRunes(100)
 }
+
+#WebAppEndpointPolicy: "STANDARD" | "FIPS"
+
+#WebAppUnits: {
+	Provisioned: int & >=1
+}

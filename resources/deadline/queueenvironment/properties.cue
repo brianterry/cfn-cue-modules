@@ -9,3 +9,5 @@ import "strings"
 	Template: string & strings.MinRunes(1) & strings.MaxRunes(15000)
 	TemplateType: #EnvironmentTemplateType
 }
+
+#EnvironmentTemplateType: "JSON" | "YAML"

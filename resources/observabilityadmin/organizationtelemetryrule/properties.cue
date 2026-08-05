@@ -10,6 +10,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Action: "ALLOW" | "BLOCK" | "COUNT" | "CAPTCHA" | "CHALLENGE" | "EXCLUDED_AS_COUNT"
+
 #ActionCondition: {
 	Action?: #Action
 }
@@ -38,6 +40,8 @@ import "strings"
 	StartsWith?: [...string]
 }
 
+#AllowFieldUpdates: bool
+
 #CloudtrailParameters: {
 	// Create fine-grained selectors for AWS CloudTrail management and data.
 	AdvancedEventSelectors: [...#AdvancedEventSelector]
@@ -47,6 +51,12 @@ import "strings"
 	ActionCondition?: #ActionCondition
 	LabelNameCondition?: #LabelNameCondition
 }
+
+#Conditions: [...#Condition]
+
+#DestinationPattern: string
+
+#DestinationType: "cloud-watch-logs"
 
 #ELBLoadBalancerLoggingParameters: {
 	// A delimiter to delineate log fields
@@ -70,6 +80,12 @@ import "strings"
 	Requirement?: #FilterRequirement
 }
 
+#FilterBehavior: "KEEP" | "DROP"
+
+#FilterRequirement: "MEETS_ALL" | "MEETS_ANY"
+
+#Filters: [...#Filter]
+
 #LabelNameCondition: {
 	// The label name of the condition.
 	LabelName?: string & =~"^[0-9A-Za-z_\\-:]+$" & strings.MinRunes(1) & strings.MaxRunes(1024)
@@ -80,6 +96,8 @@ import "strings"
 	Filters?: #Filters
 }
 
+#RedactedFields: [...#FieldToMatch]
+
 #RegionStatus: {
 	// The AWS region code
 	Region?: string
@@ -88,6 +106,14 @@ import "strings"
 	// The replication status of the rule in this region
 	Status?: string
 }
+
+#ResourceType: "AWS::EC2::VPC" | "AWS::WAFv2::WebACL" | "AWS::CloudTrail" | "AWS::EKS::Cluster" | "AWS::ElasticLoadBalancingV2::LoadBalancer" | "AWS::EC2::Instance" | "AWS::SecurityHub::Hub"
+
+#RetentionInDays: int
+
+#Scope: string
+
+#SelectionCriteria: string
 
 #SingleHeader: {
 	// The name of the header
@@ -129,6 +155,12 @@ import "strings"
 	TelemetryType: #TelemetryType
 }
 
+#TelemetrySourceType: "VPC_FLOW_LOGS" | "ROUTE53_RESOLVER_QUERY_LOGS" | "EKS_AUDIT_LOGS" | "EKS_AUTHENTICATOR_LOGS" | "EKS_CONTROLLER_MANAGER_LOGS" | "EKS_SCHEDULER_LOGS" | "EKS_API_LOGS"
+
+#TelemetrySourceTypes: [...#TelemetrySourceType]
+
+#TelemetryType: "Logs" | "Metrics"
+
 #VPCFlowLogParameters: {
 	// The fields to include in the flow log record. If you omit this parameter, the flow log is created using the default format.
 	LogFormat?: string
@@ -137,6 +169,8 @@ import "strings"
 	// The type of traffic captured for the flow log. Default is ALL
 	TrafficType?: string
 }
+
+#WAFLogType: "WAF_LOGS"
 
 #WAFLoggingParameters: {
 	LogType?: #WAFLogType

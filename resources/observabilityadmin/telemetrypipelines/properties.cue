@@ -32,6 +32,10 @@ import "strings"
 	Body: string & strings.MinRunes(1) & strings.MaxRunes(24000)
 }
 
+#TelemetryPipelineStatus: "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED"
+
 #TelemetryPipelineStatusReason: {
 	Description?: string
 }
+
+#Unit: {...}

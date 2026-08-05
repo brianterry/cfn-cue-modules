@@ -57,6 +57,8 @@ import "strings"
 	CertExpirationThresholdInDays?: #ConfigValue
 }
 
+#ConfigValue: string & strings.MinRunes(1) & strings.MaxRunes(64)
+
 #DeviceCertAgeAuditCheckConfiguration: {
 	Configuration?: #CertAgeCheckCustomConfiguration
 	// True if the check is enabled.

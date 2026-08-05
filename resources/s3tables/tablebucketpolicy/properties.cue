@@ -4,3 +4,7 @@ package tablebucketpolicy
 	ResourcePolicy: #ResourcePolicy
 	TableBucketARN: #TableBucketARN
 }
+
+#ResourcePolicy: {...}
+
+#TableBucketARN: string

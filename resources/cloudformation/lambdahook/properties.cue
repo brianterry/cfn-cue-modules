@@ -41,11 +41,15 @@ import "strings"
 	TargetOperations: [...#TargetOperation]
 }
 
+#Action: "CREATE" | "UPDATE" | "DELETE"
+
 #HookTarget: {
 	Action: #Action
 	InvocationPoint: #InvocationPoint
 	TargetName: #TargetName
 }
+
+#InvocationPoint: "PRE_PROVISION"
 
 #LoggingConfig: {
 	// The Amazon CloudWatch Logs group to which CloudFormation sends error logging information when invoking the extension's handlers.
@@ -53,3 +57,13 @@ import "strings"
 	// The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch Logs.
 	LogRoleArn: string & =~"arn:.+:iam::[0-9]{12}:role/.+" & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#Role: string & =~"arn:.+:iam::[0-9]{12}:role/.+" & strings.MaxRunes(256)
+
+#StackName: string & =~"^[a-zA-Z*?][-a-zA-Z0-9*?]*$" & strings.MaxRunes(128)
+
+#StackRole: string & =~"arn:.+:iam::[0-9]{12}:role/.+" | string & =~"^(arn:.+:iam::((?!\\*|\\?)[0-9]{12}|(?=.*\\*)[0-9*?]{1,12}|[0-9?]{12}):role/.+|\\*)$"
+
+#TargetName: string & =~"^(?!.*\\*\\?).*$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#TargetOperation: "RESOURCE" | "STACK" | "CHANGE_SET" | "CLOUD_CONTROL"

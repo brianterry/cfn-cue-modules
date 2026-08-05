@@ -10,3 +10,13 @@ package volumeattachment
 	// The ID of the Amazon EBS volume. The volume and instance must be within the same Availability Zone. This value can be a reference to an [AWS::EC2::Volume](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html) resource, or it can be the volume ID of an existing Amazon EBS volume.
 	VolumeId: #VolumeId
 }
+
+#Device: string
+
+#EbsCardIndex: int
+
+#Id: string
+
+#InstanceId: string
+
+#VolumeId: string

@@ -19,6 +19,10 @@ import "strings"
 	StripePrivy?: #PaymentCredentialProviderConfiguration
 }
 
+#PaymentConnectorStatus: "CREATING" | "UPDATING" | "DELETING" | "READY" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED"
+
+#PaymentConnectorType: "CoinbaseCDP" | "StripePrivy"
+
 #PaymentCredentialProviderConfiguration: {
 	// The ARN of the payment credential provider
 	CredentialProviderArn: string

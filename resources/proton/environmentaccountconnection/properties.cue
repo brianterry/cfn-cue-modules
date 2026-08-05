@@ -21,6 +21,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Status: "PENDING" | "CONNECTED" | "REJECTED"
+
 #Tag: {
 	// <p>The key of the resource tag.</p>
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

@@ -14,6 +14,12 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#BooleanCondition: {
+	EqualTo: #BooleanOperands
+} | {
+	NotEqualTo: #BooleanOperands
+}
+
 #BooleanOperands: {
 	OperandOne: #OperandOne
 	OperandTwo: #OperandTwo
@@ -21,11 +27,33 @@ import "strings"
 	Result: bool
 }
 
+#CaseRuleDetails: {
+	Required: #RequiredCaseRule
+} | {
+	Hidden: #HiddenCaseRule
+}
+
+#EmptyOperandValue: {...}
+
 #HiddenCaseRule: {
 	// List of conditions for the hidden rule; the first condition to evaluate to true dictates the value of the rule
 	Conditions: [...#BooleanCondition]
 	// The value of the rule (i.e. whether the field is hidden) should none of the conditions evaluate to true
 	DefaultValue: bool
+}
+
+#OperandOne: {
+	FieldId: string & strings.MinRunes(1) & strings.MaxRunes(500)
+}
+
+#OperandTwo: {
+	StringValue: string & strings.MinRunes(1) & strings.MaxRunes(1500)
+} | {
+	BooleanValue: bool
+} | {
+	DoubleValue: number
+} | {
+	EmptyValue: #EmptyOperandValue
 }
 
 #RequiredCaseRule: {

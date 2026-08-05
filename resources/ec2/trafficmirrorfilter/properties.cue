@@ -13,3 +13,5 @@ package trafficmirrorfilter
 	Key: string
 	Value: string
 }
+
+#TrafficMirrorNetworkService: "amazon-dns"

@@ -43,6 +43,10 @@ import "strings"
 	DiscoveryUrl: string & =~"^.+/\\.well-known/openid-configuration$"
 }
 
+#PaymentManagerStatus: "CREATING" | "UPDATING" | "DELETING" | "READY" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED"
+
+#PaymentsAuthorizerType: "CUSTOM_JWT" | "AWS_IAM"
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

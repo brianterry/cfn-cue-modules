@@ -28,6 +28,16 @@ import "strings"
 	ReferencedTables: #ReferencedTables
 }
 
+#AnalysisSource: {
+	Text: string & strings.MinRunes(0) & strings.MaxRunes(90000)
+} | {
+	Artifacts: #AnalysisTemplateArtifacts
+}
+
+#AnalysisSourceMetadata: {
+	Artifacts: #AnalysisTemplateArtifactMetadata
+}
+
 #AnalysisTemplateArtifact: {
 	Location: #S3Location
 }
@@ -61,6 +71,8 @@ import "strings"
 	MaxMembershipInferenceAttackScore: number & >=0.5 & <=1
 }
 
+#ReferencedTables: [...#TableName]
+
 #S3Location: {
 	Bucket: string & strings.MinRunes(3) & strings.MaxRunes(63)
 	Key: string
@@ -71,6 +83,12 @@ import "strings"
 	ColumnType: "CATEGORICAL" | "NUMERICAL"
 	IsPredictiveValue: bool
 }
+
+#SyntheticDataParameters: {
+	MlSyntheticDataParameters: #MLSyntheticDataParameters
+}
+
+#TableName: string & =~"^[a-zA-Z0-9_](([a-zA-Z0-9_ ]+-)*([a-zA-Z0-9_ ]+))?$" & strings.MaxRunes(128)
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

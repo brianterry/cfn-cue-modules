@@ -24,3 +24,5 @@ import "strings"
 	// The value for the tag.
 	Value: string
 }
+
+#Tags: [...#Tag]

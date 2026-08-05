@@ -25,6 +25,10 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#DayOfWeek: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY"
+
+#Hour: int & >=0 & <=23
+
 #MaintenanceWindow: {
 	// The desired time zone maintenance window.
 	ApplyTimeOf?: "UTC" | "DEVICE"
@@ -41,6 +45,8 @@ import "strings"
 	// The type of maintenance window.
 	Type: "SYSTEM" | "CUSTOM"
 }
+
+#Minute: int & >=0 & <=59
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

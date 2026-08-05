@@ -14,6 +14,12 @@ import "strings"
 	TargetFunctionArn: string & =~"^(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:((?!\\d+)[0-9a-zA-Z-_]+))?$"
 }
 
+#AllowHeaders: [...string & strings.MinRunes(1) & strings.MaxRunes(1024)]
+
+#AllowMethods: [..."GET" | "PUT" | "HEAD" | "POST" | "PATCH" | "DELETE" | "*"]
+
+#AllowOrigins: [...string & strings.MinRunes(1) & strings.MaxRunes(253)]
+
 #Cors: {
 	// Specifies whether credentials are included in the CORS request.
 	AllowCredentials?: bool
@@ -27,3 +33,5 @@ import "strings"
 	ExposeHeaders?: #ExposeHeaders
 	MaxAge?: int & >=0 & <=86400
 }
+
+#ExposeHeaders: [...string & strings.MinRunes(1) & strings.MaxRunes(1024)]

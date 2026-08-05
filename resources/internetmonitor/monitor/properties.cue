@@ -34,6 +34,10 @@ import "strings"
 	Status?: "ENABLED" | "DISABLED"
 }
 
+#MonitorConfigState: "PENDING" | "ACTIVE" | "INACTIVE" | "ERROR"
+
+#MonitorProcessingStatusCode: "OK" | "INACTIVE" | "COLLECTING_DATA" | "INSUFFICIENT_DATA" | "FAULT_SERVICE" | "FAULT_ACCESS_CLOUDWATCH"
+
 #S3Config: {
 	BucketName?: string & strings.MinRunes(3)
 	BucketPrefix?: string
@@ -44,3 +48,5 @@ import "strings"
 	Key?: string
 	Value?: string
 }
+
+#iso8601UTC: string & =~"^([0-2]\\d{3})-(0[0-9]|1[0-2])-([0-2]\\d|3[01])T([01]\\d|2[0-4]):([0-5]\\d):([0-6]\\d)((\\.\\d{3})?)Z$"

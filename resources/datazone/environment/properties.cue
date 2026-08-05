@@ -37,3 +37,5 @@ import "strings"
 	// The value of an environment parameter.
 	Value?: string
 }
+
+#EnvironmentStatus: "ACTIVE" | "CREATING" | "UPDATING" | "DELETING" | "CREATE_FAILED" | "UPDATE_FAILED" | "DELETE_FAILED" | "VALIDATION_FAILED" | "SUSPENDED" | "DISABLED" | "EXPIRED" | "DELETED" | "INACCESSIBLE"

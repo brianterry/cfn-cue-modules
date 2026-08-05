@@ -15,3 +15,5 @@ import "strings"
 	Key?: string & =~"^(?!aws:.*)" & strings.MinRunes(1) & strings.MaxRunes(127)
 	Value?: string & =~"^(?!aws:.*)" & strings.MinRunes(1) & strings.MaxRunes(255)
 }
+
+#Tags: [...#Tag]

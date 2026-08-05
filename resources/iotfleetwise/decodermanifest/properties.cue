@@ -65,6 +65,10 @@ import "strings"
 	Type: "CUSTOM_DECODING_SIGNAL"
 }
 
+#DefaultForUnmappedSignalsType: "CUSTOM_DECODING"
+
+#ManifestStatus: "ACTIVE" | "DRAFT"
+
 #ObdInterface: {
 	DtcRequestIntervalSeconds?: int
 	HasTransmissionEcu?: bool
@@ -101,6 +105,8 @@ import "strings"
 	ObdSignal: #ObdSignal
 	Type: "OBD_SIGNAL"
 }
+
+#SignalValueType: "INTEGER" | "FLOATING_POINT"
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

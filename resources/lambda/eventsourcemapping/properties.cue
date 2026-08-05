@@ -98,6 +98,8 @@ import "strings"
 	SchemaRegistryConfig?: #SchemaRegistryConfig
 }
 
+#ConsumerGroupId: string & =~"[a-zA-Z0-9-\\/*:_+=.@-]*" & strings.MinRunes(1) & strings.MaxRunes(200)
+
 #DestinationConfig: {
 	// The destination configuration for failed invocations.
 	OnFailure?: #OnFailure
@@ -131,6 +133,8 @@ import "strings"
 	// Set this property to filter the system logs for your function that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where ``DEBUG`` is the highest level and ``WARN`` is the lowest.
 	SystemLogLevel?: "DEBUG" | "INFO" | "WARN"
 }
+
+#MaximumConcurrency: int & >=2 & <=1000
 
 #MetricsConfig: {
 	// The metrics you want your event source mapping to produce, including ``EventCount``, ``ErrorCount``, ``KafkaMetrics``.

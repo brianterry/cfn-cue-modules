@@ -23,6 +23,8 @@ import "strings"
 	TaskReportConfig?: #TaskReportConfig
 }
 
+#DestinationNetworkInterfaceArns: [...string & =~"^arn:aws[\\-a-z]{0,}:ec2:[a-z\\-0-9]*:[0-9]{12}:network-interface/eni-[0-9a-f]+$"]
+
 #FilterRule: {
 	// The type of filter rule to apply. AWS DataSync only supports the SIMPLE_PATTERN rule type.
 	FilterType?: "SIMPLE_PATTERN"
@@ -84,6 +86,8 @@ import "strings"
 	// A value that determines whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred.
 	VerifyMode?: "POINT_IN_TIME_CONSISTENT" | "ONLY_FILES_TRANSFERRED" | "NONE"
 }
+
+#SourceNetworkInterfaceArns: [...string & =~"^arn:aws[\\-a-z]{0,}:ec2:[a-z\\-0-9]*:[0-9]{12}:network-interface/eni-[0-9a-f]+$"]
 
 #Tag: {
 	// The key for an AWS resource tag.

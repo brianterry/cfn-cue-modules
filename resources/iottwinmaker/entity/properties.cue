@@ -92,6 +92,8 @@ import "strings"
 	StringValue?: string & =~".*" & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#DateTimeFormat: string
+
 #Definition: {
 	// An object that specifies information about a property configuration.
 	Configuration?: #PropertyDefinitionConfiguration
@@ -122,12 +124,16 @@ import "strings"
 	Value?: #DataValue
 }
 
+#PropertyDefinitionConfiguration: {...}
+
 #PropertyGroup: {
 	// The type of property group.
 	GroupType?: "TABULAR"
 	// The list of property names in the property group.
 	PropertyNames?: [...#PropertyName]
 }
+
+#PropertyName: string & =~"[a-zA-Z_\\-0-9]+"
 
 #Relationship: {
 	// The type of the relationship.

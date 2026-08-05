@@ -28,10 +28,14 @@ import "strings"
 	PreferredInput?: int & >=1 & <=2
 }
 
+#InputType: "HLS" | "CMAF"
+
 #OutputHeaderConfiguration: {
 	// <p>When true, AWS Elemental MediaPackage includes the MQCS in responses to the CDN. This setting is valid only when <code>InputType</code> is <code>CMAF</code>.</p>
 	PublishMQCS?: bool
 }
+
+#OutputLockingMode: "EPOCH_LOCKED" | "NON_EPOCH_LOCKED"
 
 #Tag: {
 	Key?: string

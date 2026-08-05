@@ -11,8 +11,12 @@ import "strings"
 	Tags?: #TagMap
 }
 
+#EncryptionType: "KMS"
+
 #SseConfig: {
 	// An encryption key ARN.
 	KeyArn?: string & =~"arn:([^:\n]*):([^:\n]*):([^:\n]*):([0-9]{12}):([^:\n]*)" & strings.MinRunes(20) & strings.MaxRunes(2048)
 	Type: #EncryptionType
 }
+
+#TagMap: {...}

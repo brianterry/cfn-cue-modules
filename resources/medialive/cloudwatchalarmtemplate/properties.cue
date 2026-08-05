@@ -25,3 +25,13 @@ import "strings"
 	Threshold: number
 	TreatMissingData: #CloudWatchAlarmTemplateTreatMissingData
 }
+
+#CloudWatchAlarmTemplateComparisonOperator: "GreaterThanOrEqualToThreshold" | "GreaterThanThreshold" | "LessThanThreshold" | "LessThanOrEqualToThreshold"
+
+#CloudWatchAlarmTemplateStatistic: "SampleCount" | "Average" | "Sum" | "Minimum" | "Maximum"
+
+#CloudWatchAlarmTemplateTargetResourceType: "CLOUDFRONT_DISTRIBUTION" | "MEDIALIVE_MULTIPLEX" | "MEDIALIVE_CHANNEL" | "MEDIALIVE_INPUT_DEVICE" | "MEDIAPACKAGE_CHANNEL" | "MEDIAPACKAGE_ORIGIN_ENDPOINT" | "MEDIACONNECT_FLOW" | "MEDIATAILOR_PLAYBACK_CONFIGURATION" | "S3_BUCKET"
+
+#CloudWatchAlarmTemplateTreatMissingData: "notBreaching" | "breaching" | "ignore" | "missing"
+
+#TagMap: {...}

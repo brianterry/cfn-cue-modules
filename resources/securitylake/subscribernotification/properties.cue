@@ -23,3 +23,5 @@ package subscribernotification
 	HttpsNotificationConfiguration?: #HttpsNotificationConfiguration
 	SqsNotificationConfiguration?: #SqsNotificationConfiguration
 }
+
+#SqsNotificationConfiguration: {...}

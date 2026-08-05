@@ -63,12 +63,18 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#DataTieringStatus: "true" | "false"
+
 #Endpoint: {
 	// The DNS address of the primary read-write node.
 	Address?: string
 	// The port number that the engine is listening on.
 	Port?: int
 }
+
+#SupportedIpDiscoveryTypes: "ipv4" | "ipv6"
+
+#SupportedNetworkTypes: "ipv4" | "ipv6" | "dual_stack"
 
 #Tag: {
 	// The key for the tag. May not be null.

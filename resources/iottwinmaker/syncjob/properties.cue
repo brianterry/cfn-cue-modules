@@ -12,3 +12,5 @@ import "strings"
 	// The ID of the workspace.
 	WorkspaceId: string & =~"[a-zA-Z_0-9][a-zA-Z_\\-0-9]*[a-zA-Z0-9]+" & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#DateTimeFormat: string

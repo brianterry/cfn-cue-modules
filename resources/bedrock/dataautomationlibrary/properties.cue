@@ -12,17 +12,23 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#DataAutomationLibraryStatus: "ACTIVE" | "DELETING"
+
 #EncryptionConfiguration: {
 	KmsEncryptionContext?: #KmsEncryptionContext
 	// KMS Key Identifier
 	KmsKeyId: string & =~"^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
 
+#EntityType: "VOCABULARY"
+
 #EntityTypeInfo: {
 	// JSON string representing relevant metadata for the entity type
 	EntityMetadata?: string
 	EntityType: #EntityType
 }
+
+#KmsEncryptionContext: {...}
 
 #Tag: {
 	// Tag key

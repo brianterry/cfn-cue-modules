@@ -12,6 +12,10 @@ import "strings"
 	Type: "SOURCE" | "TARGET"
 }
 
+#AttributeName: string & =~"^[a-zA-Z_0-9- \\t]*$" & strings.MinRunes(0) & strings.MaxRunes(255)
+
+#EntityName: string & =~"^[a-zA-Z_0-9-]*$" & strings.MinRunes(1) & strings.MaxRunes(255)
+
 #IdNamespaceIdMappingWorkflowProperties: {
 	IdMappingType: "PROVIDER" | "RULE_BASED"
 	ProviderProperties?: #NamespaceProviderProperties
@@ -36,10 +40,16 @@ import "strings"
 	Rules?: [...#Rule]
 }
 
+#ProviderServiceArn: string & =~"^arn:(aws|aws-us-gov|aws-cn):(entityresolution):([a-z]{2}-[a-z]{1,10}-[0-9])::providerservice/([a-zA-Z0-9_-]{1,255})/([a-zA-Z0-9_-]{1,255})$" & strings.MinRunes(20) & strings.MaxRunes(255)
+
+#RecordMatchingModel: "ONE_SOURCE_TO_ONE_TARGET" | "MANY_SOURCE_TO_ONE_TARGET"
+
 #Rule: {
 	MatchingKeys: [...#AttributeName]
 	RuleName: string & =~"^[a-zA-Z_0-9- \\t]*$" & strings.MinRunes(0) & strings.MaxRunes(255)
 }
+
+#RuleDefinitionType: "SOURCE" | "TARGET"
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

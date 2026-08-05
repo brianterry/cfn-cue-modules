@@ -11,6 +11,8 @@ package channelplacementgroup
 	Tags?: [...#Tags]
 }
 
+#ChannelPlacementGroupState: "UNASSIGNED" | "ASSIGNING" | "ASSIGNED" | "DELETING" | "DELETED" | "UNASSIGNING"
+
 #Tags: {
 	Key?: string
 	Value?: string

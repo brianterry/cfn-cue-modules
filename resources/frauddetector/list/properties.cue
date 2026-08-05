@@ -15,6 +15,8 @@ import "strings"
 	VariableType?: string & =~"^[A-Z_]{1,64}$" & strings.MinRunes(1) & strings.MaxRunes(64)
 }
 
+#Element: string & =~"^\\S+( +\\S+)*$" & strings.MinRunes(1) & strings.MaxRunes(64)
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

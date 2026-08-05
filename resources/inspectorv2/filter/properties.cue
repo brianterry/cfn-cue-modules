@@ -19,6 +19,10 @@ import "strings"
 	StartInclusive?: #Timestamp
 }
 
+#DateFilterList: [...#DateFilter]
+
+#FilterAction: "NONE" | "SUPPRESS"
+
 #FilterCriteria: {
 	AwsAccountId?: #StringFilterList
 	CodeVulnerabilityDetectorName?: #StringFilterList
@@ -64,16 +68,28 @@ import "strings"
 	VulnerablePackages?: #PackageFilterList
 }
 
+#FilterTagMap: {...}
+
+#MapComparison: "EQUALS"
+
 #MapFilter: {
 	Comparison: #MapComparison
 	Key?: #MapKey
 	Value?: #MapValue
 }
 
+#MapFilterList: [...#MapFilter]
+
+#MapKey: string & strings.MinRunes(1) & strings.MaxRunes(128)
+
+#MapValue: string & strings.MinRunes(0) & strings.MaxRunes(256)
+
 #NumberFilter: {
 	LowerInclusive?: number
 	UpperInclusive?: number
 }
+
+#NumberFilterList: [...#NumberFilter]
 
 #PackageFilter: {
 	Architecture?: #StringFilter
@@ -86,12 +102,26 @@ import "strings"
 	Version?: #StringFilter
 }
 
+#PackageFilterList: [...#PackageFilter]
+
+#Port: int & >=0 & <=65535
+
 #PortRangeFilter: {
 	BeginInclusive?: #Port
 	EndInclusive?: #Port
 }
 
+#PortRangeFilterList: [...#PortRangeFilter]
+
+#StringComparison: "EQUALS" | "PREFIX" | "NOT_EQUALS"
+
 #StringFilter: {
 	Comparison: #StringComparison
 	Value: #StringInput
 }
+
+#StringFilterList: [...#StringFilter]
+
+#StringInput: string & strings.MinRunes(1) & strings.MaxRunes(1024)
+
+#Timestamp: int

@@ -15,6 +15,8 @@ import "strings"
 	Tags?: #Tags
 }
 
+#Arn: string & =~"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+
 #RobotSoftwareSuite: {
 	// The name of robot software suite.
 	Name: "ROS" | "ROS2" | "General"
@@ -30,3 +32,5 @@ import "strings"
 	// The s3 key of robot application source.
 	S3Key: string
 }
+
+#Tags: {...}

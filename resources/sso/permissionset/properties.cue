@@ -26,6 +26,8 @@ import "strings"
 	Path?: string & =~"((/[A-Za-z0-9\\.,\\+@=_-]+)*)/" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
 
+#ManagedPolicyArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
+
 #PermissionsBoundary: {
 	CustomerManagedPolicyReference?: #CustomerManagedPolicyReference
 	ManagedPolicyArn?: #ManagedPolicyArn

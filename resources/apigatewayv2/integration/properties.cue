@@ -46,6 +46,8 @@ import "strings"
 	Source?: string
 }
 
+#ResponseParameterList: [...#ResponseParameter]
+
 #ResponseParameterMap: {
 	ResponseParameters?: #ResponseParameterList
 }

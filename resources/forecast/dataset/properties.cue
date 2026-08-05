@@ -23,3 +23,16 @@ import "strings"
 		Value: #Value
 	}]
 }
+
+#Attributes: [...{
+	AttributeName?: string & =~"^[a-zA-Z][a-zA-Z0-9_]*"
+	AttributeType?: "string" | "integer" | "float" | "timestamp" | "geolocation"
+}]
+
+#Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
+
+#KmsKeyArn: string & =~"arn:aws[-a-z]*:kms:.*:key/.*" & strings.MaxRunes(256)
+
+#RoleArn: string & =~"^[a-zA-Z0-9\\-\\_\\.\\/\\:]+$" & strings.MaxRunes(256)
+
+#Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

@@ -13,19 +13,33 @@ import "strings"
 	Tags?: #Tags
 }
 
+#Description: string & strings.MinRunes(1) & strings.MaxRunes(1000)
+
+#DomainName: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#EventExpiration: int
+
 #EventTriggerCondition: {
 	EventTriggerDimensions: #EventTriggerDimensions
 	LogicalOperator: #EventTriggerLogicalOperator
 }
 
+#EventTriggerConditions: [...#EventTriggerCondition]
+
 #EventTriggerDimension: {
 	ObjectAttributes: #ObjectAttributes
 }
+
+#EventTriggerDimensions: [...#EventTriggerDimension]
 
 #EventTriggerLimits: {
 	EventExpiration?: #EventExpiration
 	Periods?: #Periods
 }
+
+#EventTriggerLogicalOperator: "ANY" | "ALL" | "NONE"
+
+#EventTriggerName: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 
 #ObjectAttribute: {
 	// The operator used to compare an attribute against a list of values.
@@ -38,6 +52,10 @@ import "strings"
 	Values: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
 }
 
+#ObjectAttributes: [...#ObjectAttribute]
+
+#ObjectTypeName: string & =~"^[a-zA-Z_][a-zA-Z_0-9-]*$" & strings.MinRunes(1) & strings.MaxRunes(255)
+
 #Period: {
 	// The maximum allowed number of destination invocations per profile.
 	MaxInvocationsPerProfile?: int & >=1 & <=1000
@@ -49,9 +67,15 @@ import "strings"
 	Value: int & >=1 & <=60
 }
 
+#Periods: [...#Period]
+
+#SegmentFilter: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]

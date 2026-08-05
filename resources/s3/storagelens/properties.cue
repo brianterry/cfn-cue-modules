@@ -37,6 +37,8 @@ import "strings"
 	IsEnabled?: bool
 }
 
+#Arn: string
+
 #AwsOrg: {
 	Arn: #Arn
 }
@@ -70,6 +72,14 @@ import "strings"
 	// Specifies whether detailed status codes metrics are enabled or disabled.
 	IsEnabled?: bool
 }
+
+#Encryption: {
+	SSES3: {...}
+} | {
+	SSEKMS: #SSEKMS
+}
+
+#Id: string & =~"^[a-zA-Z0-9\\-_.]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 
 #PrefixLevel: {
 	StorageMetrics: #PrefixLevelStorageMetrics
@@ -129,6 +139,8 @@ import "strings"
 	S3BucketDestination?: #S3BucketDestination
 	StorageLensTableDestination?: #StorageLensTableDestination
 }
+
+#StorageLensGroupArn: string
 
 #StorageLensGroupLevel: {
 	StorageLensGroupSelectionCriteria?: #StorageLensGroupSelectionCriteria

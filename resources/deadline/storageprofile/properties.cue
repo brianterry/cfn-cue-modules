@@ -14,3 +14,7 @@ import "strings"
 	Path: string & strings.MinRunes(0) & strings.MaxRunes(1024)
 	Type: #FileSystemLocationType
 }
+
+#FileSystemLocationType: "SHARED" | "LOCAL"
+
+#StorageProfileOperatingSystemFamily: "WINDOWS" | "LINUX" | "MACOS"

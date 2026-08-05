@@ -17,6 +17,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#OutputType: string
+
 #ProvisioningParameter: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(1000)
 	Value: string & strings.MaxRunes(4096)

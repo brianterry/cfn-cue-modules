@@ -39,6 +39,8 @@ import "strings"
 	Type?: "MCP" | "THIRD_PARTY_APPLICATION"
 }
 
+#ApplicationPermission: string & strings.MinRunes(1) & strings.MaxRunes(128)
+
 #DataTableAccessControlConfiguration: {
 	PrimaryAttributeAccessControlConfiguration?: #PrimaryAttributeAccessControlConfigurationItem
 }
@@ -49,6 +51,8 @@ import "strings"
 	// The type of the first-party application
 	Type?: string & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#Permission: string & strings.MinRunes(1) & strings.MaxRunes(128)
 
 #PrimaryAttributeAccessControlConfigurationItem: {
 	// An array of PrimaryAttributeValue objects.
@@ -63,6 +67,8 @@ import "strings"
 	// An array of allowed primary values for the specified primary attribute.
 	Values?: [...string & strings.MinRunes(1) & strings.MaxRunes(1000)]
 }
+
+#ResourceName: string & strings.MinRunes(1) & strings.MaxRunes(128)
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

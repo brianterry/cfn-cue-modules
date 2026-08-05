@@ -80,6 +80,8 @@ package maintenancewindowtask
 	NotificationType?: string
 }
 
+#ParameterValues: [...string]
+
 #Target: {
 	Key: string
 	Values: [...string]

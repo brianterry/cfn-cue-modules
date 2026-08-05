@@ -49,15 +49,31 @@ import "strings"
 	SupportedTransformInstanceTypes?: [...#TransformInstanceType]
 }
 
+#AdditionalInferenceSpecifications: [...#AdditionalInferenceSpecificationDefinition]
+
+#ApprovalDescription: string & =~".*" & strings.MaxRunes(1024)
+
 #Bias: {
 	PostTrainingReport?: #MetricsSource
 	PreTrainingReport?: #MetricsSource
 	Report?: #MetricsSource
 }
 
+#CertifyForMarketplace: bool
+
+#ClientToken: string & =~"^[a-zA-Z0-9-]+$" & strings.MinRunes(1) & strings.MaxRunes(36)
+
+#ContentType: string & =~".*" & strings.MaxRunes(256)
+
+#CreationTime: string
+
+#CustomerMetadataProperties: {...}
+
 #DataSource: {
 	S3DataSource: #S3DataSource
 }
+
+#Domain: string
 
 #DriftCheckBaselines: {
 	Bias?: #DriftCheckBias
@@ -87,6 +103,8 @@ import "strings"
 	Statistics?: #MetricsSource
 }
 
+#Environment: {...}
+
 #Explainability: {
 	Report?: #MetricsSource
 }
@@ -100,6 +118,8 @@ import "strings"
 	S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(1024)
 }
 
+#InferenceInstanceType: string
+
 #InferenceSpecification: {
 	// The Amazon ECR registry path of the Docker image that contains the inference code.
 	Containers: [...#ModelPackageContainerDefinition]
@@ -112,6 +132,8 @@ import "strings"
 	// A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed.
 	SupportedTransformInstanceTypes?: [...#TransformInstanceType]
 }
+
+#LastModifiedTime: string
 
 #MetadataProperties: {
 	// The commit ID.
@@ -138,6 +160,8 @@ import "strings"
 	AcceptEula: bool
 }
 
+#ModelApprovalStatus: "Approved" | "Rejected" | "PendingManualApproval"
+
 #ModelCard: {
 	// The content of the model card.
 	ModelCardContent: string & =~".*" & strings.MinRunes(0) & strings.MaxRunes(100000)
@@ -161,6 +185,8 @@ import "strings"
 	ModelQuality?: #ModelQuality
 }
 
+#ModelPackageArn: string & =~"^arn:aws(-cn|-us-gov|-iso-f)?:sagemaker:[a-z0-9\\-]{9,16}:[0-9]{12}:model-package/[\\S]{1,2048}$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+
 #ModelPackageContainerDefinition: {
 	// The DNS host name for the Docker container.
 	ContainerHostname?: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}" & strings.MaxRunes(63)
@@ -183,6 +209,14 @@ import "strings"
 	NearestModelName?: string
 }
 
+#ModelPackageDescription: string & =~"[\\p{L}\\p{M}\\p{Z}\\p{S}\\p{N}\\p{P}]*" & strings.MaxRunes(1024)
+
+#ModelPackageGroupName: string & =~"(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:[a-z\\-]*\\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)$" & strings.MinRunes(1) & strings.MaxRunes(170)
+
+#ModelPackageName: string
+
+#ModelPackageStatus: "Pending" | "Deleting" | "InProgress" | "Completed" | "Failed"
+
 #ModelPackageStatusDetails: {
 	ValidationStatuses?: [...#ModelPackageStatusItem]
 }
@@ -196,10 +230,14 @@ import "strings"
 	Status: "NotStarted" | "Failed" | "InProgress" | "Completed"
 }
 
+#ModelPackageVersion: int & >=1
+
 #ModelQuality: {
 	Constraints?: #MetricsSource
 	Statistics?: #MetricsSource
 }
+
+#ResponseMIMEType: string & =~"^[-\\w]+\\/.+$" & strings.MaxRunes(1024)
 
 #S3DataSource: {
 	// The S3 Data Source Type
@@ -218,10 +256,14 @@ import "strings"
 	S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(1024)
 }
 
+#SamplePayloadUrl: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(1024)
+
 #SecurityConfig: {
 	// The AWS KMS Key ID (KMSKeyId) used for encryption of model package information.
 	KmsKeyId: string & =~"^[a-zA-Z0-9:/_-]*$" & strings.MaxRunes(2048)
 }
+
+#SkipModelValidation: "None" | "All"
 
 #SourceAlgorithm: {
 	// The name of an algorithm that was used to create the model package. The algorithm must be either an algorithm resource in your Amazon SageMaker account or an algorithm in AWS Marketplace that you are subscribed to.
@@ -235,12 +277,16 @@ import "strings"
 	SourceAlgorithms: [...#SourceAlgorithm]
 }
 
+#SourceUri: string & =~"[\\p{L}\\p{M}\\p{Z}\\p{N}\\p{P}]{0,1024}" & strings.MinRunes(0) & strings.MaxRunes(1024)
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MaxRunes(256)
 }
+
+#Task: string
 
 #TransformInput: {
 	// If your transform data is compressed, specify the compression type. Amazon SageMaker automatically decompresses the data for the transform job accordingly. The default value is None.
@@ -251,6 +297,8 @@ import "strings"
 	// The method to use to split the transform job's data files into smaller batches.
 	SplitType?: "None" | "TFRecord" | "Line" | "RecordIO"
 }
+
+#TransformInstanceType: string
 
 #TransformJobDefinition: {
 	// A string that determines the number of records included in a single mini-batch.

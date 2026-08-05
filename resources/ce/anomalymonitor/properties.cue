@@ -13,6 +13,8 @@ import "strings"
 	ResourceTags?: [...#ResourceTag]
 }
 
+#Arn: string & =~"^arn:aws[-a-z0-9]*:[a-z0-9]+:[-a-z0-9]*:[0-9]{12}:[-a-zA-Z0-9/:_]+$"
+
 #ResourceTag: {
 	// The key name for the tag.
 	Key: string & =~"^(?!aws:).*$" & strings.MinRunes(1) & strings.MaxRunes(128)

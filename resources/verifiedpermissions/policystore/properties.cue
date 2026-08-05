@@ -12,8 +12,20 @@ import "strings"
 	ValidationSettings: #ValidationSettings
 }
 
+#Default: {...}
+
+#DeletionMode: "ENABLED" | "DISABLED"
+
 #DeletionProtection: {
 	Mode: #DeletionMode
+}
+
+#EncryptionContext: {...}
+
+#EncryptionSettings: {
+	KmsEncryptionSettings: #KmsEncryptionSettings
+} | {
+	Default: #Default
 }
 
 #KmsEncryptionSettings: {
@@ -26,14 +38,20 @@ import "strings"
 	Key: #KmsKey
 }
 
+#KmsKey: string & =~"^[a-zA-Z0-9:/_-]+$"
+
 #SchemaDefinition: {
 	CedarJson?: #SchemaJson
 }
+
+#SchemaJson: string
 
 #Tag: {
 	Key: string
 	Value: string
 }
+
+#ValidationMode: "OFF" | "STRICT"
 
 #ValidationSettings: {
 	Mode: #ValidationMode

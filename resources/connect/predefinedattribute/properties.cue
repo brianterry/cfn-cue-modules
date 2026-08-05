@@ -19,3 +19,9 @@ import "strings"
 		StringList?: #StringList
 	}
 }
+
+#Purpose: string & strings.MinRunes(1) & strings.MaxRunes(100)
+
+#StringList: [...#Value]
+
+#Value: string & strings.MinRunes(1) & strings.MaxRunes(100)

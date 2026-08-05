@@ -42,10 +42,14 @@ import "strings"
 	Telemetries?: [...#Telemetry]
 }
 
+#Arn: string & =~"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*"
+
 #CustomEvents: {
 	// Indicates whether AppMonitor accepts custom events.
 	Status?: #CustomEventsStatus
 }
+
+#CustomEventsStatus: "ENABLED" | "DISABLED"
 
 #DeobfuscationConfiguration: {
 	// A structure that contains the configuration for how an app monitor can unminify JavaScript error stack traces using source maps.
@@ -54,6 +58,8 @@ import "strings"
 		Status: "ENABLED" | "DISABLED"
 	}
 }
+
+#FavoritePages: [...string]
 
 #MetricDefinition: {
 	// Use this field only if you are sending the metric to CloudWatch.
@@ -133,6 +139,8 @@ import "strings"
 	MetricDefinitions?: [...#MetricDefinition]
 }
 
+#Pages: [...#Url]
+
 #ResourcePolicy: {
 	// The JSON to use as the resource policy. The document can be up to 4 KB in size.
 	PolicyDocument: string
@@ -147,3 +155,9 @@ import "strings"
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#TagDef: [...#Tag]
+
+#Telemetry: "errors" | "performance" | "http"
+
+#Url: string & =~"https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)" & strings.MinRunes(1) & strings.MaxRunes(1260)

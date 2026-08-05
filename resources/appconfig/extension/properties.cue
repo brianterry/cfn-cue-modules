@@ -25,6 +25,8 @@ import "strings"
 	Uri: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
 
+#Actions: [...#Action]
+
 #Parameter: {
 	// The description of the extension Parameter.
 	Description?: string & strings.MinRunes(0) & strings.MaxRunes(1024)

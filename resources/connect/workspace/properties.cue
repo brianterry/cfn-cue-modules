@@ -34,6 +34,8 @@ import "strings"
 	Type: #MediaType
 }
 
+#MediaType: "IMAGE_LOGO_LIGHT_FAVICON" | "IMAGE_LOGO_DARK_FAVICON" | "IMAGE_LOGO_LIGHT_HORIZONTAL" | "IMAGE_LOGO_DARK_HORIZONTAL"
+
 #PaletteCanvas: {
 	ActiveBackground?: #ThemeString
 	ContainerBackground?: #ThemeString
@@ -69,6 +71,14 @@ import "strings"
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#ThemeImageLink: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(254)
+
+#ThemeString: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(127)
+
+#Visibility: "ALL" | "ASSIGNED" | "NONE"
+
+#WorkspaceFontFamily: "ARIAL" | "COURIER_NEW" | "GEORGIA" | "TIMES_NEW_ROMAN" | "TREBUCHET" | "VERDANA"
 
 #WorkspacePage: {
 	// The input data for the page.

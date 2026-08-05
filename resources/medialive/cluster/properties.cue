@@ -18,6 +18,10 @@ package cluster
 	InterfaceMappings?: [...#InterfaceMapping]
 }
 
+#ClusterState: "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "DELETED"
+
+#ClusterType: "ON_PREMISES" | "OUTPOSTS_RACK" | "OUTPOSTS_SERVER" | "EC2"
+
 #InterfaceMapping: {
 	// logical interface name, unique in the list
 	LogicalInterfaceName?: string

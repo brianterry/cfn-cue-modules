@@ -20,10 +20,18 @@ import "strings"
 	Tags?: [...#PolicyTag]
 }
 
+#AccountId: string & =~"^([0-9]*)$" & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#Base62Id: string & =~"^[a-z0-9A-Z]{22}$" & strings.MinRunes(22) & strings.MaxRunes(22)
+
+#FirewallDeploymentModel: "DISTRIBUTED" | "CENTRALIZED"
+
 #IEMap: {
 	ACCOUNT?: [...#AccountId]
 	ORGUNIT?: [...#OrganizationalUnitId]
 }
+
+#ManagedServiceData: string & strings.MinRunes(1) & strings.MaxRunes(30000)
 
 #NetworkAclCommonPolicy: {
 	NetworkAclEntrySet: #NetworkAclEntrySet
@@ -52,6 +60,8 @@ import "strings"
 	RuleAction: "allow" | "deny"
 }
 
+#NetworkAclEntryList: [...#NetworkAclEntry]
+
 #NetworkAclEntrySet: {
 	FirstEntries?: #NetworkAclEntryList
 	ForceRemediateForFirstEntries: bool
@@ -62,6 +72,8 @@ import "strings"
 #NetworkFirewallPolicy: {
 	FirewallDeploymentModel: #FirewallDeploymentModel
 }
+
+#OrganizationalUnitId: string & =~"^(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$" & strings.MinRunes(16) & strings.MaxRunes(68)
 
 #PolicyOption: {
 	NetworkAclCommonPolicy?: #NetworkAclCommonPolicy
@@ -74,10 +86,16 @@ import "strings"
 	Value: string & =~"^([^\\s]*)$" & strings.MaxRunes(256)
 }
 
+#PolicyType: "WAF" | "WAFV2" | "SHIELD_ADVANCED" | "SECURITY_GROUPS_COMMON" | "SECURITY_GROUPS_CONTENT_AUDIT" | "SECURITY_GROUPS_USAGE_AUDIT" | "NETWORK_FIREWALL" | "THIRD_PARTY_FIREWALL" | "DNS_FIREWALL" | "IMPORT_NETWORK_FIREWALL" | "NETWORK_ACL_COMMON"
+
+#ResourceArn: string & =~"^([^\\s]*)$" & strings.MinRunes(1) & strings.MaxRunes(1024)
+
 #ResourceTag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value?: string & strings.MaxRunes(256)
 }
+
+#ResourceType: string & =~"^([^\\s]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
 
 #SecurityServicePolicyData: {
 	ManagedServiceData?: #ManagedServiceData

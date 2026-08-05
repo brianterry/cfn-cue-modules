@@ -19,6 +19,10 @@ import "strings"
 	S3AclOption: #S3AclOption
 }
 
+#AdditionalConfiguration: string
+
+#BytesScannedCutoffPerQuery: int & >=10000000
+
 #Classification: {
 	// The name of the configuration classification.
 	Name?: string
@@ -41,10 +45,16 @@ import "strings"
 	KmsKey: #KmsKey
 }
 
+#EffectiveEngineVersion: string
+
 #EncryptionConfiguration: {
 	EncryptionOption: #EncryptionOption
 	KmsKey?: #KmsKey
 }
+
+#EncryptionOption: "SSE_S3" | "SSE_KMS" | "CSE_KMS"
+
+#EnforceWorkGroupConfiguration: bool
 
 #EngineConfiguration: {
 	// Contains additional notebook engine MAP<string, string> parameter mappings in the form of key-value pairs. To specify an Athena notebook that the Jupyter server will download and serve, specify a value for the StartSessionRequest$NotebookVersion field, and then add a key named NotebookId to AdditionalConfigs that has the value of the Athena notebook ID.
@@ -65,6 +75,12 @@ import "strings"
 	EffectiveEngineVersion?: #EffectiveEngineVersion
 	SelectedEngineVersion?: #SelectedEngineVersion
 }
+
+#ExecutionRole: string
+
+#ExpectedBucketOwner: string
+
+#KmsKey: string
 
 #ManagedLoggingConfiguration: {
 	// Enables managed log persistence.
@@ -88,6 +104,24 @@ import "strings"
 	S3LoggingConfiguration?: #S3LoggingConfiguration
 }
 
+#OutputLocation: string
+
+#PublishCloudWatchMetricsEnabled: bool
+
+#RemoveAclConfiguration: bool
+
+#RemoveBytesScannedCutoffPerQuery: bool
+
+#RemoveCustomerContentEncryptionConfiguration: bool
+
+#RemoveEncryptionConfiguration: bool
+
+#RemoveExpectedBucketOwner: bool
+
+#RemoveOutputLocation: bool
+
+#RequesterPaysEnabled: bool
+
 #ResultConfiguration: {
 	AclConfiguration?: #AclConfiguration
 	EncryptionConfiguration?: #EncryptionConfiguration
@@ -106,6 +140,8 @@ import "strings"
 	RemoveOutputLocation?: #RemoveOutputLocation
 }
 
+#S3AclOption: "BUCKET_OWNER_FULL_CONTROL"
+
 #S3LoggingConfiguration: {
 	// Enables S3 log delivery.
 	Enabled?: bool
@@ -115,10 +151,14 @@ import "strings"
 	LogLocation?: string
 }
 
+#SelectedEngineVersion: string
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]
 
 #WorkGroupConfiguration: {
 	AdditionalConfiguration?: #AdditionalConfiguration

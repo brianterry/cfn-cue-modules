@@ -17,6 +17,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#DefaultQueueBudgetAction: "NONE" | "STOP_SCHEDULING_AND_COMPLETE_TASKS" | "STOP_SCHEDULING_AND_CANCEL_TASKS"
+
 #JobAttachmentSettings: {
 	RootPrefix: string & strings.MinRunes(1) & strings.MaxRunes(63)
 	S3BucketName: string & =~"(?!^(\\d+\\.)+\\d+$)(^(([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\\-]*[a-z0-9])$)" & strings.MinRunes(3) & strings.MaxRunes(63)
@@ -36,6 +38,30 @@ import "strings"
 #PriorityBalancedSchedulingConfiguration: {
 	RenderingTaskBuffer?: int & >=0 & <=1000
 }
+
+#PriorityFifoSchedulingConfiguration: {...}
+
+#RunAs: "QUEUE_CONFIGURED_USER" | "WORKER_AGENT_USER"
+
+#SchedulingConfiguration: {
+	PriorityFifo: #PriorityFifoSchedulingConfiguration
+} | {
+	PriorityBalanced: #PriorityBalancedSchedulingConfiguration
+} | {
+	WeightedBalanced: #WeightedBalancedSchedulingConfiguration
+}
+
+#SchedulingMaxPriorityOverride: {
+	AlwaysScheduleFirst: #SchedulingMaxPriorityOverrideAlwaysScheduleFirst
+}
+
+#SchedulingMaxPriorityOverrideAlwaysScheduleFirst: {...}
+
+#SchedulingMinPriorityOverride: {
+	AlwaysScheduleLast: #SchedulingMinPriorityOverrideAlwaysScheduleLast
+}
+
+#SchedulingMinPriorityOverrideAlwaysScheduleLast: {...}
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

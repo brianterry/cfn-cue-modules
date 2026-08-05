@@ -22,6 +22,10 @@ import "strings"
 	Type?: #MapType
 }
 
+#HomeDirectoryType: "PATH" | "LOGICAL"
+
+#MapType: "FILE" | "DIRECTORY"
+
 #PosixProfile: {
 	Gid: number & >=0 & <=4.294967295e+09
 	SecondaryGids?: [...number & >=0 & <=4.294967295e+09]

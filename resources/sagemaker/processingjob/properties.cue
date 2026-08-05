@@ -70,6 +70,8 @@ import "strings"
 	RedshiftDatasetDefinition?: #RedshiftDatasetDefinition
 }
 
+#Environment: {...}
+
 #ExperimentConfig: {
 	// The name of an existing experiment to associate with the trial component.
 	ExperimentName?: string & =~"[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}" & strings.MaxRunes(120)

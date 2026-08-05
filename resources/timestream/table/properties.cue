@@ -38,6 +38,14 @@ import "strings"
 	Type: #PartitionKeyType
 }
 
+#PartitionKeyEnforcementLevel: "REQUIRED" | "OPTIONAL"
+
+#PartitionKeyList: [...#PartitionKey]
+
+#PartitionKeyType: "DIMENSION" | "MEASURE"
+
+#SchemaName: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+
 #Tag: {
 	Key?: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value?: string & strings.MinRunes(0) & strings.MaxRunes(256)

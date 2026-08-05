@@ -27,6 +27,12 @@ import "strings"
 	Or?: #Or
 }
 
+#MatchAnyPrefix: [...string & strings.MaxRunes(1024)]
+
+#MatchAnySuffix: [...string & strings.MaxRunes(1024)]
+
+#MatchAnyTag: [...#Tag]
+
 #MatchObjectAge: {
 	// Minimum object age to which the rule applies.
 	DaysGreaterThan?: int & >=1
@@ -40,6 +46,8 @@ import "strings"
 	// Maximum object size to which the rule applies.
 	BytesLessThan?: int & >=1
 }
+
+#Name: string & =~"^[a-zA-Z0-9\\-_]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 
 #Or: {
 	MatchAnyPrefix?: #MatchAnyPrefix

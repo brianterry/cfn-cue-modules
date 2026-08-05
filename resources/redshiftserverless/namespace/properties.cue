@@ -37,6 +37,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#LogExport: "useractivitylog" | "userlog" | "connectionlog"
+
 #Namespace: {
 	AdminPasswordSecretArn?: string
 	AdminPasswordSecretKmsKeyId?: string
@@ -52,6 +54,8 @@ import "strings"
 	NamespaceName?: string & =~"^[a-z0-9-]+$" & strings.MinRunes(3) & strings.MaxRunes(64)
 	Status?: #NamespaceStatus
 }
+
+#NamespaceStatus: "AVAILABLE" | "MODIFYING" | "DELETING"
 
 #SnapshotCopyConfiguration: {
 	DestinationKmsKeyId?: string

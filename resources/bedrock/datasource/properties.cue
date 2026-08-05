@@ -40,6 +40,8 @@ import "strings"
 	SemanticChunkingConfiguration?: #SemanticChunkingConfiguration
 }
 
+#ChunkingStrategy: "FIXED_SIZE" | "NONE" | "HIERARCHICAL" | "SEMANTIC"
+
 #ConfluenceCrawlerConfiguration: {
 	FilterConfiguration?: #CrawlFilterConfiguration
 }
@@ -65,6 +67,8 @@ import "strings"
 	Type: #ContextEnrichmentType
 }
 
+#ContextEnrichmentType: "BEDROCK_FOUNDATION_MODEL"
+
 #CrawlFilterConfiguration: {
 	PatternObjectFilter?: #PatternObjectFilterConfiguration
 	// The crawl filter type.
@@ -77,6 +81,8 @@ import "strings"
 	Transformations: [...#Transformation]
 }
 
+#DataDeletionPolicy: "RETAIN" | "DELETE"
+
 #DataSourceConfiguration: {
 	ConfluenceConfiguration?: #ConfluenceDataSourceConfiguration
 	ManagedKnowledgeBaseConnectorConfiguration?: #ManagedKnowledgeBaseConnectorConfiguration
@@ -87,15 +93,25 @@ import "strings"
 	WebConfiguration?: #WebDataSourceConfiguration
 }
 
+#DataSourceStatus: "AVAILABLE" | "DELETING" | "DELETE_UNSUCCESSFUL" | "CREATING" | "UPDATING" | "FAILED"
+
+#DataSourceType: "S3" | "CONFLUENCE" | "SALESFORCE" | "SHAREPOINT" | "WEB" | "CUSTOM" | "REDSHIFT_METADATA" | "MANAGED_KNOWLEDGE_BASE_CONNECTOR"
+
 #DeletionProtectionConfiguration: {
 	DeletionProtectionStatus: #EnabledOrDisabledState
 	// Threshold for deletion protection.
 	DeletionProtectionThreshold?: int & >=0 & <=100
 }
 
+#EnabledOrDisabledState: "ENABLED" | "DISABLED"
+
 #EnrichmentStrategyConfiguration: {
 	Method: #EnrichmentStrategyMethod
 }
+
+#EnrichmentStrategyMethod: "CHUNK_ENTITY_EXTRACTION"
+
+#FilterList: [...string & strings.MaxRunes(1000)]
 
 #FixedSizeChunkingConfiguration: {
 	// The maximum number of tokens to include in a chunk.
@@ -137,16 +153,22 @@ import "strings"
 	VideoExtractionConfiguration?: #VideoExtractionConfiguration
 }
 
+#ModelArn: string & =~"^(arn:aws(-cn|-us-gov|-eusc|-iso(-[b-f])?)?:(bedrock):[a-z0-9-]{1,20}:([0-9]{12})?:([a-z-]+/)?)?([a-zA-Z0-9.-]{1,63}){0,2}(([:][a-z0-9-]{1,63}){0,2})?(/[a-z0-9]{1,12})?$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+
 #ParsingConfiguration: {
 	BedrockDataAutomationConfiguration?: #BedrockDataAutomationConfiguration
 	BedrockFoundationModelConfiguration?: #BedrockFoundationModelConfiguration
 	ParsingStrategy: #ParsingStrategy
 }
 
+#ParsingModality: "MULTIMODAL"
+
 #ParsingPrompt: {
 	// Instructions for interpreting the contents of a document.
 	ParsingPromptText: string & strings.MinRunes(1) & strings.MaxRunes(10000)
 }
+
+#ParsingStrategy: "BEDROCK_FOUNDATION_MODEL" | "BEDROCK_DATA_AUTOMATION" | "SMART_PARSING"
 
 #PatternObjectFilter: {
 	ExclusionFilters?: #FilterList
@@ -158,6 +180,8 @@ import "strings"
 #PatternObjectFilterConfiguration: {
 	Filters: #PatternObjectFilterList
 }
+
+#PatternObjectFilterList: [...#PatternObjectFilter]
 
 #S3DataSourceConfiguration: {
 	// The ARN of the bucket that contains the data source.
@@ -195,6 +219,8 @@ import "strings"
 	// A web url.
 	Url: string & =~"^https?://[A-Za-z0-9][^\\s]*$"
 }
+
+#SeedUrls: [...#SeedUrl]
 
 #SemanticChunkingConfiguration: {
 	// The dissimilarity threshold for splitting chunks.
@@ -286,6 +312,8 @@ import "strings"
 	CrawlerConfiguration?: #WebCrawlerConfiguration
 	SourceConfiguration: #WebSourceConfiguration
 }
+
+#WebScopeType: "HOST_ONLY" | "SUBDOMAINS"
 
 #WebSourceConfiguration: {
 	UrlConfiguration: #UrlConfiguration

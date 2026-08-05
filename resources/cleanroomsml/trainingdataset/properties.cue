@@ -16,6 +16,8 @@ import "strings"
 	ColumnTypes: [...#ColumnType]
 }
 
+#ColumnType: "USER_ID" | "ITEM_ID" | "TIMESTAMP" | "CATEGORICAL_FEATURE" | "NUMERICAL_FEATURE"
+
 #DataSource: {
 	GlueDataSource: #GlueDataSource
 }
@@ -30,6 +32,8 @@ import "strings"
 	Schema: [...#ColumnSchema]
 }
 
+#DatasetType: "INTERACTIONS"
+
 #GlueDataSource: {
 	CatalogId?: string & =~"^[0-9]{12}$" & strings.MinRunes(12) & strings.MaxRunes(12)
 	DatabaseName: string & =~"^[a-zA-Z0-9_](([a-zA-Z0-9_]+-)*([a-zA-Z0-9_]+))?$" & strings.MinRunes(1) & strings.MaxRunes(128)
@@ -40,3 +44,7 @@ import "strings"
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#TrainingDatasetStatus: "ACTIVE"
+
+#Unit: {...}

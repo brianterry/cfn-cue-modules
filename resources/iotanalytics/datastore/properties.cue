@@ -51,6 +51,8 @@ import "strings"
 	CustomerManagedS3Storage?: #CustomerManagedS3Storage
 }
 
+#JsonConfiguration: {...}
+
 #ParquetConfiguration: {
 	SchemaDefinition?: #SchemaDefinition
 }
@@ -67,6 +69,8 @@ import "strings"
 #SchemaDefinition: {
 	Columns?: [...#Column]
 }
+
+#ServiceManagedS3: {...}
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

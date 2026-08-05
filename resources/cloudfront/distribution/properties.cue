@@ -94,6 +94,8 @@ package distribution
 	Id: string
 }
 
+#ConnectionMode: "direct" | "tenant-only"
+
 #Cookies: {
 	// This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field.
 	// If you want to include cookies in the cache key, use a cache policy. For more information, see [Creating cache policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy) in the *Amazon CloudFront Developer Guide*.
@@ -491,6 +493,8 @@ package distribution
 	Quantity: int
 }
 
+#OriginGroupSelectionCriteria: "default" | "media-quality-based"
+
 #OriginGroups: {
 	// The items (origin groups) in a distribution.
 	Items?: [...#OriginGroup]
@@ -610,6 +614,8 @@ package distribution
 	// The trust store configuration associated with the viewer mTLS configuration.
 	TrustStoreConfig?: #TrustStoreConfig
 }
+
+#ViewerMtlsMode: "required" | "optional" | "passthrough"
 
 #VpcOriginConfig: {
 	// Specifies how long, in seconds, CloudFront persists its connection to the origin. The minimum timeout is 1 second, the maximum is 300 seconds, and the default (if you don't specify otherwise) is 5 seconds.

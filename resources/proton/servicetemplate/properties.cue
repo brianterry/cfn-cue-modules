@@ -17,6 +17,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Provisioning: "CUSTOMER_MANAGED"
+
 #Tag: {
 	// <p>The key of the resource tag.</p>
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

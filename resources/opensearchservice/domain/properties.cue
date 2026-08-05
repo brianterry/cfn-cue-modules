@@ -173,6 +173,8 @@ import "strings"
 	OffPeakWindow?: #OffPeakWindow
 }
 
+#RolesKeyIdcType: "GroupName" | "GroupId"
+
 #S3VectorsEngine: {
 	// Whether to enable S3 vectors engine.
 	Enabled: bool
@@ -211,6 +213,8 @@ import "strings"
 #SoftwareUpdateOptions: {
 	AutoSoftwareUpdateEnabled?: bool
 }
+
+#SubjectKeyIdcType: "UserName" | "UserId" | "Email"
 
 #Tag: {
 	// The value of the tag.

@@ -14,6 +14,8 @@ package truststorerevocation
 	S3ObjectVersion?: string
 }
 
+#RevocationId: string
+
 #TrustStoreRevocation: {
 	NumberOfRevokedEntries?: int
 	RevocationId?: string

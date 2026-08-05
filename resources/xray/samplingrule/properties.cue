@@ -10,6 +10,10 @@ import "strings"
 	Tags?: #Tags
 }
 
+#RuleARN: string
+
+#RuleName: string & strings.MinRunes(1) & strings.MaxRunes(32)
+
 #SamplingRateBoost: {
 	// Time window (in minutes) in which only one sampling rate boost can be triggered. After a boost occurs, no further boosts are allowed until the next window.
 	CooldownWindowMinutes: int & >=1
@@ -85,3 +89,5 @@ import "strings"
 	// The value for the tag.
 	Value: string
 }
+
+#Tags: [...#Tag]

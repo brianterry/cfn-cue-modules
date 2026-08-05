@@ -15,6 +15,14 @@ import "strings"
 	UserExperienceVersion?: #TopicUserExperienceVersion
 }
 
+#AggregationFunctionParameters: {...}
+
+#AuthorSpecifiedAggregation: "COUNT" | "DISTINCT_COUNT" | "MIN" | "MAX" | "MEDIAN" | "SUM" | "AVERAGE" | "STDEV" | "STDEVP" | "VAR" | "VARP" | "PERCENTILE"
+
+#CategoryFilterFunction: "EXACT" | "CONTAINS"
+
+#CategoryFilterType: "CUSTOM_FILTER" | "CUSTOM_FILTER_LIST" | "FILTER_LIST"
+
 #CellValueSynonym: {
 	CellValue?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 	Synonyms?: [...string]
@@ -24,11 +32,17 @@ import "strings"
 	ValueList?: [...string]
 }
 
+#ColumnDataRole: "DIMENSION" | "MEASURE"
+
+#ColumnOrderingType: "GREATER_IS_BETTER" | "LESSER_IS_BETTER" | "SPECIFIED"
+
 #ComparativeOrder: {
 	SpecifedOrder?: [...string]
 	TreatUndefinedSpecifiedValues?: #UndefinedSpecifiedValueType
 	UseOrdering?: #ColumnOrderingType
 }
+
+#ConstantType: "SINGULAR" | "RANGE" | "COLLECTIVE"
 
 #CustomInstructions: {
 	// <p>A text field for providing additional guidance or context for response generation.</p>
@@ -51,10 +65,14 @@ import "strings"
 	NamedEntities?: [...#TopicNamedEntity]
 }
 
+#DefaultAggregation: "SUM" | "MAX" | "MIN" | "COUNT" | "DISTINCT_COUNT" | "AVERAGE" | "MEDIAN" | "STDEV" | "STDEVP" | "VAR" | "VARP"
+
 #DefaultFormatting: {
 	DisplayFormat?: #DisplayFormat
 	DisplayFormatOptions?: #DisplayFormatOptions
 }
+
+#DisplayFormat: "AUTO" | "PERCENT" | "CURRENCY" | "NUMBER" | "DATE" | "STRING"
 
 #DisplayFormatOptions: {
 	BlankCellFormat?: string & strings.MinRunes(0) & strings.MaxRunes(256)
@@ -71,6 +89,10 @@ import "strings"
 	UseGrouping?: bool
 }
 
+#FilterClass: "ENFORCED_VALUE_FILTER" | "CONDITIONAL_VALUE_FILTER" | "NAMED_VALUE_FILTER" | "DASHBOARD_DEFAULT_FILTER"
+
+#NamedEntityAggType: "SUM" | "MIN" | "MAX" | "COUNT" | "AVERAGE" | "DISTINCT_COUNT" | "STDEV" | "STDEVP" | "VAR" | "VARP" | "PERCENTILE" | "MEDIAN" | "CUSTOM"
+
 #NamedEntityDefinition: {
 	FieldName?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 	Metric?: #NamedEntityDefinitionMetric
@@ -84,10 +106,20 @@ import "strings"
 	AggregationFunctionParameters?: #AggregationFunctionParameters
 }
 
+#NamedFilterAggType: "NO_AGGREGATION" | "SUM" | "AVERAGE" | "COUNT" | "DISTINCT_COUNT" | "MAX" | "MEDIAN" | "MIN" | "STDEV" | "STDEVP" | "VAR" | "VARP"
+
+#NamedFilterType: "CATEGORY_FILTER" | "NUMERIC_EQUALITY_FILTER" | "NUMERIC_RANGE_FILTER" | "DATE_RANGE_FILTER" | "RELATIVE_DATE_FILTER" | "NULL_FILTER"
+
 #NegativeFormat: {
 	Prefix?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 	Suffix?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#NumberScale: "NONE" | "AUTO" | "THOUSANDS" | "MILLIONS" | "BILLIONS" | "TRILLIONS" | "LAKHS" | "CRORES"
+
+#PropertyRole: "PRIMARY" | "ID"
+
+#PropertyUsage: "INHERIT" | "DIMENSION" | "MEASURE"
 
 #RangeConstant: {
 	Maximum?: string & strings.MinRunes(0) & strings.MaxRunes(256)
@@ -220,6 +252,8 @@ import "strings"
 	Inclusive?: bool
 }
 
+#TopicNumericSeparatorSymbol: "COMMA" | "DOT"
+
 #TopicRangeFilterConstant: {
 	ConstantType?: #ConstantType
 	RangeConstant?: #RangeConstant
@@ -231,7 +265,17 @@ import "strings"
 	TimeGranularity?: #TopicTimeGranularity
 }
 
+#TopicRelativeDateFilterFunction: "PREVIOUS" | "THIS" | "LAST" | "NEXT" | "NOW"
+
 #TopicSingularFilterConstant: {
 	ConstantType?: #ConstantType
 	SingularConstant?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#TopicTimeGranularity: "SECOND" | "MINUTE" | "HOUR" | "DAY" | "WEEK" | "MONTH" | "QUARTER" | "YEAR"
+
+#TopicUserExperienceVersion: "LEGACY" | "NEW_READER_EXPERIENCE"
+
+#TypeParameters: {...}
+
+#UndefinedSpecifiedValueType: "LEAST" | "MOST"

@@ -18,6 +18,8 @@ import "strings"
 	PatternRegex: string & =~"^\\/((?:[^\\n])+)\\/([gimsuyvd]{0,8})$" & strings.MinRunes(0) & strings.MaxRunes(300)
 }
 
+#EncryptionContextMap: {...}
+
 #InlineRedactionConfiguration: {
 	GlobalConfidenceLevel?: number & >=1 & <=3
 	GlobalEnforcedUrls?: [...string & =~"^((([a-zA-Z][a-zA-Z0-9+.-]*):\\/\\/(\\*|[\\w%._\\-\\+~#=@]+)?(\\/[^@\\s]*)?(?:\\?([^*\\s]+(?:\\*?)))?)|(\\*|[\\w%._\\-\\+~#=@]+\\.[\\w%._\\-\\+~#=@]+)(?::(\\d{1,5}))?(\\/[^@\\s]*)?(?:\\?([^*\\s]+(?:\\*?)))?|(([a-zA-Z][a-zA-Z0-9+.-]*):(\\/\\/)?\\*))$"]
@@ -38,6 +40,8 @@ import "strings"
 	RedactionPlaceHolderText?: string & =~"^[*_\\-\\d\\w]+$" & strings.MinRunes(1) & strings.MaxRunes(20)
 	RedactionPlaceHolderType: #RedactionPlaceHolderType
 }
+
+#RedactionPlaceHolderType: "CustomText"
 
 #Tag: {
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)

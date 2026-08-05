@@ -15,17 +15,33 @@ import "strings"
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#Column: #NonEmptyAndMaxLengthString
+
 #CopyValueEntry: {
 	OverwriteIfExists?: bool
 	Source: #NonEmptyString
 	Target: #NonEmptyAndMaxLengthString
 }
 
+#EventSource: "CloudTrail" | "Route53Resolver" | "VPCFlow" | "EKSAudit" | "AWSWAF"
+
+#MappingVersion: string & =~"^v\\d+\\.\\d+(\\.\\d+)?$" & strings.MinRunes(1) & strings.MaxRunes(10)
+
+#MatchPattern: #NonEmptyString
+
+#MaxLengthString: string & strings.MaxRunes(128)
+
 #MoveKeyEntry: {
 	OverwriteIfExists?: bool
 	Source: #NonEmptyString
 	Target: #NonEmptyString
 }
+
+#NonEmptyAndMaxLengthString: string & =~"^.*[a-zA-Z0-9]+.*$" & strings.MaxRunes(128)
+
+#NonEmptyString: string & =~"^.*[a-zA-Z0-9]+.*$"
+
+#OcsfVersion: "V1.1" | "V1.5"
 
 #ParseCloudfront: {
 	Source?: #NonEmptyString
@@ -157,3 +173,5 @@ import "strings"
 	Key: #NonEmptyString
 	Type: "boolean" | "integer" | "double" | "string"
 }
+
+#WithKey: string & strings.MinRunes(1) & strings.MaxRunes(128)

@@ -67,6 +67,8 @@ package table
 	WriteOrder?: #IcebergSortOrder
 }
 
+#MetadataOperation: {...}
+
 #OpenTableFormatInput: {
 	IcebergInput?: #IcebergInput
 }

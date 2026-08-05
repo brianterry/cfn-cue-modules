@@ -9,3 +9,7 @@ package consumableresource
 	// Total Quantity of ConsumableResource.
 	TotalQuantity: int
 }
+
+#ResourceArn: string
+
+#ResourceType: "REPLENISHABLE" | "NON_REPLENISHABLE"

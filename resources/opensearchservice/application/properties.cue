@@ -30,6 +30,8 @@ import "strings"
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
 
+#AppConfigType: "opensearchDashboards.dashboardAdmin.users" | "opensearchDashboards.dashboardAdmin.groups"
+
 #DataSource: {
 	// The ARN of the data source.
 	DataSourceArn: #Arn

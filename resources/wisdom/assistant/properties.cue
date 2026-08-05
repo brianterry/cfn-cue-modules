@@ -10,6 +10,8 @@ import "strings"
 	Type: #AssistantType
 }
 
+#AssistantType: "AGENT"
+
 #ServerSideEncryptionConfiguration: {
 	KmsKeyId?: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 }

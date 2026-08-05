@@ -20,8 +20,16 @@ import "strings"
 	Tags?: #TagMap
 }
 
+#ETagAlgorithmFamily: "MD5up" | "SHA256up" | "SHA512up"
+
+#EncryptionType: "KMS"
+
+#SequenceStoreStatus: "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "FAILED"
+
 #SseConfig: {
 	// An encryption key ARN.
 	KeyArn?: string & =~"arn:([^:\n]*):([^:\n]*):([^:\n]*):([0-9]{12}):([^:\n]*)" & strings.MinRunes(20) & strings.MaxRunes(2048)
 	Type: #EncryptionType
 }
+
+#TagMap: {...}

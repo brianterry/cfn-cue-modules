@@ -41,10 +41,14 @@ import "strings"
 	Values?: [...number]
 }
 
+#DoubleCriteriaConditionList: [...#DoubleCriteriaCondition]
+
 #IntegerCriteriaCondition: {
 	Comparison?: "StringEquals" | "StringNotEquals" | "StringEqualsIgnoreCase" | "StringNotEqualsIgnoreCase" | "StringLike" | "StringNotLike" | "NumericEquals" | "NumericNotEquals" | "NumericLessThan" | "NumericLessThanEquals" | "NumericGreaterThan" | "NumericGreaterThanEquals"
 	Values?: [...int]
 }
+
+#IntegerCriteriaConditionList: [...#IntegerCriteriaCondition]
 
 #OrganizationConfiguration: {
 	// List of account IDs where the organization rule applies
@@ -59,6 +63,8 @@ import "strings"
 	Values?: [...string & =~"^[\\w\\s\\.\\-\\:\\/\\=\\+\\@\\*\\?]+$" & strings.MinRunes(1) & strings.MaxRunes(512)]
 }
 
+#ResourceTagsCriteriaConditionList: [...#ResourceTagsCriteriaCondition]
+
 #Schedule: {
 	// Execution window duration in minutes
 	ExecutionWindowInMinutes?: int & >=60 & <=1440
@@ -72,6 +78,8 @@ import "strings"
 	Comparison?: "StringEquals" | "StringNotEquals" | "StringEqualsIgnoreCase" | "StringNotEqualsIgnoreCase" | "StringLike" | "StringNotLike" | "NumericEquals" | "NumericNotEquals" | "NumericLessThan" | "NumericLessThanEquals" | "NumericGreaterThan" | "NumericGreaterThanEquals"
 	Values?: [...string & =~"^[\\w\\s\\.\\-\\:\\/\\=\\+\\@\\*\\?]+$" & strings.MinRunes(1) & strings.MaxRunes(512)]
 }
+
+#StringCriteriaConditionList: [...#StringCriteriaCondition]
 
 #Tag: {
 	Key: string & =~"^[\\w\\s\\.\\-\\:\\/\\=\\+\\@]+$" & strings.MinRunes(1) & strings.MaxRunes(128)

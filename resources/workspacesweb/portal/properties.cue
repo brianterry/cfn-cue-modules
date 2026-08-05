@@ -21,6 +21,18 @@ import "strings"
 	UserSettingsArn?: string & =~"^arn:[\\w+=\\/,.@-]+:[a-zA-Z0-9\\-]+:[a-zA-Z0-9\\-]*:[a-zA-Z0-9]{1,12}:[a-zA-Z]+(\\/[a-fA-F0-9\\-]{36})+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
 
+#AuthenticationType: "Standard" | "IAM_Identity_Center"
+
+#BrowserType: "Chrome"
+
+#EncryptionContextMap: {...}
+
+#InstanceType: "standard.regular" | "standard.large" | "standard.xlarge"
+
+#PortalStatus: "Incomplete" | "Pending" | "Active"
+
+#RendererType: "AppStream"
+
 #Tag: {
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(0) & strings.MaxRunes(256)

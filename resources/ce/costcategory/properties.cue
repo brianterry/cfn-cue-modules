@@ -21,3 +21,5 @@ import "strings"
 	// The value for the tag.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#ZonedDateTime: string & =~"^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d(([+-]\\d\\d:\\d\\d)|Z)$" & strings.MinRunes(20) & strings.MaxRunes(25)

@@ -24,6 +24,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Arn: string & strings.MaxRunes(2048)
+
 #BoundingBox: {
 	Height: number & >=0 & <=100
 	Left: number & >=0 & <=100
@@ -59,6 +61,8 @@ import "strings"
 	Arn: string & =~"(^arn:([a-z\\d-]+):kinesisvideo:([a-z\\d-]+):\\d{12}:.+$)" & strings.MaxRunes(2048)
 }
 
+#Labels: [...string & strings.MinRunes(1) & strings.MaxRunes(128)]
+
 #NotificationChannel: {
 	// ARN of the SNS topic.
 	Arn: string & strings.MaxRunes(2048)
@@ -70,6 +74,8 @@ import "strings"
 	// The Y coordinate of the point.
 	Y: number
 }
+
+#Polygon: [...#Point]
 
 #S3Destination: {
 	// Name of the S3 bucket.

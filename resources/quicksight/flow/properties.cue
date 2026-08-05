@@ -10,6 +10,8 @@ import "strings"
 	Permissions?: [...#Permission]
 }
 
+#FlowPublishState: "PUBLISHED" | "DRAFT" | "PENDING_APPROVAL"
+
 #Permission: {
 	Actions: [...string & strings.MinRunes(1) & strings.MaxRunes(64)]
 	Principal: string & strings.MinRunes(1) & strings.MaxRunes(256)

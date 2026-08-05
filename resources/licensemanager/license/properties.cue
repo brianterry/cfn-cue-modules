@@ -23,6 +23,8 @@ import "strings"
 	Validity: #ValidityDateFormat
 }
 
+#Arn: string & strings.MaxRunes(2048)
+
 #BorrowConfiguration: {
 	AllowEarlyCheckIn: bool
 	MaxTimeToLiveInMinutes: int
@@ -47,6 +49,8 @@ import "strings"
 	Name: string
 	SignKey?: string
 }
+
+#LicenseStatus: string
 
 #Metadata: {
 	Name: string

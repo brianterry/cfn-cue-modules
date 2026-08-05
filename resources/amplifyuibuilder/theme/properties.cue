@@ -11,6 +11,8 @@ import "strings"
 	Values?: [...#ThemeValues]
 }
 
+#Tags: {...}
+
 #ThemeValue: {
 	Children?: [...#ThemeValues]
 	Value?: string

@@ -12,6 +12,8 @@ import "strings"
 	Type?: #IndexType
 }
 
+#AttributeType: "STRING" | "STRING_LIST" | "NUMBER" | "DATE"
+
 #DocumentAttributeConfiguration: {
 	Name?: string & =~"^[a-zA-Z0-9_][a-zA-Z0-9_-]*$" & strings.MinRunes(1) & strings.MaxRunes(30)
 	Search?: #Status
@@ -25,6 +27,12 @@ import "strings"
 #IndexStatistics: {
 	TextDocumentStatistics?: #TextDocumentStatistics
 }
+
+#IndexStatus: "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
+
+#IndexType: "ENTERPRISE" | "STARTER"
+
+#Status: "ENABLED" | "DISABLED"
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

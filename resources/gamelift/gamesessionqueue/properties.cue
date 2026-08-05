@@ -23,6 +23,8 @@ import "strings"
 	TimeoutInSeconds?: int & >=0
 }
 
+#AllowedLocations: [...string & =~"^[a-z]+(-([a-z]+|\\d))*" & strings.MinRunes(1) & strings.MaxRunes(64)]
+
 #FilterConfiguration: {
 	AllowedLocations?: #AllowedLocations
 }
@@ -30,6 +32,8 @@ import "strings"
 #GameSessionQueueDestination: {
 	DestinationArn?: string & =~"[a-zA-Z0-9:/-]+" & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#LocationOrder: [...string & =~"^[A-Za-z0-9\\-]+" & strings.MinRunes(1) & strings.MaxRunes(64)]
 
 #PlayerLatencyPolicy: {
 	// The maximum latency value that is allowed for any player, in milliseconds. All policies must have a value set for this property.
@@ -42,6 +46,8 @@ import "strings"
 	LocationOrder?: #LocationOrder
 	PriorityOrder?: #PriorityOrder
 }
+
+#PriorityOrder: [..."LATENCY" | "COST" | "DESTINATION" | "LOCATION"]
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length.

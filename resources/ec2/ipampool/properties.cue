@@ -35,6 +35,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Cidr: string
+
 #ProvisionedCidr: {
 	Cidr: #Cidr
 }

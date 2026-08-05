@@ -14,6 +14,8 @@ import "strings"
 	Widgets?: [...#Widget]
 }
 
+#QueryParameter: string & =~".*" & strings.MinRunes(1) & strings.MaxRunes(1024)
+
 #RefreshSchedule: {
 	Frequency?: {
 		Unit: "HOURS" | "DAYS"
@@ -31,6 +33,8 @@ import "strings"
 	// The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string
 }
+
+#Timestamp: string
 
 #Widget: {
 	// The placeholder keys in the QueryStatement. For example: $StartTime$, $EndTime$, $Period$.

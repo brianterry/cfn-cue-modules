@@ -30,3 +30,15 @@ import "strings"
 	// The username of the SSO User Profile.
 	Username?: string & =~"^[a-zA-Z_0-9+=,.@-]+$" & strings.MinRunes(1) & strings.MaxRunes(1024)
 }
+
+#UserProfileDetails: {
+	Iam: #IamUserProfileDetails
+} | {
+	Sso: #SsoUserProfileDetails
+}
+
+#UserProfileStatus: "ASSIGNED" | "NOT_ASSIGNED" | "ACTIVATED" | "DEACTIVATED"
+
+#UserProfileType: "IAM" | "SSO"
+
+#UserType: "IAM_USER" | "IAM_ROLE" | "SSO_USER" | "IAM_ROLE_SESSION"

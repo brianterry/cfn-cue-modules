@@ -15,6 +15,8 @@ import "strings"
 	QueryString: string & strings.MinRunes(1) & strings.MaxRunes(10000)
 }
 
+#LogGroup: string & =~"[\\.\\-_/#A-Za-z0-9]+" & strings.MinRunes(1) & strings.MaxRunes(512)
+
 #QueryParameter: {
 	// The default value to use for this query parameter if no value is supplied at execution time.
 	DefaultValue?: string & strings.MaxRunes(1024)

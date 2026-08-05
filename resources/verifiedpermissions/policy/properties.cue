@@ -13,6 +13,14 @@ import "strings"
 	EntityType: string & =~"^.*$" & strings.MinRunes(1) & strings.MaxRunes(200)
 }
 
+#PolicyDefinition: {
+	Static: #StaticPolicyDefinition
+} | {
+	TemplateLinked: #TemplateLinkedPolicyDefinition
+}
+
+#PolicyType: "STATIC" | "TEMPLATE_LINKED"
+
 #StaticPolicyDefinition: {
 	Description?: string & strings.MinRunes(0) & strings.MaxRunes(150)
 	Statement: string & strings.MinRunes(1) & strings.MaxRunes(10000)

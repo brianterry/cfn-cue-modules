@@ -50,6 +50,10 @@ import "strings"
 	FeatureTypes?: [..."TABLES" | "FORMS"]
 }
 
+#KmsKeyId: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+
+#S3Uri: string & =~"s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?" & strings.MaxRunes(1024)
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

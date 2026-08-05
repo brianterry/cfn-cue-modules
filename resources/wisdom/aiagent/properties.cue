@@ -11,6 +11,32 @@ import "strings"
 	Type: #AIAgentType
 }
 
+#AIAgentAssociationConfigurationType: "KNOWLEDGE_BASE"
+
+#AIAgentConfiguration: {
+	ManualSearchAIAgentConfiguration: #ManualSearchAIAgentConfiguration
+} | {
+	AnswerRecommendationAIAgentConfiguration: #AnswerRecommendationAIAgentConfiguration
+} | {
+	SelfServiceAIAgentConfiguration: #SelfServiceAIAgentConfiguration
+} | {
+	EmailResponseAIAgentConfiguration: #EmailResponseAIAgentConfiguration
+} | {
+	EmailOverviewAIAgentConfiguration: #EmailOverviewAIAgentConfiguration
+} | {
+	EmailGenerativeAnswerAIAgentConfiguration: #EmailGenerativeAnswerAIAgentConfiguration
+} | {
+	OrchestrationAIAgentConfiguration: #OrchestrationAIAgentConfiguration
+} | {
+	NoteTakingAIAgentConfiguration: #NoteTakingAIAgentConfiguration
+} | {
+	CaseSummarizationAIAgentConfiguration: #CaseSummarizationAIAgentConfiguration
+}
+
+#AIAgentType: "MANUAL_SEARCH" | "ANSWER_RECOMMENDATION" | "SELF_SERVICE" | "EMAIL_RESPONSE" | "EMAIL_OVERVIEW" | "EMAIL_GENERATIVE_ANSWER" | "ORCHESTRATION" | "NOTE_TAKING" | "CASE_SUMMARIZATION"
+
+#Annotation: {...}
+
 #AnswerRecommendationAIAgentConfiguration: {
 	AnswerGenerationAIGuardrailId?: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(:[A-Z0-9_$]+){0,1}$"
 	AnswerGenerationAIPromptId?: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(:[A-Z0-9_$]+){0,1}$"
@@ -24,6 +50,10 @@ import "strings"
 	AssociationConfigurationData?: #AssociationConfigurationData
 	AssociationId?: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
 	AssociationType?: #AIAgentAssociationConfigurationType
+}
+
+#AssociationConfigurationData: {
+	KnowledgeBaseAssociationConfigurationData: #KnowledgeBaseAssociationConfigurationData
 }
 
 #CaseSummarizationAIAgentConfiguration: {
@@ -57,6 +87,8 @@ import "strings"
 	OverrideKnowledgeBaseSearchType?: #KnowledgeBaseSearchType
 }
 
+#KnowledgeBaseSearchType: "HYBRID" | "SEMANTIC"
+
 #ManualSearchAIAgentConfiguration: {
 	AnswerGenerationAIGuardrailId?: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(:[A-Z0-9_$]+){0,1}$"
 	AnswerGenerationAIPromptId?: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(:[A-Z0-9_$]+){0,1}$"
@@ -68,6 +100,12 @@ import "strings"
 	Locale?: string & strings.MinRunes(1)
 	NoteTakingAIGuardrailId?: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(:[A-Z0-9_$]+){0,1}$"
 	NoteTakingAIPromptId?: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(:[A-Z0-9_$]+){0,1}$"
+}
+
+#OrCondition: {
+	AndConditions: [...#TagCondition]
+} | {
+	TagCondition: #TagCondition
 }
 
 #OrchestrationAIAgentConfiguration: {
@@ -90,6 +128,16 @@ import "strings"
 	Value?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#TagFilter: {
+	TagCondition: #TagCondition
+} | {
+	AndConditions: [...#TagCondition]
+} | {
+	OrConditions: [...#OrCondition]
+}
+
+#Tags: {...}
+
 #ToolConfiguration: {
 	Annotations?: #Annotation
 	Description?: string & strings.MinRunes(1)
@@ -104,6 +152,10 @@ import "strings"
 	ToolType: #ToolType
 	UserInteractionConfiguration?: #UserInteractionConfiguration
 }
+
+#ToolConfigurationList: [...#ToolConfiguration]
+
+#ToolExampleList: [...string]
 
 #ToolInstruction: {
 	Examples?: #ToolExampleList
@@ -120,6 +172,8 @@ import "strings"
 	OutputConfiguration?: #ToolOutputConfiguration
 }
 
+#ToolOutputFilterList: [...#ToolOutputFilter]
+
 #ToolOverrideConstantInputValue: {
 	Type: #ToolOverrideInputValueType
 	Value: string & strings.MinRunes(1)
@@ -129,6 +183,16 @@ import "strings"
 	JsonPath: string & strings.MinRunes(1)
 	Value: #ToolOverrideInputValueConfiguration
 }
+
+#ToolOverrideInputValueConfiguration: {
+	Constant: #ToolOverrideConstantInputValue
+}
+
+#ToolOverrideInputValueList: [...#ToolOverrideInputValue]
+
+#ToolOverrideInputValueType: "STRING" | "NUMBER" | "JSON_STRING"
+
+#ToolType: "MODEL_CONTEXT_PROTOCOL" | "RETURN_TO_CONTROL" | "CONSTANT"
 
 #UserInteractionConfiguration: {
 	IsUserConfirmationRequired?: bool

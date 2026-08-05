@@ -13,9 +13,17 @@ import "strings"
 	RouteDetails: #RouteDetails
 }
 
+#Region: string
+
+#RouteDetails: [...{
+	Region: #Region
+}]
+
 #Tag: {
 	// One part of a key-value pair that defines a tag.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The optional part of a key-value pair that defines a tag.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]

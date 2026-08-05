@@ -26,12 +26,16 @@ package channel
 	S3?: #S3LogDestination
 }
 
+#ChannelName: string & =~"^[a-zA-Z0-9._-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
+
 #ChannelStateInfo: {
 	// Code for channel state
 	Code?: string
 	// Message for channel state
 	Message?: string
 }
+
+#ChannelStatus: "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "FAILED" | "SUSPENDING" | "SUSPENDED"
 
 #CloudWatchLogsLogDestination: {
 	// Whether CloudWatch Logs logging is enabled
@@ -69,6 +73,8 @@ package channel
 	Enabled: bool
 }
 
+#IcebergCompressionType: "ZSTD" | "SNAPPY"
+
 #IcebergDestinationConfiguration: {
 	// Append only mode
 	AppendOnly: bool
@@ -96,6 +102,8 @@ package channel
 	SourceList?: [...#PartitionSource]
 }
 
+#PartitionStrategy: "TIME_HOUR"
+
 #RecordConverter: {
 	ValueConverter: #ValueConverter
 }
@@ -104,6 +112,8 @@ package channel
 	// ARN of Glue Schema Registry resource used for table schema
 	GsrArn: string
 }
+
+#S3CompressionType: "NONE" | "GZIP" | "ZSTD"
 
 #S3DestinationConfiguration: {
 	// Data freshness in seconds
@@ -136,6 +146,8 @@ package channel
 	StorageClass: #S3StorageClass
 }
 
+#S3StorageClass: "STANDARD" | "INTELLIGENT_TIERING" | "GLACIER_IR"
+
 #SchemaEvolution: {
 	// Whether schema evolution is enabled
 	EnableSchemaEvolution: bool
@@ -146,9 +158,13 @@ package channel
 	EnableTableCreation: bool
 }
 
+#Tags: {...}
+
 #TopicConfiguration: {
 	RecordConverter: #RecordConverter
 	RecordSchema?: #RecordSchema
 	// The Amazon Resource Name (ARN) that uniquely identifies the topic
 	TopicArn: string & =~"^arn:[\\w-]+:kafka:[\\w-]+:\\d+:topic.*\\Z"
 }
+
+#ValueConverter: "BYTE_ARRAY" | "JSON" | "JSON_SCHEMA_GSR" | "STRING"

@@ -26,10 +26,18 @@ import "strings"
 	LastName?: string & strings.MinRunes(1) & strings.MaxRunes(32767)
 }
 
+#AttachmentName: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
+#AttachmentUrl: string & strings.MinRunes(1)
+
+#ChannelSubtype: "EMAIL" | "SMS"
+
 #Content: {
 	EmailMessageTemplateContent?: #EmailMessageTemplateContent
 	SmsMessageTemplateContent?: #SmsMessageTemplateContent
 }
+
+#CustomAttributes: {...}
 
 #CustomerProfileAttributes: {
 	// A unique account number that you have given to the customer.
@@ -177,6 +185,8 @@ import "strings"
 	// The list of values that define different groups of Amazon Q in Connect users.
 	Values: [...#GroupingValue]
 }
+
+#GroupingValue: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 
 #MessageTemplateAttachment: {
 	AttachmentId?: string & strings.MinRunes(1)

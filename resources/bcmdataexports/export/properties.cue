@@ -6,6 +6,8 @@ import "strings"
 	Tags?: [...#ResourceTag]
 }
 
+#CompressionOption: "GZIP" | "PARQUET" | "ZIP"
+
 #DataQuery: {
 	QueryStatement: string & =~"^[\\S\\s]*$" & strings.MinRunes(1) & strings.MaxRunes(36000)
 	TableConfigurations?: #TableConfigurations
@@ -23,6 +25,12 @@ import "strings"
 	Name: string & =~"^[0-9A-Za-z\\-_]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	RefreshCadence: #RefreshCadence
 }
+
+#FormatOption: "TEXT_OR_CSV" | "PARQUET"
+
+#FrequencyOption: "SYNCHRONOUS"
+
+#OverwriteOption: "CREATE_NEW_REPORT" | "OVERWRITE_REPORT"
 
 #RefreshCadence: {
 	Frequency: #FrequencyOption
@@ -47,3 +55,9 @@ import "strings"
 	OutputType: #S3OutputType
 	Overwrite: #OverwriteOption
 }
+
+#S3OutputType: "CUSTOM" | "ATHENA" | "REDSHIFT"
+
+#TableConfigurations: {...}
+
+#TableProperties: {...}

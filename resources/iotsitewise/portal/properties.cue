@@ -25,6 +25,10 @@ package portal
 	Tags?: [...#Tag]
 }
 
+#PortalTools: [...string]
+
+#PortalTypeConfiguration: {...}
+
 #PortalTypeEntry: {
 	PortalTools: #PortalTools
 }

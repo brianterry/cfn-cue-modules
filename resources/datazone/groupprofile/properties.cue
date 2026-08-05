@@ -10,3 +10,7 @@ package groupprofile
 	RolePrincipalArn?: string
 	Status?: #GroupProfileStatus
 }
+
+#GroupProfileStatus: "ASSIGNED" | "NOT_ASSIGNED"
+
+#GroupType: "DATAZONE_SSO_GROUP" | "IAM_ROLE_SESSION_GROUP"

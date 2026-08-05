@@ -18,6 +18,12 @@ package environmentblueprintconfiguration
 	LocationRegistrationRole?: string & =~"^arn:aws[^:]*:iam::\\d{12}:role(/[a-zA-Z0-9+=,.@_-]+)*/[a-zA-Z0-9+=,.@_-]+$"
 }
 
+#Parameter: {...}
+
+#ProvisioningConfiguration: {
+	LakeFormationConfiguration: #LakeFormationConfiguration
+}
+
 #RegionalParameter: {
 	Parameters?: #Parameter
 	Region?: string & =~"^[a-z]{2}-?(iso|gov)?-{1}[a-z]*-{1}[0-9]$"

@@ -4,6 +4,8 @@ package account
 	ExpiryEventsConfiguration: #ExpiryEventsConfiguration
 }
 
+#AccountId: string
+
 #ExpiryEventsConfiguration: {
 	DaysBeforeExpiry?: int & >=1 & <=45
 }

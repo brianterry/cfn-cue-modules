@@ -13,6 +13,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AdditionalClaims: {...}
+
 #AtlassianOauth2ProviderConfigInput: {
 	ClientId: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	ClientSecret?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -206,6 +208,8 @@ import "strings"
 	Key: string & =~"^[a-zA-Z0-9\\s._:/=+@-]*$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^[a-zA-Z0-9\\s._:/=+@-]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#TagsMap: {...}
 
 #TokenExchangeGrantTypeConfig: {
 	// The actor token content type

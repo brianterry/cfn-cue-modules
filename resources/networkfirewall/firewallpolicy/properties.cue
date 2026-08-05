@@ -41,9 +41,19 @@ import "strings"
 	Definition?: [...#VariableDefinition]
 }
 
+#OverrideAction: "DROP_TO_ALERT"
+
+#Priority: int & >=1 & <=65535
+
 #PublishMetricAction: {
 	Dimensions: [...#Dimension]
 }
+
+#ResourceArn: string & =~"^(arn:aws.*)$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#RuleOrder: "DEFAULT_ACTION_ORDER" | "STRICT_ORDER"
+
+#RuleVariables: {...}
 
 #StatefulEngineOptions: {
 	FlowTimeouts?: {
@@ -69,7 +79,11 @@ import "strings"
 	ResourceArn: #ResourceArn
 }
 
+#StreamExceptionPolicy: "DROP" | "CONTINUE" | "REJECT"
+
 #Tag: {
 	Key: string & =~"^.*$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^.*$" & strings.MinRunes(0) & strings.MaxRunes(255)
 }
+
+#VariableDefinition: string & =~"^.*$" & strings.MinRunes(1)

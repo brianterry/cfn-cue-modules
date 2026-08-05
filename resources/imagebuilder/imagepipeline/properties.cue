@@ -96,3 +96,5 @@ import "strings"
 	Name?: string
 	Value?: [...#WorkflowParameterValue]
 }
+
+#WorkflowParameterValue: string

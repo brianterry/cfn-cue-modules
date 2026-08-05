@@ -18,3 +18,21 @@ import "strings"
 	Priority?: int & >=1 & <=10000
 	QType?: string & strings.MinRunes(0) & strings.MaxRunes(16)
 }
+
+#BlockOverrideDnsQueryType: "CNAME"
+
+#CRResourceStatus: "CREATING" | "OPERATIONAL" | "UPDATING" | "DELETING"
+
+#ConfidenceThreshold: "LOW" | "MEDIUM" | "HIGH"
+
+#DnsAdvancedProtection: "DGA" | "DNS_TUNNELING" | "DICTIONARY_DGA"
+
+#Domain: string & =~"\\*?[-a-zA-Z0-9.]+" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#FirewallBlockResponse: "NODATA" | "NXDOMAIN" | "OVERRIDE"
+
+#FirewallRuleAction: "ALLOW" | "ALERT" | "BLOCK"
+
+#ResourceDescription: string & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#ResourceName: string & =~"(?!^[0-9]+$)([a-zA-Z0-9-_' ']+)" & strings.MinRunes(1) & strings.MaxRunes(64)

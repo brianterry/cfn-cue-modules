@@ -12,3 +12,5 @@ import "strings"
 	// The ID of the Amazon EMR Studio to which the user or group will be mapped.
 	StudioId: string & =~"^es-[0-9A-Z]+" & strings.MinRunes(4) & strings.MaxRunes(256)
 }
+
+#IamPolicyArn: string & =~"^arn:aws(-(cn|us-gov|iso-f|iso-e))?:iam::([0-9]{12})?:policy\\/[^.]+$"

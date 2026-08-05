@@ -9,6 +9,8 @@ package backupvault
 	Notifications?: #NotificationObjectType
 }
 
+#BackupVaultNamePattern: string & =~"^[a-zA-Z0-9\\-\\_]{2,50}$"
+
 #LockConfigurationType: {
 	ChangeableForDays?: int
 	MaxRetentionDays?: int

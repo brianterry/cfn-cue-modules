@@ -17,6 +17,12 @@ import "strings"
 	ActivationState: #RouteActivationState
 }
 
+#Method: "DELETE" | "GET" | "HEAD" | "OPTIONS" | "PATCH" | "POST" | "PUT"
+
+#RouteActivationState: "INACTIVE" | "ACTIVE"
+
+#RouteType: "DEFAULT" | "URI_PATH"
+
 #Tag: {
 	// A string used to identify this tag
 	Key: string & =~"^(?!aws:).+" & strings.MinRunes(1) & strings.MaxRunes(128)

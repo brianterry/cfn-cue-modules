@@ -36,6 +36,10 @@ import "strings"
 	TemplateURL?: string & strings.MinRunes(1) & strings.MaxRunes(5120)
 }
 
+#Account: string & =~"^[0-9]{12}$"
+
+#Active: bool
+
 #AutoDeployment: {
 	// A list of StackSet ARNs that this StackSet depends on for auto-deployment operations. When auto-deployment is triggered, operations will be sequenced to ensure all dependencies complete successfully before this StackSet's operation begins.
 	DependsOn?: [...#StackSetArn]
@@ -44,6 +48,10 @@ import "strings"
 	// If set to true, stack resources are retained when an account is removed from a target organization or OU. If set to false, stack resources are deleted. Specify only if Enabled is set to True.
 	RetainStacksOnAccountRemoval?: bool
 }
+
+#Capability: "CAPABILITY_IAM" | "CAPABILITY_NAMED_IAM" | "CAPABILITY_AUTO_EXPAND"
+
+#ConcurrencyMode: "STRICT_FAILURE_TOLERANCE" | "SOFT_FAILURE_TOLERANCE"
 
 #DeploymentTargets: {
 	// The filter type you want to apply on organizational units and accounts.
@@ -66,12 +74,18 @@ import "strings"
 	RegionOrder?: [...#Region]
 }
 
+#OrganizationalUnitId: string & =~"^(ou-[a-z0-9]{4,32}-[a-z0-9]{8,32}|r-[a-z0-9]{4,32})$"
+
 #Parameter: {
 	// The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation uses the default value that is specified in your template.
 	ParameterKey: string
 	// The input value associated with the parameter.
 	ParameterValue: string
 }
+
+#Region: string & =~"^[a-zA-Z0-9-]{1,128}$"
+
+#RegionConcurrencyType: "SEQUENTIAL" | "PARALLEL"
 
 #StackInstances: {
 	DeploymentTargets: #DeploymentTargets
@@ -80,6 +94,8 @@ import "strings"
 	// The names of one or more Regions where you want to create stack instances using the specified AWS account(s).
 	Regions: [...#Region]
 }
+
+#StackSetArn: string
 
 #Tag: {
 	// A string used to identify this tag. You can specify a maximum of 127 characters for a tag key.

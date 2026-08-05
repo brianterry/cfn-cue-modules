@@ -8,3 +8,11 @@ package tag
 	// A list of possible values an attribute can take.
 	TagValues: #TagValueList
 }
+
+#CatalogIdString: string & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#LFTagKey: string & =~"^([{a-zA-Z}{\\s}{0-9}_.:\\/=+\\-@%]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
+
+#LFTagValue: string & =~"^([{a-zA-Z}{\\s}{0-9}_.:\\*\\/=+\\-@%]*)$" & strings.MinRunes(0) & strings.MaxRunes(256)
+
+#TagValueList: [...#LFTagValue]

@@ -23,6 +23,10 @@ import "strings"
 	VectorOptions?: #VectorOptions
 }
 
+#CollectionType: "SEARCH" | "TIMESERIES" | "VECTORSEARCH"
+
+#DeletionProtection: "ENABLED" | "DISABLED"
+
 #EncryptionConfig: {
 	// Indicates whether to use an AWS owned key for encryption.
 	AWSOwnedKey?: bool
@@ -34,6 +38,10 @@ import "strings"
 	CollectionEndpoint?: string
 	DashboardEndpoint?: string
 }
+
+#ServerlessVectorAcceleration: "ENABLED" | "DISABLED" | "ALLOWED"
+
+#StandbyReplicas: "ENABLED" | "DISABLED"
 
 #Tag: {
 	// The key in the key-value pair

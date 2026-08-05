@@ -21,6 +21,8 @@ import "strings"
 	TransitEncryption?: #RouterInputTransitEncryption
 }
 
+#AutomaticEncryptionKeyConfiguration: {...}
+
 #BlackFramesConfiguration: {
 	State: #ContentQualityAnalysisState
 	// The number of consecutive seconds of black frames that MediaConnect must detect before it reports an issue.
@@ -33,6 +35,14 @@ import "strings"
 	SilentAudio?: #SilentAudioConfiguration
 }
 
+#ContentQualityAnalysisState: "ENABLED" | "DISABLED"
+
+#Day: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY"
+
+#DefaultMaintenanceConfiguration: {...}
+
+#FailoverInputSourcePriorityMode: "NO_PRIORITY" | "PRIMARY_SECONDARY"
+
 #FailoverRouterInputConfiguration: {
 	// The ARN of the network interface to use for this failover router input.
 	NetworkInterfaceArn: string & =~"^arn:(aws[a-zA-Z-]*):mediaconnect:[a-z0-9-]+:[0-9]{12}:routerNetworkInterface:[a-z0-9]{12}$"
@@ -43,16 +53,44 @@ import "strings"
 	SourcePriorityMode: #FailoverInputSourcePriorityMode
 }
 
+#FailoverRouterInputProtocolConfiguration: {
+	Rtp: #RtpRouterInputConfiguration
+} | {
+	Rist: #RistRouterInputConfiguration
+} | {
+	SrtListener: #SrtListenerRouterInputConfiguration
+} | {
+	SrtCaller: #SrtCallerRouterInputConfiguration
+}
+
 #FlowTransitEncryption: {
 	EncryptionKeyConfiguration: #FlowTransitEncryptionKeyConfiguration
 	EncryptionKeyType?: #FlowTransitEncryptionKeyType
 }
+
+#FlowTransitEncryptionKeyConfiguration: {
+	SecretsManager: #SecretsManagerEncryptionKeyConfiguration
+} | {
+	Automatic: #AutomaticEncryptionKeyConfiguration
+}
+
+#FlowTransitEncryptionKeyType: "SECRETS_MANAGER" | "AUTOMATIC"
+
+#ForwardErrorCorrectionState: "ENABLED" | "DISABLED"
 
 #FrozenFramesConfiguration: {
 	State: #ContentQualityAnalysisState
 	// The number of consecutive seconds of a frozen frame that MediaConnect must detect before it reports an issue.
 	ThresholdSeconds: int & >=10 & <=60
 }
+
+#MaintenanceConfiguration: {
+	PreferredDayTime: #PreferredDayTimeMaintenanceConfiguration
+} | {
+	Default: #DefaultMaintenanceConfiguration
+}
+
+#MaintenanceType: "PREFERRED_DAY_TIME" | "DEFAULT"
 
 #MediaConnectFlowRouterInputConfiguration: {
 	// The ARN of the flow to connect to.
@@ -61,6 +99,8 @@ import "strings"
 	FlowOutputArn?: string & =~"^arn:(aws[a-zA-Z-]*):mediaconnect:[a-z0-9-]+:[0-9]{12}:output:[a-zA-Z0-9-]+:[a-zA-Z0-9_-]+$"
 	SourceTransitDecryption: #FlowTransitEncryption
 }
+
+#MediaLiveChannelPipelineId: "PIPELINE_0" | "PIPELINE_1"
 
 #MediaLiveChannelRouterInputConfiguration: {
 	// The ARN of the MediaLive channel to connect to this router input.
@@ -76,6 +116,14 @@ import "strings"
 	EncryptionKeyType?: #MediaLiveTransitEncryptionKeyType
 }
 
+#MediaLiveTransitEncryptionKeyConfiguration: {
+	SecretsManager: #SecretsManagerEncryptionKeyConfiguration
+} | {
+	Automatic: #AutomaticEncryptionKeyConfiguration
+}
+
+#MediaLiveTransitEncryptionKeyType: "SECRETS_MANAGER" | "AUTOMATIC"
+
 #MergeRouterInputConfiguration: {
 	// The time window in milliseconds for merging the two input sources.
 	MergeRecoveryWindowMilliseconds: int
@@ -83,6 +131,12 @@ import "strings"
 	NetworkInterfaceArn: string & =~"^arn:(aws[a-zA-Z-]*):mediaconnect:[a-z0-9-]+:[0-9]{12}:routerNetworkInterface:[a-z0-9]{12}$"
 	// A list of exactly two protocol configurations for the merge input sources. Both must use the same protocol type.
 	ProtocolConfigurations: [...#MergeRouterInputProtocolConfiguration]
+}
+
+#MergeRouterInputProtocolConfiguration: {
+	Rtp: #RtpRouterInputConfiguration
+} | {
+	Rist: #RistRouterInputConfiguration
 }
 
 #PreferredDayTimeMaintenanceConfiguration: {
@@ -98,10 +152,56 @@ import "strings"
 	RecoveryLatencyMilliseconds: int & >=10 & <=10000
 }
 
+#RouterContentQualityAnalysisConfiguration: {
+	ContentLevel: #ContentQualityAnalysisFeatureConfiguration
+}
+
+#RouterContentQualityAnalysisType: "CONTENT_LEVEL"
+
+#RouterInputConfiguration: {
+	Standard: #StandardRouterInputConfiguration
+} | {
+	Failover: #FailoverRouterInputConfiguration
+} | {
+	Merge: #MergeRouterInputConfiguration
+} | {
+	MediaConnectFlow: #MediaConnectFlowRouterInputConfiguration
+} | {
+	MediaLiveChannel: #MediaLiveChannelRouterInputConfiguration
+}
+
+#RouterInputProtocol: "RTP" | "RIST" | "SRT_CALLER" | "SRT_LISTENER"
+
+#RouterInputProtocolConfiguration: {
+	Rtp: #RtpRouterInputConfiguration
+} | {
+	Rist: #RistRouterInputConfiguration
+} | {
+	SrtListener: #SrtListenerRouterInputConfiguration
+} | {
+	SrtCaller: #SrtCallerRouterInputConfiguration
+}
+
+#RouterInputState: "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
+
+#RouterInputTier: "INPUT_100" | "INPUT_50" | "INPUT_20"
+
 #RouterInputTransitEncryption: {
 	EncryptionKeyConfiguration: #RouterInputTransitEncryptionKeyConfiguration
 	EncryptionKeyType?: #RouterInputTransitEncryptionKeyType
 }
+
+#RouterInputTransitEncryptionKeyConfiguration: {
+	SecretsManager: #SecretsManagerEncryptionKeyConfiguration
+} | {
+	Automatic: #AutomaticEncryptionKeyConfiguration
+}
+
+#RouterInputTransitEncryptionKeyType: "SECRETS_MANAGER" | "AUTOMATIC"
+
+#RouterInputType: "STANDARD" | "FAILOVER" | "MERGE" | "MEDIACONNECT_FLOW" | "MEDIALIVE_CHANNEL"
+
+#RoutingScope: "REGIONAL" | "GLOBAL"
 
 #RtpRouterInputConfiguration: {
 	ForwardErrorCorrection?: #ForwardErrorCorrectionState

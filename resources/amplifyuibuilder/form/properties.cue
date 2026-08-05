@@ -44,12 +44,22 @@ import "strings"
 	ValueMappings?: #ValueMappings
 }
 
+#FieldPosition: {
+	Fixed: #FixedPosition
+} | {
+	RightOf: string
+} | {
+	Below: string
+}
+
 #FieldValidationConfiguration: {
 	NumValues?: [...number]
 	StrValues?: [...string]
 	Type: string
 	ValidationMessage?: string
 }
+
+#FieldsMap: {...}
 
 #FileUploaderFieldConfig: {
 	AcceptedFileTypes: [...string]
@@ -60,11 +70,17 @@ import "strings"
 	ShowThumbnails?: bool
 }
 
+#FixedPosition: "first"
+
+#FormActionType: "create" | "update"
+
 #FormButton: {
 	Children?: string
 	Excluded?: bool
 	Position?: #FieldPosition
 }
+
+#FormButtonsPosition: "top" | "bottom" | "top_and_bottom"
 
 #FormCTA: {
 	Cancel?: #FormButton
@@ -73,10 +89,14 @@ import "strings"
 	Submit?: #FormButton
 }
 
+#FormDataSourceType: "DataStore" | "Custom"
+
 #FormDataTypeConfig: {
 	DataSourceType: #FormDataSourceType
 	DataTypeName: string
 }
+
+#FormInputBindingProperties: {...}
 
 #FormInputBindingPropertiesValue: {
 	BindingProperties?: #FormInputBindingPropertiesValueProperties
@@ -104,6 +124,14 @@ import "strings"
 	VerticalGap?: #FormStyleConfig
 }
 
+#FormStyleConfig: {
+	TokenReference: string
+} | {
+	Value: string
+}
+
+#LabelDecorator: "required" | "optional" | "none"
+
 #SectionalElement: {
 	Excluded?: bool
 	Level?: number
@@ -112,6 +140,12 @@ import "strings"
 	Text?: string
 	Type: string
 }
+
+#SectionalElementMap: {...}
+
+#StorageAccessLevel: "public" | "protected" | "private"
+
+#Tags: {...}
 
 #ValueMapping: {
 	DisplayValue?: #FormInputValueProperty

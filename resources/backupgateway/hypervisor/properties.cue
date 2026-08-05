@@ -12,6 +12,10 @@ import "strings"
 	Username?: string & =~"^[ -\\.0-\\[\\]-~]*[!-\\.0-\\[\\]-~][ -\\.0-\\[\\]-~]*$" & strings.MinRunes(1) & strings.MaxRunes(100)
 }
 
+#HypervisorState: "PENDING" | "ONLINE" | "OFFLINE" | "ERROR"
+
+#SyncMetadataStatus: "PENDING" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED"
+
 #Tag: {
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

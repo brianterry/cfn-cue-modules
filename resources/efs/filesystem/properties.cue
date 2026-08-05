@@ -40,6 +40,8 @@ package filesystem
 	ThroughputMode?: string
 }
 
+#Arn: string
+
 #BackupPolicy: {
 	// Set the backup policy status for the file system.
 	// +  *ENABLED* - Turns automatic backups on for the file system.

@@ -16,6 +16,8 @@ package sourcelocation
 	SecretsManagerAccessTokenConfiguration?: #SecretsManagerAccessTokenConfiguration
 }
 
+#AccessType: "S3_SIGV4" | "SECRETS_MANAGER_ACCESS_TOKEN" | "AUTODETECT_SIGV4"
+
 #DefaultSegmentDeliveryConfiguration: {
 	// <p>The hostname of the server that will be used to serve segments. This string must include the protocol, such as <b>https://</b>.</p>
 	BaseUrl?: string

@@ -9,10 +9,16 @@ import "strings"
 	FlowArn: string & =~"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10}$"
 }
 
+#AdditionalModelRequestFields: {...}
+
 #AgentFlowNodeConfiguration: {
 	// Arn representation of the Agent Alias.
 	AgentAliasArn: string & =~"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent-alias/[0-9a-zA-Z]{10}/[0-9a-zA-Z]{10}$" & strings.MaxRunes(2048)
 }
+
+#BedrockRerankingModelArn: string & =~"^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}::foundation-model/(.*))?$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+
+#CollectorFlowNodeConfiguration: {...}
 
 #ConditionFlowNodeConfiguration: {
 	// List of conditions in a condition node
@@ -23,6 +29,8 @@ import "strings"
 	// Field name for reranking
 	FieldName: string & strings.MinRunes(1) & strings.MaxRunes(2000)
 }
+
+#FieldsForReranking: [...#FieldForReranking]
 
 #FlowCondition: {
 	// Expression for a condition in a flow
@@ -46,6 +54,14 @@ import "strings"
 	Target: string & =~"^[a-zA-Z]([_]?[0-9a-zA-Z]){1,50}$"
 	Type: #FlowConnectionType
 }
+
+#FlowConnectionConfiguration: {
+	Data: #FlowDataConnectionConfiguration
+} | {
+	Conditional: #FlowConditionalConnectionConfiguration
+}
+
+#FlowConnectionType: "Data" | "Conditional"
 
 #FlowDataConnectionConfiguration: {
 	// Name of a node output in a flow
@@ -72,6 +88,42 @@ import "strings"
 	Type: #FlowNodeType
 }
 
+#FlowNodeConfiguration: {
+	Input: #InputFlowNodeConfiguration
+} | {
+	Output: #OutputFlowNodeConfiguration
+} | {
+	KnowledgeBase: #KnowledgeBaseFlowNodeConfiguration
+} | {
+	Condition: #ConditionFlowNodeConfiguration
+} | {
+	Lex: #LexFlowNodeConfiguration
+} | {
+	Prompt: #PromptFlowNodeConfiguration
+} | {
+	LambdaFunction: #LambdaFunctionFlowNodeConfiguration
+} | {
+	Agent: #AgentFlowNodeConfiguration
+} | {
+	Storage: #StorageFlowNodeConfiguration
+} | {
+	Retrieval: #RetrievalFlowNodeConfiguration
+} | {
+	Iterator: #IteratorFlowNodeConfiguration
+} | {
+	Collector: #CollectorFlowNodeConfiguration
+} | {
+	InlineCode: #InlineCodeFlowNodeConfiguration
+} | {
+	Loop: #LoopFlowNodeConfiguration
+} | {
+	LoopInput: #LoopInputFlowNodeConfiguration
+} | {
+	LoopController: #LoopControllerFlowNodeConfiguration
+}
+
+#FlowNodeIODataType: "String" | "Number" | "Boolean" | "Object" | "Array"
+
 #FlowNodeInput: {
 	// Expression for a node input in a flow
 	Expression: string & strings.MinRunes(1) & strings.MaxRunes(64)
@@ -86,6 +138,10 @@ import "strings"
 	Type: #FlowNodeIODataType
 }
 
+#FlowNodeType: "Input" | "Output" | "KnowledgeBase" | "Condition" | "Lex" | "Prompt" | "LambdaFunction" | "Agent" | "Iterator" | "Collector" | "Storage" | "Retrieval" | "InlineCode" | "Loop" | "LoopInput" | "LoopController"
+
+#FlowStatus: "Failed" | "Prepared" | "Preparing" | "NotPrepared"
+
 #GuardrailConfiguration: {
 	// Identifier for the guardrail, could be the id or the arn
 	GuardrailIdentifier?: string & =~"^(([a-z0-9]+)|(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail/[a-z0-9]+))$" & strings.MaxRunes(2048)
@@ -98,6 +154,10 @@ import "strings"
 	Code: string & strings.MaxRunes(5000000)
 	Language: #SupportedLanguages
 }
+
+#InputFlowNodeConfiguration: {...}
+
+#IteratorFlowNodeConfiguration: {...}
 
 #KnowledgeBaseFlowNodeConfiguration: {
 	GuardrailConfiguration?: #GuardrailConfiguration
@@ -118,6 +178,10 @@ import "strings"
 	InferenceConfig?: #PromptInferenceConfiguration
 	PerformanceConfig?: #PerformanceConfiguration
 	PromptTemplate?: #KnowledgeBasePromptTemplate
+}
+
+#KnowledgeBasePromptTemplate: {
+	TextPromptTemplate: string & strings.MinRunes(1) & strings.MaxRunes(100000)
 }
 
 #LambdaFunctionFlowNodeConfiguration: {
@@ -142,14 +206,20 @@ import "strings"
 	Definition: #FlowDefinition
 }
 
+#LoopInputFlowNodeConfiguration: {...}
+
 #MetadataConfigurationForReranking: {
 	SelectionMode: #RerankingMetadataSelectionMode
 	SelectiveModeConfiguration?: #RerankingMetadataSelectiveModeConfiguration
 }
 
+#OutputFlowNodeConfiguration: {...}
+
 #PerformanceConfiguration: {
 	Latency?: #PerformanceConfigurationLatency
 }
+
+#PerformanceConfigurationLatency: "standard" | "optimized"
 
 #PromptFlowNodeConfiguration: {
 	GuardrailConfiguration?: #GuardrailConfiguration
@@ -169,6 +239,16 @@ import "strings"
 	PromptArn: string & =~"^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?)$"
 }
 
+#PromptFlowNodeSourceConfiguration: {
+	Resource: #PromptFlowNodeResourceConfiguration
+} | {
+	Inline: #PromptFlowNodeInlineConfiguration
+}
+
+#PromptInferenceConfiguration: {
+	Text: #PromptModelInferenceConfiguration
+}
+
 #PromptInputVariable: {
 	// Name for an input variable
 	Name?: string & =~"^([0-9a-zA-Z][_-]?){1,100}$"
@@ -185,6 +265,20 @@ import "strings"
 	TopP?: number & >=0 & <=1
 }
 
+#PromptTemplateConfiguration: {
+	Text: #TextPromptTemplateConfiguration
+}
+
+#PromptTemplateType: "TEXT"
+
+#RerankingMetadataSelectionMode: "SELECTIVE" | "ALL"
+
+#RerankingMetadataSelectiveModeConfiguration: {
+	FieldsToInclude: #FieldsForReranking
+} | {
+	FieldsToExclude: #FieldsForReranking
+}
+
 #RetrievalFlowNodeConfiguration: {
 	ServiceConfiguration: #RetrievalFlowNodeServiceConfiguration
 }
@@ -192,6 +286,10 @@ import "strings"
 #RetrievalFlowNodeS3Configuration: {
 	// bucket name of an s3 that will be used for Retrieval flow node configuration
 	BucketName: string & =~"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$"
+}
+
+#RetrievalFlowNodeServiceConfiguration: {
+	S3?: #RetrievalFlowNodeS3Configuration
 }
 
 #StorageFlowNodeConfiguration: {
@@ -202,6 +300,12 @@ import "strings"
 	// bucket name of an s3 that will be used for storage flow node configuration
 	BucketName: string & =~"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$"
 }
+
+#StorageFlowNodeServiceConfiguration: {
+	S3?: #StorageFlowNodeS3Configuration
+}
+
+#SupportedLanguages: "Python_3"
 
 #TextPromptTemplateConfiguration: {
 	// List of input variables
@@ -226,3 +330,5 @@ import "strings"
 	BedrockRerankingConfiguration?: #VectorSearchBedrockRerankingConfiguration
 	Type: #VectorSearchRerankingConfigurationType
 }
+
+#VectorSearchRerankingConfigurationType: "BEDROCK_RERANKING_MODEL"

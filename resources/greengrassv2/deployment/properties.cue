@@ -72,9 +72,17 @@ import "strings"
 	RateIncreaseCriteria: #IoTJobRateIncreaseCriteria
 }
 
+#IoTJobRateIncreaseCriteria: {
+	NumberOfNotifiedThings?: #NumberOfThings
+} | {
+	NumberOfSucceededThings?: #NumberOfThings
+}
+
 #IoTJobTimeoutConfig: {
 	InProgressTimeoutInMinutes?: int & >=0 & <=2147483647
 }
+
+#NumberOfThings: int & >=1 & <=2147483647
 
 #SystemResourceLimits: {
 	Cpus?: number & >=0

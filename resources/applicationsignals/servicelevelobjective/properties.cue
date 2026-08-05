@@ -20,6 +20,8 @@ import "strings"
 	LookBackWindowMinutes: int & >=1 & <=10080
 }
 
+#BurnRateConfigurations: [...#BurnRateConfiguration]
+
 #CalendarInterval: {
 	Duration: #Duration
 	DurationUnit: #DurationUnit
@@ -32,6 +34,8 @@ import "strings"
 	OperationName: string
 }
 
+#CompositeSliComponents: [...#CompositeSliComponent]
+
 #CompositeSliConfig: {
 	CompositeSliComponents?: #CompositeSliComponents
 	SelectionConfig: #SelectionConfig
@@ -43,12 +47,18 @@ import "strings"
 	DependencyOperationName: string & strings.MinRunes(1) & strings.MaxRunes(255)
 }
 
+#DependencyKeyAttributes: string
+
 #Dimension: {
 	// The name of the dimension. Dimension names must contain only ASCII characters, must include at least one non-whitespace character, and cannot start with a colon (:). ASCII control characters are not supported as part of dimension names.
 	Name: string
 	// The value of the dimension. Dimension values must contain only ASCII characters and must include at least one non-whitespace character. ASCII control characters are not supported as part of dimension values
 	Value: string
 }
+
+#Duration: int & >=1
+
+#DurationUnit: "MINUTE" | "HOUR" | "DAY" | "MONTH"
 
 #ExclusionWindow: {
 	// An optional reason for scheduling this time exclusion window. Default is 'No reason'.
@@ -58,6 +68,8 @@ import "strings"
 	StartTime?: string
 	Window: #Window
 }
+
+#ExclusionWindows: [...#ExclusionWindow]
 
 #Goal: {
 	// The threshold that determines if the goal is being met. An attainment goal is the ratio of good periods that meet the threshold requirements to the total periods within the interval. For example, an attainment goal of 99.9% means that within your interval, you are targeting 99.9% of the periods to be in healthy state.
@@ -73,6 +85,8 @@ import "strings"
 	RollingInterval?: #RollingInterval
 }
 
+#KeyAttributes: string
+
 #Metric: {
 	// An array of one or more dimensions to use to define the metric that you want to use.
 	Dimensions?: [...#Dimension]
@@ -81,6 +95,8 @@ import "strings"
 	// The namespace of the metric.
 	Namespace?: string
 }
+
+#MetricDataQueries: [...#MetricDataQuery]
 
 #MetricDataQuery: {
 	// The ID of the account where the metrics are located, if this is a cross-account alarm.
@@ -95,10 +111,16 @@ import "strings"
 	ReturnData?: bool
 }
 
+#MetricName: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
 #MetricSource: {
 	MetricSourceAttributes?: #MetricSourceAttributes
 	MetricSourceKeyAttributes: #MetricSourceKeyAttributes
 }
+
+#MetricSourceAttributes: string
+
+#MetricSourceKeyAttributes: string
 
 #MetricStat: {
 	Metric: #Metric
@@ -155,6 +177,8 @@ import "strings"
 	Type: #SelectionType
 }
 
+#SelectionType: "EXPLICIT" | "PREFIX" | "REGEX"
+
 #Sli: {
 	// The arithmetic operation used when comparing the specified metric to the threshold.
 	ComparisonOperator: "GreaterThanOrEqualTo" | "LessThanOrEqualTo" | "LessThan" | "GreaterThan"
@@ -186,6 +210,8 @@ import "strings"
 	// The value for the specified tag key.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Tags: [...#Tag]
 
 #Window: {
 	Duration: #Duration

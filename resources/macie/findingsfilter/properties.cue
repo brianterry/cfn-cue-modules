@@ -15,6 +15,8 @@ package findingsfilter
 	Tags?: [...#Tag]
 }
 
+#Criterion: {...}
+
 #CriterionAdditionalProperties: {
 	eq?: [...string]
 	gt?: int
@@ -27,6 +29,8 @@ package findingsfilter
 #FindingCriteria: {
 	Criterion?: #Criterion
 }
+
+#FindingFilterAction: "ARCHIVE" | "NOOP"
 
 #FindingsFilterListItem: {
 	Id?: string

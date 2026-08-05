@@ -21,6 +21,8 @@ package logdeliveryconfiguration
 	S3Configuration?: #S3Configuration
 }
 
+#LogConfigurations: [...#LogConfiguration]
+
 #S3Configuration: {
 	BucketArn?: string
 }

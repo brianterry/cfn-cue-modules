@@ -50,6 +50,8 @@ import "strings"
 	EndpointStatus?: "Creating" | "Updating" | "SystemUpdating" | "RollingBack" | "InService" | "OutOfService" | "Deleting" | "Failed"
 }
 
+#EndpointName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*" & strings.MaxRunes(63)
+
 #InferenceExperimentSchedule: {
 	// The timestamp at which the inference experiment ended or will end.
 	EndTime?: string

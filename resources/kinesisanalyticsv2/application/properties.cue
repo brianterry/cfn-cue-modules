@@ -80,6 +80,8 @@ import "strings"
 	RollbackEnabled: bool
 }
 
+#Arn: string & =~"^arn:.*$" & strings.MinRunes(1) & strings.MaxRunes(2048)
+
 #CSVMappingParameters: {
 	// The column delimiter. For example, in a CSV format, a comma (",") is the typical column delimiter.
 	RecordColumnDelimiter: string & strings.MinRunes(1) & strings.MaxRunes(1024)
@@ -120,6 +122,8 @@ import "strings"
 	// The location of the custom artifacts.
 	S3ContentLocation?: #S3ContentLocation
 }
+
+#CustomArtifactsConfiguration: [...#CustomArtifactConfiguration]
 
 #DeployAsApplicationConfiguration: {
 	// The description of an Amazon S3 object that contains the Amazon Data Analytics application, including the Amazon Resource Name (ARN) of the S3 bucket, the name of the Amazon S3 object that contains the data, and the version number of the Amazon S3 object that contains the data.
@@ -304,6 +308,8 @@ import "strings"
 	// The array of Subnet IDs used by the VPC configuration.
 	SubnetIds: [...string]
 }
+
+#VpcConfigurations: [...#VpcConfiguration]
 
 #ZeppelinApplicationConfiguration: {
 	// The Amazon Glue Data Catalog that you use in queries in a Kinesis Data Analytics Studio notebook.

@@ -20,6 +20,10 @@ import "strings"
 	LogGroupArn?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#Definition: {...}
+
+#DefinitionSubstitutions: {...}
+
 #EncryptionConfiguration: {
 	KmsDataKeyReusePeriodSeconds?: int & >=60 & <=900
 	KmsKeyId?: string & strings.MinRunes(1) & strings.MaxRunes(2048)

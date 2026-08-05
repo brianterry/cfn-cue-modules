@@ -63,6 +63,8 @@ import "strings"
 	Value?: string & strings.MinRunes(0) & strings.MaxRunes(255)
 }
 
+#Tags: [...#Tag]
+
 #UnusedAccessConfiguration: {
 	// Contains information about rules for the analyzer.
 	AnalysisRule?: {

@@ -22,10 +22,22 @@ import "strings"
 	Cidr: string
 }
 
+#RouterNetworkInterfaceConfiguration: {
+	Public: #PublicRouterNetworkInterfaceConfiguration
+} | {
+	Vpc: #VpcRouterNetworkInterfaceConfiguration
+}
+
+#RouterNetworkInterfaceState: "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "ERROR" | "RECOVERING"
+
+#RouterNetworkInterfaceType: "PUBLIC" | "VPC"
+
 #Tag: {
 	Key: string
 	Value: string
 }
+
+#Unit: {...}
 
 #VpcRouterNetworkInterfaceConfiguration: {
 	// The IDs of the security groups to associate with the router network interface within the VPC.

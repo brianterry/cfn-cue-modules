@@ -12,6 +12,10 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Description: string & strings.MinRunes(1) & strings.MaxRunes(1000)
+
+#DomainName: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
+
 #EventParameters: {
 	// The type of event
 	EventType: string & strings.MinRunes(1) & strings.MaxRunes(255)
@@ -27,6 +31,12 @@ import "strings"
 #RecommenderConfig: {
 	EventsConfig?: #EventsConfig
 }
+
+#RecommenderName: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#RecommenderRecipeName: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
+#RecommenderStatus: "PENDING" | "IN_PROGRESS" | "STOPPING" | "STARTING" | "ACTIVE" | "INACTIVE" | "FAILED" | "DELETING"
 
 #RecommenderUpdate: {
 	// The timestamp of when the update was created

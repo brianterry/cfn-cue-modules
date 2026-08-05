@@ -110,6 +110,8 @@ import "strings"
 	ProviderResources: [...#ProviderResource]
 }
 
+#IntegratedResources: [...#IntegratedResource]
+
 #ProviderResource: {
 	BitbucketCapabilities?: #BitbucketCapabilitiesResource
 	BitbucketRepository?: #BitbucketRepositoryResource

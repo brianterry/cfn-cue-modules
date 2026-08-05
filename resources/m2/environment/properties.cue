@@ -37,6 +37,8 @@ import "strings"
 	MountPoint: string & =~"^\\S{1,200}$"
 }
 
+#EngineType: "microfocus" | "bluage"
+
 #FsxStorageConfiguration: {
 	// The file system identifier.
 	FileSystemId: string & =~"^\\S{1,200}$"
@@ -47,3 +49,13 @@ import "strings"
 #HighAvailabilityConfig: {
 	DesiredCapacity: int & >=1 & <=100
 }
+
+#NetworkType: "ipv4" | "dual"
+
+#StorageConfiguration: {
+	Efs: #EfsStorageConfiguration
+} | {
+	Fsx: #FsxStorageConfiguration
+}
+
+#TagMap: {...}

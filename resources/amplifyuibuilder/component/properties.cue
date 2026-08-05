@@ -31,6 +31,8 @@ import "strings"
 	Url?: #ComponentProperty
 }
 
+#ComponentBindingProperties: {...}
+
 #ComponentBindingPropertiesValue: {
 	BindingProperties?: #ComponentBindingPropertiesValueProperties
 	DefaultValue?: string
@@ -57,6 +59,8 @@ import "strings"
 	SourceId?: string
 }
 
+#ComponentCollectionProperties: {...}
+
 #ComponentConditionProperty: {
 	Else?: #ComponentProperty
 	Field?: string
@@ -79,6 +83,14 @@ import "strings"
 	BindingEvent?: string
 	Parameters?: #ActionParameters
 }
+
+#ComponentEvents: {...}
+
+#ComponentOverrides: {...}
+
+#ComponentOverridesValue: {...}
+
+#ComponentProperties: {...}
 
 #ComponentProperty: {
 	BindingProperties?: #ComponentPropertyBindingProperties
@@ -108,10 +120,14 @@ import "strings"
 	VariantValues?: #ComponentVariantValues
 }
 
+#ComponentVariantValues: {...}
+
 #FormBindingElement: {
 	Element: string
 	Property: string
 }
+
+#FormBindings: {...}
 
 #MutationActionSetStateParameter: {
 	ComponentName: string
@@ -128,7 +144,11 @@ import "strings"
 	Or?: [...#Predicate]
 }
 
+#SortDirection: "ASC" | "DESC"
+
 #SortProperty: {
 	Direction: #SortDirection
 	Field: string
 }
+
+#Tags: {...}

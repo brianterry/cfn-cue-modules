@@ -61,6 +61,8 @@ import "strings"
 	Status?: #PerformanceTargetStatus
 }
 
+#PerformanceTargetStatus: "ENABLED" | "DISABLED"
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
@@ -90,3 +92,5 @@ import "strings"
 	WorkgroupId?: string
 	WorkgroupName?: string & =~"^[a-z0-9-]*$" & strings.MinRunes(3) & strings.MaxRunes(64)
 }
+
+#WorkgroupStatus: "CREATING" | "AVAILABLE" | "MODIFYING" | "DELETING"

@@ -13,6 +13,8 @@ package project
 	Tags?: [...#Tag]
 }
 
+#AssetId: string
+
 #Tag: {
 	Key: string
 	Value: string

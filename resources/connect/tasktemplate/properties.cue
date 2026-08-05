@@ -28,6 +28,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#ClientToken: string & =~"^$|[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$"
+
 #DefaultFieldValue: {
 	DefaultValue: #FieldValue
 	Id: #FieldIdentifier
@@ -47,17 +49,31 @@ import "strings"
 	Name: string & strings.MinRunes(1) & strings.MaxRunes(100)
 }
 
+#FieldOption: string & strings.MinRunes(1) & strings.MaxRunes(100)
+
+#FieldType: "NAME" | "DESCRIPTION" | "SCHEDULED_TIME" | "QUICK_CONNECT" | "URL" | "NUMBER" | "TEXT" | "TEXT_AREA" | "DATE_TIME" | "BOOLEAN" | "SINGLE_SELECT" | "EMAIL" | "EXPIRY_DURATION" | "SELF_ASSIGN"
+
+#FieldValue: string & strings.MinRunes(1) & strings.MaxRunes(4096)
+
 #InvisibleFieldInfo: {
 	Id: #FieldIdentifier
 }
+
+#InvisibleTaskTemplateFields: [...#InvisibleFieldInfo]
 
 #ReadOnlyFieldInfo: {
 	Id: #FieldIdentifier
 }
 
+#ReadOnlyTaskTemplateFields: [...#ReadOnlyFieldInfo]
+
 #RequiredFieldInfo: {
 	Id: #FieldIdentifier
 }
+
+#RequiredTaskTemplateFields: [...#RequiredFieldInfo]
+
+#Status: "ACTIVE" | "INACTIVE"
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

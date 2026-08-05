@@ -37,11 +37,19 @@ import "strings"
 	S3Location?: #S3OutputLocation
 }
 
+#ParameterValues: [...string]
+
+#S3BucketName: string & strings.MinRunes(3) & strings.MaxRunes(63)
+
+#S3KeyPrefix: string & strings.MaxRunes(1024)
+
 #S3OutputLocation: {
 	OutputS3BucketName?: #S3BucketName
 	OutputS3KeyPrefix?: #S3KeyPrefix
 	OutputS3Region?: #S3Region
 }
+
+#S3Region: string & strings.MinRunes(3) & strings.MaxRunes(20)
 
 #Tag: {
 	// The name of the tag.

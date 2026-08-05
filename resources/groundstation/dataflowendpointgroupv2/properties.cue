@@ -9,6 +9,10 @@ package dataflowendpointgroupv2
 	Tags?: [...#Tag]
 }
 
+#AgentStatus: "SUCCESS" | "FAILED" | "ACTIVE" | "INACTIVE"
+
+#AuditResults: "HEALTHY" | "UNHEALTHY"
+
 #ConnectionDetails: {
 	// Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.
 	Mtu?: int & >=1400 & <=1500

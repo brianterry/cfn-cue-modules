@@ -18,6 +18,13 @@ import "strings"
 	DaysAfterInitiation: int & >=0
 }
 
+#FilterAndOperator: {
+	Prefix?: #FilterPrefix
+	Tags: [...#FilterTag]
+}
+
+#FilterPrefix: string
+
 #FilterTag: {
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:=+\\/\\-@%]*)$" & strings.MinRunes(1) & strings.MaxRunes(1024)
 	Value: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:=+\\/\\-@%]*)$" & strings.MinRunes(1) & strings.MaxRunes(1024)
@@ -46,3 +53,5 @@ import "strings"
 	Key: string & =~"^(?!aws:.*)([\\p{L}\\p{Z}\\p{N}_.:=+\\/\\-@%]*)$" & strings.MinRunes(1) & strings.MaxRunes(1024)
 	Value: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:=+\\/\\-@%]*)$" & strings.MinRunes(1) & strings.MaxRunes(1024)
 }
+
+#iso8601UTC: string & =~"^([0-2]\\d{3})-(0[0-9]|1[0-2])-([0-2]\\d|3[01])T([01]\\d|2[0-4]):([0-5]\\d):([0-6]\\d)((\\.\\d{3})?)Z$"

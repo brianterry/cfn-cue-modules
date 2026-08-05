@@ -44,6 +44,8 @@ import "strings"
 	SecretArn?: string & =~"^arn:aws(-(cn|us-gov|iso(-[bef])?))?:secretsmanager:.*$"
 }
 
+#AuthenticationType: "BASIC" | "OAUTH2" | "CUSTOM"
+
 #AuthorizationCodeProperties: {
 	AuthorizationCode?: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 	RedirectUri?: string & strings.MaxRunes(512)
@@ -61,11 +63,49 @@ import "strings"
 	UserName?: string & =~"^\\S+$" & strings.MaxRunes(512)
 }
 
+#ComputeEnvironments: string
+
 #ConnectionConfiguration: {
 	// The classification of the connection configuration.
 	Classification?: string & =~"^[\\w][\\w\\.\\-\\_]*$" & strings.MaxRunes(64)
 	Properties?: #PropertyMap
 }
+
+#ConnectionProperties: {...}
+
+#ConnectionPropertiesInput: {
+	AthenaProperties: #AthenaPropertiesInput
+} | {
+	GlueProperties: #GluePropertiesInput
+} | {
+	HyperPodProperties: #HyperPodPropertiesInput
+} | {
+	IamProperties: #IamPropertiesInput
+} | {
+	RedshiftProperties: #RedshiftPropertiesInput
+} | {
+	SparkEmrProperties: #SparkEmrPropertiesInput
+} | {
+	AmazonQProperties: #AmazonQPropertiesInput
+} | {
+	SparkGlueProperties: #SparkGluePropertiesInput
+} | {
+	S3Properties: #S3PropertiesInput
+} | {
+	MlflowProperties: #MlflowPropertiesInput
+} | {
+	WorkflowsMwaaProperties: #WorkflowsMwaaPropertiesInput
+} | {
+	WorkflowsServerlessProperties: #WorkflowsServerlessPropertiesInput
+} | {
+	LakehouseProperties: #LakehousePropertiesInput
+}
+
+#ConnectionStatus: "CREATING" | "CREATE_FAILED" | "DELETING" | "DELETE_FAILED" | "READY" | "UPDATING" | "UPDATE_FAILED" | "DELETED"
+
+#ConnectionType: string
+
+#CredentialMap: {...}
 
 #GlueConnectionInput: {
 	AthenaProperties?: #PropertyMap
@@ -81,6 +121,8 @@ import "strings"
 	ValidateCredentials?: bool
 	ValidateForComputeEnvironments?: [...#ComputeEnvironments]
 }
+
+#GlueConnectionType: string
 
 #GlueOAuth2Credentials: {
 	AccessToken?: string & strings.MaxRunes(4096)
@@ -120,6 +162,8 @@ import "strings"
 	UserManagedClientApplicationClientId?: string & =~"^\\S+$" & strings.MaxRunes(2048)
 }
 
+#OAuth2GrantType: "AUTHORIZATION_CODE" | "CLIENT_CREDENTIALS" | "JWT_BEARER"
+
 #OAuth2Properties: {
 	AuthorizationCodeProperties?: #AuthorizationCodeProperties
 	OAuth2ClientApplication?: #OAuth2ClientApplication
@@ -136,6 +180,14 @@ import "strings"
 	SubnetIdList?: [...string & =~"^subnet-[a-z0-9]+$" & strings.MaxRunes(32)]
 }
 
+#PropertyMap: {...}
+
+#RedshiftCredentials: {
+	SecretArn: string & =~"^arn:aws[^:]*:secretsmanager:[a-z]{2}-?(iso|gov)?-{1}[a-z]*-{1}[0-9]:\\d{12}:secret:.*$" & strings.MaxRunes(2048)
+} | {
+	UsernamePassword: #UsernamePassword
+}
+
 #RedshiftLineageSyncConfigurationInput: {
 	Enabled?: bool
 	Schedule?: #LineageSyncSchedule
@@ -148,6 +200,12 @@ import "strings"
 	LineageSync?: #RedshiftLineageSyncConfigurationInput
 	Port?: number & >=0 & <=65535
 	Storage?: #RedshiftStorageProperties
+}
+
+#RedshiftStorageProperties: {
+	ClusterName: string & =~"^[a-z0-9-]+$" & strings.MinRunes(0) & strings.MaxRunes(63)
+} | {
+	WorkgroupName: string & =~"^[a-z0-9-]+$" & strings.MinRunes(3) & strings.MaxRunes(64)
 }
 
 #S3PropertiesInput: {
@@ -185,6 +243,8 @@ import "strings"
 	WorkerType?: string & =~"^[G|Z].*$" & strings.MaxRunes(256)
 }
 
+#TokenUrlParametersMap: {...}
+
 #UsernamePassword: {
 	Password: string & =~"^[\\S]*$" & strings.MaxRunes(64)
 	Username: string & =~"^[\\S]*$" & strings.MinRunes(1) & strings.MaxRunes(127)
@@ -194,3 +254,5 @@ import "strings"
 	// The name of the MWAA environment.
 	MwaaEnvironmentName?: string
 }
+
+#WorkflowsServerlessPropertiesInput: {...}

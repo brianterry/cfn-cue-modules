@@ -81,6 +81,8 @@ package project
 	Value: string
 }
 
+#FilterGroup: {...}
+
 #GitSubmodulesConfig: {
 	FetchSubmodules: bool
 }

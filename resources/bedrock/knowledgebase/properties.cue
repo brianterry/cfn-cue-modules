@@ -18,9 +18,15 @@ import "strings"
 	SegmentationConfiguration: #AudioSegmentationConfiguration
 }
 
+#AudioConfigurations: [...#AudioConfiguration]
+
 #AudioSegmentationConfiguration: {
 	FixedLengthDuration: #FixedLengthDuration
 }
+
+#AwsDataCatalogTableName: string & =~"^.*\\.*$" & strings.MinRunes(1) & strings.MaxRunes(200)
+
+#AwsDataCatalogTableNames: [...#AwsDataCatalogTableName]
 
 #BedrockEmbeddingModelConfiguration: {
 	Audio?: #AudioConfigurations
@@ -31,14 +37,26 @@ import "strings"
 	Video?: #VideoConfigurations
 }
 
+#CuratedQueries: [...#CuratedQuery]
+
 #CuratedQuery: {
 	NaturalLanguage: #NaturalLanguageString
 	Sql: #SqlString
 }
 
+#DescriptionString: string & strings.MinRunes(1) & strings.MaxRunes(200)
+
 #EmbeddingModelConfiguration: {
 	BedrockEmbeddingModelConfiguration?: #BedrockEmbeddingModelConfiguration
 }
+
+#EmbeddingModelType: "CUSTOM" | "MANAGED"
+
+#FixedLengthDuration: int & >=1 & <=30
+
+#InclusionType: "INCLUDE" | "EXCLUDE"
+
+#KendraIndexArn: string & =~"^arn:aws(|-cn|-us-gov):kendra:[a-z0-9-]{1,20}:([0-9]{12}|):index/([a-zA-Z0-9][a-zA-Z0-9-]{35}|[a-zA-Z0-9][a-zA-Z0-9-]{35}-[a-zA-Z0-9][a-zA-Z0-9-]{35})$"
 
 #KendraKnowledgeBaseConfiguration: {
 	KendraIndexArn: #KendraIndexArn
@@ -51,6 +69,12 @@ import "strings"
 	Type: #KnowledgeBaseType
 	VectorKnowledgeBaseConfiguration?: #VectorKnowledgeBaseConfiguration
 }
+
+#KnowledgeBaseStatus: "CREATING" | "ACTIVE" | "DELETING" | "UPDATING" | "FAILED" | "DELETE_UNSUCCESSFUL" | "UPDATE_UNSUCCESSFUL"
+
+#KnowledgeBaseStorageType: "OPENSEARCH_SERVERLESS" | "PINECONE" | "RDS" | "MONGO_DB_ATLAS" | "NEPTUNE_ANALYTICS" | "S3_VECTORS" | "OPENSEARCH_MANAGED_CLUSTER"
+
+#KnowledgeBaseType: "VECTOR" | "KENDRA" | "SQL" | "MANAGED"
 
 #ManagedKnowledgeBaseConfiguration: {
 	// The ARN of the model used to create vector embeddings for the knowledge base.
@@ -91,6 +115,8 @@ import "strings"
 	// The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.
 	VectorField: string & =~"^.*$" & strings.MaxRunes(2048)
 }
+
+#NaturalLanguageString: string & strings.MinRunes(1) & strings.MaxRunes(1000)
 
 #NeptuneAnalyticsConfiguration: {
 	FieldMapping: #NeptuneAnalyticsFieldMapping
@@ -158,11 +184,19 @@ import "strings"
 	TextField: string & =~"^.*$" & strings.MaxRunes(2048)
 }
 
+#QueryEngineType: "REDSHIFT"
+
+#QueryExecutionTimeoutSeconds: int & >=1 & <=200
+
 #QueryGenerationColumn: {
 	Description?: #DescriptionString
 	Inclusion?: #InclusionType
 	Name?: #QueryGenerationColumnName
 }
+
+#QueryGenerationColumnName: string & strings.MinRunes(1) & strings.MaxRunes(127)
+
+#QueryGenerationColumns: [...#QueryGenerationColumn]
 
 #QueryGenerationConfiguration: {
 	ExecutionTimeoutSeconds?: #QueryExecutionTimeoutSeconds
@@ -180,6 +214,10 @@ import "strings"
 	Inclusion?: #InclusionType
 	Name: #QueryGenerationTableName
 }
+
+#QueryGenerationTableName: string & =~"^.*\\..*\\..*$"
+
+#QueryGenerationTables: [...#QueryGenerationTable]
 
 #RdsConfiguration: {
 	// The ARN of the secret that you created in AWS Secrets Manager that is linked to your Amazon RDS database.
@@ -225,11 +263,15 @@ import "strings"
 	VectorField: string & =~"^.*$" & strings.MaxRunes(2048)
 }
 
+#RedshiftClusterIdentifier: string & strings.MinRunes(1) & strings.MaxRunes(63)
+
 #RedshiftConfiguration: {
 	QueryEngineConfiguration: #RedshiftQueryEngineConfiguration
 	QueryGenerationConfiguration?: #QueryGenerationConfiguration
 	StorageConfigurations: #RedshiftQueryEngineStorageConfigurations
 }
+
+#RedshiftDatabase: string & strings.MinRunes(1) & strings.MaxRunes(200)
 
 #RedshiftProvisionedAuthConfiguration: {
 	// Redshift database user
@@ -237,6 +279,8 @@ import "strings"
 	Type: #RedshiftProvisionedAuthType
 	UsernamePasswordSecretArn?: #SecretArn
 }
+
+#RedshiftProvisionedAuthType: "IAM" | "USERNAME_PASSWORD" | "USERNAME"
 
 #RedshiftProvisionedConfiguration: {
 	AuthConfiguration: #RedshiftProvisionedAuthConfiguration
@@ -263,10 +307,18 @@ import "strings"
 	Type: #RedshiftQueryEngineStorageType
 }
 
+#RedshiftQueryEngineStorageConfigurations: [...#RedshiftQueryEngineStorageConfiguration]
+
+#RedshiftQueryEngineStorageType: "REDSHIFT" | "AWS_DATA_CATALOG"
+
+#RedshiftQueryEngineType: "SERVERLESS" | "PROVISIONED"
+
 #RedshiftServerlessAuthConfiguration: {
 	Type: #RedshiftServerlessAuthType
 	UsernamePasswordSecretArn?: #SecretArn
 }
+
+#RedshiftServerlessAuthType: "IAM" | "USERNAME_PASSWORD"
 
 #RedshiftServerlessConfiguration: {
 	AuthConfiguration: #RedshiftServerlessAuthConfiguration
@@ -287,10 +339,14 @@ import "strings"
 	VectorBucketArn?: string
 }
 
+#SecretArn: string & =~"^arn:aws(|-cn|-us-gov):secretsmanager:[a-z0-9-]{1,20}:([0-9]{12}|):secret:[a-zA-Z0-9!/_+=.@-]{1,512}$"
+
 #SqlKnowledgeBaseConfiguration: {
 	RedshiftConfiguration?: #RedshiftConfiguration
 	Type: #QueryEngineType
 }
+
+#SqlString: string & strings.MinRunes(1) & strings.MaxRunes(1000)
 
 #StorageConfiguration: {
 	MongoDbAtlasConfiguration?: #MongoDbAtlasConfiguration
@@ -312,6 +368,12 @@ import "strings"
 	SupplementalDataStorageLocationType: #SupplementalDataStorageLocationType
 }
 
+#SupplementalDataStorageLocationType: "S3"
+
+#SupplementalDataStorageLocations: [...#SupplementalDataStorageLocation]
+
+#TagsMap: {...}
+
 #VectorKnowledgeBaseConfiguration: {
 	// The ARN of the model used to create vector embeddings for the knowledge base.
 	EmbeddingModelArn: string & =~"^(arn:aws(-[^:]+)?:[a-z0-9-]+:[a-z0-9-]{1,20}:[0-9]{0,12}:[a-zA-Z0-9-:/._+]+)$" & strings.MinRunes(20) & strings.MaxRunes(2048)
@@ -323,6 +385,10 @@ import "strings"
 	SegmentationConfiguration: #VideoSegmentationConfiguration
 }
 
+#VideoConfigurations: [...#VideoConfiguration]
+
 #VideoSegmentationConfiguration: {
 	FixedLengthDuration: #FixedLengthDuration
 }
+
+#WorkgroupArn: string & =~"^(arn:(aws(-[a-z]+)*):redshift-serverless:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:workgroup/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$"

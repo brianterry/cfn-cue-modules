@@ -14,6 +14,8 @@ package grant
 	Tags?: [...#Tag]
 }
 
+#Arn: string & strings.MaxRunes(2048)
+
 #Tag: {
 	// The key name of the tag.
 	Key: string

@@ -238,6 +238,8 @@ import "strings"
 	ZendeskAction?: #CapabilityState
 }
 
+#CapabilityState: "DENY"
+
 #Tag: {
 	// <p>Tag key.</p>
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

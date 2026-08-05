@@ -13,6 +13,14 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AllowedAdditionalAnalyses: [...#AllowedAdditionalAnalysis]
+
+#AllowedAdditionalAnalysis: string & strings.MaxRunes(256)
+
+#AllowedResultReceiver: string & =~"\\d+" & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#AllowedResultReceivers: [...#AllowedResultReceiver]
+
 #ConfiguredTableAssociationAnalysisRule: {
 	Policy: #ConfiguredTableAssociationAnalysisRulePolicy
 	Type: #ConfiguredTableAssociationAnalysisRuleType
@@ -36,6 +44,16 @@ import "strings"
 #ConfiguredTableAssociationAnalysisRulePolicy: {
 	V1: #ConfiguredTableAssociationAnalysisRulePolicyV1
 }
+
+#ConfiguredTableAssociationAnalysisRulePolicyV1: {
+	List: #ConfiguredTableAssociationAnalysisRuleList
+} | {
+	Aggregation: #ConfiguredTableAssociationAnalysisRuleAggregation
+} | {
+	Custom: #ConfiguredTableAssociationAnalysisRuleCustom
+}
+
+#ConfiguredTableAssociationAnalysisRuleType: "AGGREGATION" | "LIST" | "CUSTOM"
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

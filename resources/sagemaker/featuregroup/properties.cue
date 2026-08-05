@@ -43,6 +43,8 @@ import "strings"
 	FeatureType: "Integral" | "Fractional" | "String"
 }
 
+#KmsKeyId: string & strings.MaxRunes(2048)
+
 #OnlineStoreSecurityConfig: {
 	KmsKeyId?: #KmsKeyId
 }
@@ -51,6 +53,10 @@ import "strings"
 	KmsKeyId?: #KmsKeyId
 	S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(1024)
 }
+
+#StorageType: "Standard" | "InMemory"
+
+#TableFormat: "Iceberg" | "Glue"
 
 #Tag: {
 	Key: string
@@ -65,7 +71,13 @@ import "strings"
 	ThroughputMode: #ThroughputMode
 }
 
+#ThroughputMode: "OnDemand" | "Provisioned"
+
 #TtlDuration: {
 	Unit?: #Unit
 	Value?: #Value
 }
+
+#Unit: "Seconds" | "Minutes" | "Hours" | "Days" | "Weeks"
+
+#Value: int

@@ -16,10 +16,14 @@ import "strings"
 	CustomDataIdentifiers: [...string & =~"^[a-zA-Z0-9\\_\\#\\=\\@\\/\\;\\,\\-\\ \\^\\$\\?\\[\\]\\{\\}\\|\\\\\\*\\+\\.\\(\\)]+$" & strings.MinRunes(1) & strings.MaxRunes(200)]
 }
 
+#EntityType: "ALL_PERSONALLY_IDENTIFIABLE_INFORMATION" | "NUMBERS" | "CUSTOM"
+
 #LogRedactionConfiguration: {
 	CustomEntityConfig?: #CustomEntityConfig
 	EntitiesToRedact: [...#EntityType]
 }
+
+#LogType: "ALL" | "ERROR_SUMMARY"
 
 #LogsConfigurationPolicy: {
 	AllowedAccountIds: [...string & =~"^[0-9]{12}$"]
@@ -31,6 +35,8 @@ import "strings"
 #MetricsConfigurationPolicy: {
 	NoiseLevel: #NoiseLevelType
 }
+
+#NoiseLevelType: "HIGH" | "MEDIUM" | "LOW" | "NONE"
 
 #PrivacyConfiguration: {
 	Policies: #PrivacyConfigurationPolicies
@@ -52,6 +58,10 @@ import "strings"
 	Value: number & >=0.01 & <=10
 }
 
+#TrainedModelArtifactMaxSizeUnitType: "GB"
+
+#TrainedModelExportFileType: "MODEL" | "OUTPUT"
+
 #TrainedModelExportsConfigurationPolicy: {
 	FilesToExport: [...#TrainedModelExportFileType]
 	MaxSize: #TrainedModelExportsMaxSize
@@ -62,6 +72,8 @@ import "strings"
 	Value: number & >=0.01 & <=10
 }
 
+#TrainedModelExportsMaxSizeUnitType: "GB"
+
 #TrainedModelInferenceJobsConfigurationPolicy: {
 	ContainerLogs?: [...#LogsConfigurationPolicy]
 	MaxOutputSize?: #TrainedModelInferenceMaxOutputSize
@@ -71,6 +83,8 @@ import "strings"
 	Unit: #TrainedModelInferenceMaxOutputSizeUnitType
 	Value: number & >=0.01 & <=50
 }
+
+#TrainedModelInferenceMaxOutputSizeUnitType: "GB"
 
 #TrainedModelsConfigurationPolicy: {
 	ContainerLogs?: [...#LogsConfigurationPolicy]

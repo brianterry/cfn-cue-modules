@@ -4,3 +4,9 @@ package index
 	Tags?: #TagMap
 	Type: #IndexType
 }
+
+#IndexState: "ACTIVE" | "CREATING" | "DELETING" | "DELETED" | "UPDATING"
+
+#IndexType: "LOCAL" | "AGGREGATOR"
+
+#TagMap: {...}

@@ -18,6 +18,8 @@ import "strings"
 	IsResponsible: bool
 }
 
+#MembershipJobLogStatus: "ENABLED" | "DISABLED"
+
 #MembershipMLPaymentConfig: {
 	ModelInference?: #MembershipModelInferencePaymentConfig
 	ModelTraining?: #MembershipModelTrainingPaymentConfig
@@ -60,6 +62,10 @@ import "strings"
 	IsResponsible: bool
 }
 
+#MembershipQueryLogStatus: "ENABLED" | "DISABLED"
+
+#MembershipStatus: "ACTIVE" | "REMOVED" | "COLLABORATION_DELETED"
+
 #MembershipSyntheticDataGenerationPaymentConfig: {
 	IsResponsible: bool
 }
@@ -75,6 +81,8 @@ import "strings"
 	ResultFormat: #ResultFormat
 	SingleFileOutput?: bool
 }
+
+#ResultFormat: "CSV" | "PARQUET"
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

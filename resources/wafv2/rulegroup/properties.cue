@@ -32,9 +32,13 @@ import "strings"
 	CustomResponse?: #CustomResponse
 }
 
+#BlockchainChain: "BASE" | "SOLANA" | "BASE_SEPOLIA" | "SOLANA_DEVNET"
+
 #Body: {
 	OversizeHandling?: #OversizeHandling
 }
+
+#BodyParsingFallbackBehavior: "MATCH" | "NO_MATCH" | "EVALUATE_AS_STRING"
 
 #ByteMatchStatement: {
 	FieldToMatch: #FieldToMatch
@@ -81,10 +85,18 @@ import "strings"
 	PaymentNetworks: #PaymentNetworks
 }
 
+#CryptoCurrency: "USDC"
+
+#CurrencyMode: "REAL" | "TEST"
+
 #CustomHTTPHeader: {
 	Name: #CustomHTTPHeaderName
 	Value: #CustomHTTPHeaderValue
 }
+
+#CustomHTTPHeaderName: string & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#CustomHTTPHeaderValue: string & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #CustomRequestHandling: {
 	// Collection of HTTP headers.
@@ -99,10 +111,20 @@ import "strings"
 	ResponseHeaders?: [...#CustomHTTPHeader]
 }
 
+#CustomResponseBodies: {...}
+
 #CustomResponseBody: {
 	Content: #ResponseContent
 	ContentType: #ResponseContentType
 }
+
+#EntityDescription: string & =~"^[a-zA-Z0-9=:#@/\\-,.][a-zA-Z0-9+=:#@/\\-,.\\s]+[a-zA-Z0-9+=:#@/\\-,.]{1,256}$"
+
+#EntityId: string & =~"^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$"
+
+#EntityName: string & =~"^[0-9A-Za-z_-]{1,128}$"
+
+#EvaluationWindowSec: int
 
 #FieldToMatch: {
 	// All query arguments of a web request.
@@ -193,18 +215,30 @@ import "strings"
 	IncludedPaths?: [...#JsonPointerPath]
 }
 
+#JsonMatchScope: "ALL" | "KEY" | "VALUE"
+
+#JsonPointerPath: string & =~"^[\\/]+([^~]*(~[01])*)*{1,512}$"
+
 #Label: {
 	Name: #LabelName
 }
+
+#LabelMatchKey: string & =~"^[0-9A-Za-z_:-]{1,1024}$"
+
+#LabelMatchScope: "LABEL" | "NAMESPACE"
 
 #LabelMatchStatement: {
 	Key: #LabelMatchKey
 	Scope: #LabelMatchScope
 }
 
+#LabelName: string & =~"^[0-9A-Za-z_:-]{1,1024}$"
+
 #LabelSummary: {
 	Name?: #LabelName
 }
+
+#MapMatchScope: "ALL" | "KEY" | "VALUE"
 
 #MonetizationConfig: {
 	CryptoConfig?: #CryptoConfig
@@ -223,16 +257,28 @@ import "strings"
 	Statements: [...#Statement]
 }
 
+#OversizeHandling: "CONTINUE" | "MATCH" | "NO_MATCH"
+
 #PaymentNetwork: {
 	Chain: #BlockchainChain
 	Prices: #Prices
 	WalletAddress: #WalletAddress
 }
 
+#PaymentNetworks: [...#PaymentNetwork]
+
+#PositionalConstraint: "EXACTLY" | "STARTS_WITH" | "ENDS_WITH" | "CONTAINS" | "CONTAINS_WORD"
+
 #Price: {
 	Amount: #PriceAmount
 	Currency: #CryptoCurrency
 }
+
+#PriceAmount: string & =~"^([1-9][0-9]*(\\.[0-9]{1,3})?|0\\.([1-9][0-9]{0,2}|0[1-9][0-9]?|00[1-9]))$" & strings.MinRunes(1) & strings.MaxRunes(13)
+
+#PriceMultiplier: string & =~"^([1-9][0-9]?|100)$" & strings.MinRunes(1) & strings.MaxRunes(3)
+
+#Prices: [...#Price]
 
 #RateBasedStatement: {
 	AggregateKeyType: "IP" | "FORWARDED_IP" | "CONSTANT" | "CUSTOM_KEYS"
@@ -259,17 +305,27 @@ import "strings"
 	UriPath?: #RateLimitUriPath
 }
 
+#RateLimit: int & >=10 & <=2000000000
+
+#RateLimitAsn: {...}
+
 #RateLimitCookie: {
 	// The name of the cookie to use.
 	Name: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(64)
 	TextTransformations: [...#TextTransformation]
 }
 
+#RateLimitForwardedIP: {...}
+
+#RateLimitHTTPMethod: {...}
+
 #RateLimitHeader: {
 	// The name of the header to use.
 	Name: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(64)
 	TextTransformations: [...#TextTransformation]
 }
+
+#RateLimitIP: {...}
 
 #RateLimitJA3Fingerprint: {
 	FallbackBehavior: "MATCH" | "NO_MATCH"
@@ -310,6 +366,14 @@ import "strings"
 	TextTransformations: [...#TextTransformation]
 }
 
+#ResourceArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
+
+#ResponseContent: string & strings.MinRunes(1) & strings.MaxRunes(10240)
+
+#ResponseContentType: "TEXT_PLAIN" | "TEXT_HTML" | "APPLICATION_JSON"
+
+#ResponseStatusCode: int & >=200 & <=599
+
 #Rule: {
 	Action?: #RuleAction
 	CaptchaConfig?: #CaptchaConfig
@@ -341,6 +405,16 @@ import "strings"
 	Rules?: [...#Rule]
 	VisibilityConfig?: #VisibilityConfig
 }
+
+#RulePriority: int & >=0
+
+#Scope: "CLOUDFRONT" | "REGIONAL"
+
+#SearchString: string
+
+#SearchStringBase64: string
+
+#SensitivityLevel: "LOW" | "HIGH"
 
 #SizeConstraintStatement: {
 	ComparisonOperator: "EQ" | "NE" | "LE" | "LT" | "GE" | "GT"
@@ -382,6 +456,10 @@ import "strings"
 	Type: #TextTransformationType
 }
 
+#TextTransformationPriority: int & >=0
+
+#TextTransformationType: "NONE" | "COMPRESS_WHITE_SPACE" | "HTML_ENTITY_DECODE" | "LOWERCASE" | "CMD_LINE" | "URL_DECODE" | "BASE64_DECODE" | "HEX_DECODE" | "MD5" | "REPLACE_COMMENTS" | "ESCAPE_SEQ_DECODE" | "SQL_HEX_DECODE" | "CSS_DECODE" | "JS_DECODE" | "NORMALIZE_PATH" | "NORMALIZE_PATH_WIN" | "REMOVE_NULLS" | "REPLACE_NULLS" | "BASE64_DECODE_EXT" | "URL_DECODE_UNI" | "UTF8_TO_UNICODE"
+
 #UriFragment: {
 	FallbackBehavior?: "MATCH" | "NO_MATCH"
 }
@@ -391,6 +469,8 @@ import "strings"
 	MetricName: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	SampledRequestsEnabled: bool
 }
+
+#WalletAddress: string & =~".*\\S.*" & strings.MinRunes(26) & strings.MaxRunes(44)
 
 #XssMatchStatement: {
 	FieldToMatch: #FieldToMatch

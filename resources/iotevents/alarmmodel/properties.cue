@@ -83,6 +83,8 @@ import "strings"
 	Sqs?: #Sqs
 }
 
+#AlarmActions: [...#AlarmAction]
+
 #AlarmCapabilities: {
 	// Specifies whether to get notified for alarm state changes.
 	AcknowledgeFlow?: #AcknowledgeFlow

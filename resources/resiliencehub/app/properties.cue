@@ -30,6 +30,8 @@ import "strings"
 	SnsTopicArn?: string & =~"^arn:(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:([a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-[0-9]):[0-9]{12}:[A-Za-z0-9/][A-Za-z0-9:_/+.-]{0,1023}$"
 }
 
+#IamRoleArn: string
+
 #PermissionModel: {
 	// Defines a list of role Amazon Resource Names (ARNs) to be used in other accounts. These ARNs are used for querying purposes while importing resources and assessing your application.
 	CrossAccountRoleArns?: [...#IamRoleArn]
@@ -54,3 +56,7 @@ import "strings"
 	ResourceName?: string & =~"^[A-Za-z0-9][A-Za-z0-9_\\-]{1,59}$"
 	TerraformSourceName?: string
 }
+
+#TagMap: {...}
+
+#TagValue: string & strings.MaxRunes(256)

@@ -17,6 +17,8 @@ package networkinsightspath
 	ToPort?: int
 }
 
+#IpAddress: string
+
 #PathFilter: {
 	DestinationAddress?: #IpAddress
 	DestinationPortRange?: #FilterPortRange
@@ -24,7 +26,13 @@ package networkinsightspath
 	SourcePortRange?: #FilterPortRange
 }
 
+#Port: int
+
+#Protocol: "tcp" | "udp"
+
 #Tag: {
 	Key: string
 	Value?: string
 }
+
+#Tags: [...#Tag]

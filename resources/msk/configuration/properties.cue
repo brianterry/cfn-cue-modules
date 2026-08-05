@@ -7,6 +7,8 @@ package configuration
 	ServerProperties: string
 }
 
+#KafkaVersionsList: [...string]
+
 #LatestRevision: {
 	CreationTime?: string
 	Description?: string

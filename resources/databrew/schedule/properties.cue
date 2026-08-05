@@ -11,6 +11,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#JobName: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

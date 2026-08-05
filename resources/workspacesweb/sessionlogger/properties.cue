@@ -11,9 +11,23 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#EncryptionContextMap: {...}
+
+#Event: "WebsiteInteract" | "FileDownloadFromSecureBrowserToRemoteDisk" | "FileTransferFromRemoteToLocalDisk" | "FileTransferFromLocalToRemoteDisk" | "FileUploadFromRemoteDiskToSecureBrowser" | "ContentPasteToWebsite" | "ContentTransferFromLocalToRemoteClipboard" | "ContentCopyFromWebsite" | "UrlLoad" | "TabOpen" | "TabClose" | "PrintJobSubmit" | "SessionConnect" | "SessionStart" | "SessionDisconnect" | "SessionEnd" | "UrlBlockByContentFilter"
+
+#EventFilter: {
+	All: #Unit
+} | {
+	Include: [...#Event]
+}
+
+#FolderStructure: "Flat" | "NestedByDate"
+
 #LogConfiguration: {
 	S3?: #S3LogConfiguration
 }
+
+#LogFileFormat: "JSONLines" | "Json"
 
 #S3LogConfiguration: {
 	Bucket: string & =~"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$" & strings.MinRunes(1) & strings.MaxRunes(256)
@@ -27,3 +41,5 @@ import "strings"
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Unit: {...}

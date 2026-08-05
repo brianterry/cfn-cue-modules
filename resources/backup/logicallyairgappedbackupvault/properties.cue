@@ -11,6 +11,8 @@ package logicallyairgappedbackupvault
 	Notifications?: #NotificationObjectType
 }
 
+#BackupVaultNamePattern: string & =~"^[a-zA-Z0-9\\-\\_]{2,50}$"
+
 #NotificationObjectType: {
 	BackupVaultEvents: [...string]
 	SNSTopicArn: string

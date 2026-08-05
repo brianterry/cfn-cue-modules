@@ -96,6 +96,8 @@ package distributionconfiguration
 	SetDefaultVersion?: bool
 }
 
+#LicenseConfigurationArn: string
+
 #SsmParameterConfiguration: {
 	// The account ID for the AMI to update the parameter with.
 	AmiAccountId?: string

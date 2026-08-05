@@ -93,3 +93,5 @@ package image
 	Name?: string
 	Value?: [...#WorkflowParameterValue]
 }
+
+#WorkflowParameterValue: string

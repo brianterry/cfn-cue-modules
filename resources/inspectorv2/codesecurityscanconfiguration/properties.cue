@@ -20,15 +20,27 @@ import "strings"
 	ruleSetCategories: [...#RuleSetCategory]
 }
 
+#ConfigurationLevel: "ORGANIZATION" | "ACCOUNT"
+
 #ContinuousIntegrationScanConfiguration: {
 	supportedEvents: [...#ContinuousIntegrationScanEvent]
 }
+
+#ContinuousIntegrationScanEvent: "PULL_REQUEST" | "PUSH"
 
 #PeriodicScanConfiguration: {
 	frequency?: #PeriodicScanFrequency
 	frequencyExpression?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#PeriodicScanFrequency: "WEEKLY" | "MONTHLY" | "NEVER"
+
+#ProjectSelectionScope: "ALL"
+
+#RuleSetCategory: "SAST" | "IAC" | "SCA"
+
 #ScopeSettings: {
 	projectSelectionScope?: #ProjectSelectionScope
 }
+
+#TagMap: {...}

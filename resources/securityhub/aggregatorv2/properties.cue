@@ -7,3 +7,7 @@ package aggregatorv2
 	RegionLinkingMode: "SPECIFIED_REGIONS"
 	Tags?: #Tags
 }
+
+#Region: string & =~"^[a-zA-Z0-9-]{1,32}$"
+
+#Tags: {...}

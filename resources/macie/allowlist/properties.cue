@@ -11,10 +11,20 @@ package allowlist
 	Tags?: [...#Tag]
 }
 
+#Criteria: {
+	Regex: string
+} | {
+	S3WordsList: #S3WordsList
+}
+
+#Regex: string
+
 #S3WordsList: {
 	BucketName: string
 	ObjectKey: string
 }
+
+#Status: "OK" | "S3_OBJECT_NOT_FOUND" | "S3_USER_ACCESS_DENIED" | "S3_OBJECT_ACCESS_DENIED" | "S3_THROTTLED" | "S3_OBJECT_OVERSIZE" | "S3_OBJECT_EMPTY" | "UNKNOWN_ERROR"
 
 #Tag: {
 	// The tag's key.

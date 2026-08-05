@@ -24,6 +24,16 @@ import "strings"
 	TargetArn: string
 }
 
+#CampaignStatus: "CREATING" | "WAITING_FOR_APPROVAL" | "RUNNING" | "SUSPENDED"
+
+#CollectionScheme: {
+	TimeBasedCollectionScheme: #TimeBasedCollectionScheme
+} | {
+	ConditionBasedCollectionScheme: #ConditionBasedCollectionScheme
+}
+
+#Compression: "OFF" | "SNAPPY"
+
 #ConditionBasedCollectionScheme: {
 	ConditionLanguageVersion?: #LanguageVersion
 	Expression: #EventExpression
@@ -36,11 +46,23 @@ import "strings"
 	TriggerMode: #TriggerMode
 }
 
+#DataDestinationConfig: {
+	S3Config: #S3Config
+} | {
+	TimestreamConfig: #TimestreamConfig
+} | {
+	MqttTopicConfig: #MqttTopicConfig
+}
+
+#DataFormat: "JSON" | "PARQUET"
+
 #DataPartition: {
 	Id: #DataPartitionId
 	StorageOptions: #DataPartitionStorageOptions
 	UploadOptions?: #DataPartitionUploadOptions
 }
+
+#DataPartitionId: string & =~"^[a-zA-Z0-9]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 
 #DataPartitionStorageOptions: {
 	MaximumSize: #StorageMaximumSize
@@ -53,6 +75,12 @@ import "strings"
 	Expression: #EventExpression
 }
 
+#DiagnosticsMode: "OFF" | "SEND_ACTIVE_DTCS"
+
+#EventExpression: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+
+#LanguageVersion: int & >=1
+
 #MqttTopicConfig: {
 	ExecutionRoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 	MqttTopicArn: string & =~"^arn:.*" & strings.MinRunes(20) & strings.MaxRunes(2048)
@@ -63,6 +91,12 @@ import "strings"
 	DataFormat?: #DataFormat
 	Prefix?: string & =~"^[a-zA-Z0-9-_:./!*'()]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 	StorageCompressionFormat?: #StorageCompressionFormat
+}
+
+#SignalFetchConfig: {
+	TimeBased: #TimeBasedSignalFetchConfig
+} | {
+	ConditionBased: #ConditionBasedSignalFetchConfig
 }
 
 #SignalFetchInformation: {
@@ -79,15 +113,29 @@ import "strings"
 	Name: string & =~"^[\\w|*|-]+(\\.[\\w|*|-]+)*$" & strings.MinRunes(1) & strings.MaxRunes(150)
 }
 
+#SpoolingMode: "OFF" | "TO_DISK"
+
+#StorageCompressionFormat: "NONE" | "GZIP"
+
+#StorageLocation: string & strings.MinRunes(1) & strings.MaxRunes(4096)
+
 #StorageMaximumSize: {
 	Unit: #StorageMaximumSizeUnit
 	Value: #StorageMaximumSizeValue
 }
 
+#StorageMaximumSizeUnit: "MB" | "GB" | "TB"
+
+#StorageMaximumSizeValue: int & >=1 & <=1073741824
+
 #StorageMinimumTimeToLive: {
 	Unit: #StorageMinimumTimeToLiveUnit
 	Value: #StorageMinimumTimeToLiveValue
 }
+
+#StorageMinimumTimeToLiveUnit: "HOURS" | "DAYS" | "WEEKS"
+
+#StorageMinimumTimeToLiveValue: int & >=1 & <=10000
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
@@ -107,7 +155,13 @@ import "strings"
 	Value: number & >=1
 }
 
+#TimeUnit: "MILLISECOND" | "SECOND" | "MINUTE" | "HOUR"
+
 #TimestreamConfig: {
 	ExecutionRoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 	TimestreamTableArn: string & =~"^arn:(aws[a-zA-Z0-9-]*):timestream:[a-zA-Z0-9-]+:[0-9]{12}:database\\/[a-zA-Z0-9_.-]+\\/table\\/[a-zA-Z0-9_.-]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
+
+#TriggerMode: "ALWAYS" | "RISING_EDGE"
+
+#UpdateCampaignAction: "APPROVE" | "SUSPEND" | "RESUME" | "UPDATE"

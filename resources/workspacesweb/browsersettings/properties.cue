@@ -10,10 +10,16 @@ import "strings"
 	WebContentFilteringPolicy?: #WebContentFilteringPolicy
 }
 
+#Category: "Cults" | "Gambling" | "Nudity" | "Pornography" | "SexEducation" | "Tasteless" | "Violence" | "DownloadSites" | "ImageSharing" | "PeerToPeer" | "StreamingMediaAndDownloads" | "GenerativeAI" | "CriminalActivity" | "Hacking" | "HateAndIntolerance" | "IllegalDrug" | "IllegalSoftware" | "SchoolCheating" | "SelfHarm" | "Weapons" | "Chat" | "Games" | "InstantMessaging" | "ProfessionalNetwork" | "SocialNetworking" | "WebBasedEmail" | "ParkedDomains"
+
+#EncryptionContextMap: {...}
+
 #Tag: {
 	Key: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & =~"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Unit: {...}
 
 #WebContentFilteringPolicy: {
 	AllowedUrls?: [...string & =~"^((([a-zA-Z][a-zA-Z0-9+.-]*):\\/\\/(\\*|[\\w%._\\-\\+~#=@]+)?(\\/[^@\\s]*)?(?:\\?([^*\\s]+(?:\\*?)))?)|(\\*|[\\w%._\\-\\+~#=@]+\\.[\\w%._\\-\\+~#=@]+)(?::(\\d{1,5}))?(\\/[^@\\s]*)?(?:\\?([^*\\s]+(?:\\*?)))?|(([a-zA-Z][a-zA-Z0-9+.-]*):(\\/\\/)?\\*))$"]

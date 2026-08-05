@@ -13,6 +13,8 @@ import "strings"
 	Tags?: #Tags
 }
 
+#AuthStatus: "ACTIVE" | "FAILED"
+
 #AzureProviderConfiguration: {
 	// The ARN of the AWS Config connector used for the Azure integration
 	AWSConfigConnectorArn: string
@@ -35,9 +37,19 @@ import "strings"
 	Message: string
 }
 
+#ISO8601DateString: string & =~"^(\\d\\d\\d\\d)-([0][1-9]|[1][0-2])-([0][1-9]|[1-2](\\d)|[3][0-1])[T](?:([0-1](\\d)|[2][0-3]):[0-5](\\d):[0-5](\\d)|23:59:60)(?:\\.(\\d)+)?([Z]|[+-](\\d\\d)(:?(\\d\\d))?)$"
+
 #JiraCloudProviderConfiguration: {
 	// The project key for a Jira Cloud instance
 	ProjectKey: string & strings.MinRunes(2) & strings.MaxRunes(10)
+}
+
+#Provider: {
+	JiraCloud: #JiraCloudProviderConfiguration
+} | {
+	ServiceNow: #ServiceNowProviderConfiguration
+} | {
+	Azure: #AzureProviderConfiguration
 }
 
 #ServiceNowProviderConfiguration: {
@@ -46,3 +58,5 @@ import "strings"
 	// The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the ServiceNow credentials
 	SecretArn: string & =~".*\\S.*" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
+
+#Tags: {...}

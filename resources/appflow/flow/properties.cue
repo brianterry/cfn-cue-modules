@@ -30,9 +30,19 @@ import "strings"
 	TargetFileSize?: #TargetFileSize
 }
 
+#AggregationType: "None" | "SingleFile"
+
+#AmplitudeConnectorOperator: "BETWEEN"
+
 #AmplitudeSourceProperties: {
 	Object: #Object
 }
+
+#ApiVersion: string & =~"\\S+" & strings.MaxRunes(256)
+
+#BucketName: string & =~"\\S+" & strings.MinRunes(3) & strings.MaxRunes(63)
+
+#BucketPrefix: string & strings.MaxRunes(512)
 
 #ConnectorOperator: {
 	Amplitude?: #AmplitudeConnectorOperator
@@ -54,6 +64,10 @@ import "strings"
 	Zendesk?: #ZendeskConnectorOperator
 }
 
+#ConnectorProfileName: string & =~"[\\w/!@#+=.-]+" & strings.MaxRunes(256)
+
+#ConnectorType: "SAPOData" | "Salesforce" | "Pardot" | "Singular" | "Slack" | "Redshift" | "S3" | "Marketo" | "Googleanalytics" | "Zendesk" | "Servicenow" | "Datadog" | "Trendmicro" | "Snowflake" | "Dynatrace" | "Infornexus" | "Amplitude" | "Veeva" | "CustomConnector" | "EventBridge" | "Upsolver" | "LookoutMetrics"
+
 #CustomConnectorDestinationProperties: {
 	CustomProperties?: #CustomProperties
 	EntityName: #EntityName
@@ -72,9 +86,17 @@ import "strings"
 	EntityName: #EntityName
 }
 
+#CustomProperties: {...}
+
+#DataTransferApi: "AUTOMATIC" | "BULKV2" | "REST_SYNC"
+
+#DatadogConnectorOperator: "PROJECTION" | "BETWEEN" | "EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
+
 #DatadogSourceProperties: {
 	Object: #Object
 }
+
+#DatetimeTypeFieldName: string & strings.MaxRunes(256)
 
 #DestinationConnectorProperties: {
 	CustomConnector?: #CustomConnectorDestinationProperties
@@ -101,9 +123,17 @@ import "strings"
 	DestinationConnectorProperties: #DestinationConnectorProperties
 }
 
+#DocumentType: string & =~"[\\s\\w_-]+" & strings.MaxRunes(512)
+
+#DynatraceConnectorOperator: "PROJECTION" | "BETWEEN" | "EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
+
 #DynatraceSourceProperties: {
 	Object: #Object
 }
+
+#EnableDynamicFieldUpdate: bool
+
+#EntityName: string & =~"\\S+" & strings.MaxRunes(1024)
 
 #ErrorHandlingConfig: {
 	BucketName?: #BucketName
@@ -116,6 +146,8 @@ import "strings"
 	Object: #Object
 }
 
+#FileType: "CSV" | "JSON" | "PARQUET"
+
 #GlueDataCatalog: {
 	// A string containing the value for the tag
 	DatabaseName: string & strings.MinRunes(0) & strings.MaxRunes(255)
@@ -125,13 +157,25 @@ import "strings"
 	TablePrefix: string & strings.MinRunes(0) & strings.MaxRunes(128)
 }
 
+#GoogleAnalyticsConnectorOperator: "PROJECTION" | "BETWEEN"
+
 #GoogleAnalyticsSourceProperties: {
 	Object: #Object
 }
 
+#IncludeAllVersions: bool
+
+#IncludeDeletedRecords: bool
+
+#IncludeRenditions: bool
+
+#IncludeSourceFiles: bool
+
 #IncrementalPullConfig: {
 	DatetimeTypeFieldName?: #DatetimeTypeFieldName
 }
+
+#InforNexusConnectorOperator: "PROJECTION" | "BETWEEN" | "EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
 
 #InforNexusSourceProperties: {
 	Object: #Object
@@ -140,6 +184,8 @@ import "strings"
 #LookoutMetricsDestinationProperties: {
 	Object?: #Object
 }
+
+#MarketoConnectorOperator: "PROJECTION" | "LESS_THAN" | "GREATER_THAN" | "BETWEEN" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
 
 #MarketoDestinationProperties: {
 	ErrorHandlingConfig?: #ErrorHandlingConfig
@@ -155,9 +201,23 @@ import "strings"
 	GlueDataCatalog?: #GlueDataCatalog
 }
 
+#Name: string & =~"\\S+" & strings.MaxRunes(128)
+
+#Object: string & =~"\\S+" & strings.MaxRunes(512)
+
+#Operator: "PROJECTION" | "LESS_THAN" | "GREATER_THAN" | "CONTAINS" | "BETWEEN" | "LESS_THAN_OR_EQUAL_TO" | "GREATER_THAN_OR_EQUAL_TO" | "EQUAL_TO" | "NOT_EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
+
+#OperatorPropertiesKeys: "VALUE" | "VALUES" | "DATA_TYPE" | "UPPER_BOUND" | "LOWER_BOUND" | "SOURCE_DATA_TYPE" | "DESTINATION_DATA_TYPE" | "VALIDATION_ACTION" | "MASK_VALUE" | "MASK_LENGTH" | "TRUNCATE_LENGTH" | "MATH_OPERATION_FIELDS_ORDER" | "CONCAT_FORMAT" | "SUBFIELD_CATEGORY_MAP" | "EXCLUDE_SOURCE_FIELDS_LIST" | "INCLUDE_NEW_FIELDS" | "ORDERED_PARTITION_KEYS_LIST"
+
+#PardotConnectorOperator: "PROJECTION" | "EQUAL_TO" | "NO_OP" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC"
+
 #PardotSourceProperties: {
 	Object: #Object
 }
+
+#PathPrefix: "EXECUTION_ID" | "SCHEMA_VERSION"
+
+#PathPrefixHierarchy: [...#PathPrefix]
 
 #PrefixConfig: {
 	PathPrefixHierarchy?: #PathPrefixHierarchy
@@ -165,12 +225,20 @@ import "strings"
 	PrefixType?: #PrefixType
 }
 
+#PrefixFormat: "YEAR" | "MONTH" | "DAY" | "HOUR" | "MINUTE"
+
+#PrefixType: "FILENAME" | "PATH" | "PATH_AND_FILENAME"
+
+#PreserveSourceDataTyping: bool
+
 #RedshiftDestinationProperties: {
 	BucketPrefix?: #BucketPrefix
 	ErrorHandlingConfig?: #ErrorHandlingConfig
 	IntermediateBucketName: #BucketName
 	Object: #Object
 }
+
+#S3ConnectorOperator: "PROJECTION" | "LESS_THAN" | "GREATER_THAN" | "BETWEEN" | "LESS_THAN_OR_EQUAL_TO" | "GREATER_THAN_OR_EQUAL_TO" | "EQUAL_TO" | "NOT_EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
 
 #S3DestinationProperties: {
 	BucketName: #BucketName
@@ -195,6 +263,8 @@ import "strings"
 	S3InputFormatConfig?: #S3InputFormatConfig
 }
 
+#SAPODataConnectorOperator: "PROJECTION" | "LESS_THAN" | "CONTAINS" | "GREATER_THAN" | "BETWEEN" | "LESS_THAN_OR_EQUAL_TO" | "GREATER_THAN_OR_EQUAL_TO" | "EQUAL_TO" | "NOT_EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
+
 #SAPODataDestinationProperties: {
 	ErrorHandlingConfig?: #ErrorHandlingConfig
 	// List of fields used as ID when performing a write operation.
@@ -203,6 +273,10 @@ import "strings"
 	SuccessResponseHandlingConfig?: #SuccessResponseHandlingConfig
 	WriteOperationType?: #WriteOperationType
 }
+
+#SAPODataMaxPageSize: int & >=1 & <=10000
+
+#SAPODataMaxParallelism: int & >=1 & <=10
 
 #SAPODataPaginationConfig: {
 	maxPageSize: #SAPODataMaxPageSize
@@ -217,6 +291,8 @@ import "strings"
 	paginationConfig?: #SAPODataPaginationConfig
 	parallelismConfig?: #SAPODataParallelismConfig
 }
+
+#SalesforceConnectorOperator: "PROJECTION" | "LESS_THAN" | "CONTAINS" | "GREATER_THAN" | "BETWEEN" | "LESS_THAN_OR_EQUAL_TO" | "GREATER_THAN_OR_EQUAL_TO" | "EQUAL_TO" | "NOT_EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
 
 #SalesforceDestinationProperties: {
 	DataTransferApi?: #DataTransferApi
@@ -245,13 +321,19 @@ import "strings"
 	TimeZone?: string & strings.MaxRunes(256)
 }
 
+#ServiceNowConnectorOperator: "PROJECTION" | "LESS_THAN" | "CONTAINS" | "GREATER_THAN" | "BETWEEN" | "LESS_THAN_OR_EQUAL_TO" | "GREATER_THAN_OR_EQUAL_TO" | "EQUAL_TO" | "NOT_EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
+
 #ServiceNowSourceProperties: {
 	Object: #Object
 }
 
+#SingularConnectorOperator: "PROJECTION" | "EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
+
 #SingularSourceProperties: {
 	Object: #Object
 }
+
+#SlackConnectorOperator: "PROJECTION" | "BETWEEN" | "EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
 
 #SlackSourceProperties: {
 	Object: #Object
@@ -297,6 +379,8 @@ import "strings"
 	SourceConnectorProperties: #SourceConnectorProperties
 }
 
+#Status: "Active" | "Draft" | "Errored" | "Suspended"
+
 #SuccessResponseHandlingConfig: {
 	BucketName?: #BucketName
 	BucketPrefix?: #BucketPrefix
@@ -308,6 +392,8 @@ import "strings"
 	// A string containing the value for the tag
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#TargetFileSize: int
 
 #Task: {
 	// Operation to be performed on provided source fields
@@ -327,6 +413,10 @@ import "strings"
 	Value: string & =~".+" & strings.MaxRunes(2048)
 }
 
+#TaskType: "Arithmetic" | "Filter" | "Map" | "Map_all" | "Mask" | "Merge" | "Passthrough" | "Truncate" | "Validate" | "Partition"
+
+#TrendmicroConnectorOperator: "PROJECTION" | "EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
+
 #TrendmicroSourceProperties: {
 	Object: #Object
 }
@@ -337,6 +427,10 @@ import "strings"
 	// Trigger type of the flow
 	TriggerType: #TriggerType
 }
+
+#TriggerType: "Scheduled" | "Event" | "OnDemand"
+
+#UpsolverBucketName: string & =~"^(upsolver-appflow)\\S*" & strings.MinRunes(16) & strings.MaxRunes(63)
 
 #UpsolverDestinationProperties: {
 	BucketName: #UpsolverBucketName
@@ -350,6 +444,8 @@ import "strings"
 	PrefixConfig: #PrefixConfig
 }
 
+#VeevaConnectorOperator: "PROJECTION" | "LESS_THAN" | "GREATER_THAN" | "BETWEEN" | "LESS_THAN_OR_EQUAL_TO" | "GREATER_THAN_OR_EQUAL_TO" | "EQUAL_TO" | "NOT_EQUAL_TO" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
+
 #VeevaSourceProperties: {
 	DocumentType?: #DocumentType
 	IncludeAllVersions?: #IncludeAllVersions
@@ -357,6 +453,10 @@ import "strings"
 	IncludeSourceFiles?: #IncludeSourceFiles
 	Object: #Object
 }
+
+#WriteOperationType: "INSERT" | "UPSERT" | "UPDATE" | "DELETE"
+
+#ZendeskConnectorOperator: "PROJECTION" | "GREATER_THAN" | "ADDITION" | "MULTIPLICATION" | "DIVISION" | "SUBTRACTION" | "MASK_ALL" | "MASK_FIRST_N" | "MASK_LAST_N" | "VALIDATE_NON_NULL" | "VALIDATE_NON_ZERO" | "VALIDATE_NON_NEGATIVE" | "VALIDATE_NUMERIC" | "NO_OP"
 
 #ZendeskDestinationProperties: {
 	ErrorHandlingConfig?: #ErrorHandlingConfig

@@ -20,10 +20,32 @@ import "strings"
 	Email?: string & =~"^[\\w.%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
 }
 
+#ActionConnectorType: "GENERIC_HTTP" | "SERVICENOW_NOW_PLATFORM" | "SALESFORCE_CRM" | "MICROSOFT_OUTLOOK" | "PAGERDUTY_ADVANCE" | "JIRA_CLOUD" | "ATLASSIAN_CONFLUENCE" | "AMAZON_S3" | "AMAZON_BEDROCK_AGENT_RUNTIME" | "AMAZON_BEDROCK_RUNTIME" | "AMAZON_BEDROCK_DATA_AUTOMATION_RUNTIME" | "AMAZON_TEXTRACT" | "AMAZON_COMPREHEND" | "AMAZON_COMPREHEND_MEDICAL" | "MICROSOFT_ONEDRIVE" | "MICROSOFT_SHAREPOINT" | "MICROSOFT_TEAMS" | "SAP_BUSINESSPARTNER" | "SAP_PRODUCTMASTERDATA" | "SAP_PHYSICALINVENTORY" | "SAP_BILLOFMATERIALS" | "SAP_MATERIALSTOCK" | "ZENDESK_SUITE" | "SMARTSHEET" | "SLACK" | "ASANA" | "BAMBOO_HR"
+
 #AuthConfig: {
 	AuthenticationMetadata: #AuthenticationMetadata
 	AuthenticationType: #ConnectionAuthType
 }
+
+#AuthenticationMetadata: {
+	AuthorizationCodeGrantMetadata: #AuthorizationCodeGrantMetadata
+} | {
+	ClientCredentialsGrantMetadata: #ClientCredentialsGrantMetadata
+} | {
+	BasicAuthConnectionMetadata: #BasicAuthConnectionMetadata
+} | {
+	ApiKeyConnectionMetadata: #APIKeyConnectionMetadata
+} | {
+	NoneConnectionMetadata: #NoneConnectionMetadata
+} | {
+	IamConnectionMetadata: #IAMConnectionMetadata
+}
+
+#AuthorizationCodeGrantCredentialsDetails: {
+	AuthorizationCodeGrantDetails: #AuthorizationCodeGrantDetails
+}
+
+#AuthorizationCodeGrantCredentialsSource: "PLAIN_CREDENTIALS"
 
 #AuthorizationCodeGrantDetails: {
 	AuthorizationEndpoint: string & =~"^https://.*" & strings.MinRunes(1) & strings.MaxRunes(8192)
@@ -45,6 +67,10 @@ import "strings"
 	Username: string
 }
 
+#ClientCredentialsDetails: {
+	ClientCredentialsGrantDetails: #ClientCredentialsGrantDetails
+}
+
 #ClientCredentialsGrantDetails: {
 	ClientId: string & strings.MaxRunes(1024)
 	ClientSecret: string & strings.MaxRunes(2048)
@@ -56,6 +82,10 @@ import "strings"
 	ClientCredentialsDetails?: #ClientCredentialsDetails
 	ClientCredentialsSource?: #ClientCredentialsSource
 }
+
+#ClientCredentialsSource: "PLAIN_CREDENTIALS"
+
+#ConnectionAuthType: "BASIC" | "API_KEY" | "OAUTH2_CLIENT_CREDENTIALS" | "NONE" | "IAM" | "OAUTH2_AUTHORIZATION_CODE"
 
 #IAMConnectionMetadata: {
 	RoleArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
@@ -85,6 +115,8 @@ import "strings"
 	// </ul>
 	Principal: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#ResourceStatus: "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "PENDING_UPDATE" | "DELETED"
 
 #Tag: {
 	// <p>Tag key.</p>

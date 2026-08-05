@@ -16,9 +16,15 @@ import "strings"
 	VpcConfiguration?: #DataSourceVpcConfiguration
 }
 
+#AttributeValueOperator: "DELETE"
+
 #AudioExtractionConfiguration: {
 	AudioExtractionStatus: #AudioExtractionStatus
 }
+
+#AudioExtractionStatus: "ENABLED" | "DISABLED"
+
+#DataSourceStatus: "PENDING_CREATION" | "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
 
 #DataSourceVpcConfiguration: {
 	SecurityGroupIds: [...string & =~"^[-0-9a-zA-Z]+$" & strings.MinRunes(1) & strings.MaxRunes(200)]
@@ -37,6 +43,20 @@ import "strings"
 	Value?: #DocumentAttributeValue
 }
 
+#DocumentAttributeValue: {
+	StringValue: string & strings.MaxRunes(2048)
+} | {
+	StringListValue: [...string & strings.MinRunes(1) & strings.MaxRunes(2048)]
+} | {
+	LongValue: number
+} | {
+	DateValue: string
+}
+
+#DocumentContentOperator: "DELETE"
+
+#DocumentEnrichmentConditionOperator: "GREATER_THAN" | "GREATER_THAN_OR_EQUALS" | "LESS_THAN" | "LESS_THAN_OR_EQUALS" | "EQUALS" | "NOT_EQUALS" | "CONTAINS" | "NOT_CONTAINS" | "EXISTS" | "NOT_EXISTS" | "BEGINS_WITH"
+
 #DocumentEnrichmentConfiguration: {
 	InlineConfigurations?: [...#InlineDocumentEnrichmentConfiguration]
 	PostExtractionHookConfiguration?: #HookConfiguration
@@ -53,6 +73,8 @@ import "strings"
 #ImageExtractionConfiguration: {
 	ImageExtractionStatus: #ImageExtractionStatus
 }
+
+#ImageExtractionStatus: "ENABLED" | "DISABLED"
 
 #InlineDocumentEnrichmentConfiguration: {
 	Condition?: #DocumentAttributeCondition
@@ -74,3 +96,5 @@ import "strings"
 #VideoExtractionConfiguration: {
 	VideoExtractionStatus: #VideoExtractionStatus
 }
+
+#VideoExtractionStatus: "ENABLED" | "DISABLED"

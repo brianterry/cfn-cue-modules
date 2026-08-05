@@ -38,6 +38,8 @@ import "strings"
 	LogGroup?: string
 }
 
+#ConsumerGroupOffsetSyncMode: "LEGACY" | "ENHANCED"
+
 #ConsumerGroupReplication: {
 	// The consumer group offset synchronization mode.
 	ConsumerGroupOffsetSyncMode?: #ConsumerGroupOffsetSyncMode
@@ -92,6 +94,8 @@ import "strings"
 	RootCaCertificate?: string
 }
 
+#KafkaClusterEncryptionInTransitType: "TLS"
+
 #KafkaClusterMtlsAuthentication: {
 	// The Amazon Resource Name (ARN) of the Secrets Manager secret.
 	SecretArn: string
@@ -103,6 +107,8 @@ import "strings"
 	// The Amazon Resource Name (ARN) of the Secrets Manager secret.
 	SecretArn: string
 }
+
+#KafkaClusterSaslScramMechanism: "SHA256" | "SHA512"
 
 #LogDelivery: {
 	// The replicator logs configuration.
@@ -130,9 +136,13 @@ import "strings"
 	Type?: #ReplicationStartingPositionType
 }
 
+#ReplicationStartingPositionType: "LATEST" | "EARLIEST"
+
 #ReplicationTopicNameConfiguration: {
 	Type?: #ReplicationTopicNameConfigurationType
 }
+
+#ReplicationTopicNameConfigurationType: "PREFIXED_WITH_SOURCE_CLUSTER_ALIAS" | "IDENTICAL"
 
 #ReplicatorLogDelivery: {
 	// Details of the CloudWatch Logs destination for replicator logs.

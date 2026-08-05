@@ -185,6 +185,8 @@ import "strings"
 	Value: number
 }
 
+#ISO8601DateString: string & =~"^(\\d\\d\\d\\d)-([0][1-9]|[1][0-2])-([0][1-9]|[1-2](\\d)|[3][0-1])[T](?:([0-1](\\d)|[2][0-3]):[0-5](\\d):[0-5](\\d)|23:59:60)(?:\\.(\\d)+)?([Z]|[+-](\\d\\d)(:?(\\d\\d))?)$"
+
 #MapFilter: {
 	// The condition to apply to the key value when filtering Security Hub CSPM findings with a map filter.
 	// To search for values that have the filter value, use one of the following comparison operators:
@@ -204,6 +206,8 @@ import "strings"
 	// The value for the key in the map filter. Filter values are case sensitive. For example, one of the values for a tag called ``Department`` might be ``Security``. If you provide ``security`` as the filter value, then there's no match.
 	Value: string
 }
+
+#NonEmptyString: string & strings.MinRunes(1)
 
 #NoteUpdate: {
 	// The updated note text.
@@ -274,6 +278,10 @@ import "strings"
 	Value: string
 }
 
+#StringFilterComparison: "EQUALS" | "PREFIX" | "NOT_EQUALS" | "PREFIX_NOT_EQUALS" | "CONTAINS" | "NOT_CONTAINS"
+
+#Tags: {...}
+
 #WorkflowUpdate: {
 	// The status of the investigation into the finding. The workflow status is specific to an individual finding. It does not affect the generation of new findings. For example, setting the workflow status to ``SUPPRESSED`` or ``RESOLVED`` does not prevent a new finding for the same issue.
 	// The allowed values are the following.
@@ -286,3 +294,13 @@ import "strings"
 	// +  ``SUPPRESSED`` - Indicates that you reviewed the finding and don't believe that any action is needed. The finding is no longer updated.
 	Status: "NEW" | "NOTIFIED" | "RESOLVED" | "SUPPRESSED"
 }
+
+#arn: string & =~"^arn:(aws|aws-cn|aws-us-gov|aws-iso-?[a-z]{0,2}):[A-Za-z0-9]{1,63}:[a-z]+-([a-z]{1,10}-)?[a-z]+-[0-9]+:([0-9]{12})?:.+$" & strings.MinRunes(12) & strings.MaxRunes(2048)
+
+#arnOrId: string & strings.MinRunes(1) & strings.MaxRunes(512) | #arn
+
+#int100: int & >=0 & <=100
+
+#map: {...}
+
+#timestamp: string & =~"(\\d\\d\\d\\d)-[0-1](\\d)-[0-3](\\d)[Tt](?:[0-2](\\d):[0-5](\\d):[0-5](\\d)|23:59:60)(?:\\.(\\d)+)?(?:[Zz]|[+-](\\d\\d)(?::?(\\d\\d))?)$"

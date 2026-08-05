@@ -16,6 +16,8 @@ import "strings"
 	WelcomeMessage?: string & strings.MinRunes(0) & strings.MaxRunes(300)
 }
 
+#BrowserExtension: "FIREFOX" | "CHROME"
+
 #BrowserExtensionConfiguration: {
 	EnabledBrowserExtensions: [...#BrowserExtension]
 }
@@ -27,10 +29,18 @@ import "strings"
 	LogoUrl?: string & =~"^(https?://[a-zA-Z0-9-_.+%/]+\\.(svg|png))?$" & strings.MinRunes(0) & strings.MaxRunes(1284)
 }
 
+#IdentityProviderConfiguration: {
+	SamlConfiguration: #SamlProviderConfiguration
+} | {
+	OpenIDConnectConfiguration: #OpenIDConnectProviderConfiguration
+}
+
 #OpenIDConnectProviderConfiguration: {
 	SecretsArn: string & =~"^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$" & strings.MinRunes(0) & strings.MaxRunes(1284)
 	SecretsRole: string & =~"^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$" & strings.MinRunes(0) & strings.MaxRunes(1284)
 }
+
+#Origin: string & =~"^(http:\\/\\/|https:\\/\\/)[a-zA-Z0-9-_.]+(?::[0-9]{1,5})?$" & strings.MinRunes(1) & strings.MaxRunes(64)
 
 #SamlProviderConfiguration: {
 	AuthenticationUrl: string & =~"^https://.*$" & strings.MinRunes(1) & strings.MaxRunes(1284)
@@ -40,3 +50,7 @@ import "strings"
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#WebExperienceSamplePromptsControlMode: "ENABLED" | "DISABLED"
+
+#WebExperienceStatus: "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "PENDING_AUTH_CONFIG"

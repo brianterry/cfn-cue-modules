@@ -19,10 +19,34 @@ import "strings"
 	Tier: #RouterOutputTier
 }
 
+#AutomaticEncryptionKeyConfiguration: {...}
+
+#Day: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY"
+
+#DefaultMaintenanceConfiguration: {...}
+
 #FlowTransitEncryption: {
 	EncryptionKeyConfiguration: #FlowTransitEncryptionKeyConfiguration
 	EncryptionKeyType?: #FlowTransitEncryptionKeyType
 }
+
+#FlowTransitEncryptionKeyConfiguration: {
+	SecretsManager: #SecretsManagerEncryptionKeyConfiguration
+} | {
+	Automatic: #AutomaticEncryptionKeyConfiguration
+}
+
+#FlowTransitEncryptionKeyType: "SECRETS_MANAGER" | "AUTOMATIC"
+
+#ForwardErrorCorrectionState: "ENABLED" | "DISABLED"
+
+#MaintenanceConfiguration: {
+	PreferredDayTime: #PreferredDayTimeMaintenanceConfiguration
+} | {
+	Default: #DefaultMaintenanceConfiguration
+}
+
+#MaintenanceType: "PREFERRED_DAY_TIME" | "DEFAULT"
 
 #MediaConnectFlowRouterOutputConfiguration: {
 	DestinationTransitEncryption: #FlowTransitEncryption
@@ -31,6 +55,8 @@ import "strings"
 	// The ARN of the flow source to connect to this router output.
 	FlowSourceArn?: string & =~"^arn:(aws[a-zA-Z-]*):mediaconnect:[a-z0-9-]+:[0-9]{12}:source:[a-zA-Z0-9-]+:[a-zA-Z0-9_-]+$"
 }
+
+#MediaLiveInputPipelineId: "PIPELINE_0" | "PIPELINE_1"
 
 #MediaLiveInputRouterOutputConfiguration: {
 	DestinationTransitEncryption: #MediaLiveTransitEncryption
@@ -44,6 +70,14 @@ import "strings"
 	EncryptionKeyType?: #MediaLiveTransitEncryptionKeyType
 }
 
+#MediaLiveTransitEncryptionKeyConfiguration: {
+	SecretsManager: #SecretsManagerEncryptionKeyConfiguration
+} | {
+	Automatic: #AutomaticEncryptionKeyConfiguration
+}
+
+#MediaLiveTransitEncryptionKeyType: "SECRETS_MANAGER" | "AUTOMATIC"
+
 #PreferredDayTimeMaintenanceConfiguration: {
 	Day: #Day
 	// The preferred time for maintenance operations.
@@ -56,6 +90,36 @@ import "strings"
 	// The destination port number for the RIST protocol in the router output configuration.
 	DestinationPort: int & >=1024 & <=65535
 }
+
+#RouterOutputConfiguration: {
+	Standard: #StandardRouterOutputConfiguration
+} | {
+	MediaConnectFlow: #MediaConnectFlowRouterOutputConfiguration
+} | {
+	MediaLiveInput: #MediaLiveInputRouterOutputConfiguration
+}
+
+#RouterOutputProtocol: "RTP" | "RIST" | "SRT_CALLER" | "SRT_LISTENER"
+
+#RouterOutputProtocolConfiguration: {
+	Rtp: #RtpRouterOutputConfiguration
+} | {
+	Rist: #RistRouterOutputConfiguration
+} | {
+	SrtListener: #SrtListenerRouterOutputConfiguration
+} | {
+	SrtCaller: #SrtCallerRouterOutputConfiguration
+}
+
+#RouterOutputRoutedState: "ROUTED" | "ROUTING" | "UNROUTED"
+
+#RouterOutputState: "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
+
+#RouterOutputTier: "OUTPUT_100" | "OUTPUT_50" | "OUTPUT_20"
+
+#RouterOutputType: "STANDARD" | "MEDIACONNECT_FLOW" | "MEDIALIVE_INPUT"
+
+#RoutingScope: "REGIONAL" | "GLOBAL"
 
 #RtpRouterOutputConfiguration: {
 	// The destination IP address for the RTP protocol in the router output configuration.
@@ -107,3 +171,5 @@ import "strings"
 	Key: string
 	Value: string
 }
+
+#Unit: {...}

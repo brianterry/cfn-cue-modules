@@ -29,6 +29,8 @@ import "strings"
 	SecretId?: string & =~"^(?=.{1,100}$).*"
 }
 
+#Instance: string & =~"^i-[\\w\\d]{8}$|^i-[\\w\\d]{17}$"
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

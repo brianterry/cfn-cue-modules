@@ -14,6 +14,8 @@ import "strings"
 	Targets: #ExperimentTemplateTargetMap
 }
 
+#ActionId: string & strings.MaxRunes(64)
+
 #CloudWatchDashboard: {
 	DashboardIdentifier: string & strings.MinRunes(1) & strings.MaxRunes(512)
 }
@@ -27,6 +29,20 @@ import "strings"
 	// One or more targets for the action.
 	Targets?: {...}
 }
+
+#ExperimentTemplateActionItemDescription: string & strings.MaxRunes(512)
+
+#ExperimentTemplateActionItemParameter: string & strings.MaxRunes(1024)
+
+#ExperimentTemplateActionItemStartAfter: string & strings.MaxRunes(64)
+
+#ExperimentTemplateActionItemStartAfterList: [...#ExperimentTemplateActionItemStartAfter]
+
+#ExperimentTemplateActionItemTarget: string & strings.MaxRunes(64)
+
+#ExperimentTemplateActionMap: {...}
+
+#ExperimentTemplateDescription: string & strings.MaxRunes(512)
 
 #ExperimentTemplateExperimentOptions: {
 	// The account targeting setting for the experiment template.
@@ -49,6 +65,8 @@ import "strings"
 	PreExperimentDuration?: string
 }
 
+#ExperimentTemplateId: string
+
 #ExperimentTemplateLogConfiguration: {
 	CloudWatchLogsConfiguration?: {
 		LogGroupArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
@@ -65,6 +83,8 @@ import "strings"
 	Value?: #StopConditionValue
 }
 
+#ExperimentTemplateStopConditionList: [...#ExperimentTemplateStopCondition]
+
 #ExperimentTemplateTarget: {
 	Filters?: #ExperimentTemplateTargetFilterList
 	Parameters?: {...}
@@ -78,3 +98,27 @@ import "strings"
 	Path: #ExperimentTemplateTargetFilterPath
 	Values: #ExperimentTemplateTargetFilterValues
 }
+
+#ExperimentTemplateTargetFilterList: [...#ExperimentTemplateTargetFilter]
+
+#ExperimentTemplateTargetFilterPath: string & strings.MaxRunes(256)
+
+#ExperimentTemplateTargetFilterValue: string & strings.MaxRunes(128)
+
+#ExperimentTemplateTargetFilterValues: [...#ExperimentTemplateTargetFilterValue]
+
+#ExperimentTemplateTargetMap: {...}
+
+#ExperimentTemplateTargetSelectionMode: string & strings.MaxRunes(64)
+
+#ResourceArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
+
+#ResourceArnList: [...#ResourceArn]
+
+#ResourceType: string & strings.MaxRunes(64)
+
+#RoleArn: string & strings.MaxRunes(1224)
+
+#StopConditionSource: string & strings.MaxRunes(64)
+
+#StopConditionValue: string & strings.MinRunes(20) & strings.MaxRunes(2048)

@@ -64,6 +64,8 @@ import "strings"
 	Principal: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#ResourceStatus: "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "PENDING_UPDATE" | "DELETED"
+
 #SheetStyle: {
 	Tile?: #TileStyle
 	TileLayout?: #TileLayoutStyle
@@ -88,6 +90,10 @@ import "strings"
 	Message?: string & =~"\\S"
 	Type?: #ThemeErrorType
 }
+
+#ThemeErrorType: "INTERNAL_FAILURE"
+
+#ThemeType: "QUICKSIGHT" | "CUSTOM" | "ALL"
 
 #ThemeVersion: {
 	// <p>The Amazon Resource Name (ARN) of the resource.</p>

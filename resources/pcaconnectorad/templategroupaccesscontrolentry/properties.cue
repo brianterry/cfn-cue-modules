@@ -9,6 +9,8 @@ import "strings"
 	TemplateArn: string & =~"^arn:[\\w-]+:pca-connector-ad:[\\w-]+:[0-9]+:connector(\\/[\\w-]+)\\/template(\\/[\\w-]+)$" & strings.MinRunes(5) & strings.MaxRunes(200)
 }
 
+#AccessRight: "ALLOW" | "DENY"
+
 #AccessRights: {
 	AutoEnroll?: #AccessRight
 	Enroll?: #AccessRight

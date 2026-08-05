@@ -13,3 +13,5 @@ package serviceenvironment
 	CapacityUnit?: string
 	MaxCapacity?: int
 }
+
+#CapacityLimits: [...#CapacityLimit]

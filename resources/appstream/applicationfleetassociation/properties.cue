@@ -4,3 +4,5 @@ package applicationfleetassociation
 	ApplicationArn: #Arn
 	FleetName: string
 }
+
+#Arn: string

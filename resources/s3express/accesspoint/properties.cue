@@ -20,6 +20,8 @@ import "strings"
 	VpcConfiguration?: #VpcConfiguration
 }
 
+#Arn: string
+
 #PublicAccessBlockConfiguration: {
 	// Specifies whether Amazon S3 should block public access control lists (ACLs) for buckets in this account. Setting this element to TRUE causes the following behavior:
 	// - PUT Bucket acl and PUT Object acl calls fail if the specified ACL is public.

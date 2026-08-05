@@ -19,6 +19,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#DataBundleArn: string & =~"^arn:aws:finspace:[A-Za-z0-9_/.-]{0,63}:\\d*:data-bundle/[0-9A-Za-z_-]{1,128}$"
+
 #FederationParameters: {
 	// SAML metadata URL to link with the Environment
 	ApplicationCallBackURL?: string & =~"^https?://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]{1,1000}"

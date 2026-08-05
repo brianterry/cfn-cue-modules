@@ -16,6 +16,8 @@ package accessgrant
 	Tags?: [...#Tag]
 }
 
+#AccessGrantArn: string
+
 #AccessGrantsLocationConfiguration: {
 	// The S3 sub prefix of a registered location in your S3 Access Grants instance
 	S3SubPrefix: string

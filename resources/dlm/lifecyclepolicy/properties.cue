@@ -173,3 +173,5 @@ package lifecyclepolicy
 	Key: string
 	Value: string
 }
+
+#VolumeTypeValues: {...}

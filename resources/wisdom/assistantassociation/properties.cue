@@ -9,6 +9,14 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AssociationData: {
+	KnowledgeBaseId: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+} | {
+	ExternalBedrockKnowledgeBaseConfig: #ExternalBedrockKnowledgeBaseConfig
+}
+
+#AssociationType: "KNOWLEDGE_BASE" | "EXTERNAL_BEDROCK_KNOWLEDGE_BASE"
+
 #ExternalBedrockKnowledgeBaseConfig: {
 	AccessRoleArn: string & =~"^arn:aws:iam::[0-9]{12}:role/(?:service-role/)?[a-zA-Z0-9_+=,.@-]{1,64}$"
 	BedrockKnowledgeBaseArn: string & =~"^arn:aws(|-cn|-us-gov):bedrock:[a-zA-Z0-9-]*:[0-9]{12}:knowledge-base/[0-9a-zA-Z]+$"

@@ -20,6 +20,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#IpAddress: string & =~"^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"
+
 #Tag: {
 	// Key of the tag. Value can be 1 to 127 characters.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(127)

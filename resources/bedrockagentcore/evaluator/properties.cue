@@ -41,9 +41,13 @@ import "strings"
 	LlmAsAJudge?: #LlmAsAJudgeEvaluatorConfig
 }
 
+#EvaluatorLevel: "TOOL_CALL" | "TRACE" | "SESSION"
+
 #EvaluatorModelConfig: {
 	BedrockEvaluatorModelConfig: #BedrockEvaluatorModelConfig
 }
+
+#EvaluatorStatus: "ACTIVE" | "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING"
 
 #InferenceConfiguration: {
 	// The maximum number of tokens to generate in the model response.

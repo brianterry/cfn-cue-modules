@@ -9,6 +9,10 @@ package dataflowendpointgroup
 	Tags?: [...#Tag]
 }
 
+#AgentStatus: "SUCCESS" | "FAILED" | "ACTIVE" | "INACTIVE"
+
+#AuditResults: "HEALTHY" | "UNHEALTHY"
+
 #AwsGroundStationAgentEndpoint: {
 	AgentStatus?: #AgentStatus
 	AuditResults?: #AuditResults

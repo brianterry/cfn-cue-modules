@@ -17,6 +17,8 @@ import "strings"
 	}
 }
 
+#Arn: string & strings.MaxRunes(1000)
+
 #AudioLogDestination: {
 	S3Bucket: #S3BucketLogDestination
 }
@@ -25,6 +27,8 @@ import "strings"
 	Destination: #AudioLogDestination
 	Enabled: bool
 }
+
+#AudioLogSettings: [...#AudioLogSetting]
 
 #BotAliasLocaleSettings: {
 	CodeHookSpecification?: #CodeHookSpecification
@@ -37,6 +41,12 @@ import "strings"
 	// A string used to identify the locale
 	LocaleId: string & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#BotAliasLocaleSettingsList: [...#BotAliasLocaleSettingsItem]
+
+#BotAliasStatus: "Creating" | "Available" | "Deleting" | "Failed"
+
+#BotVersion: string & =~"^(DRAFT|[0-9]+)$" & strings.MinRunes(1) & strings.MaxRunes(5)
 
 #CloudWatchLogGroupLogDestination: {
 	// A string used to identify the groupArn for the Cloudwatch Log Group
@@ -54,12 +64,20 @@ import "strings"
 	TextLogSettings?: #TextLogSettings
 }
 
+#Description: string & strings.MaxRunes(200)
+
+#Id: string & =~"^[0-9a-zA-Z]+$" & strings.MinRunes(10) & strings.MaxRunes(10)
+
 #LambdaCodeHook: {
 	// The version of the request-response that you want Amazon Lex to use to invoke your Lambda function.
 	CodeHookInterfaceVersion: string & strings.MinRunes(1) & strings.MaxRunes(5)
 	// The Amazon Resource Name (ARN) of the Lambda function.
 	LambdaArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
+
+#LocaleId: string
+
+#Name: string & =~"^([0-9a-zA-Z][_-]?)+$" & strings.MinRunes(1) & strings.MaxRunes(100)
 
 #S3BucketLogDestination: {
 	// The Amazon Resource Name (ARN) of an AWS Key Management Service (KMS) key for encrypting audio log files stored in an S3 bucket.
@@ -85,3 +103,5 @@ import "strings"
 	Destination: #TextLogDestination
 	Enabled: bool
 }
+
+#TextLogSettings: [...#TextLogSetting]

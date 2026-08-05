@@ -19,6 +19,10 @@ import "strings"
 	S3Location: #S3Location
 }
 
+#PackageVersionStatus: "DRAFT" | "PUBLISHED" | "DEPRECATED"
+
+#ResourceAttributes: {...}
+
 #S3Location: {
 	// The S3 bucket
 	Bucket: string & strings.MinRunes(1)
@@ -31,6 +35,8 @@ import "strings"
 #Sbom: {
 	S3Location: #S3Location
 }
+
+#SbomValidationStatus: "IN_PROGRESS" | "FAILED" | "SUCCEEDED" | ""
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

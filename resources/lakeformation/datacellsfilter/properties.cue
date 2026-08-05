@@ -17,10 +17,16 @@ package datacellsfilter
 	TableName: #NameString
 }
 
+#CatalogIdString: string & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#ColumnNames: [...#NameString]
+
 #ColumnWildcard: {
 	// A list of column names to be excluded from the Data Cells Filter.
 	ExcludedColumnNames?: #ColumnNames
 }
+
+#NameString: string & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #RowFilter: {
 	// An empty object representing a row wildcard.

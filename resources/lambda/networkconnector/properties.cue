@@ -10,9 +10,17 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Arn: string & =~"^(arn:aws[a-zA-Z-]*:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:network-connector:[a-zA-Z0-9-_]+(:[1-9]|[1-9][0-9]+)?)$" & strings.MinRunes(1) & strings.MaxRunes(140)
+
 #Config: {
 	VpcEgressConfiguration: #VpcEgressConfiguration
 }
+
+#Name: string & =~"^(arn:aws[a-zA-Z-]*:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:network-connector:[a-zA-Z0-9-_]+(:[1-9]|[1-9][0-9]+)?)|[a-zA-Z0-9_-]{1,64}$" & strings.MinRunes(1) & strings.MaxRunes(140)
+
+#RoleArn: string & =~"^arn:(aws[a-zA-Z-]*)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$" & strings.MinRunes(0) & strings.MaxRunes(10000)
+
+#State: "PENDING" | "ACTIVE" | "INACTIVE" | "FAILED" | "DELETING" | "DELETE_FAILED"
 
 #Tag: {
 	// The key name of the tag.

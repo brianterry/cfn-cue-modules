@@ -131,6 +131,8 @@ package networkinsightsanalysis
 	vpcEndpoint?: #AnalysisComponent
 }
 
+#IpAddress: string
+
 #PathComponent: {
 	AclRule?: #AnalysisAclRule
 	AdditionalDetails?: [...#AdditionalDetail]
@@ -151,15 +153,23 @@ package networkinsightsanalysis
 	Vpc?: #AnalysisComponent
 }
 
+#Port: int
+
 #PortRange: {
 	From?: int
 	To?: int
 }
 
+#Protocol: string
+
+#ResourceArn: string
+
 #Tag: {
 	Key: string
 	Value?: string
 }
+
+#Tags: [...#Tag]
 
 #TransitGatewayRouteTableRoute: {
 	AttachmentId?: string

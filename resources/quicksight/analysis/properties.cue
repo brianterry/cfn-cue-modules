@@ -36,6 +36,8 @@ import "strings"
 	SortDirection: #SortDirection
 }
 
+#AllSheetsFilterScopeConfiguration: {...}
+
 #AnalysisDefaults: {
 	DefaultNewSheetConfiguration: #DefaultNewSheetConfiguration
 }
@@ -61,6 +63,8 @@ import "strings"
 	ViolatedEntities?: [...#Entity]
 }
 
+#AnalysisErrorType: "ACCESS_DENIED" | "SOURCE_NOT_FOUND" | "DATA_SET_NOT_FOUND" | "INTERNAL_FAILURE" | "PARAMETER_VALUE_INCOMPATIBLE" | "PARAMETER_TYPE_INVALID" | "PARAMETER_NOT_FOUND" | "COLUMN_TYPE_MISMATCH" | "COLUMN_GEOGRAPHIC_ROLE_MISMATCH" | "COLUMN_REPLACEMENT_MISSING"
+
 #AnalysisSourceEntity: {
 	SourceTemplate?: #AnalysisSourceTemplate
 }
@@ -76,6 +80,8 @@ import "strings"
 	AnchorOption?: #AnchorOption
 	ParameterName?: string & =~"^[a-zA-Z0-9]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#AnchorOption: "NOW"
 
 #ArcAxisConfiguration: {
 	Range?: #ArcAxisDisplayRange
@@ -96,6 +102,10 @@ import "strings"
 	ArcThickness?: #ArcThickness
 }
 
+#ArcThickness: "SMALL" | "MEDIUM" | "LARGE" | "WHOLE"
+
+#ArcThicknessOptions: "SMALL" | "MEDIUM" | "LARGE"
+
 #AssetOptions: {
 	Timezone?: string
 	WeekStart?: #DayOfTheWeek
@@ -106,10 +116,14 @@ import "strings"
 	ValueForMultipleValues?: string
 }
 
+#AxisBinding: "PRIMARY_YAXIS" | "SECONDARY_YAXIS"
+
 #AxisDataOptions: {
 	DateAxisOptions?: #DateAxisOptions
 	NumericAxisOptions?: #NumericAxisOptions
 }
+
+#AxisDisplayDataDrivenRange: {...}
 
 #AxisDisplayMinMaxRange: {
 	Maximum?: number
@@ -192,6 +206,8 @@ import "strings"
 	BarChartAggregatedFieldWells?: #BarChartAggregatedFieldWells
 }
 
+#BarChartOrientation: "HORIZONTAL" | "VERTICAL"
+
 #BarChartSortConfiguration: {
 	CategoryItemsLimit?: #ItemsLimitConfiguration
 	CategorySort?: [...#FieldSortOptions]
@@ -210,6 +226,10 @@ import "strings"
 	VisualContentAltText?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 	VisualId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
+
+#BarsArrangement: "CLUSTERED" | "STACKED" | "STACKED_PERCENT"
+
+#BaseMapStyleType: "LIGHT_GRAY" | "DARK_GRAY" | "STREET" | "IMAGERY"
 
 #BinCountOptions: {
 	Value?: number & >=0
@@ -283,6 +303,8 @@ import "strings"
 	BoxPlotAggregatedFieldWells?: #BoxPlotAggregatedFieldWells
 }
 
+#BoxPlotFillStyle: "SOLID" | "TRANSPARENT"
+
 #BoxPlotOptions: {
 	AllDataPointsVisibility?: #Visibility
 	OutlierVisibility?: #Visibility
@@ -328,6 +350,8 @@ import "strings"
 	SourceSheetControlId?: string
 }
 
+#CategoricalAggregationFunction: "COUNT" | "DISTINCT_COUNT"
+
 #CategoricalDimensionField: {
 	Column: #ColumnIdentifier
 	FieldId: string & strings.MinRunes(1) & strings.MaxRunes(512)
@@ -360,6 +384,10 @@ import "strings"
 	FilterListConfiguration?: #FilterListConfiguration
 }
 
+#CategoryFilterMatchOperator: "EQUALS" | "DOES_NOT_EQUAL" | "CONTAINS" | "DOES_NOT_CONTAIN" | "STARTS_WITH" | "ENDS_WITH"
+
+#CategoryFilterSelectAllOptions: "FILTER_ALL_VALUES"
+
 #CategoryInnerFilter: {
 	Column: #ColumnIdentifier
 	Configuration: #CategoryFilterConfiguration
@@ -379,6 +407,8 @@ import "strings"
 #ClusterMarkerConfiguration: {
 	ClusterMarker?: #ClusterMarker
 }
+
+#ColorFillType: "DISCRETE" | "GRADIENT"
 
 #ColorScale: {
 	ColorFillType: #ColorFillType
@@ -407,6 +437,8 @@ import "strings"
 	ColumnName: string & strings.MinRunes(1) & strings.MaxRunes(127)
 	DataSetIdentifier: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#ColumnRole: "DIMENSION" | "MEASURE"
 
 #ColumnSort: {
 	AggregationFunction?: #AggregationFunction
@@ -471,6 +503,8 @@ import "strings"
 	VisualId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
 
+#CommitMode: "AUTO" | "MANUAL"
+
 #ComparisonConfiguration: {
 	ComparisonFormat?: #ComparisonFormatConfiguration
 	ComparisonMethod?: #ComparisonMethod
@@ -480,6 +514,8 @@ import "strings"
 	NumberDisplayFormatConfiguration?: #NumberDisplayFormatConfiguration
 	PercentageDisplayFormatConfiguration?: #PercentageDisplayFormatConfiguration
 }
+
+#ComparisonMethod: "DIFFERENCE" | "PERCENT_DIFFERENCE" | "PERCENT"
 
 #Computation: {
 	Forecast?: #ForecastComputation
@@ -525,10 +561,14 @@ import "strings"
 	IconDisplayOption?: #ConditionalFormattingIconDisplayOption
 }
 
+#ConditionalFormattingIconDisplayOption: "ICON_ONLY"
+
 #ConditionalFormattingIconSet: {
 	Expression: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 	IconSetType?: #ConditionalFormattingIconSetType
 }
+
+#ConditionalFormattingIconSetType: "PLUS_MINUS" | "CHECK_X" | "THREE_COLOR_ARROW" | "THREE_GRAY_ARROW" | "CARET_UP_MINUS_DOWN" | "THREE_SHAPE" | "THREE_CIRCLE" | "FLAGS" | "BARS" | "FOUR_COLOR_ARROW" | "FOUR_GRAY_ARROW"
 
 #ConditionalFormattingSolidColor: {
 	Color?: string & =~"^#[A-F0-9]{6}$"
@@ -543,6 +583,8 @@ import "strings"
 	ContributorDimensions: [...#ColumnIdentifier]
 	MeasureFieldId: string & strings.MinRunes(1) & strings.MaxRunes(512)
 }
+
+#CrossDatasetTypes: "ALL_DATASETS" | "SINGLE_DATASET"
 
 #CurrencyDisplayFormatConfiguration: {
 	DecimalPlacesConfiguration?: #DecimalPlacesConfiguration
@@ -586,6 +628,10 @@ import "strings"
 	Interactions?: #VisualInteractionOptions
 }
 
+#CustomContentImageScalingConfiguration: "FIT_TO_HEIGHT" | "FIT_TO_WIDTH" | "DO_NOT_SCALE" | "SCALE_TO_VISUAL"
+
+#CustomContentType: "IMAGE" | "OTHER_EMBEDDED_CONTENT"
+
 #CustomContentVisual: {
 	Actions?: [...#VisualCustomAction]
 	ChartConfiguration?: #CustomContentConfiguration
@@ -627,6 +673,8 @@ import "strings"
 	IncludeNullValue?: bool
 }
 
+#DashboardBehavior: "ENABLED" | "DISABLED"
+
 #DataBarsOptions: {
 	FieldId: string & strings.MinRunes(1) & strings.MaxRunes(512)
 	NegativeColor?: string & =~"^#[A-F0-9]{6}$"
@@ -645,6 +693,8 @@ import "strings"
 	Settings?: #LineChartSeriesSettings
 }
 
+#DataLabelContent: "VALUE" | "PERCENT" | "VALUE_AND_PERCENT"
+
 #DataLabelOptions: {
 	CategoryLabelVisibility?: #Visibility
 	DataLabelTypes?: [...#DataLabelType]
@@ -657,6 +707,10 @@ import "strings"
 	TotalsVisibility?: #Visibility
 	Visibility?: #Visibility
 }
+
+#DataLabelOverlap: "DISABLE_OVERLAP" | "ENABLE_OVERLAP"
+
+#DataLabelPosition: "INSIDE" | "OUTSIDE" | "LEFT" | "TOP" | "BOTTOM" | "RIGHT"
 
 #DataLabelType: {
 	DataPathLabelType?: #DataPathLabelType
@@ -704,6 +758,8 @@ import "strings"
 	// <p>Dataset placeholder.</p>
 	DataSetPlaceholder: string & =~"\\S"
 }
+
+#DateAggregationFunction: "COUNT" | "DISTINCT_COUNT" | "MIN" | "MAX"
 
 #DateAxisOptions: {
 	MissingDateVisibility?: #Visibility
@@ -768,6 +824,8 @@ import "strings"
 	CustomValue?: string
 	ValueWhenUnsetOption?: #ValueWhenUnsetOption
 }
+
+#DayOfTheWeek: "SUNDAY" | "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY"
 
 #DecimalDefaultValues: {
 	DynamicValue?: #DynamicDefaultValue
@@ -888,6 +946,8 @@ import "strings"
 	SourceField?: string & strings.MinRunes(1) & strings.MaxRunes(512)
 	SourceParameterName?: string
 }
+
+#DigitGroupingStyle: "DEFAULT" | "LAKHS"
 
 #DimensionField: {
 	CategoricalDimensionField?: #CategoricalDimensionField
@@ -1098,6 +1158,8 @@ import "strings"
 	Type?: #SheetControlListType
 }
 
+#FilterNullOption: "ALL_VALUES" | "NULLS_ONLY" | "NON_NULLS_ONLY"
+
 #FilterOperationSelectedFieldsConfiguration: {
 	// <p>The selected columns of a dataset.</p>
 	SelectedColumns?: [...#ColumnIdentifier]
@@ -1152,6 +1214,8 @@ import "strings"
 	Title: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
 
+#FilterVisualScope: "ALL_VISUALS" | "SELECTED_VISUALS"
+
 #FontConfiguration: {
 	FontColor?: string & =~"^#[A-F0-9]{6}$"
 	FontDecoration?: #FontDecoration
@@ -1161,15 +1225,21 @@ import "strings"
 	FontWeight?: #FontWeight
 }
 
+#FontDecoration: "UNDERLINE" | "NONE"
+
 #FontSize: {
 	// String based length that is composed of value and unit in px
 	Absolute?: string
 	Relative?: #RelativeFontSize
 }
 
+#FontStyle: "NORMAL" | "ITALIC"
+
 #FontWeight: {
 	Name?: #FontWeightName
 }
+
+#FontWeightName: "NORMAL" | "BOLD"
 
 #ForecastComputation: {
 	ComputationId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
@@ -1184,6 +1254,8 @@ import "strings"
 	UpperBoundary?: number
 	Value?: #MeasureField
 }
+
+#ForecastComputationSeasonality: "AUTOMATIC" | "CUSTOM"
 
 #ForecastConfiguration: {
 	ForecastProperties?: #TimeBasedForecastProperties
@@ -1277,6 +1349,8 @@ import "strings"
 #FunnelChartFieldWells: {
 	FunnelChartAggregatedFieldWells?: #FunnelChartAggregatedFieldWells
 }
+
+#FunnelChartMeasureDataLabelStyle: "VALUE_ONLY" | "PERCENTAGE_BY_FIRST_STAGE" | "PERCENTAGE_BY_PREVIOUS_STAGE" | "VALUE_AND_PERCENTAGE_BY_FIRST_STAGE" | "VALUE_AND_PERCENTAGE_BY_PREVIOUS_STAGE"
 
 #FunnelChartSortConfiguration: {
 	CategoryItemsLimit?: #ItemsLimitConfiguration
@@ -1378,6 +1452,8 @@ import "strings"
 	Solid?: #GeospatialSolidColor
 }
 
+#GeospatialColorState: "ENABLED" | "DISABLED"
+
 #GeospatialCoordinateBounds: {
 	East: number & >=-1800 & <=1800
 	North: number & >=-90 & <=90
@@ -1450,6 +1526,8 @@ import "strings"
 	MapStyle?: #GeospatialMapStyle
 }
 
+#GeospatialLayerType: "POINT" | "LINE" | "POLYGON"
+
 #GeospatialLineLayer: {
 	Style: #GeospatialLineStyle
 }
@@ -1487,6 +1565,8 @@ import "strings"
 #GeospatialMapFieldWells: {
 	GeospatialMapAggregatedFieldWells?: #GeospatialMapAggregatedFieldWells
 }
+
+#GeospatialMapNavigation: "ENABLED" | "DISABLED"
 
 #GeospatialMapState: {
 	Bounds?: #GeospatialCoordinateBounds
@@ -1550,6 +1630,8 @@ import "strings"
 	StrokeColor?: #GeospatialColor
 	StrokeWidth?: #GeospatialLineWidth
 }
+
+#GeospatialSelectedPointStyle: "POINT" | "CLUSTER" | "HEATMAP"
 
 #GeospatialSolidColor: {
 	Color: string & =~"^#[A-F0-9]{6}(?:[A-F0-9]{2})?$"
@@ -1668,6 +1750,8 @@ import "strings"
 	StartValue?: number
 }
 
+#HistogramBinType: "BIN_COUNT" | "BIN_WIDTH"
+
 #HistogramConfiguration: {
 	BinOptions?: #HistogramBinOptions
 	DataLabels?: #DataLabelOptions
@@ -1693,6 +1777,10 @@ import "strings"
 	VisualId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
 
+#HorizontalTextAlignment: "LEFT" | "CENTER" | "RIGHT" | "AUTO"
+
+#Icon: "CARET_UP" | "CARET_DOWN" | "PLUS" | "MINUS" | "ARROW_UP" | "ARROW_DOWN" | "ARROW_LEFT" | "ARROW_UP_LEFT" | "ARROW_DOWN_LEFT" | "ARROW_RIGHT" | "ARROW_UP_RIGHT" | "ARROW_DOWN_RIGHT" | "FACE_UP" | "FACE_DOWN" | "FACE_FLAT" | "ONE_BAR" | "TWO_BAR" | "THREE_BAR" | "CIRCLE" | "TRIANGLE" | "SQUARE" | "FLAG" | "THUMBS_UP" | "THUMBS_DOWN" | "CHECKMARK" | "X"
+
 #ImageCustomAction: {
 	ActionOperations: [...#ImageCustomActionOperation]
 	CustomActionId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
@@ -1706,6 +1794,8 @@ import "strings"
 	SetParametersOperation?: #CustomActionSetParametersOperation
 	URLOperation?: #CustomActionURLOperation
 }
+
+#ImageCustomActionTrigger: "CLICK" | "MENU"
 
 #ImageInteractionOptions: {
 	ImageMenuOption?: #ImageMenuOption
@@ -1836,6 +1926,8 @@ import "strings"
 	Visibility?: #Visibility
 }
 
+#KPISparklineType: "LINE" | "AREA"
+
 #KPIVisual: {
 	Actions?: [...#VisualCustomAction]
 	ChartConfiguration?: #KPIConfiguration
@@ -1854,6 +1946,8 @@ import "strings"
 #KPIVisualStandardLayout: {
 	Type: #KPIVisualStandardLayoutType
 }
+
+#KPIVisualStandardLayoutType: "CLASSIC" | "VERTICAL"
 
 #LabelOptions: {
 	CustomLabel?: string
@@ -1876,6 +1970,8 @@ import "strings"
 	URLOperation?: #CustomActionURLOperation
 }
 
+#LayerCustomActionTrigger: "DATA_POINT_CLICK" | "DATA_POINT_MENU"
+
 #LayerMapVisual: {
 	ChartConfiguration?: #GeospatialLayerMapConfiguration
 	DataSetIdentifier: string & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -1895,6 +1991,8 @@ import "strings"
 	SectionBasedLayout?: #SectionBasedLayoutConfiguration
 }
 
+#LayoutElementType: "VISUAL" | "FILTER_CONTROL" | "PARAMETER_CONTROL" | "TEXT_BOX" | "IMAGE"
+
 #LegendOptions: {
 	// String based length that is composed of value and unit in px
 	Height?: string
@@ -1905,6 +2003,8 @@ import "strings"
 	// String based length that is composed of value and unit in px
 	Width?: string
 }
+
+#LegendPosition: "AUTO" | "RIGHT" | "BOTTOM" | "TOP"
 
 #LineChartAggregatedFieldWells: {
 	Category?: [...#DimensionField]
@@ -1947,6 +2047,8 @@ import "strings"
 	LineChartAggregatedFieldWells?: #LineChartAggregatedFieldWells
 }
 
+#LineChartLineStyle: "SOLID" | "DOTTED" | "DASHED"
+
 #LineChartLineStyleSettings: {
 	LineInterpolation?: #LineInterpolation
 	LineStyle?: #LineChartLineStyle
@@ -1954,6 +2056,8 @@ import "strings"
 	// String based length that is composed of value and unit in px
 	LineWidth?: string
 }
+
+#LineChartMarkerShape: "CIRCLE" | "TRIANGLE" | "SQUARE" | "DIAMOND" | "ROUNDED_SQUARE"
 
 #LineChartMarkerStyleSettings: {
 	MarkerColor?: string & =~"^#[A-F0-9]{6}$"
@@ -1976,6 +2080,8 @@ import "strings"
 	SmallMultiplesSort?: [...#FieldSortOptions]
 }
 
+#LineChartType: "LINE" | "AREA" | "STACKED_AREA"
+
 #LineChartVisual: {
 	Actions?: [...#VisualCustomAction]
 	ChartConfiguration?: #LineChartConfiguration
@@ -1985,6 +2091,8 @@ import "strings"
 	VisualContentAltText?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 	VisualId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
+
+#LineInterpolation: "LINEAR" | "SMOOTH" | "STEPPED"
 
 #LineSeriesAxisDisplayOptions: {
 	AxisOptions?: #AxisDisplayOptions
@@ -2019,6 +2127,8 @@ import "strings"
 	RichText?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
 
+#MapZoomMode: "AUTO" | "MANUAL"
+
 #MappedDataSetParameter: {
 	DataSetIdentifier: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	DataSetParameterName: string & =~"^[a-zA-Z0-9]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -2035,6 +2145,8 @@ import "strings"
 	Type: #MaximumMinimumComputationType
 	Value?: #MeasureField
 }
+
+#MaximumMinimumComputationType: "MAXIMUM" | "MINIMUM"
 
 #MeasureField: {
 	CalculatedMeasureField?: #CalculatedMeasureField
@@ -2059,9 +2171,13 @@ import "strings"
 	TreatmentOption?: #MissingDataTreatmentOption
 }
 
+#MissingDataTreatmentOption: "INTERPOLATE" | "SHOW_AS_ZERO" | "SHOW_AS_BLANK"
+
 #NegativeValueConfiguration: {
 	DisplayMode: #NegativeValueDisplayMode
 }
+
+#NegativeValueDisplayMode: "POSITIVE" | "NEGATIVE"
 
 #NestedFilter: {
 	Column: #ColumnIdentifier
@@ -2088,6 +2204,8 @@ import "strings"
 	FormatConfiguration?: #NumericFormatConfiguration
 }
 
+#NumberScale: "NONE" | "AUTO" | "THOUSANDS" | "MILLIONS" | "BILLIONS" | "TRILLIONS" | "LAKHS" | "CRORES"
+
 #NumericAxisOptions: {
 	Range?: #AxisDisplayRange
 	Scale?: #AxisScale
@@ -2109,6 +2227,10 @@ import "strings"
 	SelectAllOptions?: #NumericFilterSelectAllOptions
 	Value?: number
 }
+
+#NumericEqualityMatchOperator: "EQUALS" | "DOES_NOT_EQUAL"
+
+#NumericFilterSelectAllOptions: "FILTER_ALL_VALUES"
 
 #NumericFormatConfiguration: {
 	CurrencyDisplayFormatConfiguration?: #CurrencyDisplayFormatConfiguration
@@ -2139,6 +2261,8 @@ import "strings"
 	ThousandsSeparator?: #ThousandSeparatorOptions
 }
 
+#NumericSeparatorSymbol: "COMMA" | "DOT" | "SPACE"
+
 #NumericalAggregationFunction: {
 	PercentileAggregation?: #PercentileAggregation
 	SimpleNumericalAggregation?: #SimpleNumericalAggregationFunction
@@ -2158,10 +2282,14 @@ import "strings"
 	FormatConfiguration?: #NumberFormatConfiguration
 }
 
+#OtherCategories: "INCLUDE" | "EXCLUDE"
+
 #PaginationConfiguration: {
 	PageNumber: number & >=0
 	PageSize: number
 }
+
+#PanelBorderStyle: "SOLID" | "DASHED" | "DOTTED"
 
 #PanelConfiguration: {
 	BackgroundColor?: string & =~"^#[A-F0-9]{6}(?:[A-F0-9]{2})?$"
@@ -2182,6 +2310,10 @@ import "strings"
 	HorizontalTextAlignment?: #HorizontalTextAlignment
 	Visibility?: #Visibility
 }
+
+#PaperOrientation: "PORTRAIT" | "LANDSCAPE"
+
+#PaperSize: "US_LETTER" | "US_LEGAL" | "US_TABLOID_LEDGER" | "A0" | "A1" | "A2" | "A3" | "A4" | "A5" | "JIS_B4" | "JIS_B5"
 
 #ParameterControl: {
 	DateTimePicker?: #ParameterDateTimePickerControl
@@ -2256,6 +2388,8 @@ import "strings"
 	SourceParameterName: string & =~"^[a-zA-Z0-9]+$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 	Title: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#ParameterValueType: "MULTI_VALUED" | "SINGLE_VALUED"
 
 #Parameters: {
 	// <p>The parameters that have a data type of date-time.</p>
@@ -2373,6 +2507,8 @@ import "strings"
 	Role?: #PivotTableConditionalFormattingScopeRole
 }
 
+#PivotTableConditionalFormattingScopeRole: "FIELD" | "FIELD_TOTAL" | "GRAND_TOTAL"
+
 #PivotTableConfiguration: {
 	FieldOptions?: #PivotTableFieldOptions
 	FieldWells?: #PivotTableFieldWells
@@ -2388,6 +2524,10 @@ import "strings"
 	// String based length that is composed of value and unit in px
 	Width?: string
 }
+
+#PivotTableDataPathType: "HIERARCHY_ROWS_LAYOUT_COLUMN" | "MULTIPLE_ROW_METRICS_COLUMN" | "EMPTY_COLUMN_HEADER" | "COUNT_METRIC_COLUMN"
+
+#PivotTableFieldCollapseState: "COLLAPSED" | "EXPANDED"
 
 #PivotTableFieldCollapseStateOption: {
 	State?: #PivotTableFieldCollapseState
@@ -2419,6 +2559,8 @@ import "strings"
 	PivotTableAggregatedFieldWells?: #PivotTableAggregatedFieldWells
 }
 
+#PivotTableMetricPlacement: "ROW" | "COLUMN"
+
 #PivotTableOptions: {
 	CellStyle?: #TableCellStyle
 	CollapsedRowDimensionsVisibility?: #Visibility
@@ -2446,6 +2588,8 @@ import "strings"
 	Visibility?: #Visibility
 }
 
+#PivotTableRowsLayout: "TABULAR" | "HIERARCHY"
+
 #PivotTableSortBy: {
 	Column?: #ColumnSort
 	DataPath?: #DataPathSort
@@ -2455,6 +2599,8 @@ import "strings"
 #PivotTableSortConfiguration: {
 	FieldSortOptions?: [...#PivotFieldSortOptions]
 }
+
+#PivotTableSubtotalLevel: "ALL" | "CUSTOM" | "LAST"
 
 #PivotTableTotalOptions: {
 	ColumnSubtotalOptions?: #SubtotalOptions
@@ -2492,6 +2638,8 @@ import "strings"
 	VisualContentAltText?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 	VisualId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
+
+#PluginVisualAxisName: "GROUP_BY" | "VALUE"
 
 #PluginVisualConfiguration: {
 	FieldWells?: [...#PluginVisualFieldWell]
@@ -2534,9 +2682,13 @@ import "strings"
 	HierarchyId: string & strings.MinRunes(1) & strings.MaxRunes(512)
 }
 
+#PrimaryValueDisplayType: "HIDDEN" | "COMPARISON" | "ACTUAL"
+
 #ProgressBarOptions: {
 	Visibility?: #Visibility
 }
+
+#QueryExecutionMode: "AUTO" | "MANUAL"
 
 #QueryExecutionOptions: {
 	QueryExecutionMode?: #QueryExecutionMode
@@ -2551,6 +2703,8 @@ import "strings"
 #RadarChartAreaStyleSettings: {
 	Visibility?: #Visibility
 }
+
+#RadarChartAxesRangeScale: "AUTO" | "INDEPENDENT" | "SHARED"
 
 #RadarChartConfiguration: {
 	AlternateBandColorsVisibility?: #Visibility
@@ -2578,6 +2732,8 @@ import "strings"
 #RadarChartSeriesSettings: {
 	AreaStyleSettings?: #RadarChartAreaStyleSettings
 }
+
+#RadarChartShape: "CIRCLE" | "POLYGON"
 
 #RadarChartSortConfiguration: {
 	CategoryItemsLimit?: #ItemsLimitConfiguration
@@ -2633,6 +2789,14 @@ import "strings"
 	VerticalPosition?: #ReferenceLineLabelVerticalPosition
 }
 
+#ReferenceLineLabelHorizontalPosition: "LEFT" | "CENTER" | "RIGHT"
+
+#ReferenceLineLabelVerticalPosition: "ABOVE" | "BELOW"
+
+#ReferenceLinePatternType: "SOLID" | "DASHED" | "DOTTED"
+
+#ReferenceLineSeriesType: "BAR" | "LINE"
+
 #ReferenceLineStaticDataConfiguration: {
 	Value: number
 }
@@ -2647,11 +2811,15 @@ import "strings"
 	RelativePosition?: #ReferenceLineValueLabelRelativePosition
 }
 
+#ReferenceLineValueLabelRelativePosition: "BEFORE_CUSTOM_LABEL" | "AFTER_CUSTOM_LABEL"
+
 #RelativeDateTimeControlDisplayOptions: {
 	DateTimeFormat?: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	InfoIconLabelOptions?: #SheetControlInfoIconLabelOptions
 	TitleOptions?: #LabelOptions
 }
+
+#RelativeDateType: "PREVIOUS" | "THIS" | "LAST" | "NOW" | "NEXT"
 
 #RelativeDatesFilter: {
 	AnchorDateConfiguration: #AnchorDateConfiguration
@@ -2666,6 +2834,10 @@ import "strings"
 	RelativeDateValue?: number
 	TimeGranularity: #TimeGranularity
 }
+
+#RelativeFontSize: "EXTRA_SMALL" | "SMALL" | "MEDIUM" | "LARGE" | "EXTRA_LARGE"
+
+#ResizeOption: "FIXED" | "RESPONSIVE"
 
 #ResourcePermission: {
 	// <p>The IAM action to grant or revoke permissions on.</p>
@@ -2687,6 +2859,8 @@ import "strings"
 	// </ul>
 	Principal: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#ResourceStatus: "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "PENDING_UPDATE" | "DELETED"
 
 #RollingDateConfiguration: {
 	DataSetIdentifier?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -2823,15 +2997,23 @@ import "strings"
 	After?: #SectionAfterPageBreak
 }
 
+#SectionPageBreakStatus: "ENABLED" | "DISABLED"
+
 #SectionStyle: {
 	// String based length that is composed of value and unit in px
 	Height?: string
 	Padding?: #Spacing
 }
 
+#SelectAllValueOptions: "ALL_VALUES"
+
+#SelectedFieldOptions: "ALL_FIELDS"
+
 #SelectedSheetsFilterScopeConfiguration: {
 	SheetVisualScopingConfigurations?: [...#SheetVisualScopingConfiguration]
 }
+
+#SelectedTooltipType: "BASIC" | "DETAILED"
 
 #SeriesItem: {
 	DataFieldSeriesItem?: #DataFieldSeriesItem
@@ -2855,6 +3037,10 @@ import "strings"
 	SheetId?: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
 
+#SheetContentType: "PAGINATED" | "INTERACTIVE"
+
+#SheetControlDateTimePickerType: "SINGLE_VALUED" | "DATE_RANGE"
+
 #SheetControlInfoIconLabelOptions: {
 	InfoIconText?: string & strings.MinRunes(1) & strings.MaxRunes(100)
 	Visibility?: #Visibility
@@ -2867,6 +3053,10 @@ import "strings"
 #SheetControlLayoutConfiguration: {
 	GridLayout?: #GridLayoutConfiguration
 }
+
+#SheetControlListType: "MULTI_SELECT" | "SINGLE_SELECT"
+
+#SheetControlSliderType: "SINGLE_POINT" | "RANGE"
 
 #SheetDefinition: {
 	ContentType?: #SheetContentType
@@ -2906,6 +3096,8 @@ import "strings"
 	ScalingType?: #SheetImageScalingType
 }
 
+#SheetImageScalingType: "SCALE_TO_WIDTH" | "SCALE_TO_HEIGHT" | "SCALE_TO_CONTAINER" | "SCALE_NONE"
+
 #SheetImageSource: {
 	SheetImageStaticFileSource?: #SheetImageStaticFileSource
 }
@@ -2939,23 +3131,35 @@ import "strings"
 	RichText?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 }
 
+#SimpleAttributeAggregationFunction: "UNIQUE_VALUE"
+
 #SimpleClusterMarker: {
 	Color?: string & =~"^#[A-F0-9]{6}$"
 }
 
+#SimpleNumericalAggregationFunction: "SUM" | "AVERAGE" | "MIN" | "MAX" | "COUNT" | "DISTINCT_COUNT" | "VAR" | "VARP" | "STDEV" | "STDEVP" | "MEDIAN"
+
+#SimpleTotalAggregationFunction: "DEFAULT" | "SUM" | "AVERAGE" | "MIN" | "MAX" | "NONE"
+
 #SingleAxisOptions: {
 	YAxisOptions?: #YAxisOptions
 }
+
+#SingleYAxisOption: "PRIMARY_Y_AXIS"
 
 #SliderControlDisplayOptions: {
 	InfoIconLabelOptions?: #SheetControlInfoIconLabelOptions
 	TitleOptions?: #LabelOptions
 }
 
+#SmallMultiplesAxisPlacement: "OUTSIDE" | "INSIDE"
+
 #SmallMultiplesAxisProperties: {
 	Placement?: #SmallMultiplesAxisPlacement
 	Scale?: #SmallMultiplesAxisScale
 }
+
+#SmallMultiplesAxisScale: "SHARED" | "INDEPENDENT"
 
 #SmallMultiplesOptions: {
 	MaxVisibleColumns?: number & >=1 & <=10
@@ -2964,6 +3168,8 @@ import "strings"
 	XAxis?: #SmallMultiplesAxisProperties
 	YAxis?: #SmallMultiplesAxisProperties
 }
+
+#SortDirection: "ASC" | "DESC"
 
 #Spacing: {
 	// String based length that is composed of value and unit
@@ -2980,6 +3186,8 @@ import "strings"
 	Source?: #StaticFileSource
 	StaticFileId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
+
+#SpecialValue: "EMPTY" | "NULL" | "OTHER"
 
 #StaticFile: {
 	ImageStaticFile?: #ImageStaticFile
@@ -3031,6 +3239,8 @@ import "strings"
 	ValueWhenUnsetOption?: #ValueWhenUnsetOption
 }
 
+#StyledCellType: "TOTAL" | "METRIC_HEADER" | "VALUE"
+
 #SubtotalOptions: {
 	CustomLabel?: string
 	FieldLevel?: #PivotTableSubtotalLevel
@@ -3053,10 +3263,14 @@ import "strings"
 	Thickness?: number & >=1 & <=4
 }
 
+#TableBorderStyle: "NONE" | "SOLID"
+
 #TableCellConditionalFormatting: {
 	FieldId: string & strings.MinRunes(1) & strings.MaxRunes(512)
 	TextFormat?: #TextConditionalFormat
 }
+
+#TableCellImageScalingConfiguration: "FIT_TO_CELL_HEIGHT" | "FIT_TO_CELL_WIDTH" | "DO_NOT_SCALE"
 
 #TableCellImageSizingConfiguration: {
 	TableCellImageScalingConfiguration?: #TableCellImageScalingConfiguration
@@ -3101,6 +3315,8 @@ import "strings"
 	FontConfiguration: #FontConfiguration
 	Value?: string
 }
+
+#TableFieldIconSetType: "LINK"
 
 #TableFieldImageConfiguration: {
 	SizingOptions?: #TableCellImageSizingConfiguration
@@ -3153,6 +3369,8 @@ import "strings"
 	RowAlternateColorOptions?: #RowAlternateColorOptions
 }
 
+#TableOrientation: "VERTICAL" | "HORIZONTAL"
+
 #TablePaginatedReportOptions: {
 	OverflowColumnHeaderVisibility?: #Visibility
 	VerticalOverflowVisibility?: #Visibility
@@ -3185,6 +3403,10 @@ import "strings"
 	CellType: #StyledCellType
 }
 
+#TableTotalsPlacement: "START" | "END" | "AUTO"
+
+#TableTotalsScrollStatus: "PINNED" | "SCROLLED"
+
 #TableUnaggregatedFieldWells: {
 	Values?: [...#UnaggregatedField]
 }
@@ -3205,6 +3427,8 @@ import "strings"
 	// <p>Tag value.</p>
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#TargetVisualOptions: "ALL_VISUALS"
 
 #TextAreaControlDisplayOptions: {
 	InfoIconLabelOptions?: #SheetControlInfoIconLabelOptions
@@ -3227,6 +3451,8 @@ import "strings"
 	PlaceholderOptions?: #TextControlPlaceholderOptions
 	TitleOptions?: #LabelOptions
 }
+
+#TextWrap: "NONE" | "WRAP"
 
 #ThousandSeparatorOptions: {
 	GroupingStyle?: #DigitGroupingStyle
@@ -3252,6 +3478,8 @@ import "strings"
 	TimeGranularity?: #TimeGranularity
 	Value?: string
 }
+
+#TimeGranularity: "YEAR" | "QUARTER" | "MONTH" | "WEEK" | "DAY" | "HOUR" | "MINUTE" | "SECOND" | "MILLISECOND"
 
 #TimeRangeDrillDownFilter: {
 	Column: #ColumnIdentifier
@@ -3290,6 +3518,12 @@ import "strings"
 	TooltipVisibility?: #Visibility
 }
 
+#TooltipTarget: "BOTH" | "BAR" | "LINE"
+
+#TooltipTitleType: "NONE" | "PRIMARY_VALUE"
+
+#TopBottomComputationType: "TOP" | "BOTTOM"
+
 #TopBottomFilter: {
 	AggregationSortConfigurations: [...#AggregationSortConfiguration]
 	Column: #ColumnIdentifier
@@ -3320,6 +3554,8 @@ import "strings"
 	Value?: #MeasureField
 }
 
+#TopBottomSortOrder: "PERCENT_DIFFERENCE" | "ABSOLUTE_DIFFERENCE"
+
 #TotalAggregationComputation: {
 	ComputationId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 	Name?: string
@@ -3343,6 +3579,8 @@ import "strings"
 	TotalCellStyle?: #TableCellStyle
 	TotalsVisibility?: #Visibility
 }
+
+#TransposedColumnType: "ROW_HEADER_COLUMN" | "VALUE_COLUMN"
 
 #TransposedTableOption: {
 	ColumnIndex?: number & >=0 & <=9999
@@ -3393,6 +3631,8 @@ import "strings"
 	Visibility?: #Visibility
 }
 
+#URLTargetConfiguration: "NEW_TAB" | "NEW_WINDOW" | "SAME_TAB"
+
 #UnaggregatedField: {
 	Column: #ColumnIdentifier
 	FieldId: string & strings.MinRunes(1) & strings.MaxRunes(512)
@@ -3408,6 +3648,14 @@ import "strings"
 #ValidationStrategy: {
 	Mode: #ValidationStrategyMode
 }
+
+#ValidationStrategyMode: "STRICT" | "LENIENT"
+
+#ValueWhenUnsetOption: "RECOMMENDED_VALUE" | "NULL"
+
+#VerticalTextAlignment: "TOP" | "MIDDLE" | "BOTTOM" | "AUTO"
+
+#Visibility: "HIDDEN" | "VISIBLE"
 
 #VisibleRangeOptions: {
 	PercentRange?: #PercentVisibleRange
@@ -3455,6 +3703,8 @@ import "strings"
 	SetParametersOperation?: #CustomActionSetParametersOperation
 	URLOperation?: #CustomActionURLOperation
 }
+
+#VisualCustomActionTrigger: "DATA_POINT_CLICK" | "DATA_POINT_MENU"
 
 #VisualInteractionOptions: {
 	ContextMenuOption?: #ContextMenuOption
@@ -3545,6 +3795,8 @@ import "strings"
 	Value: number
 }
 
+#WidgetStatus: "ENABLED" | "DISABLED"
+
 #WordCloudAggregatedFieldWells: {
 	GroupBy?: [...#DimensionField]
 	Size?: [...#MeasureField]
@@ -3557,6 +3809,8 @@ import "strings"
 	SortConfiguration?: #WordCloudSortConfiguration
 	WordCloudOptions?: #WordCloudOptions
 }
+
+#WordCloudCloudLayout: "FLUID" | "NORMAL"
 
 #WordCloudFieldWells: {
 	WordCloudAggregatedFieldWells?: #WordCloudAggregatedFieldWells
@@ -3585,6 +3839,14 @@ import "strings"
 	VisualContentAltText?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 	VisualId: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
 }
+
+#WordCloudWordCasing: "LOWER_CASE" | "EXISTING_CASE"
+
+#WordCloudWordOrientation: "HORIZONTAL" | "HORIZONTAL_AND_VERTICAL"
+
+#WordCloudWordPadding: "NONE" | "SMALL" | "MEDIUM" | "LARGE"
+
+#WordCloudWordScaling: "EMPHASIZE" | "NORMAL"
 
 #YAxisOptions: {
 	YAxis: #SingleYAxisOption

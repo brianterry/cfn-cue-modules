@@ -19,6 +19,8 @@ import "strings"
 	Arn: string & =~"^arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
 
+#ServiceEndpointType: "LAMBDA" | "URL"
+
 #Tag: {
 	// A string used to identify this tag
 	Key: string & =~"^(?!aws:).+" & strings.MinRunes(1) & strings.MaxRunes(128)

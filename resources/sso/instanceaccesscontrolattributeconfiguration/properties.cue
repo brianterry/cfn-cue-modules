@@ -17,6 +17,12 @@ import "strings"
 	Value: #AccessControlAttributeValue
 }
 
+#AccessControlAttributeList: [...#AccessControlAttribute]
+
 #AccessControlAttributeValue: {
 	Source: #AccessControlAttributeValueSourceList
 }
+
+#AccessControlAttributeValueSource: string & =~"[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@\\[\\]\\{\\}\\$\\\\\"]*" & strings.MinRunes(0) & strings.MaxRunes(256)
+
+#AccessControlAttributeValueSourceList: [...#AccessControlAttributeValueSource]

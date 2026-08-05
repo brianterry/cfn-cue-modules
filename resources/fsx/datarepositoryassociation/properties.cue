@@ -27,6 +27,10 @@ import "strings"
 	Events: #EventTypes
 }
 
+#EventType: "NEW" | "CHANGED" | "DELETED"
+
+#EventTypes: [...#EventType]
+
 #S3: {
 	AutoExportPolicy?: #AutoExportPolicy
 	AutoImportPolicy?: #AutoImportPolicy

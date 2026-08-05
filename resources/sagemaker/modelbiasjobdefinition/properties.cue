@@ -89,6 +89,10 @@ import "strings"
 	StartTimeOffset?: #MonitoringTimeOffsetString
 }
 
+#EndpointName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*" & strings.MaxRunes(63)
+
+#JobDefinitionName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MaxRunes(63)
+
 #Json: {
 	// A boolean flag indicating if it is JSON line format
 	Line?: bool
@@ -134,6 +138,8 @@ import "strings"
 	ClusterConfig: #ClusterConfig
 }
 
+#MonitoringTimeOffsetString: string & =~"^.?P.*" & strings.MinRunes(1) & strings.MaxRunes(15)
+
 #NetworkConfig: {
 	// Whether to encrypt all communications between distributed processing jobs. Choose True to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.
 	EnableInterContainerTrafficEncryption?: bool
@@ -141,6 +147,10 @@ import "strings"
 	EnableNetworkIsolation?: bool
 	VpcConfig?: #VpcConfig
 }
+
+#Parquet: bool
+
+#ProcessingJobName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MinRunes(1) & strings.MaxRunes(63)
 
 #S3Output: {
 	// The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.
@@ -150,6 +160,8 @@ import "strings"
 	// A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.
 	S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(512)
 }
+
+#S3Uri: string & =~"^(https|s3)://([^/]+)/?(.*)$" & strings.MaxRunes(1024)
 
 #StoppingCondition: {
 	// The maximum runtime allowed in seconds.

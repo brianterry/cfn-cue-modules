@@ -22,6 +22,12 @@ import "strings"
 	WorkflowDetails?: #WorkflowDetails
 }
 
+#As2Transport: "HTTP"
+
+#DirectoryListingOptimization: "ENABLED" | "DISABLED"
+
+#Domain: "S3" | "EFS"
+
 #EndpointDetails: {
 	AddressAllocationIds?: [...string]
 	SecurityGroupIds?: [...string & =~"^sg-[0-9a-f]{8,17}$" & strings.MinRunes(11) & strings.MaxRunes(20)]
@@ -30,6 +36,8 @@ import "strings"
 	VpcId?: string
 }
 
+#EndpointType: "PUBLIC" | "VPC" | "VPC_ENDPOINT"
+
 #IdentityProviderDetails: {
 	DirectoryId?: string & =~"^d-[0-9a-f]{10}$" & strings.MinRunes(12) & strings.MaxRunes(12)
 	Function?: string & =~"^arn:[a-z-]+:lambda:.*$" & strings.MinRunes(1) & strings.MaxRunes(170)
@@ -37,6 +45,12 @@ import "strings"
 	SftpAuthenticationMethods?: #SftpAuthenticationMethods
 	Url?: string & strings.MinRunes(0) & strings.MaxRunes(255)
 }
+
+#IdentityProviderType: "SERVICE_MANAGED" | "API_GATEWAY" | "AWS_DIRECTORY_SERVICE" | "AWS_LAMBDA"
+
+#IpAddressType: "IPV4" | "DUALSTACK"
+
+#Protocol: "SFTP" | "FTP" | "FTPS" | "AS2"
 
 #ProtocolDetails: {
 	As2Transports?: [...#As2Transport]
@@ -49,10 +63,18 @@ import "strings"
 	DirectoryListingOptimization?: #DirectoryListingOptimization
 }
 
+#SetStatOption: "DEFAULT" | "ENABLE_NO_OP"
+
+#SftpAuthenticationMethods: "PASSWORD" | "PUBLIC_KEY" | "PUBLIC_KEY_OR_PASSWORD" | "PUBLIC_KEY_AND_PASSWORD"
+
+#State: "OFFLINE" | "ONLINE" | "STARTING" | "STOPPING" | "START_FAILED" | "STOP_FAILED"
+
 #Tag: {
 	Key: string & strings.MinRunes(0) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#TlsSessionResumptionMode: "DISABLED" | "ENABLED" | "ENFORCED"
 
 #WorkflowDetail: {
 	ExecutionRole: string & =~"^arn:.*role/\\S+$" & strings.MinRunes(20) & strings.MaxRunes(2048)

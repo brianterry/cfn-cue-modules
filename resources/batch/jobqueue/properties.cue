@@ -27,6 +27,8 @@ import "strings"
 	State: "RUNNABLE"
 }
 
+#ResourceArn: string & =~"arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}"
+
 #ServiceEnvironmentOrder: {
 	Order: int
 	ServiceEnvironment: string

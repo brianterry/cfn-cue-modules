@@ -20,3 +20,5 @@ import "strings"
 #AwsConsoleLinkParameters: {
 	Uri?: #EnvironmentActionURI
 }
+
+#EnvironmentActionURI: string & strings.MinRunes(1) & strings.MaxRunes(2048)

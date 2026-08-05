@@ -93,6 +93,8 @@ import "strings"
 	ResourceList: [...string & =~"^arn:aws(-[\\w]+)*:[\\w\\d-]+:([\\w\\d-]*)?:[\\w\\d_-]*([:/].+)*$" & strings.MinRunes(20) & strings.MaxRunes(300)]
 }
 
+#EventLevel: "INFORMATION" | "WARNING" | "ERROR" | "CRITICAL" | "VERBOSE"
+
 #HAClusterPrometheusExporter: {
 	// Prometheus exporter port.
 	PrometheusPort?: string

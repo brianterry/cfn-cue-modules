@@ -19,6 +19,10 @@ package appblockbuilder
 	VpceId: string
 }
 
+#Arn: string
+
+#PlatformType: string
+
 #Tag: {
 	Key: string
 	Value: string

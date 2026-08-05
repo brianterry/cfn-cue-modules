@@ -28,10 +28,30 @@ import "strings"
 	ServiceName?: #AWSServiceName
 }
 
+#AWSServiceName: string
+
+#AccountId: string & =~"^[0-9]{12}$" & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#AccountName: string & strings.MinRunes(1) & strings.MaxRunes(50)
+
+#AssessmentArn: string & =~"^arn:.*:auditmanager:.*" & strings.MinRunes(20) & strings.MaxRunes(2048)
+
+#AssessmentDescription: string
+
+#AssessmentName: string & =~"^[a-zA-Z0-9-_\\.]+$" & strings.MinRunes(1) & strings.MaxRunes(127)
+
+#AssessmentReportDestinationType: "S3"
+
 #AssessmentReportsDestination: {
 	Destination?: #S3Url
 	DestinationType?: #AssessmentReportDestinationType
 }
+
+#AssessmentStatus: "ACTIVE" | "INACTIVE"
+
+#ControlSetId: string & =~"^[\\w\\W\\s\\S]*$" & strings.MinRunes(1) & strings.MaxRunes(300)
+
+#CreatedBy: string & =~"^arn:.*:*:.*" & strings.MinRunes(20) & strings.MaxRunes(2048)
 
 #Delegation: {
 	AssessmentId?: #UUID
@@ -47,10 +67,24 @@ import "strings"
 	Status?: #DelegationStatus
 }
 
+#DelegationComment: string & =~"^[\\w\\W\\s\\S]*$" & strings.MaxRunes(350)
+
+#DelegationStatus: "IN_PROGRESS" | "UNDER_REVIEW" | "COMPLETE"
+
+#EmailAddress: string & =~"^.*@.*$" & strings.MinRunes(1) & strings.MaxRunes(320)
+
+#FrameworkId: string & =~"^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|.*\\S.*)$" & strings.MinRunes(32) & strings.MaxRunes(36)
+
+#IamArn: string & =~"^arn:.*:iam:.*" & strings.MinRunes(20) & strings.MaxRunes(2048)
+
 #Role: {
 	RoleArn?: #IamArn
 	RoleType?: #RoleType
 }
+
+#RoleType: "PROCESS_OWNER" | "RESOURCE_OWNER"
+
+#S3Url: string
 
 #Scope: {
 	// The AWS accounts included in scope.
@@ -65,3 +99,7 @@ import "strings"
 	// The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#Timestamp: number
+
+#UUID: string & =~"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$" & strings.MinRunes(36) & strings.MaxRunes(36)

@@ -14,6 +14,8 @@ package vpcendpointservice
 	Tags?: [...#Tag]
 }
 
+#IpAddressType: "ipv4" | "ipv6"
+
 #Tag: {
 	Key: string
 	Value: string

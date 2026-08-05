@@ -74,6 +74,8 @@ import "strings"
 	StringValue?: string & =~".*" & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
+#DateTimeFormat: string
+
 #Function: {
 	// The data connector.
 	ImplementedBy?: #DataConnector
@@ -86,6 +88,8 @@ import "strings"
 #LambdaFunction: {
 	Arn: string & =~"arn:((aws)|(aws-cn)|(aws-us-gov)):lambda:[a-z0-9-]+:[0-9]{12}:function:[\\/a-zA-Z0-9_-]+" & strings.MinRunes(1) & strings.MaxRunes(128)
 }
+
+#ParentComponentType: string & =~"[a-zA-Z_\\.\\-0-9:]+"
 
 #PropertyDefinition: {
 	// An object that specifies information about a property.
@@ -111,12 +115,16 @@ import "strings"
 	PropertyNames?: [...#PropertyName]
 }
 
+#PropertyName: string & =~"[a-zA-Z_\\-0-9]+"
+
 #Relationship: {
 	// The type of the relationship.
 	RelationshipType?: string & =~".*" & strings.MinRunes(1) & strings.MaxRunes(256)
 	// The ID of the target component type associated with this relationship.
 	TargetComponentTypeId?: string & =~"[a-zA-Z_\\.\\-0-9:]+" & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#RequiredProperty: string & =~"[a-zA-Z_\\-0-9]+"
 
 #Status: {
 	Error?: {...} | {

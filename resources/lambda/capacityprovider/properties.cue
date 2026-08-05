@@ -22,6 +22,8 @@ import "strings"
 	VpcConfig: #CapacityProviderVpcConfig
 }
 
+#Architecture: "x86_64" | "arm64"
+
 #CapacityProviderLoggingConfig: {
 	// The name of the Amazon CloudWatch log group the capacity provider sends logs to. By default, Lambda capacity providers send logs to a default log group named ``/aws/lambda/capacity-provider/<capacity provider name>``. To use a different log group, enter an existing log group or enter a new log group name.
 	LogGroup?: string & =~"[\\.\\-_/#A-Za-z0-9]+" & strings.MinRunes(1) & strings.MaxRunes(512)
@@ -34,6 +36,8 @@ import "strings"
 	CapacityProviderOperatorRoleArn: string & =~"^arn:(aws[a-zA-Z-]*)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$" & strings.MinRunes(0) & strings.MaxRunes(10000)
 }
 
+#CapacityProviderPredefinedMetricType: "LambdaCapacityProviderAverageCPUUtilization" | "LambdaCapacityProviderAverageGPUUtilization"
+
 #CapacityProviderScalingConfig: {
 	// The maximum number of vCPUs that the capacity provider can provision across all compute instances.
 	MaxVCpuCount?: int & >=2 & <=15000
@@ -42,6 +46,10 @@ import "strings"
 	// A list of target tracking scaling policies for the capacity provider.
 	ScalingPolicies?: [...#TargetTrackingScalingPolicy]
 }
+
+#CapacityProviderScalingMode: "Auto" | "Manual"
+
+#CapacityProviderState: "Pending" | "Active" | "Failed" | "Deleting"
 
 #CapacityProviderTelemetryConfig: {
 	// The capacity provider's Amazon CloudWatch Logs configuration settings.
@@ -70,6 +78,8 @@ import "strings"
 	// The mode for tag propagation. Use ``Explicit`` to propagate specific tags, or ``None`` to disable propagation.
 	Mode?: #PropagateTagsMode
 }
+
+#PropagateTagsMode: "None" | "Explicit"
 
 #Tag: {
 	// The key name of the tag.

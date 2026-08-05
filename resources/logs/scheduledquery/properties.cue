@@ -30,3 +30,5 @@ import "strings"
 	DestinationIdentifier: string & =~"^s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?"
 	RoleArn: string
 }
+
+#ScheduledQueryState: "ENABLED" | "DISABLED"

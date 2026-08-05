@@ -30,9 +30,13 @@ package trafficmirrorfilterrule
 	Value: string
 }
 
+#TrafficDirection: string
+
 #TrafficMirrorPortRange: {
 	// The first port in the Traffic Mirror port range.
 	FromPort: int
 	// The last port in the Traffic Mirror port range.
 	ToPort: int
 }
+
+#TrafficMirrorRuleAction: string

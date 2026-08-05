@@ -15,6 +15,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#Arn: string & =~"[\\w#+=/:,.@-]*\\*?" & strings.MinRunes(16) & strings.MaxRunes(2048)
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

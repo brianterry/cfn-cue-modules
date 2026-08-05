@@ -19,30 +19,44 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#ApplicationStatus: "CREATING" | "ACTIVE" | "DELETING" | "FAILED" | "UPDATING"
+
 #AttachmentsConfiguration: {
 	AttachmentsControlMode: #AttachmentsControlMode
 }
+
+#AttachmentsControlMode: "ENABLED" | "DISABLED"
 
 #AutoSubscriptionConfiguration: {
 	AutoSubscribe: #AutoSubscriptionStatus
 	DefaultSubscriptionType?: #SubscriptionType
 }
 
+#AutoSubscriptionStatus: "ENABLED" | "DISABLED"
+
 #EncryptionConfiguration: {
 	KmsKeyId?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#IdentityType: "AWS_IAM_IDP_SAML" | "AWS_IAM_IDP_OIDC" | "AWS_IAM_IDC" | "AWS_QUICKSIGHT_IDP" | "ANONYMOUS"
 
 #PersonalizationConfiguration: {
 	PersonalizationControlMode: #PersonalizationControlMode
 }
 
+#PersonalizationControlMode: "ENABLED" | "DISABLED"
+
 #QAppsConfiguration: {
 	QAppsControlMode: #QAppsControlMode
 }
 
+#QAppsControlMode: "ENABLED" | "DISABLED"
+
 #QuickSightConfiguration: {
 	ClientNamespace: string & =~"^[a-zA-Z0-9._-]*$" & strings.MinRunes(1) & strings.MaxRunes(64)
 }
+
+#SubscriptionType: "Q_LITE" | "Q_BUSINESS"
 
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

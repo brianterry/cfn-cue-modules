@@ -15,6 +15,12 @@ package pullthroughcacherule
 	UpstreamRepositoryPrefix?: #UpstreamRepositoryPrefix
 }
 
+#CredentialArn: string & =~"^arn:[a-zA-Z-]+:secretsmanager:[a-zA-Z0-9-:]+:secret:ecr\\-pullthroughcache\\/[a-zA-Z0-9\\/_+=.@-]+$" & strings.MinRunes(50) & strings.MaxRunes(612)
+
+#CustomRoleArn: string & strings.MaxRunes(2048)
+
+#EcrRepositoryPrefix: string & =~"^([a-z0-9]+((\\.|_|__|-+)[a-z0-9]+)*(\\/[a-z0-9]+((\\.|_|__|-+)[a-z0-9]+)*)*\\/?|ROOT)$" & strings.MinRunes(2) & strings.MaxRunes(30)
+
 #PullThroughCacheRule: {
 	CredentialArn?: #CredentialArn
 	CustomRoleArn?: #CustomRoleArn
@@ -24,3 +30,11 @@ package pullthroughcacherule
 	UpstreamRegistryUrl: #UpstreamRegistryUrl
 	UpstreamRepositoryPrefix?: #UpstreamRepositoryPrefix
 }
+
+#RegistryId: string & =~"^[0-9]{12}$"
+
+#UpstreamRegistry: string
+
+#UpstreamRegistryUrl: string
+
+#UpstreamRepositoryPrefix: string & =~"^([a-z0-9]+((\\.|_|__|-+)[a-z0-9]+)*(\\/[a-z0-9]+((\\.|_|__|-+)[a-z0-9]+)*)*\\/?|ROOT)$" & strings.MinRunes(2) & strings.MaxRunes(30)

@@ -15,7 +15,21 @@ package application
 	WorkingDirectory?: string
 }
 
+#ApplicationAttribute: string
+
+#Arn: string
+
+#PlatformType: string
+
 #S3Location: {
 	S3Bucket: string
 	S3Key: string
+}
+
+#Tag: {
+	Key: string
+	Value: string
+} | {
+	TagKey: string
+	TagValue: string
 }

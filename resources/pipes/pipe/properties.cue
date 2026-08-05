@@ -18,6 +18,8 @@ import "strings"
 	TargetParameters?: #PipeTargetParameters
 }
 
+#AssignPublicIp: "ENABLED" | "DISABLED"
+
 #AwsVpcConfiguration: {
 	AssignPublicIp?: #AssignPublicIp
 	SecurityGroups?: [...string & =~"^sg-[0-9a-zA-Z]*|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$" & strings.MinRunes(1) & strings.MaxRunes(1024)]
@@ -45,10 +47,16 @@ import "strings"
 	Type?: #BatchJobDependencyType
 }
 
+#BatchJobDependencyType: "N_TO_N" | "SEQUENTIAL"
+
+#BatchParametersMap: {...}
+
 #BatchResourceRequirement: {
 	Type: #BatchResourceRequirementType
 	Value: string
 }
+
+#BatchResourceRequirementType: "GPU" | "MEMORY" | "VCPU"
 
 #BatchRetryStrategy: {
 	Attempts?: int & >=1 & <=10
@@ -74,6 +82,10 @@ import "strings"
 	DimensionValueType: #DimensionValueType
 }
 
+#DimensionValueType: "VARCHAR"
+
+#DynamoDBStreamStartPosition: "TRIM_HORIZON" | "LATEST"
+
 #EcsContainerOverride: {
 	Command?: [...string]
 	Cpu?: int
@@ -89,6 +101,8 @@ import "strings"
 	Type: #EcsEnvironmentFileType
 	Value: string
 }
+
+#EcsEnvironmentFileType: "s3"
 
 #EcsEnvironmentVariable: {
 	Name?: string
@@ -109,6 +123,8 @@ import "strings"
 	Value: string
 }
 
+#EcsResourceRequirementType: "GPU" | "InferenceAccelerator"
+
 #EcsTaskOverride: {
 	ContainerOverrides?: [...#EcsContainerOverride]
 	Cpu?: string
@@ -118,6 +134,8 @@ import "strings"
 	Memory?: string
 	TaskRoleArn?: string & =~"^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-]+):([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.+)|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
 }
+
+#EpochTimeUnit: "MILLISECONDS" | "SECONDS" | "MICROSECONDS" | "NANOSECONDS"
 
 #Filter: {
 	Pattern?: string & strings.MinRunes(0) & strings.MaxRunes(4096)
@@ -130,6 +148,30 @@ import "strings"
 #FirehoseLogDestination: {
 	DeliveryStreamArn?: string & =~"^(^arn:aws([a-z]|\\-)*:firehose:([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}):(\\d{12}):deliverystream/.+)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
 }
+
+#HeaderParametersMap: {...}
+
+#IncludeExecutionDataOption: "ALL"
+
+#KinesisStreamStartPosition: "TRIM_HORIZON" | "LATEST" | "AT_TIMESTAMP"
+
+#LaunchType: "EC2" | "FARGATE" | "EXTERNAL"
+
+#LogLevel: "OFF" | "ERROR" | "INFO" | "TRACE"
+
+#MQBrokerAccessCredentials: {
+	BasicAuth: string & =~"^(^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}):(\\d{12}):secret:.+)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
+}
+
+#MSKAccessCredentials: {
+	SaslScram512Auth: string & =~"^(^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}):(\\d{12}):secret:.+)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
+} | {
+	ClientCertificateTlsAuth: string & =~"^(^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}):(\\d{12}):secret:.+)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
+}
+
+#MSKStartPosition: "TRIM_HORIZON" | "LATEST"
+
+#MeasureValueType: "DOUBLE" | "BIGINT" | "VARCHAR" | "BOOLEAN" | "TIMESTAMP"
 
 #MultiMeasureAttributeMapping: {
 	MeasureValue: string & strings.MinRunes(1) & strings.MaxRunes(2048)
@@ -145,6 +187,8 @@ import "strings"
 #NetworkConfiguration: {
 	AwsvpcConfiguration?: #AwsVpcConfiguration
 }
+
+#OnPartialBatchItemFailureStreams: "AUTOMATIC_BISECT"
 
 #PipeEnrichmentHttpParameters: {
 	HeaderParameters?: #HeaderParametersMap
@@ -241,6 +285,8 @@ import "strings"
 	MaximumBatchingWindowInSeconds?: int & >=0 & <=300
 }
 
+#PipeState: "RUNNING" | "STOPPED" | "CREATING" | "UPDATING" | "DELETING" | "STARTING" | "STOPPING" | "CREATE_FAILED" | "UPDATE_FAILED" | "START_FAILED" | "STOP_FAILED" | "DELETE_FAILED" | "CREATE_ROLLBACK_FAILED" | "DELETE_ROLLBACK_FAILED" | "UPDATE_ROLLBACK_FAILED"
+
 #PipeTargetBatchJobParameters: {
 	ArrayProperties?: #BatchArrayProperties
 	ContainerOverrides?: #BatchContainerOverrides
@@ -287,6 +333,8 @@ import "strings"
 	PathParameterValues?: [...string & =~"^(?!\\s*$).+|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$"]
 	QueryStringParameters?: #QueryStringParametersMap
 }
+
+#PipeTargetInvocationType: "REQUEST_RESPONSE" | "FIRE_AND_FORGET"
 
 #PipeTargetKinesisStreamParameters: {
 	PartitionKey: string & strings.MinRunes(0) & strings.MaxRunes(256)
@@ -355,10 +403,20 @@ import "strings"
 	Type?: #PlacementConstraintType
 }
 
+#PlacementConstraintType: "distinctInstance" | "memberOf"
+
 #PlacementStrategy: {
 	Field?: string & strings.MinRunes(0) & strings.MaxRunes(255)
 	Type?: #PlacementStrategyType
 }
+
+#PlacementStrategyType: "random" | "spread" | "binpack"
+
+#PropagateTags: "TASK_DEFINITION"
+
+#QueryStringParametersMap: {...}
+
+#RequestedPipeState: "RUNNING" | "STOPPED"
 
 #S3LogDestination: {
 	BucketName?: string
@@ -367,9 +425,21 @@ import "strings"
 	Prefix?: string
 }
 
+#S3OutputFormat: "json" | "plain" | "w3c"
+
 #SageMakerPipelineParameter: {
 	Name: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*|(\\$(\\.[\\w/_-]+(\\[(\\d+|\\*)\\])*)*)$" & strings.MinRunes(1) & strings.MaxRunes(256)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(1024)
+}
+
+#SelfManagedKafkaAccessConfigurationCredentials: {
+	BasicAuth: string & =~"^(^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}):(\\d{12}):secret:.+)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
+} | {
+	SaslScram512Auth: string & =~"^(^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}):(\\d{12}):secret:.+)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
+} | {
+	SaslScram256Auth: string & =~"^(^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}):(\\d{12}):secret:.+)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
+} | {
+	ClientCertificateTlsAuth: string & =~"^(^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}):(\\d{12}):secret:.+)$" & strings.MinRunes(1) & strings.MaxRunes(1600)
 }
 
 #SelfManagedKafkaAccessConfigurationVpc: {
@@ -378,6 +448,8 @@ import "strings"
 	// List of SubnetId.
 	Subnets?: [...string & =~"^subnet-[0-9a-z]*$" & strings.MinRunes(1) & strings.MaxRunes(1024)]
 }
+
+#SelfManagedKafkaStartPosition: "TRIM_HORIZON" | "LATEST"
 
 #SingleMeasureMapping: {
 	MeasureName: string & strings.MinRunes(1) & strings.MaxRunes(1024)
@@ -389,3 +461,7 @@ import "strings"
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#TagMap: {...}
+
+#TimeFieldType: "EPOCH" | "TIMESTAMP_FORMAT"

@@ -16,6 +16,8 @@ package network
 	Cidr?: string
 }
 
+#NetworkState: "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "IDLE" | "IN_USE" | "UPDATING" | "DELETED" | "DELETE_FAILED"
+
 #Route: {
 	// Ip address cidr
 	Cidr?: string

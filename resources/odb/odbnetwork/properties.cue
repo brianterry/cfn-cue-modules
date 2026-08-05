@@ -48,6 +48,8 @@ import "strings"
 	Status?: #ManagedResourceStatus
 }
 
+#ManagedResourceStatus: "ENABLED" | "ENABLING" | "DISABLED" | "DISABLING"
+
 #ManagedServices: {
 	// The access configuration for the cross-Region Amazon S3 database restore source.
 	CrossRegionS3RestoreSourcesAccess?: [...#CrossRegionS3RestoreSourcesAccess]

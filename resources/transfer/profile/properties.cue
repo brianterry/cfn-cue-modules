@@ -13,6 +13,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#CertificateId: string & =~"^cert-([0-9a-f]{17})$" & strings.MinRunes(22) & strings.MaxRunes(22)
+
 #Tag: {
 	// The name assigned to the tag that you create.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

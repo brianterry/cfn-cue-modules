@@ -9,11 +9,15 @@ package inapptemplate
 	TemplateName: string
 }
 
+#Alignment: "LEFT" | "CENTER" | "RIGHT"
+
 #BodyConfig: {
 	Alignment?: #Alignment
 	Body?: string
 	TextColor?: string
 }
+
+#ButtonAction: "LINK" | "DEEP_LINK" | "CLOSE"
 
 #ButtonConfig: {
 	Android?: #OverrideButtonConfiguration

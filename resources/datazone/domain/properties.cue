@@ -21,6 +21,12 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#AuthType: "IAM_IDC" | "DISABLED"
+
+#DomainStatus: "CREATING" | "AVAILABLE" | "CREATION_FAILED" | "DELETING" | "DELETED" | "DELETION_FAILED"
+
+#IdcInstanceArn: string & =~"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}" & strings.MinRunes(10) & strings.MaxRunes(1224)
+
 #SingleSignOn: {
 	IdcInstanceArn?: #IdcInstanceArn
 	Type?: #AuthType
@@ -33,3 +39,5 @@ import "strings"
 	// The value for the tag.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#UserAssignment: "AUTOMATIC" | "MANUAL"

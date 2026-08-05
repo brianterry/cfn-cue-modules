@@ -25,9 +25,15 @@ import "strings"
 	AudioExtractionStatus: #AudioExtractionStatus
 }
 
+#AudioExtractionStatus: "ENABLED" | "DISABLED"
+
+#DataSetStatus: "CREATING" | "UPDATING" | "ACTIVE" | "FAILED" | "DELETING"
+
 #ImageExtractionConfiguration: {
 	ImageExtractionStatus: #ImageExtractionStatus
 }
+
+#ImageExtractionStatus: "ENABLED" | "DISABLED"
 
 #KbTemplateConfiguration: {
 	Template?: string
@@ -76,3 +82,7 @@ import "strings"
 	VideoExtractionStatus: #VideoExtractionStatus
 	VideoExtractionType?: #VideoExtractionType
 }
+
+#VideoExtractionStatus: "ENABLED" | "DISABLED"
+
+#VideoExtractionType: "AUDIO_TRANSCRIPTION_ONLY" | "VISUAL_CONTENT_AND_AUDIO_TRANSCRIPTION"

@@ -18,6 +18,8 @@ import "strings"
 	ResponsibilityTransferArn?: string & =~"arn:[a-z0-9][a-z0-9-.]{0,62}:organizations::[0-9]{12}:transfer/o-[a-z0-9]{10,32}/(billing)/(inbound|outbound)/rt-[0-9a-z]{8,32}"
 }
 
+#BillingGroupStatus: "ACTIVE" | "PRIMARY_ACCOUNT_MISSING"
+
 #ComputationPreference: {
 	// ARN of the attached pricing plan
 	PricingPlanArn: string & =~"arn:aws(-cn)?:billingconductor::(aws|[0-9]{12}):pricingplan/(BasicPricingPlan|Passthrough|[a-zA-Z0-9]{10})"

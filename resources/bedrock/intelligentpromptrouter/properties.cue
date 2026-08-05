@@ -15,10 +15,14 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#PromptRouterStatus: "AVAILABLE"
+
 #PromptRouterTargetModel: {
 	// Arn of underlying model which are added in the Prompt Router.
 	ModelArn: string & =~"(^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}::foundation-model/[a-z0-9-]{1,63}[.]{1}([a-z0-9-]{1,63}[.]){0,2}[a-z0-9-]{1,63}([:][a-z0-9-]{1,63}){0,2})|(^arn:aws(|-us-gov|-cn|-iso|-iso-b):bedrock:(|[0-9a-z-]{0,20}):(|[0-9]{12}):(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)$" & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#PromptRouterType: "custom" | "default"
 
 #RoutingCriteria: {
 	ResponseQualityDifference: number & >=0 & <=100

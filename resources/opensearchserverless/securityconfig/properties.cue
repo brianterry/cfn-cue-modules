@@ -19,6 +19,8 @@ import "strings"
 	UserAttribute?: string
 }
 
+#IamIdentityCenterApplicationArn: string
+
 #IamIdentityCenterConfigOptions: {
 	ApplicationArn?: #IamIdentityCenterApplicationArn
 	// The description of the IAM Identity Center application used to integrate with OpenSearch Serverless
@@ -29,6 +31,12 @@ import "strings"
 	InstanceArn: #IamIdentityCenterInstanceArn
 	UserAttribute?: #IamIdentityCenterUserAttribute
 }
+
+#IamIdentityCenterGroupAttribute: string
+
+#IamIdentityCenterInstanceArn: string
+
+#IamIdentityCenterUserAttribute: string
 
 #SamlConfigOptions: {
 	// Group attribute for this saml integration
@@ -42,3 +50,5 @@ import "strings"
 	// Custom attribute for this saml integration
 	UserAttribute?: string & =~"[\\w+=,.@-]+" & strings.MinRunes(1) & strings.MaxRunes(2048)
 }
+
+#SecurityConfigType: "saml" | "iamidentitycenter" | "iamfederation"

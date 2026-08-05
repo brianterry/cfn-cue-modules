@@ -9,6 +9,8 @@ package datalake
 	Tags?: [...#Tag]
 }
 
+#Days: int & >=1
+
 #EncryptionConfiguration: {
 	// The id of KMS encryption key used by Amazon Security Lake to encrypt the Security Lake object.
 	KmsKeyId?: string
@@ -23,6 +25,8 @@ package datalake
 	// Provides data storage transition details of Amazon Security Lake object.
 	Transitions?: [...#Transitions]
 }
+
+#Regions: [...string & =~"^(us(-gov)?|af|ap|ca|eu|me|sa)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\\d+$"]
 
 #ReplicationConfiguration: {
 	Regions?: #Regions

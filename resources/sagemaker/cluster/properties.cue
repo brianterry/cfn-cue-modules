@@ -32,6 +32,8 @@ import "strings"
 	PatchingStrategy: "WhenIdle" | "WhenAllIdle"
 }
 
+#AutoRollbackConfiguration: [...#AlarmDetails]
+
 #CapacitySizeConfig: {
 	// Specifies whether SageMaker should process the update by amount or percentage of instances.
 	Type: string & =~"INSTANCE_COUNT|CAPACITY_PERCENTAGE"
@@ -102,10 +104,24 @@ import "strings"
 	TrainingPlanArn?: string & =~"^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:training-plan/.*$" & strings.MinRunes(50) & strings.MaxRunes(2048)
 }
 
+#ClusterInstanceGroupsList: [...#ClusterInstanceGroup]
+
+#ClusterInstanceStorageConfig: {
+	EbsVolumeConfig?: #ClusterEbsVolumeConfig
+} | {
+	FsxLustreConfig?: #ClusterFsxLustreConfig
+} | {
+	FsxOpenZfsConfig?: #ClusterFsxOpenZfsConfig
+}
+
+#ClusterInstanceStorageConfigs: [...#ClusterInstanceStorageConfig]
+
 #ClusterKubernetesConfig: {
 	Labels?: #ClusterKubernetesLabels
 	Taints?: #ClusterKubernetesTaints
 }
+
+#ClusterKubernetesLabels: {...}
 
 #ClusterKubernetesTaint: {
 	// The effect of the taint.
@@ -115,6 +131,8 @@ import "strings"
 	// The value of the taint.
 	Value?: string
 }
+
+#ClusterKubernetesTaints: [...#ClusterKubernetesTaint]
 
 #ClusterLifeCycleConfig: {
 	// The file name of the entrypoint script of lifecycle scripts under SourceS3Uri. This entrypoint script runs during cluster creation. Mutually exclusive with OnInitComplete.
@@ -129,6 +147,8 @@ import "strings"
 	// The type of network interface.
 	InterfaceType: "efa" | "efa-only"
 }
+
+#ClusterOnDemandOptions: {...}
 
 #ClusterOrchestratorEksConfig: {
 	// The ARN of the EKS cluster, such as arn:aws:eks:us-west-2:123456789012:cluster/my-eks-cluster
@@ -158,12 +178,18 @@ import "strings"
 	TrainingPlanArn?: string & =~"^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:training-plan/.*$" & strings.MinRunes(50) & strings.MaxRunes(2048)
 }
 
+#ClusterRestrictedInstanceGroupsList: [...#ClusterRestrictedInstanceGroup]
+
 #ClusterSlurmConfig: {
 	// The type of Slurm node for this instance group.
 	NodeType: "Controller" | "Login" | "Compute"
 	// The Slurm partitions that this instance group belongs to. Maximum of 1 partition.
 	PartitionNames?: [...string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MinRunes(0) & strings.MaxRunes(1024)]
 }
+
+#ClusterSpotOptions: {...}
+
+#DeepHealthCheckType: "InstanceStress" | "InstanceConnectivity"
 
 #DeploymentConfig: {
 	AutoRollbackConfiguration?: #AutoRollbackConfiguration
@@ -176,6 +202,8 @@ import "strings"
 	FSxLustreConfig?: #FSxLustreConfig
 }
 
+#ExecutionRole: string & =~"^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
+
 #FSxLustreConfig: {
 	// The throughput capacity of the FSx for Lustre file system, measured in MB/s per TiB of storage.
 	PerUnitStorageThroughput: int & >=125 & <=1000
@@ -183,9 +211,23 @@ import "strings"
 	SizeInGiB: int & >=1200 & <=100800
 }
 
+#ImageId: string & =~"^ami-[0-9a-fA-F]{8,17}|default$" & strings.MinRunes(7) & strings.MaxRunes(21)
+
+#InstanceGroupName: string & =~"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$" & strings.MinRunes(1) & strings.MaxRunes(63)
+
 #InstanceRequirements: {
 	// A list of instance types that can be used for this instance group.
 	InstanceTypes: [...#InstanceType]
+}
+
+#InstanceType: string
+
+#OnStartDeepHealthChecks: [...#DeepHealthCheckType]
+
+#Orchestrator: {
+	Eks?: #ClusterOrchestratorEksConfig
+} | {
+	Slurm?: #ClusterOrchestratorSlurmConfig
 }
 
 #PatchSchedule: {

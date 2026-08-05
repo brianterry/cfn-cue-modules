@@ -8,6 +8,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#ActionFailurePolicy: "CONTINUE" | "DROP"
+
 #AddHeaderAction: {
 	HeaderName: string & =~"^[xX]\\-[a-zA-Z0-9\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 	HeaderValue: string & strings.MinRunes(1) & strings.MaxRunes(128)
@@ -46,6 +48,8 @@ import "strings"
 	RoleArn: string & =~"^[a-zA-Z0-9:_/+=,@.#-]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
 
+#DropAction: {...}
+
 #InvokeLambdaAction: {
 	ActionFailurePolicy?: #ActionFailurePolicy
 	FunctionArn: string & =~"^[a-zA-Z0-9:_/+=,@.#-]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
@@ -53,6 +57,10 @@ import "strings"
 	RetryTimeMinutes?: int & >=0 & <=2160
 	RoleArn: string & =~"^[a-zA-Z0-9:_/+=,@.#-]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
+
+#LambdaInvocationType: "EVENT" | "REQUEST_RESPONSE"
+
+#MailFrom: "REPLACE" | "PRESERVE"
 
 #RelayAction: {
 	ActionFailurePolicy?: #ActionFailurePolicy
@@ -71,9 +79,65 @@ import "strings"
 	Unless?: [...#RuleCondition]
 }
 
+#RuleAction: {
+	Drop: #DropAction
+} | {
+	Relay: #RelayAction
+} | {
+	Archive: #ArchiveAction
+} | {
+	WriteToS3: #S3Action
+} | {
+	Send: #SendAction
+} | {
+	AddHeader: #AddHeaderAction
+} | {
+	ReplaceRecipient: #ReplaceRecipientAction
+} | {
+	DeliverToMailbox: #DeliverToMailboxAction
+} | {
+	DeliverToQBusiness: #DeliverToQBusinessAction
+} | {
+	PublishToSns: #SnsAction
+} | {
+	Bounce: #BounceAction
+} | {
+	InvokeLambda: #InvokeLambdaAction
+}
+
+#RuleAddressListEmailAttribute: "RECIPIENT" | "MAIL_FROM" | "SENDER" | "FROM" | "TO" | "CC"
+
+#RuleBooleanEmailAttribute: "READ_RECEIPT_REQUESTED" | "TLS" | "TLS_WRAPPED"
+
 #RuleBooleanExpression: {
 	Evaluate: #RuleBooleanToEvaluate
 	Operator: #RuleBooleanOperator
+}
+
+#RuleBooleanOperator: "IS_TRUE" | "IS_FALSE"
+
+#RuleBooleanToEvaluate: {
+	Attribute: #RuleBooleanEmailAttribute
+} | {
+	Analysis: #Analysis
+} | {
+	IsInAddressList: #RuleIsInAddressList
+}
+
+#RuleClientCertificateAttribute: "CN" | "SAN_RFC822_NAME" | "SAN_DNS_NAME" | "SAN_DIRECTORY_NAME" | "SAN_UNIFORM_RESOURCE_IDENTIFIER" | "SAN_IP_ADDRESS" | "SAN_REGISTERED_ID" | "SERIAL_NUMBER"
+
+#RuleCondition: {
+	BooleanExpression: #RuleBooleanExpression
+} | {
+	StringExpression: #RuleStringExpression
+} | {
+	NumberExpression: #RuleNumberExpression
+} | {
+	IpExpression: #RuleIpExpression
+} | {
+	VerdictExpression: #RuleVerdictExpression
+} | {
+	DmarcExpression: #RuleDmarcExpression
 }
 
 #RuleDmarcExpression: {
@@ -81,10 +145,22 @@ import "strings"
 	Values: [...#RuleDmarcPolicy]
 }
 
+#RuleDmarcOperator: "EQUALS" | "NOT_EQUALS"
+
+#RuleDmarcPolicy: "NONE" | "QUARANTINE" | "REJECT"
+
+#RuleIpEmailAttribute: "SOURCE_IP"
+
 #RuleIpExpression: {
 	Evaluate: #RuleIpToEvaluate
 	Operator: #RuleIpOperator
 	Values: [...string & =~"^(([0-9]|.|:|/)*)$" & strings.MinRunes(1) & strings.MaxRunes(43)]
+}
+
+#RuleIpOperator: "CIDR_MATCHES" | "NOT_CIDR_MATCHES"
+
+#RuleIpToEvaluate: {
+	Attribute: #RuleIpEmailAttribute
 }
 
 #RuleIsInAddressList: {
@@ -92,11 +168,21 @@ import "strings"
 	Attribute: #RuleAddressListEmailAttribute
 }
 
+#RuleNumberEmailAttribute: "MESSAGE_SIZE"
+
 #RuleNumberExpression: {
 	Evaluate: #RuleNumberToEvaluate
 	Operator: #RuleNumberOperator
 	Value: number
 }
+
+#RuleNumberOperator: "EQUALS" | "NOT_EQUALS" | "LESS_THAN" | "GREATER_THAN" | "LESS_THAN_OR_EQUAL" | "GREATER_THAN_OR_EQUAL"
+
+#RuleNumberToEvaluate: {
+	Attribute: #RuleNumberEmailAttribute
+}
+
+#RuleStringEmailAttribute: "MAIL_FROM" | "HELO" | "RECIPIENT" | "SENDER" | "FROM" | "SUBJECT" | "TO" | "CC"
 
 #RuleStringExpression: {
 	Evaluate: #RuleStringToEvaluate
@@ -104,10 +190,34 @@ import "strings"
 	Values: [...string & strings.MinRunes(1) & strings.MaxRunes(4096)]
 }
 
+#RuleStringOperator: "EQUALS" | "NOT_EQUALS" | "STARTS_WITH" | "ENDS_WITH" | "CONTAINS"
+
+#RuleStringToEvaluate: {
+	Attribute: #RuleStringEmailAttribute
+} | {
+	MimeHeaderAttribute: string & =~"^X-[a-zA-Z0-9-]{1,256}$"
+} | {
+	Analysis: #Analysis
+} | {
+	ClientCertificateAttribute: #RuleClientCertificateAttribute
+}
+
+#RuleVerdict: "PASS" | "FAIL" | "GRAY" | "PROCESSING_FAILED"
+
+#RuleVerdictAttribute: "SPF" | "DKIM"
+
 #RuleVerdictExpression: {
 	Evaluate: #RuleVerdictToEvaluate
 	Operator: #RuleVerdictOperator
 	Values: [...#RuleVerdict]
+}
+
+#RuleVerdictOperator: "EQUALS" | "NOT_EQUALS"
+
+#RuleVerdictToEvaluate: {
+	Attribute: #RuleVerdictAttribute
+} | {
+	Analysis: #Analysis
 }
 
 #S3Action: {
@@ -130,6 +240,10 @@ import "strings"
 	RoleArn: string & =~"^[a-zA-Z0-9:_/+=,@.#-]+$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 	TopicArn: string & =~"^arn:(aws|aws-cn|aws-us-gov|aws-eusc):sns:[a-z]{2}-([a-z]+-)+\\d{1}:\\d{12}:[\\w\\-]{1,256}$" & strings.MinRunes(20) & strings.MaxRunes(2048)
 }
+
+#SnsNotificationEncoding: "UTF-8" | "BASE64"
+
+#SnsNotificationPayloadType: "CONTENT" | "HEADERS"
 
 #Tag: {
 	Key: string & =~"^[a-zA-Z0-9/_\\+=\\.:@\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(128)

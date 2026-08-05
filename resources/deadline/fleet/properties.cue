@@ -35,6 +35,12 @@ import "strings"
 	Min: int & >=0 & <=2147483647
 }
 
+#AcceleratorType: "gpu"
+
+#AutoScalingMode: "NO_SCALING" | "EVENT_BASED_AUTO_SCALING"
+
+#CpuArchitectureType: "x86_64" | "arm64"
+
 #CustomerManagedAutoScalingConfiguration: {
 	ScaleOutWorkersPerMinute?: int & >=1 & <=2147483647
 	StandbyWorkerCount?: int & >=0 & <=2147483647
@@ -48,6 +54,8 @@ import "strings"
 	TagPropagationMode?: #TagPropagationMode
 	WorkerCapabilities: #CustomerManagedWorkerCapabilities
 }
+
+#CustomerManagedFleetOperatingSystemFamily: "WINDOWS" | "LINUX" | "MACOS"
 
 #CustomerManagedWorkerCapabilities: {
 	AcceleratorCount?: #AcceleratorCountRange
@@ -67,6 +75,8 @@ import "strings"
 	ThroughputMiB?: int & >=125 & <=1000
 }
 
+#Ec2MarketType: "on-demand" | "spot" | "wait-and-save"
+
 #FleetAmountCapability: {
 	Max?: number
 	Min: number
@@ -82,6 +92,14 @@ import "strings"
 	Amounts?: [...#FleetAmountCapability]
 	Attributes?: [...#FleetAttributeCapability]
 }
+
+#FleetConfiguration: {
+	CustomerManaged: #CustomerManagedFleetConfiguration
+} | {
+	ServiceManagedEc2: #ServiceManagedEc2FleetConfiguration
+}
+
+#FleetStatus: "ACTIVE" | "CREATE_IN_PROGRESS" | "UPDATE_IN_PROGRESS" | "CREATE_FAILED" | "UPDATE_FAILED" | "SUSPENDED"
 
 #HostConfiguration: {
 	ScriptBody: string & strings.MinRunes(0) & strings.MaxRunes(15000)
@@ -133,12 +151,16 @@ import "strings"
 	Type: #Ec2MarketType
 }
 
+#ServiceManagedFleetOperatingSystemFamily: "LINUX" | "WINDOWS"
+
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(127)
 	// The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(255)
 }
+
+#TagPropagationMode: "NO_PROPAGATION" | "PROPAGATE_TAGS_TO_WORKERS_AT_LAUNCH"
 
 #VCpuCountRange: {
 	Max?: int & >=1 & <=10000

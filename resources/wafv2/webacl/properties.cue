@@ -49,6 +49,8 @@ import "strings"
 	InspectionLevel: "COMMON" | "TARGETED"
 }
 
+#AddressField: #FieldIdentifier
+
 #AllowAction: {
 	CustomRequestHandling?: #CustomRequestHandling
 }
@@ -61,6 +63,8 @@ import "strings"
 	Name: #AttributeName
 	Values: #AttributeValues
 }
+
+#ApplicationAttributes: [...#ApplicationAttribute]
 
 #ApplicationConfig: {
 	Attributes: #ApplicationAttributes
@@ -75,13 +79,23 @@ import "strings"
 	RequestBody?: #RequestBody
 }
 
+#AttributeName: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#AttributeValue: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#AttributeValues: [...#AttributeValue]
+
 #BlockAction: {
 	CustomResponse?: #CustomResponse
 }
 
+#BlockchainChain: "BASE" | "SOLANA" | "BASE_SEPOLIA" | "SOLANA_DEVNET"
+
 #Body: {
 	OversizeHandling?: #OversizeHandling
 }
+
+#BodyParsingFallbackBehavior: "MATCH" | "NO_MATCH" | "EVALUATE_AS_STRING"
 
 #ByteMatchStatement: {
 	FieldToMatch: #FieldToMatch
@@ -138,10 +152,18 @@ import "strings"
 	PaymentNetworks: #PaymentNetworks
 }
 
+#CryptoCurrency: "USDC"
+
+#CurrencyMode: "REAL" | "TEST"
+
 #CustomHTTPHeader: {
 	Name: #CustomHTTPHeaderName
 	Value: #CustomHTTPHeaderValue
 }
+
+#CustomHTTPHeaderName: string & strings.MinRunes(1) & strings.MaxRunes(64)
+
+#CustomHTTPHeaderValue: string & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #CustomRequestHandling: {
 	// Collection of HTTP headers.
@@ -156,6 +178,8 @@ import "strings"
 	ResponseHeaders?: [...#CustomHTTPHeader]
 }
 
+#CustomResponseBodies: {...}
+
 #CustomResponseBody: {
 	Content: #ResponseContent
 	ContentType: #ResponseContentType
@@ -168,18 +192,32 @@ import "strings"
 	Field: #FieldToProtect
 }
 
+#DataProtectionAction: "SUBSTITUTION" | "HASH"
+
 #DataProtectionConfig: {
 	DataProtections: #DataProtections
 }
+
+#DataProtections: [...#DataProtect]
 
 #DefaultAction: {
 	Allow?: #AllowAction
 	Block?: #BlockAction
 }
 
+#EntityDescription: string & =~"^[a-zA-Z0-9=:#@/\\-,.][a-zA-Z0-9+=:#@/\\-,.\\s]+[a-zA-Z0-9+=:#@/\\-,.]{1,256}$"
+
+#EntityId: string & =~"^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$"
+
+#EntityName: string & =~"^[0-9A-Za-z_-]{1,128}$"
+
+#EvaluationWindowSec: int
+
 #ExcludedRule: {
 	Name: #EntityName
 }
+
+#ExcludedRules: [...#ExcludedRule]
 
 #FieldIdentifier: {
 	Identifier: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(512)
@@ -217,6 +255,8 @@ import "strings"
 	// Field type to protect
 	FieldType: "SINGLE_HEADER" | "SINGLE_COOKIE" | "SINGLE_QUERY_ARGUMENT" | "QUERY_STRING" | "BODY"
 }
+
+#FieldToProtectKeyName: string & strings.MinRunes(1) & strings.MaxRunes(64)
 
 #ForwardedIPConfiguration: {
 	FallbackBehavior: "MATCH" | "NO_MATCH"
@@ -281,14 +321,24 @@ import "strings"
 	IncludedPaths?: [...#JsonPointerPath]
 }
 
+#JsonMatchScope: "ALL" | "KEY" | "VALUE"
+
+#JsonPointerPath: string & =~"^[\\/]+([^~]*(~[01])*)*{1,512}$"
+
 #Label: {
 	Name: #LabelName
 }
+
+#LabelMatchKey: string & =~"^[0-9A-Za-z_:-]{1,1024}$"
+
+#LabelMatchScope: "LABEL" | "NAMESPACE"
 
 #LabelMatchStatement: {
 	Key: #LabelMatchKey
 	Scope: #LabelMatchScope
 }
+
+#LabelName: string & =~"^[0-9A-Za-z_:-]{1,1024}$"
 
 #ManagedRuleGroupConfig: {
 	AWSManagedRulesACFPRuleSet?: #AWSManagedRulesACFPRuleSet
@@ -312,6 +362,8 @@ import "strings"
 	VendorName: string
 	Version?: string & =~"^[\\w#:\\.\\-/]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 }
+
+#MapMatchScope: "ALL" | "KEY" | "VALUE"
 
 #MonetizationConfig: {
 	CryptoConfig?: #CryptoConfig
@@ -341,16 +393,32 @@ import "strings"
 	None?: {...}
 }
 
+#OversizeHandling: "CONTINUE" | "MATCH" | "NO_MATCH"
+
 #PaymentNetwork: {
 	Chain: #BlockchainChain
 	Prices: #Prices
 	WalletAddress: #WalletAddress
 }
 
+#PaymentNetworks: [...#PaymentNetwork]
+
+#PhoneNumberField: #FieldIdentifier
+
+#PositionalConstraint: "EXACTLY" | "STARTS_WITH" | "ENDS_WITH" | "CONTAINS" | "CONTAINS_WORD"
+
 #Price: {
 	Amount: #PriceAmount
 	Currency: #CryptoCurrency
 }
+
+#PriceAmount: string & =~"^([1-9][0-9]*(\\.[0-9]{1,3})?|0\\.([1-9][0-9]{0,2}|0[1-9][0-9]?|00[1-9]))$" & strings.MinRunes(1) & strings.MaxRunes(13)
+
+#PriceMultiplier: string & =~"^([1-9][0-9]?|100)$" & strings.MinRunes(1) & strings.MaxRunes(3)
+
+#Prices: [...#Price]
+
+#QueryString: {...}
 
 #RateBasedStatement: {
 	AggregateKeyType: "CONSTANT" | "IP" | "FORWARDED_IP" | "CUSTOM_KEYS"
@@ -377,17 +445,27 @@ import "strings"
 	UriPath?: #RateLimitUriPath
 }
 
+#RateLimit: int & >=10 & <=2000000000
+
+#RateLimitAsn: {...}
+
 #RateLimitCookie: {
 	// The name of the cookie to use.
 	Name: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(64)
 	TextTransformations: [...#TextTransformation]
 }
 
+#RateLimitForwardedIP: {...}
+
+#RateLimitHTTPMethod: {...}
+
 #RateLimitHeader: {
 	// The name of the header to use.
 	Name: string & =~".*\\S.*" & strings.MinRunes(1) & strings.MaxRunes(64)
 	TextTransformations: [...#TextTransformation]
 }
+
+#RateLimitIP: {...}
 
 #RateLimitJA3Fingerprint: {
 	FallbackBehavior: "MATCH" | "NO_MATCH"
@@ -432,6 +510,12 @@ import "strings"
 	TextTransformations: [...#TextTransformation]
 }
 
+#RegexPatternString: string & strings.MinRunes(1) & strings.MaxRunes(512)
+
+#RegularExpressionList: [...#Regex]
+
+#RequestBody: {...}
+
 #RequestBodyAssociatedResourceTypeConfig: {
 	DefaultSizeInspectionLimit: #SizeInspectionLimit
 }
@@ -450,6 +534,12 @@ import "strings"
 	PhoneNumberFields?: [...#PhoneNumberField]
 	UsernameField?: #FieldIdentifier
 }
+
+#ResourceArn: string & strings.MinRunes(20) & strings.MaxRunes(2048)
+
+#ResponseContent: string & strings.MinRunes(1) & strings.MaxRunes(10240)
+
+#ResponseContentType: "TEXT_PLAIN" | "TEXT_HTML" | "APPLICATION_JSON"
 
 #ResponseInspection: {
 	BodyContains?: #ResponseInspectionBodyContains
@@ -479,6 +569,8 @@ import "strings"
 	FailureCodes: [...int]
 	SuccessCodes: [...int]
 }
+
+#ResponseStatusCode: int & >=200 & <=599
 
 #Rule: {
 	Action?: #RuleAction
@@ -514,6 +606,20 @@ import "strings"
 	RuleActionOverrides?: [...#RuleActionOverride]
 }
 
+#RulePriority: int & >=0
+
+#Rules: [...#Rule]
+
+#Scope: "CLOUDFRONT" | "REGIONAL"
+
+#SearchString: string
+
+#SearchStringBase64: string
+
+#SensitivityLevel: "LOW" | "HIGH"
+
+#SensitivityToAct: "LOW" | "MEDIUM" | "HIGH"
+
 #SingleHeader: {
 	Name?: string
 }
@@ -528,6 +634,8 @@ import "strings"
 	Size: number & >=0 & <=2.147483648e+10
 	TextTransformations: [...#TextTransformation]
 }
+
+#SizeInspectionLimit: "KB_16" | "KB_32" | "KB_48" | "KB_64"
 
 #SqliMatchStatement: {
 	FieldToMatch: #FieldToMatch
@@ -564,15 +672,27 @@ import "strings"
 	Type: #TextTransformationType
 }
 
+#TextTransformationPriority: int & >=0
+
+#TextTransformationType: "NONE" | "COMPRESS_WHITE_SPACE" | "HTML_ENTITY_DECODE" | "LOWERCASE" | "CMD_LINE" | "URL_DECODE" | "BASE64_DECODE" | "HEX_DECODE" | "MD5" | "REPLACE_COMMENTS" | "ESCAPE_SEQ_DECODE" | "SQL_HEX_DECODE" | "CSS_DECODE" | "JS_DECODE" | "NORMALIZE_PATH" | "NORMALIZE_PATH_WIN" | "REMOVE_NULLS" | "REPLACE_NULLS" | "BASE64_DECODE_EXT" | "URL_DECODE_UNI" | "UTF8_TO_UNICODE"
+
+#TokenDomains: [...string & =~"^[\\w\\.\\-/]+$" & strings.MinRunes(1) & strings.MaxRunes(253)]
+
 #UriFragment: {
 	FallbackBehavior?: "MATCH" | "NO_MATCH"
 }
+
+#UriPath: {...}
+
+#UsageOfAction: "ENABLED" | "DISABLED"
 
 #VisibilityConfig: {
 	CloudWatchMetricsEnabled: bool
 	MetricName: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	SampledRequestsEnabled: bool
 }
+
+#WalletAddress: string & =~".*\\S.*" & strings.MinRunes(26) & strings.MaxRunes(44)
 
 #XssMatchStatement: {
 	FieldToMatch: #FieldToMatch

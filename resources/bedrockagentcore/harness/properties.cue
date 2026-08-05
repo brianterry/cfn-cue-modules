@@ -131,6 +131,8 @@ import "strings"
 	TopP?: number & >=0 & <=1
 }
 
+#HarnessDisabledMemoryConfiguration: {...}
+
 #HarnessEnvironmentArtifact: {
 	ContainerConfiguration?: #ContainerConfiguration
 }
@@ -247,6 +249,8 @@ import "strings"
 #HarnessSlidingWindowConfiguration: {
 	MessagesCount?: int
 }
+
+#HarnessStatus: "CREATING" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "READY" | "DELETING" | "DELETE_FAILED"
 
 #HarnessSummarizationConfiguration: {
 	PreserveRecentMessages?: int

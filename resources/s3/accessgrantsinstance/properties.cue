@@ -6,6 +6,10 @@ package accessgrantsinstance
 	Tags?: [...#Tag]
 }
 
+#AccessGrantsInstanceArn: string
+
+#IdentityCenterArn: string
+
 #Tag: {
 	Key: string
 	Value: string

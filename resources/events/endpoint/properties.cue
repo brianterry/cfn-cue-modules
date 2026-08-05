@@ -15,10 +15,16 @@ import "strings"
 	EventBusArn: #EventBusArn
 }
 
+#EventBusArn: string & =~"^arn:aws[a-z-]*:events:[a-z]+-[a-z-]+-\\d+:\\d{12}:event-bus/[\\w.-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
+
+#EventBuses: [...#EndpointEventBus]
+
 #FailoverConfig: {
 	Primary: #Primary
 	Secondary: #Secondary
 }
+
+#HealthCheck: string & =~"^arn:aws([a-z]|\\-)*:route53:::healthcheck/[\\-a-z0-9]+$" & strings.MinRunes(1) & strings.MaxRunes(1600)
 
 #Primary: {
 	HealthCheck: #HealthCheck
@@ -27,6 +33,10 @@ import "strings"
 #ReplicationConfig: {
 	State: #ReplicationState
 }
+
+#ReplicationState: "ENABLED" | "DISABLED"
+
+#Route: string & =~"^[\\-a-z0-9]+$" & strings.MinRunes(9) & strings.MaxRunes(20)
 
 #RoutingConfig: {
 	FailoverConfig: #FailoverConfig

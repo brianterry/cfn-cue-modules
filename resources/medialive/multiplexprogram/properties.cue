@@ -65,3 +65,11 @@ import "strings"
 	// The purpose of the priority is to use a combination of the\nmultiplex rate control algorithm and the QVBR capability of the\nencoder to prioritize the video quality of some channels in a\nmultiplex over others.  Channels that have a higher priority will\nget higher video quality at the expense of the video quality of\nother channels in the multiplex with lower priority.
 	Priority?: int & >=-5 & <=5
 }
+
+#MultiplexVideoSettings: {
+	ConstantBitrate: int & >=100000 & <=100000000
+} | {
+	StatmuxSettings: #MultiplexStatmuxVideoSettings
+}
+
+#PreferredChannelPipeline: "CURRENTLY_ACTIVE" | "PIPELINE_0" | "PIPELINE_1"

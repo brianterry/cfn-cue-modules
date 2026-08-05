@@ -57,6 +57,8 @@ import "strings"
 	Value?: #MetricValue
 }
 
+#ExportMetric: bool
+
 #MachineLearningDetectionConfig: {
 	// The sensitivity of anomalous behavior evaluation. Can be Low, Medium, or High.
 	ConfidenceLevel?: "LOW" | "MEDIUM" | "HIGH"

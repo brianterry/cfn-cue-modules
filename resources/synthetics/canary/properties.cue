@@ -60,6 +60,8 @@ import "strings"
 	BrowserType: #BrowserType
 }
 
+#BrowserType: "CHROME" | "FIREFOX"
+
 #Code: {
 	BlueprintTypes?: [...string]
 	// List of Lambda layers to attach to the canary
@@ -102,6 +104,8 @@ import "strings"
 	// Replication state: InProgress, InSync, or Inconsistent
 	State?: string
 }
+
+#ResourceToTag: "lambda-function"
 
 #RetryConfig: {
 	// maximum times the canary will be retried upon the scheduled run failure

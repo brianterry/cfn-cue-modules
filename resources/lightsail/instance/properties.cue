@@ -111,3 +111,9 @@ import "strings"
 	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
+
+#cidrListAliases: [...string]
+
+#cidrs: [...string]
+
+#ipv6Cidrs: [...string]

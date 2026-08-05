@@ -23,6 +23,10 @@ import "strings"
 	TimeZone: string
 }
 
+#EffectiveFrom: string & =~"^\\d{4}-\\d{2}-\\d{2}$"
+
+#EffectiveTill: string & =~"^\\d{4}-\\d{2}-\\d{2}$"
+
 #HoursOfOperationConfig: {
 	// The day that the hours of operation applies to.
 	Day: "SUNDAY" | "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY"
@@ -52,6 +56,8 @@ import "strings"
 	StartTime: #OverrideTimeSlice
 }
 
+#HoursOfOperationOverrideId: string & =~"^[-a-zA-Z0-9]*$"
+
 #HoursOfOperationTimeSlice: {
 	// The hours.
 	Hours: int & >=0 & <=23
@@ -66,6 +72,16 @@ import "strings"
 	Name?: string & strings.MinRunes(1) & strings.MaxRunes(127)
 }
 
+#MonthDayList: [...int & >=-1 & <=31]
+
+#MonthList: [...int & >=1 & <=12]
+
+#OverrideConfig: [...#HoursOfOperationOverrideConfig]
+
+#OverrideDescription: string & strings.MinRunes(1) & strings.MaxRunes(250)
+
+#OverrideName: string & strings.MinRunes(1) & strings.MaxRunes(127)
+
 #OverrideTimeSlice: {
 	// The hours.
 	Hours: int & >=0 & <=23
@@ -73,9 +89,13 @@ import "strings"
 	Minutes: int & >=0 & <=59
 }
 
+#OverrideType: "STANDARD" | "OPEN" | "CLOSED"
+
 #RecurrenceConfig: {
 	RecurrencePattern: #RecurrencePattern
 }
+
+#RecurrenceFrequency: "WEEKLY" | "MONTHLY" | "YEARLY"
 
 #RecurrencePattern: {
 	ByMonth?: #MonthList

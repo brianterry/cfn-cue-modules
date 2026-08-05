@@ -13,6 +13,12 @@ package principalpermissions
 	Resource: #Resource
 }
 
+#CatalogIdString: string & strings.MinRunes(12) & strings.MaxRunes(12)
+
+#CatalogResource: {...}
+
+#ColumnNames: [...#NameString]
+
 #ColumnWildcard: {
 	// Excludes column names. Any column with this name will be excluded.
 	ExcludedColumnNames?: #ColumnNames
@@ -34,6 +40,10 @@ package principalpermissions
 	DataLakePrincipalIdentifier?: #DataLakePrincipalString
 }
 
+#DataLakePrincipalList: [...#DataLakePrincipal]
+
+#DataLakePrincipalString: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
 #DataLocationResource: {
 	// The identifier for the GLUDC where the location is registered with LFlong.
 	CatalogId: #CatalogIdString
@@ -48,12 +58,18 @@ package principalpermissions
 	Name: #NameString
 }
 
+#Expression: [...#LFTag]
+
+#IAMRoleArn: string & =~"arn:*:iam::[0-9]*:role/.*"
+
 #LFTag: {
 	// The key-name for the LF-tag.
 	TagKey?: #LFTagKey
 	// A list of possible values of the corresponding ``TagKey`` of an LF-tag key-value pair.
 	TagValues?: #TagValueList
 }
+
+#LFTagKey: string & strings.MinRunes(1) & strings.MaxRunes(128)
 
 #LFTagKeyResource: {
 	// The identifier for the GLUDC where the location is registered with GLUDC.
@@ -79,10 +95,26 @@ package principalpermissions
 	ResourceType: #ResourceType
 }
 
+#LFTagValue: string & strings.MinRunes(0) & strings.MaxRunes(256)
+
+#LFTagsList: [...#LFTagPair]
+
+#NameString: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
+#NullableBoolean: bool
+
+#PathString: string
+
+#Permission: "ALL" | "SELECT" | "ALTER" | "DROP" | "DELETE" | "INSERT" | "DESCRIBE" | "CREATE_DATABASE" | "CREATE_TABLE" | "DATA_LOCATION_ACCESS" | "CREATE_LF_TAG" | "ASSOCIATE" | "GRANT_WITH_LF_TAG_EXPRESSION"
+
+#PermissionList: [...#Permission]
+
 #PrincipalPermissions: {
 	DataLakePrincipal?: #DataLakePrincipal
 	PermissionList?: #PermissionList
 }
+
+#PrincipalPermissionsList: [...#PrincipalPermissions]
 
 #PrincipalResourcePair: {
 	Principal: #DataLakePrincipal
@@ -108,6 +140,10 @@ package principalpermissions
 	TableWithColumns?: #TableWithColumnsResource
 }
 
+#ResourceArnString: string
+
+#ResourceType: "DATABASE" | "TABLE"
+
 #TableResource: {
 	// The identifier for the Data Catalog. By default, it is the account ID of the caller.
 	CatalogId: #CatalogIdString
@@ -119,6 +155,8 @@ package principalpermissions
 	// At least one of ``TableResource$Name`` or ``TableResource$TableWildcard`` is required.
 	TableWildcard?: #TableWildcard
 }
+
+#TableWildcard: {...}
 
 #TableWithColumnsResource: {
 	// The identifier for the GLUDC where the location is registered with LFlong.
@@ -132,3 +170,5 @@ package principalpermissions
 	// The name of the table resource. A table is a metadata definition that represents your data. You can Grant and Revoke table privileges to a principal.
 	Name: #NameString
 }
+
+#TagValueList: [...#LFTagValue]

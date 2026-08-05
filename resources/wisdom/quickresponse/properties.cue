@@ -27,12 +27,16 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#ChannelType: "Chat" | "Email"
+
 #GroupingConfiguration: {
 	// The criteria used for grouping Amazon Q in Connect users.
 	Criteria: string & strings.MinRunes(1) & strings.MaxRunes(100)
 	// The list of values that define different groups of Amazon Q in Connect users.
 	Values: [...#GroupingValue]
 }
+
+#GroupingValue: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 
 #QuickResponseContentProvider: {
 	// The content of the quick response.
@@ -43,6 +47,8 @@ import "strings"
 	Markdown?: #QuickResponseContentProvider
 	PlainText?: #QuickResponseContentProvider
 }
+
+#Status: "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "CREATED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED" | "DELETED" | "UPDATE_IN_PROGRESS" | "UPDATE_FAILED"
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -

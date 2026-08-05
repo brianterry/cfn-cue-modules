@@ -19,9 +19,13 @@ import "strings"
 	Status: #ApplicationSettingsStatus
 }
 
+#ApplicationSettingsStatus: "DISABLED" | "ENABLED"
+
 #Capacity: {
 	DesiredUserSessions: int & >=0
 }
+
+#RunningMode: "ALWAYS_ON" | "AUTO_STOP"
 
 #Tag: {
 	Key: string

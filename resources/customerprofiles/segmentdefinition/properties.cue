@@ -35,19 +35,33 @@ import "strings"
 	Values: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
 }
 
+#AttributeDimensionType: "INCLUSIVE" | "EXCLUSIVE" | "CONTAINS" | "BEGINS_WITH" | "ENDS_WITH" | "BEFORE" | "AFTER" | "BETWEEN" | "NOT_BETWEEN" | "ON" | "GREATER_THAN" | "LESS_THAN" | "GREATER_THAN_OR_EQUAL" | "LESS_THAN_OR_EQUAL" | "EQUAL"
+
 #CalculatedAttributeDimension: {
 	ConditionOverrides?: #ConditionOverrides
 	DimensionType: #AttributeDimensionType
 	Values: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
 }
 
+#CalculatedCustomAttributes: {...}
+
 #ConditionOverrides: {
 	Range?: #RangeOverride
 }
 
+#CustomAttributes: {...}
+
 #DateDimension: {
 	DimensionType: #DateDimensionType
 	Values: [...string]
+}
+
+#DateDimensionType: "BEFORE" | "AFTER" | "BETWEEN" | "NOT_BETWEEN" | "ON"
+
+#Dimension: {
+	ProfileAttributes: #ProfileAttributes
+} | {
+	CalculatedAttributes?: #CalculatedCustomAttributes
 }
 
 #ExtraLengthValueProfileDimension: {
@@ -61,6 +75,8 @@ import "strings"
 	SourceType?: #IncludeOptions
 	Type?: #IncludeOptions
 }
+
+#IncludeOptions: "ALL" | "ANY" | "NONE"
 
 #ProfileAttributes: {
 	AccountNumber?: #ProfileDimension
@@ -92,10 +108,14 @@ import "strings"
 	Values: [...string & strings.MinRunes(1) & strings.MaxRunes(255)]
 }
 
+#ProfileType: "ACCOUNT_PROFILE" | "PROFILE"
+
 #ProfileTypeDimension: {
 	DimensionType: #ProfileTypeDimensionType
 	Values: [...#ProfileType]
 }
+
+#ProfileTypeDimensionType: "INCLUSIVE" | "EXCLUSIVE"
 
 #RangeOverride: {
 	// The ending point for this overridden range. Positive numbers indicate how many days in the past data should be included, and negative numbers indicate how many days in the future.
@@ -116,6 +136,10 @@ import "strings"
 	Attributes: [...#SortAttribute]
 }
 
+#SegmentSortDataType: "STRING" | "NUMBER" | "DATE"
+
+#SegmentSortOrder: "ASC" | "DESC"
+
 #SortAttribute: {
 	DataType?: #SegmentSortDataType
 	// The name of the attribute to sort by.
@@ -124,9 +148,13 @@ import "strings"
 	Type?: #SortAttributeType
 }
 
+#SortAttributeType: "PROFILE" | "CALCULATED"
+
 #SourceSegment: {
 	SegmentDefinitionName?: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 }
+
+#StringDimensionType: "INCLUSIVE" | "EXCLUSIVE" | "CONTAINS" | "BEGINS_WITH" | "ENDS_WITH"
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

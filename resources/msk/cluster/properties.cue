@@ -93,6 +93,8 @@ import "strings"
 	BrokerLogs: #BrokerLogs
 }
 
+#NetworkType: "IPV4" | "DUAL"
+
 #NodeExporter: {
 	EnabledInBroker: bool
 }

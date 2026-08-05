@@ -51,6 +51,8 @@ import "strings"
 	Type: #ScraperComponentType
 }
 
+#ScraperComponentType: "SERVICE_DISCOVERY" | "COLLECTOR" | "EXPORTER"
+
 #ScraperLoggingConfiguration: {
 	LoggingDestination: #ScraperLoggingDestination
 	ScraperComponents: [...#ScraperComponent]
@@ -59,6 +61,8 @@ import "strings"
 #ScraperLoggingDestination: {
 	CloudWatchLogs?: #CloudWatchLogDestination
 }
+
+#SecurityGroupId: string & =~"^sg-[0-9a-z]+$"
 
 #Source: {
 	// Configuration for EKS metrics source
@@ -73,6 +77,8 @@ import "strings"
 		SubnetIds: [...#SubnetId]
 	}
 }
+
+#SubnetId: string & =~"^subnet-[0-9a-z]+$"
 
 #Tag: {
 	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.

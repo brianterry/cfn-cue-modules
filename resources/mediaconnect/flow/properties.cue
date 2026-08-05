@@ -29,6 +29,8 @@ package flow
 	SilentAudio?: #SilentAudio
 }
 
+#AutomaticEncryptionKeyConfiguration: {...}
+
 #BlackFrames: {
 	// Indicates whether the BlackFrames metric is enabled or disabled.
 	State?: "ENABLED" | "DISABLED"
@@ -41,6 +43,8 @@ package flow
 	// The maximum video bitrate to use when transcoding the NDI source to a Transport Stream. This parameter enables you to override the default video bitrate within the encoding profile's supported range. The supported range is 10,000,000 - 50,000,000 bits per second (bps). If you do not specify a value, MediaConnect uses the default value of 20,000,000 bps.
 	VideoMaxBitrate?: int
 }
+
+#EncodingProfile: "DISTRIBUTION_H264_DEFAULT" | "CONTRIBUTION_H264_DEFAULT"
 
 #Encryption: {
 	// The type of algorithm that is used for the encryption (such as aes128, aes192, or aes256).
@@ -79,6 +83,14 @@ package flow
 	EncryptionKeyConfiguration: #FlowTransitEncryptionKeyConfiguration
 	EncryptionKeyType?: #FlowTransitEncryptionKeyType
 }
+
+#FlowTransitEncryptionKeyConfiguration: {
+	SecretsManager: #SecretsManagerEncryptionKeyConfiguration
+} | {
+	Automatic: #AutomaticEncryptionKeyConfiguration
+}
+
+#FlowTransitEncryptionKeyType: "SECRETS_MANAGER" | "AUTOMATIC"
 
 #Fmtp: {
 	// The format of the audio channel.
@@ -188,6 +200,8 @@ package flow
 #NdiSourceSettings: {
 	SourceName?: string
 }
+
+#NdiState: "ENABLED" | "DISABLED"
 
 #SecretsManagerEncryptionKeyConfiguration: {
 	// The ARN of the IAM role used for transit encryption from the router output using AWS Secrets Manager.

@@ -5,6 +5,14 @@ package replicationconfiguration
 	ReplicationConfiguration: #ReplicationConfiguration
 }
 
+#Filter: string & =~"^(?:[a-z0-9]+(?:[._-][a-z0-9]*)*/)*[a-z0-9]*(?:[._-][a-z0-9]*)*$"
+
+#FilterType: "PREFIX_MATCH"
+
+#Region: string & =~"[0-9a-z-]{2,25}"
+
+#RegistryId: string & =~"^[0-9]{12}$"
+
 #ReplicationConfiguration: {
 	// An array of objects representing the replication destinations and repository filters for a replication configuration.
 	Rules: [...#ReplicationRule]

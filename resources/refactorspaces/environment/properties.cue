@@ -10,6 +10,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#NetworkFabricType: "TRANSIT_GATEWAY" | "NONE"
+
 #Tag: {
 	// A string used to identify this tag
 	Key: string & =~"^(?!aws:).+" & strings.MinRunes(1) & strings.MaxRunes(128)

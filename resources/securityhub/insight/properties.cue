@@ -240,6 +240,8 @@ import "strings"
 	Value: number
 }
 
+#ISO8601DateString: string & =~"^([\\+-]?\\d{4}(?!\\d{2}))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([tT]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+
 #IpFilter: {
 	// A finding's CIDR value.
 	Cidr: #NonEmptyString
@@ -257,6 +259,8 @@ import "strings"
 	Value: #NonEmptyString
 }
 
+#NonEmptyString: string & strings.MinRunes(1)
+
 #NumberFilter: {
 	// The equal-to condition to be applied to a single field when querying for findings.
 	Eq?: number
@@ -270,3 +274,5 @@ import "strings"
 	Comparison: #StringFilterComparison
 	Value: #NonEmptyString
 }
+
+#StringFilterComparison: "EQUALS" | "PREFIX" | "NOT_EQUALS" | "PREFIX_NOT_EQUALS"

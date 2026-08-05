@@ -21,6 +21,10 @@ import "strings"
 	Regex?: string & strings.MinRunes(1) & strings.MaxRunes(255)
 }
 
+#Disabled: bool
+
+#Expression: string & =~"^[><0-9A-Za-z_.,:)(!= ]+$" & strings.MinRunes(4) & strings.MaxRunes(1024)
+
 #Rule: {
 	CheckExpression: #Expression
 	ColumnSelectors?: [...#ColumnSelector]
@@ -48,3 +52,11 @@ import "strings"
 	Unit?: #ThresholdUnit
 	Value: #ThresholdValue
 }
+
+#ThresholdType: "GREATER_THAN_OR_EQUAL" | "LESS_THAN_OR_EQUAL" | "GREATER_THAN" | "LESS_THAN"
+
+#ThresholdUnit: "COUNT" | "PERCENTAGE"
+
+#ThresholdValue: number
+
+#ValuesMap: [...#SubstitutionValue]

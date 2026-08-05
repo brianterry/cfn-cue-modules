@@ -58,6 +58,8 @@ import "strings"
 	MaxBatchSizeBytes?: int
 }
 
+#CannedAccessControlList: "private" | "public-read" | "public-read-write" | "aws-exec-read" | "authenticated-read" | "bucket-owner-read" | "bucket-owner-full-control" | "log-delivery-write"
+
 #CloudwatchAlarmAction: {
 	AlarmName: string
 	RoleArn: string
@@ -217,6 +219,8 @@ import "strings"
 	UserProperties?: #UserProperties
 }
 
+#RoleArn: string
+
 #S3Action: {
 	BucketName: string
 	CannedAcl?: #CannedAccessControlList
@@ -271,6 +275,8 @@ import "strings"
 	Value: string
 }
 
+#TimestreamDimensionsList: [...#TimestreamDimension]
+
 #TimestreamTimestamp: {
 	Unit: string
 	Value: string
@@ -284,6 +290,8 @@ import "strings"
 	RuleDisabled?: bool
 	Sql: string
 }
+
+#UserProperties: [...#UserProperty]
 
 #UserProperty: {
 	Key: string & strings.MinRunes(0) & strings.MaxRunes(1024)

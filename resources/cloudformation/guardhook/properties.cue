@@ -39,11 +39,17 @@ package guardhook
 	TargetOperations: [...#TargetOperation]
 }
 
+#Action: "CREATE" | "UPDATE" | "DELETE"
+
 #HookTarget: {
 	Action: #Action
 	InvocationPoint: #InvocationPoint
 	TargetName: #TargetName
 }
+
+#InvocationPoint: "PRE_PROVISION"
+
+#Role: string & =~"arn:.+:iam::[0-9]{12}:role/.+" & strings.MaxRunes(256)
 
 #S3Location: {
 	// S3 uri of Guard files.
@@ -51,3 +57,11 @@ package guardhook
 	// S3 object version
 	VersionId?: string
 }
+
+#StackName: string & =~"^[a-zA-Z*?][-a-zA-Z0-9*?]*$" & strings.MaxRunes(128)
+
+#StackRole: string & =~"arn:.+:iam::[0-9]{12}:role/.+" | string & =~"^(arn:.+:iam::((?!\\*|\\?)[0-9]{12}|(?=.*\\*)[0-9*?]{1,12}|[0-9?]{12}):role/.+|\\*)$"
+
+#TargetName: string & =~"^(?!.*\\*\\?).*$" & strings.MinRunes(1) & strings.MaxRunes(256)
+
+#TargetOperation: "RESOURCE" | "STACK" | "CHANGE_SET" | "CLOUD_CONTROL"

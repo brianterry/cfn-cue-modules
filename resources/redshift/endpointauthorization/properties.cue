@@ -10,3 +10,7 @@ package endpointauthorization
 	// The virtual private cloud (VPC) identifiers to grant or revoke access to.
 	VpcIds?: [...#VpcId]
 }
+
+#AwsAccount: string & =~"^\\d{12}$"
+
+#VpcId: string & =~"^vpc-[A-Za-z0-9]{1,17}$"

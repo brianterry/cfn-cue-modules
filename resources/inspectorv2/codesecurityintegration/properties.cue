@@ -23,6 +23,12 @@ import "strings"
 	instanceUrl: string & =~"^https://[-a-zA-Z0-9()@:%_+.~#?&//=]{1,1024}$"
 }
 
+#IntegrationStatus: "PENDING" | "IN_PROGRESS" | "ACTIVE" | "INACTIVE" | "DISABLING"
+
+#IntegrationType: "GITLAB_SELF_MANAGED" | "GITHUB"
+
+#TagMap: {...}
+
 #UpdateDetails: {
 	github?: #UpdateGitHubIntegrationDetail
 	gitlabSelfManaged?: #UpdateGitLabSelfManagedIntegrationDetail

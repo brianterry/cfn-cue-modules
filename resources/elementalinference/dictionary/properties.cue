@@ -8,3 +8,7 @@ import "strings"
 	Name: string & =~"^[a-zA-Z0-9]([a-zA-Z0-9-_]{0,126}[a-zA-Z0-9])?$"
 	Tags?: #TagMap
 }
+
+#DictionaryLanguage: "eng" | "fra" | "ita" | "deu" | "spa" | "por"
+
+#TagMap: {...}

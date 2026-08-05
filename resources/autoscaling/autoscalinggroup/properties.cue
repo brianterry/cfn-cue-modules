@@ -143,6 +143,10 @@ package autoscalinggroup
 	Cpu?: #CpuPerformanceFactorRequest
 }
 
+#CapacityReservationIds: [...string]
+
+#CapacityReservationResourceGroupArns: [...string]
+
 #CapacityReservationSpecification: {
 	// The capacity reservation preference. The following options are available:
 	// +  ``capacity-reservations-only`` - Auto Scaling will only launch instances into a Capacity Reservation or Capacity Reservation resource group. If capacity isn't available, instances will fail to launch.
@@ -476,6 +480,8 @@ package autoscalinggroup
 	// If you specify an unsupported instance family as a value for baseline performance, the API returns an empty response.
 	InstanceFamily?: string
 }
+
+#PerformanceFactorReferenceSetRequest: [...#PerformanceFactorReferenceRequest]
 
 #RetentionTriggers: {
 	// Specifies the action when a termination lifecycle hook is abandoned due to failure, timeout, or explicit abandonment (calling CompleteLifecycleAction).

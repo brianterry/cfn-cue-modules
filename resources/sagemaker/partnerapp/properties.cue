@@ -31,6 +31,8 @@ import "strings"
 	Type: "lakera-guard" | "comet" | "deepchecks-llm-evaluation" | "fiddler"
 }
 
+#PartnerAppAdminUserList: string & strings.MinRunes(1) & strings.MaxRunes(256)
+
 #PartnerAppConfig: {
 	// A list of users with administrator privileges for the PartnerApp.
 	AdminUsers?: [...#PartnerAppAdminUserList]

@@ -13,6 +13,8 @@ import "strings"
 	Tags?: [...#Tag]
 }
 
+#FolderType: "SHARED" | "RESTRICTED"
+
 #ResourcePermission: {
 	// <p>The IAM action to grant or revoke permissions on.</p>
 	Actions: [...string]
@@ -33,6 +35,8 @@ import "strings"
 	// </ul>
 	Principal: string & =~"^arn:.*" & strings.MinRunes(1) & strings.MaxRunes(256)
 }
+
+#SharingModel: "ACCOUNT" | "NAMESPACE"
 
 #Tag: {
 	// <p>Tag key.</p>

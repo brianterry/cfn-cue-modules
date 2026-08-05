@@ -93,3 +93,5 @@ import "strings"
 	// The value for the configured Slurm setting.
 	ParameterValue: string
 }
+
+#SubnetId: string

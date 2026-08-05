@@ -26,3 +26,7 @@ package transitgatewaymeteringpolicyentry
 	// The ID of the transit gateway metering policy for which the entry is being created
 	TransitGatewayMeteringPolicyId: string
 }
+
+#TransitGatewayAttachmentResourceType: "vpc" | "vpn" | "direct-connect-gateway" | "peering" | "network-function" | "vpn-concentrator" | "client-vpn"
+
+#TransitGatewayMeteringPayerType: "source-attachment-owner" | "destination-attachment-owner" | "transit-gateway-owner"

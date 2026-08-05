@@ -33,6 +33,14 @@ import "strings"
 	ResourceType?: "AWS::CloudFormation::Stack" | "AWS::ECR::Repository" | "AWS::S3::Bucket" | "AWS::S3::Object"
 }
 
+#AWSResourceList: [...#AWSResource]
+
+#AWSTagList: [...#KeyValuePair]
+
+#AgentSpaceId: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
+#AssociationId: string & strings.MinRunes(1) & strings.MaxRunes(255)
+
 #AzureConfiguration: {
 	// Azure subscription ID corresponding to provided resources
 	SubscriptionId: string
@@ -143,6 +151,42 @@ import "strings"
 	// List of PagerDuty service IDs available for the association
 	Services: [...string]
 }
+
+#ServiceConfiguration: {
+	SourceAws: #SourceAwsConfiguration
+} | {
+	Aws: #AWSConfiguration
+} | {
+	GitHub: #GitHubConfiguration
+} | {
+	Slack: #SlackConfiguration
+} | {
+	Dynatrace: #DynatraceConfiguration
+} | {
+	ServiceNow: #ServiceNowConfiguration
+} | {
+	MCPServer: #MCPServerConfiguration
+} | {
+	GitLab: #GitLabConfiguration
+} | {
+	MCPServerDatadog: #MCPServerDatadogConfiguration
+} | {
+	MCPServerSplunk: #MCPServerSplunkConfiguration
+} | {
+	MCPServerNewRelic: #MCPServerNewRelicConfiguration
+} | {
+	MCPServerGrafana: #MCPServerGrafanaConfiguration
+} | {
+	PagerDuty: #PagerDutyConfiguration
+} | {
+	EventChannel: #EventChannelConfiguration
+} | {
+	Azure: #AzureConfiguration
+} | {
+	MCPServerSigV4: #MCPServerSigV4Configuration
+}
+
+#ServiceId: string & strings.MinRunes(1) & strings.MaxRunes(255)
 
 #ServiceNowConfiguration: {
 	// When set to true, enables the Agent Space to create and update webhooks for receiving notifications and events from the service

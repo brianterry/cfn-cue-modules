@@ -36,6 +36,8 @@ import "strings"
 	TempDirectory?: #S3Location
 }
 
+#ParameterMap: {...}
+
 #RecipeParameters: {
 	AggregateFunction?: string
 	Base?: string

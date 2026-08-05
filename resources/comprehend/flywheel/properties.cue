@@ -33,6 +33,8 @@ import "strings"
 	Type: string & =~"^(?![^\\n\\r\\t,]*\\\\n|\\\\r|\\\\t)[^\\n\\r\\t,]+$" & strings.MinRunes(1) & strings.MaxRunes(64)
 }
 
+#KmsKeyId: string & strings.MinRunes(1) & strings.MaxRunes(2048)
+
 #Tag: {
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)

@@ -48,10 +48,18 @@ package backupplan
 	OptInToArchiveForSupportedResources?: bool
 }
 
+#MalwareScanner: "GUARDDUTY"
+
+#ResourceType: string
+
+#ResourceTypes: [...#ResourceType]
+
 #ScanActionResourceType: {
 	MalwareScanner?: #MalwareScanner
 	ScanMode?: #ScanMode
 }
+
+#ScanMode: "FULL_SCAN" | "INCREMENTAL_SCAN"
 
 #ScanSettingResourceType: {
 	MalwareScanner?: #MalwareScanner

@@ -47,6 +47,10 @@ import "strings"
 	StorageClass?: "STANDARD" | "INTELLIGENT_TIERING"
 }
 
+#TableBucketARN: string
+
+#TableBucketName: string & strings.MinRunes(3) & strings.MaxRunes(63)
+
 #Tag: {
 	// Tag key must be between 1 to 128 characters in length. Tag key cannot start with 'aws:' and can only contain alphanumeric characters, spaces, _, ., /, =, +, -, and @.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)

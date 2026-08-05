@@ -80,9 +80,13 @@ import "strings"
 	AuthenticationType: #KafkaClusterClientAuthenticationType
 }
 
+#KafkaClusterClientAuthenticationType: "NONE" | "IAM"
+
 #KafkaClusterEncryptionInTransit: {
 	EncryptionType: #KafkaClusterEncryptionInTransitType
 }
+
+#KafkaClusterEncryptionInTransitType: "PLAINTEXT" | "TLS"
 
 #LogDelivery: {
 	WorkerLogDelivery: #WorkerLogDelivery
