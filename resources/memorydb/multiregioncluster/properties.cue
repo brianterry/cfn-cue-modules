@@ -18,8 +18,7 @@ import "strings"
 	// The number of shards the multi region cluster will contain.
 	NumShards?: int
 	// A flag that enables in-transit encryption when set to true.
-
-You cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster.
+	// You cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster.
 	TLSEnabled?: bool
 	// An array of key-value pairs to apply to this multi region cluster.
 	Tags?: [...#Tag]

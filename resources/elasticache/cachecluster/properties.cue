@@ -78,7 +78,7 @@ package cachecluster
 #LogDeliveryConfigurationRequest: {
 	// Configuration details of either a CloudWatch Logs destination or Kinesis Data Firehose destination.
 	DestinationDetails: #DestinationDetails
-	// Specify either CloudWatch Logs or Kinesis Data Firehose as the destination type. 
+	// Specify either CloudWatch Logs or Kinesis Data Firehose as the destination type.
 	DestinationType: string
 	// Valid values are either json or text
 	LogFormat: string

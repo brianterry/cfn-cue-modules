@@ -4,10 +4,8 @@ import "strings"
 
 #Properties: {
 	// IAM policy that grants permissions to CloudWatch Logs to deliver logs cross-account to a specified destination in this account.
-
-The policy must be in JSON string format.
-
-Length Constraints: Maximum length of 51200
+	// The policy must be in JSON string format.
+	// Length Constraints: Maximum length of 51200
 	DeliveryDestinationPolicy?: #DestinationPolicy
 	// Displays whether this delivery destination is CloudWatch Logs, Amazon S3, Kinesis Data Firehose, or XRay.
 	DeliveryDestinationType?: string & =~"^[0-9A-Za-z]+$" & strings.MinRunes(1) & strings.MaxRunes(12)

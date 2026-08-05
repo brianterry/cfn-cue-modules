@@ -16,11 +16,11 @@ package restapi
 	FailOnWarnings?: bool
 	MinimumCompressionSize?: int
 	// This property applies only when you use OpenAPI to define your REST API. The ``Mode`` determines how API Gateway handles resource updates.
- Valid values are ``overwrite`` or ``merge``. 
- For ``overwrite``, the new API definition replaces the existing one. The existing API identifier remains unchanged.
-  For ``merge``, the new API definition is merged with the existing API.
- If you don't specify this property, a default value is chosen. For REST APIs created before March 29, 2021, the default is ``overwrite``. For REST APIs created after March 29, 2021, the new API definition takes precedence, but any container types such as endpoint configurations and binary media types are merged with the existing API. 
- Use the default mode to define top-level ``RestApi`` properties in addition to using OpenAPI. Generally, it's preferred to use API Gateway's OpenAPI extensions to model these properties.
+	// Valid values are ``overwrite`` or ``merge``.
+	// For ``overwrite``, the new API definition replaces the existing one. The existing API identifier remains unchanged.
+	// For ``merge``, the new API definition is merged with the existing API.
+	// If you don't specify this property, a default value is chosen. For REST APIs created before March 29, 2021, the default is ``overwrite``. For REST APIs created after March 29, 2021, the new API definition takes precedence, but any container types such as endpoint configurations and binary media types are merged with the existing API.
+	// Use the default mode to define top-level ``RestApi`` properties in addition to using OpenAPI. Generally, it's preferred to use API Gateway's OpenAPI extensions to model these properties.
 	Mode?: string
 	// The name of the RestApi. A name is required if the REST API is not based on an OpenAPI specification.
 	Name?: string

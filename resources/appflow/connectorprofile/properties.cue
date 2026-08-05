@@ -37,7 +37,7 @@ import "strings"
 	// The code provided by the connector when it has been authenticated via the connected app.
 	AuthCode?: string
 	// The URL to which the authentication server redirects the browser after authorization has been
-granted.
+	// granted.
 	RedirectUri?: string
 }
 
@@ -338,7 +338,7 @@ granted.
 	// The region of the Snowﬂake account.
 	Region?: #Region
 	// The name of the Amazon S3 stage that was created while setting up an Amazon S3 stage in the
-Snowﬂake account. This is written in the following format: < Database>< Schema><Stage Name>.
+	// Snowﬂake account. This is written in the following format: < Database>< Schema><Stage Name>.
 	Stage: #Stage
 	// The name of the Snowﬂake warehouse.
 	Warehouse: #Warehouse

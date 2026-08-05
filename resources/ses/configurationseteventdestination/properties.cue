@@ -30,7 +30,7 @@ import "strings"
 #EventDestination: {
 	// An object that contains the names, default values, and sources of the dimensions associated with an Amazon CloudWatch event destination.
 	CloudWatchDestination?: #CloudWatchDestination
-	// Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.   
+	// Sets whether Amazon SES publishes events to this destination when you send an email with the associated configuration set. Set to true to enable publishing to this destination; set to false to prevent publishing to this destination. The default value is false.
 	Enabled?: bool
 	// An object that contains Event bus ARN associated with the event bridge destination.
 	EventBridgeDestination?: #EventBridgeDestination

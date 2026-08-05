@@ -28,9 +28,9 @@ import "strings"
 }
 
 #EnableIoTLoggingParams: {
-	//  Specifies which types of information are logged.
+	// Specifies which types of information are logged.
 	LogLevel: "DEBUG" | "INFO" | "ERROR" | "WARN" | "UNSET_VALUE"
-	//  The ARN of the IAM role used for logging.
+	// The ARN of the IAM role used for logging.
 	RoleArnForLogging: string & strings.MinRunes(11) & strings.MaxRunes(2048)
 }
 

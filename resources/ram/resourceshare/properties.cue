@@ -8,16 +8,11 @@ package resourceshare
 	// Specifies the [Amazon Resource Names (ARNs)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the AWS RAM permission to associate with the resource share. If you do not specify an ARN for the permission, AWS RAM automatically attaches the default version of the permission for each resource type. You can associate only one permission with each resource type included in the resource share.
 	PermissionArns?: [...string]
 	// Specifies the principals to associate with the resource share. The possible values are:
-
-- An AWS account ID
-
-- An Amazon Resource Name (ARN) of an organization in AWS Organizations
-
-- An ARN of an organizational unit (OU) in AWS Organizations
-
-- An ARN of an IAM role
-
-- An ARN of an IAM user
+	// - An AWS account ID
+	// - An Amazon Resource Name (ARN) of an organization in AWS Organizations
+	// - An ARN of an organizational unit (OU) in AWS Organizations
+	// - An ARN of an IAM role
+	// - An ARN of an IAM user
 	Principals?: [...string]
 	// Specifies a list of one or more ARNs of the resources to associate with the resource share.
 	ResourceArns?: [...string]

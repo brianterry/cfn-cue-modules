@@ -2,7 +2,7 @@ package route
 
 #Properties: {
 	// The ID of the carrier gateway.
- You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.
+	// You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.
 	CarrierGatewayId?: string
 	// The Amazon Resource Name (ARN) of the core network.
 	CoreNetworkArn?: string

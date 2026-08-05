@@ -37,8 +37,7 @@ package loadbalancer
 
 #AccessLoggingPolicy: {
 	// The interval for publishing the access logs. You can specify an interval of either 5 minutes or 60 minutes.
-
-Default: 60 minutes
+	// Default: 60 minutes
 	EmitInterval?: int
 	// Specifies whether access logs are enabled for the load balancer.
 	Enabled: bool
@@ -75,8 +74,7 @@ Default: 60 minutes
 	// The instance being checked.
 	Target: string
 	// The amount of time, in seconds, during which no response means a failed health check.
-
-This value must be less than the `Interval` value.
+	// This value must be less than the `Interval` value.
 	Timeout: string
 	// The number of consecutive health check failures required before moving the instance to the `Unhealthy` state.
 	UnhealthyThreshold: string
@@ -93,12 +91,9 @@ This value must be less than the `Interval` value.
 	// The port on which the instance is listening.
 	InstancePort: string
 	// The protocol to use for routing traffic to instances: HTTP, HTTPS, TCP, or SSL.
-
-If the front-end protocol is TCP or SSL, the back-end protocol must be TCP or SSL. If the front-end protocol is HTTP or HTTPS, the back-end protocol must be HTTP or HTTPS.
-
-If there is another listener with the same `InstancePort` whose `InstanceProtocol` is secure, (HTTPS or SSL), the listener's `InstanceProtocol` must also be secure.
-
-If there is another listener with the same `InstancePort` whose `InstanceProtocol` is HTTP or TCP, the listener's `InstanceProtocol` must be HTTP or TCP.
+	// If the front-end protocol is TCP or SSL, the back-end protocol must be TCP or SSL. If the front-end protocol is HTTP or HTTPS, the back-end protocol must be HTTP or HTTPS.
+	// If there is another listener with the same `InstancePort` whose `InstanceProtocol` is secure, (HTTPS or SSL), the listener's `InstanceProtocol` must also be secure.
+	// If there is another listener with the same `InstancePort` whose `InstanceProtocol` is HTTP or TCP, the listener's `InstanceProtocol` must be HTTP or TCP.
 	InstanceProtocol?: string
 	// The port on which the load balancer is listening. On EC2-VPC, you can specify any port from the range 1-65535. On EC2-Classic, you can specify any port from the following list: 25, 80, 443, 465, 587, 1024-65535.
 	LoadBalancerPort: string

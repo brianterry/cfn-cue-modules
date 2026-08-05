@@ -12,8 +12,8 @@ import "strings"
 	Name?: string & =~"^[0-9A-Za-z]+[0-9A-Za-z_\\-]*$" & strings.MinRunes(1) & strings.MaxRunes(100)
 	PipelineProvisioning?: #Provisioning
 	// <p>An optional list of metadata items that you can associate with the Proton service template. A tag is a key-value pair.</p>
-         <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
-        <i>Proton User Guide</i>.</p>
+	// <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
+	// <i>Proton User Guide</i>.</p>
 	Tags?: [...#Tag]
 }
 

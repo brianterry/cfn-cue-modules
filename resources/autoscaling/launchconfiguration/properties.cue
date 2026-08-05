@@ -44,11 +44,11 @@ import "strings"
 }
 
 #BlockDevice: {
-	// Indicates whether the volume is deleted on instance termination. 
+	// Indicates whether the volume is deleted on instance termination.
 	DeleteOnTermination?: bool
-	// Specifies whether the volume should be encrypted. 
+	// Specifies whether the volume should be encrypted.
 	Encrypted?: bool
-	// The number of input/output (I/O) operations per second (IOPS) to provision for the volume. 
+	// The number of input/output (I/O) operations per second (IOPS) to provision for the volume.
 	Iops?: int
 	// The snapshot ID of the volume to use.
 	SnapshotId?: string
@@ -61,7 +61,7 @@ import "strings"
 }
 
 #BlockDeviceMapping: {
-	// The device name exposed to the EC2 instance (for example, /dev/sdh or xvdh). 
+	// The device name exposed to the EC2 instance (for example, /dev/sdh or xvdh).
 	DeviceName: string
 	// Parameters used to automatically set up EBS volumes when an instance is launched.
 	Ebs?: #BlockDevice

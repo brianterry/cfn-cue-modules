@@ -11,13 +11,13 @@ import "strings"
 	DetectorModelName?: string & =~"^[a-zA-Z0-9_-]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	// Information about the order in which events are evaluated and how actions are executed.
 	EvaluationMethod?: "BATCH" | "SERIAL"
-	// The value used to identify a detector instance. When a device or system sends input, a new detector instance with a unique key value is created. ITE can continue to route input to its corresponding detector instance based on this identifying information. 
- This parameter uses a JSON-path expression to select the attribute-value pair in the message payload that is used for identification. To route the message to the correct detector instance, the device must send a message payload that contains the same attribute-value.
+	// The value used to identify a detector instance. When a device or system sends input, a new detector instance with a unique key value is created. ITE can continue to route input to its corresponding detector instance based on this identifying information.
+	// This parameter uses a JSON-path expression to select the attribute-value pair in the message payload that is used for identification. To route the message to the correct detector instance, the device must send a message payload that contains the same attribute-value.
 	Key?: string & =~"^((`[\\w\\- ]+`)|([\\w\\-]+))(\\.((`[\\w\\- ]+`)|([\\w\\-]+)))*$" & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The ARN of the role that grants permission to ITE to perform its operations.
 	RoleArn: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	// An array of key-value pairs to apply to this resource.
- For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).
+	// For more information, see [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html).
 	Tags?: [...#Tag]
 }
 
@@ -93,33 +93,30 @@ import "strings"
 	// The name of the hash key (also called the partition key). The ``hashKeyField`` value must match the partition key of the target DynamoDB table.
 	HashKeyField: string
 	// The data type for the hash key (also called the partition key). You can specify the following values:
-  +  ``'STRING'`` - The hash key is a string.
-  +  ``'NUMBER'`` - The hash key is a number.
-  
- If you don't specify ``hashKeyType``, the default value is ``'STRING'``.
+	// +  ``'STRING'`` - The hash key is a string.
+	// +  ``'NUMBER'`` - The hash key is a number.
+	// If you don't specify ``hashKeyType``, the default value is ``'STRING'``.
 	HashKeyType?: string
 	// The value of the hash key (also called the partition key).
 	HashKeyValue: string
-	// The type of operation to perform. You can specify the following values: 
-  +  ``'INSERT'`` - Insert data as a new item into the DynamoDB table. This item uses the specified hash key as a partition key. If you specified a range key, the item uses the range key as a sort key.
-  +  ``'UPDATE'`` - Update an existing item of the DynamoDB table with new data. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.
-  +  ``'DELETE'`` - Delete an existing item of the DynamoDB table. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.
-  
- If you don't specify this parameter, ITE triggers the ``'INSERT'`` operation.
+	// The type of operation to perform. You can specify the following values:
+	// +  ``'INSERT'`` - Insert data as a new item into the DynamoDB table. This item uses the specified hash key as a partition key. If you specified a range key, the item uses the range key as a sort key.
+	// +  ``'UPDATE'`` - Update an existing item of the DynamoDB table with new data. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.
+	// +  ``'DELETE'`` - Delete an existing item of the DynamoDB table. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.
+	// If you don't specify this parameter, ITE triggers the ``'INSERT'`` operation.
 	Operation?: string
 	// Information needed to configure the payload.
- By default, ITE generates a standard payload in JSON for any action. This action payload contains all attribute-value pairs that have the information about the detector model instance and the event triggered the action. To configure the action payload, you can use ``contentExpression``.
+	// By default, ITE generates a standard payload in JSON for any action. This action payload contains all attribute-value pairs that have the information about the detector model instance and the event triggered the action. To configure the action payload, you can use ``contentExpression``.
 	Payload?: #Payload
 	// The name of the DynamoDB column that receives the action payload.
- If you don't specify this parameter, the name of the DynamoDB column is ``payload``.
+	// If you don't specify this parameter, the name of the DynamoDB column is ``payload``.
 	PayloadField?: string
 	// The name of the range key (also called the sort key). The ``rangeKeyField`` value must match the sort key of the target DynamoDB table.
 	RangeKeyField?: string
 	// The data type for the range key (also called the sort key), You can specify the following values:
-  +  ``'STRING'`` - The range key is a string.
-  +  ``'NUMBER'`` - The range key is number.
-  
- If you don't specify ``rangeKeyField``, the default value is ``'STRING'``.
+	// +  ``'STRING'`` - The range key is a string.
+	// +  ``'NUMBER'`` - The range key is number.
+	// If you don't specify ``rangeKeyField``, the default value is ``'STRING'``.
 	RangeKeyType?: string
 	// The value of the range key (also called the sort key).
 	RangeKeyValue?: string
@@ -129,7 +126,7 @@ import "strings"
 
 #DynamoDBv2: {
 	// Information needed to configure the payload.
- By default, ITE generates a standard payload in JSON for any action. This action payload contains all attribute-value pairs that have the information about the detector model instance and the event triggered the action. To configure the action payload, you can use ``contentExpression``.
+	// By default, ITE generates a standard payload in JSON for any action. This action payload contains all attribute-value pairs that have the information about the detector model instance and the event triggered the action. To configure the action payload, you can use ``contentExpression``.
 	Payload?: #Payload
 	// The name of the DynamoDB table.
 	TableName: string

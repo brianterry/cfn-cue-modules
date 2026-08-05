@@ -30,7 +30,7 @@ import "strings"
 }
 
 #Destination: {
-	// The account ID that owns the destination S3 bucket. 
+	// The account ID that owns the destination S3 bucket.
 	BucketAccountId?: string
 	// The Amazon Resource Name (ARN) of the destination Amazon S3 bucket to which data is exported.
 	BucketArn: string

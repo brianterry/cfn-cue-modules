@@ -4,11 +4,11 @@ package listener
 	// [TLS listener] The name of the Application-Layer Protocol Negotiation (ALPN) policy.
 	AlpnPolicy?: [...string]
 	// The default SSL server certificate for a secure listener. You must provide exactly one certificate if the listener protocol is HTTPS or TLS.
- For an HTTPS listener, update requires some interruptions. For a TLS listener, update requires no interruption.
- To create a certificate list for a secure listener, use [AWS::ElasticLoadBalancingV2::ListenerCertificate](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html).
+	// For an HTTPS listener, update requires some interruptions. For a TLS listener, update requires no interruption.
+	// To create a certificate list for a secure listener, use [AWS::ElasticLoadBalancingV2::ListenerCertificate](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html).
 	Certificates?: [...#Certificate]
 	// The actions for the default rule. You cannot define a condition for a default rule.
- To create additional rules for an Application Load Balancer, use [AWS::ElasticLoadBalancingV2::ListenerRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html).
+	// To create additional rules for an Application Load Balancer, use [AWS::ElasticLoadBalancingV2::ListenerRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html).
 	DefaultActions: [...#Action]
 	// The listener attributes. Attributes that you do not modify retain their current values.
 	ListenerAttributes?: [...#ListenerAttribute]
@@ -21,7 +21,7 @@ package listener
 	// The protocol for connections from clients to the load balancer. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, TCP_UDP, QUIC, and TCP_QUIC. You can’t specify the UDP, TCP_UDP, QUIC, or TCP_QUIC protocol if dual-stack mode is enabled. You can't specify a protocol for a Gateway Load Balancer.
 	Protocol?: string
 	// [HTTPS and TLS listeners] The security policy that defines which protocols and ciphers are supported. For more information, see [Security policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html) in the *Application Load Balancers Guide* and [Security policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/describe-ssl-policies.html) in the *Network Load Balancers Guide*.
- [HTTPS listeners] Updating the security policy can result in interruptions if the load balancer is handling a high volume of traffic. To decrease the possibility of an interruption if your load balancer is handling a high volume of traffic, create an additional load balancer or request an LCU reservation.
+	// [HTTPS listeners] Updating the security policy can result in interruptions if the load balancer is handling a high volume of traffic. To decrease the possibility of an interruption if your load balancer is handling a high volume of traffic, create an additional load balancer or request an LCU reservation.
 	SslPolicy?: string
 	Tags?: [...#Tag]
 }
@@ -34,7 +34,7 @@ package listener
 	// [Application Load Balancer] Information for creating an action that returns a custom HTTP response. Specify only when ``Type`` is ``fixed-response``.
 	FixedResponseConfig?: #FixedResponseConfig
 	// Information for creating an action that distributes requests among multiple target groups. Specify only when ``Type`` is ``forward``.
- If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``.
+	// If you specify both ``ForwardConfig`` and ``TargetGroupArn``, you can specify only one target group using ``ForwardConfig`` and it must be the same target group specified in ``TargetGroupArn``.
 	ForwardConfig?: #ForwardConfig
 	// [HTTPS listeners] Information for validating JWT access tokens in client requests. Specify only when ``Type`` is ``jwt-validation``.
 	JwtValidationConfig?: #JwtValidationConfig
@@ -52,12 +52,12 @@ package listener
 	// The query parameters (up to 10) to include in the redirect request to the authorization endpoint.
 	AuthenticationRequestExtraParams?: {...}
 	// The behavior if the user is not authenticated. The following are possible values:
-  +  deny```` - Return an HTTP 401 Unauthorized error.
-  +  allow```` - Allow the request to be forwarded to the target.
-  +  authenticate```` - Redirect the request to the IdP authorization endpoint. This is the default value.
+	// +  deny```` - Return an HTTP 401 Unauthorized error.
+	// +  allow```` - Allow the request to be forwarded to the target.
+	// +  authenticate```` - Redirect the request to the IdP authorization endpoint. This is the default value.
 	OnUnauthenticatedRequest?: string
 	// The set of user claims to be requested from the IdP. The default is ``openid``.
- To verify which scope values your IdP supports and how to separate multiple values, see the documentation for your IdP.
+	// To verify which scope values your IdP supports and how to separate multiple values, see the documentation for your IdP.
 	Scope?: string
 	// The name of the cookie used to maintain session information. The default is AWSELBAuthSessionCookie.
 	SessionCookieName?: string
@@ -83,12 +83,12 @@ package listener
 	// The OIDC issuer identifier of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.
 	Issuer: string
 	// The behavior if the user is not authenticated. The following are possible values:
-  +  deny```` - Return an HTTP 401 Unauthorized error.
-  +  allow```` - Allow the request to be forwarded to the target.
-  +  authenticate```` - Redirect the request to the IdP authorization endpoint. This is the default value.
+	// +  deny```` - Return an HTTP 401 Unauthorized error.
+	// +  allow```` - Allow the request to be forwarded to the target.
+	// +  authenticate```` - Redirect the request to the IdP authorization endpoint. This is the default value.
 	OnUnauthenticatedRequest?: string
 	// The set of user claims to be requested from the IdP. The default is ``openid``.
- To verify which scope values your IdP supports and how to separate multiple values, see the documentation for your IdP.
+	// To verify which scope values your IdP supports and how to separate multiple values, see the documentation for your IdP.
 	Scope?: string
 	// The name of the cookie used to maintain session information. The default is AWSELBAuthSessionCookie.
 	SessionCookieName?: string
@@ -109,7 +109,7 @@ package listener
 
 #FixedResponseConfig: {
 	// The content type.
- Valid Values: text/plain | text/css | text/html | application/javascript | application/json
+	// Valid Values: text/plain | text/css | text/html | application/javascript | application/json
 	ContentType?: string
 	// The message.
 	MessageBody?: string
@@ -141,29 +141,28 @@ package listener
 
 #ListenerAttribute: {
 	// The name of the attribute.
- The following attribute is supported by Network Load Balancers, and Gateway Load Balancers.
-  +  ``tcp.idle_timeout.seconds`` - The tcp idle timeout value, in seconds. The valid range is 60-6000 seconds. The default is 350 seconds.
-  
- The following attributes are only supported by Application Load Balancers.
-  +  ``routing.http.request.x_amzn_mtls_clientcert_serial_number.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Serial-Number* HTTP request header.
-  +  ``routing.http.request.x_amzn_mtls_clientcert_issuer.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Issuer* HTTP request header.
-  +  ``routing.http.request.x_amzn_mtls_clientcert_subject.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Subject* HTTP request header.
-  +  ``routing.http.request.x_amzn_mtls_clientcert_validity.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Validity* HTTP request header.
-  +  ``routing.http.request.x_amzn_mtls_clientcert_leaf.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Leaf* HTTP request header.
-  +  ``routing.http.request.x_amzn_mtls_clientcert.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert* HTTP request header.
-  +  ``routing.http.request.x_amzn_tls_version.header_name`` - Enables you to modify the header name of the *X-Amzn-Tls-Version* HTTP request header.
-  +  ``routing.http.request.x_amzn_tls_cipher_suite.header_name`` - Enables you to modify the header name of the *X-Amzn-Tls-Cipher-Suite* HTTP request header.
-  +  ``routing.http.response.server.enabled`` - Enables you to allow or remove the HTTP response server header.
-  +  ``routing.http.response.strict_transport_security.header_value`` - Informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS.
-  +  ``routing.http.response.access_control_allow_origin.header_value`` - Specifies which origins are allowed to access the server.
-  +  ``routing.http.response.access_control_allow_methods.header_value`` - Returns which HTTP methods are allowed when accessing the server from a different origin.
-  +  ``routing.http.response.access_control_allow_headers.header_value`` - Specifies which headers can be used during the request.
-  +  ``routing.http.response.access_control_allow_credentials.header_value`` - Indicates whether the browser should include credentials such as cookies or authentication when making requests.
-  +  ``routing.http.response.access_control_expose_headers.header_value`` - Returns which headers the browser can expose to the requesting client.
-  +  ``routing.http.response.access_control_max_age.header_value`` - Specifies how long the results of a preflight request can be cached, in seconds.
-  +  ``routing.http.response.content_security_policy.header_value`` - Specifies restrictions enforced by the browser to help minimize the risk of certain types of security threats.
-  +  ``routing.http.response.x_content_type_options.header_value`` - Indicates whether the MIME types advertised in the *Content-Type* headers should be followed and not be changed.
-  +  ``routing.http.response.x_frame_options.header_value`` - Indicates whether the browser is allowed to render a page in a *frame*, *iframe*, *embed* or *object*.
+	// The following attribute is supported by Network Load Balancers, and Gateway Load Balancers.
+	// +  ``tcp.idle_timeout.seconds`` - The tcp idle timeout value, in seconds. The valid range is 60-6000 seconds. The default is 350 seconds.
+	// The following attributes are only supported by Application Load Balancers.
+	// +  ``routing.http.request.x_amzn_mtls_clientcert_serial_number.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Serial-Number* HTTP request header.
+	// +  ``routing.http.request.x_amzn_mtls_clientcert_issuer.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Issuer* HTTP request header.
+	// +  ``routing.http.request.x_amzn_mtls_clientcert_subject.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Subject* HTTP request header.
+	// +  ``routing.http.request.x_amzn_mtls_clientcert_validity.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Validity* HTTP request header.
+	// +  ``routing.http.request.x_amzn_mtls_clientcert_leaf.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert-Leaf* HTTP request header.
+	// +  ``routing.http.request.x_amzn_mtls_clientcert.header_name`` - Enables you to modify the header name of the *X-Amzn-Mtls-Clientcert* HTTP request header.
+	// +  ``routing.http.request.x_amzn_tls_version.header_name`` - Enables you to modify the header name of the *X-Amzn-Tls-Version* HTTP request header.
+	// +  ``routing.http.request.x_amzn_tls_cipher_suite.header_name`` - Enables you to modify the header name of the *X-Amzn-Tls-Cipher-Suite* HTTP request header.
+	// +  ``routing.http.response.server.enabled`` - Enables you to allow or remove the HTTP response server header.
+	// +  ``routing.http.response.strict_transport_security.header_value`` - Informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS.
+	// +  ``routing.http.response.access_control_allow_origin.header_value`` - Specifies which origins are allowed to access the server.
+	// +  ``routing.http.response.access_control_allow_methods.header_value`` - Returns which HTTP methods are allowed when accessing the server from a different origin.
+	// +  ``routing.http.response.access_control_allow_headers.header_value`` - Specifies which headers can be used during the request.
+	// +  ``routing.http.response.access_control_allow_credentials.header_value`` - Indicates whether the browser should include credentials such as cookies or authentication when making requests.
+	// +  ``routing.http.response.access_control_expose_headers.header_value`` - Returns which headers the browser can expose to the requesting client.
+	// +  ``routing.http.response.access_control_max_age.header_value`` - Specifies how long the results of a preflight request can be cached, in seconds.
+	// +  ``routing.http.response.content_security_policy.header_value`` - Specifies restrictions enforced by the browser to help minimize the risk of certain types of security threats.
+	// +  ``routing.http.response.x_content_type_options.header_value`` - Indicates whether the MIME types advertised in the *Content-Type* headers should be followed and not be changed.
+	// +  ``routing.http.response.x_frame_options.header_value`` - Indicates whether the browser is allowed to render a page in a *frame*, *iframe*, *embed* or *object*.
 	Key?: string
 	// The value of the attribute.
 	Value?: string

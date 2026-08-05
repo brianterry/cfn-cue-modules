@@ -27,13 +27,13 @@ package customactiontype
 }
 
 #ConfigurationProperties: {
-	// The description of the action configuration property that is displayed to users. 
+	// The description of the action configuration property that is displayed to users.
 	Description?: string
 	// Whether the configuration property is a key.
 	Key: bool
 	// The name of the action configuration property.
 	Name: string
-	// Indicates that the property is used with PollForJobs. When creating a custom action, an action can have up to one queryable property. If it has one, that property must be both required and not secret.If you create a pipeline with a custom action type, and that custom action contains a queryable property, the value for that configuration property is subject to other restrictions. The value must be less than or equal to twenty (20) characters. The value can contain only alphanumeric characters, underscores, and hyphens. 
+	// Indicates that the property is used with PollForJobs. When creating a custom action, an action can have up to one queryable property. If it has one, that property must be both required and not secret.If you create a pipeline with a custom action type, and that custom action contains a queryable property, the value for that configuration property is subject to other restrictions. The value must be less than or equal to twenty (20) characters. The value can contain only alphanumeric characters, underscores, and hyphens.
 	Queryable?: bool
 	// Whether the configuration property is a required value.
 	Required: bool
@@ -44,11 +44,11 @@ package customactiontype
 }
 
 #Settings: {
-	// The URL returned to the AWS CodePipeline console that provides a deep link to the resources of the external system, such as the configuration page for an AWS CodeDeploy deployment group. This link is provided as part of the action display in the pipeline. 
+	// The URL returned to the AWS CodePipeline console that provides a deep link to the resources of the external system, such as the configuration page for an AWS CodeDeploy deployment group. This link is provided as part of the action display in the pipeline.
 	EntityUrlTemplate?: string
-	// The URL returned to the AWS CodePipeline console that contains a link to the top-level landing page for the external system, such as the console page for AWS CodeDeploy. This link is shown on the pipeline view page in the AWS CodePipeline console and provides a link to the execution entity of the external action. 
+	// The URL returned to the AWS CodePipeline console that contains a link to the top-level landing page for the external system, such as the console page for AWS CodeDeploy. This link is shown on the pipeline view page in the AWS CodePipeline console and provides a link to the execution entity of the external action.
 	ExecutionUrlTemplate?: string
-	// The URL returned to the AWS CodePipeline console that contains a link to the page where customers can update or change the configuration of the external action. 
+	// The URL returned to the AWS CodePipeline console that contains a link to the page where customers can update or change the configuration of the external action.
 	RevisionUrlTemplate?: string
 	// The URL of a sign-up page where users can sign up for an external service and perform initial configuration of the action provided by that service.
 	ThirdPartyConfigurationUrl?: string

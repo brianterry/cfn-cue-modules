@@ -26,20 +26,20 @@ package loggingconfiguration
 }
 
 #FieldToMatch: {
-	// Inspect the HTTP method. The method indicates the type of operation that the request is asking the origin to perform. 
+	// Inspect the HTTP method. The method indicates the type of operation that the request is asking the origin to perform.
 	Method?: {...}
-	// Inspect the query string. This is the part of a URL that appears after a ? character, if any. 
+	// Inspect the query string. This is the part of a URL that appears after a ? character, if any.
 	QueryString?: {...}
 	// Inspect a single header. Provide the name of the header to inspect, for example, User-Agent or Referer. This setting isn't case sensitive.
 	SingleHeader?: {
 		Name: string
 	}
-	// Inspect the request URI path. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg. 
+	// Inspect the request URI path. This is the part of a web request that identifies a resource, for example, /images/daily-ad.jpg.
 	UriPath?: {...}
 }
 
 #Filter: {
-	// How to handle logs that satisfy the filter's conditions and requirement. 
+	// How to handle logs that satisfy the filter's conditions and requirement.
 	Behavior: "KEEP" | "DROP"
 	// Match conditions for the filter.
 	Conditions: [...#Condition]

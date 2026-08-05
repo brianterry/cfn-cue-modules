@@ -2516,20 +2516,20 @@ import "strings"
 	// <p>The IAM action to grant or revoke permissions on.</p>
 	Actions: [...string]
 	// <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
-            following:</p>
-         <ul>
-            <li>
-               <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
-            </li>
-            <li>
-               <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
-            </li>
-            <li>
-               <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
-                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
-                    (This is less common.) </p>
-            </li>
-         </ul>
+	// following:</p>
+	// <ul>
+	// <li>
+	// <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
+	// </li>
+	// <li>
+	// <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+	// </li>
+	// <li>
+	// <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
+	// ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
+	// (This is less common.) </p>
+	// </li>
+	// </ul>
 	Principal: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
@@ -2694,7 +2694,7 @@ import "strings"
 
 #Sheet: {
 	// <p>The name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight
-            console.</p>
+	// console.</p>
 	Name?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	// <p>The unique identifier associated with a sheet.</p>
 	SheetId?: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)
@@ -3056,7 +3056,7 @@ import "strings"
 	// <p>The Amazon Resource Name (ARN) of the resource.</p>
 	Arn: string
 	// <p>A structure containing information about the dataset references used as placeholders
-            in the template.</p>
+	// in the template.</p>
 	DataSetReferences: [...#DataSetReference]
 }
 
@@ -3074,8 +3074,8 @@ import "strings"
 	// <p>The time that this template version was created.</p>
 	CreatedTime?: string
 	// <p>Schema of the dataset identified by the placeholder. Any dashboard created from this
-            template should be bound to new datasets matching the same schema described through this
-            API operation.</p>
+	// template should be bound to new datasets matching the same schema described through this
+	// API operation.</p>
 	DataSetConfigurations?: [...#DataSetConfiguration]
 	// <p>The description of the template.</p>
 	Description?: string & strings.MinRunes(1) & strings.MaxRunes(512)
@@ -3084,7 +3084,7 @@ import "strings"
 	// <p>A list of the associated sheets with the unique identifier and name of each sheet.</p>
 	Sheets?: [...#Sheet]
 	// <p>The Amazon Resource Name (ARN) of an analysis or template that was used to create this
-            template.</p>
+	// template.</p>
 	SourceEntityArn?: string
 	Status?: #ResourceStatus
 	// <p>The ARN of the theme associated with this version of the template.</p>

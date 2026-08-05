@@ -7,15 +7,15 @@ package targetgroup
 	HealthCheckIntervalSeconds?: int
 	// [HTTP/HTTPS health checks] The destination for health checks on the targets. [HTTP1 or HTTP2 protocol version] The ping path. The default is /. [GRPC protocol version] The path of a custom health check method with the format /package.service/method. The default is /AWS.ALB/healthcheck.
 	HealthCheckPath?: string
-	// The port the load balancer uses when performing health checks on targets. 
+	// The port the load balancer uses when performing health checks on targets.
 	HealthCheckPort?: string
-	// The protocol the load balancer uses when performing health checks on targets. 
+	// The protocol the load balancer uses when performing health checks on targets.
 	HealthCheckProtocol?: string
 	// The amount of time, in seconds, during which no response from a target means a failed health check.
 	HealthCheckTimeoutSeconds?: int
-	// The number of consecutive health checks successes required before considering an unhealthy target healthy. 
+	// The number of consecutive health checks successes required before considering an unhealthy target healthy.
 	HealthyThresholdCount?: int
-	// The type of IP address used for this target group. The possible values are ipv4 and ipv6. 
+	// The type of IP address used for this target group. The possible values are ipv4 and ipv6.
 	IpAddressType?: string
 	// [HTTP/HTTPS health checks] The HTTP or gRPC codes to use when checking for a successful response from a target.
 	Matcher?: #Matcher
@@ -46,21 +46,21 @@ package targetgroup
 #Matcher: {
 	// You can specify values between 0 and 99. You can specify multiple values, or a range of values. The default value is 12.
 	GrpcCode?: string
-	// For Application Load Balancers, you can specify values between 200 and 499, and the default value is 200. You can specify multiple values or a range of values. 
+	// For Application Load Balancers, you can specify values between 200 and 499, and the default value is 200. You can specify multiple values or a range of values.
 	HttpCode?: string
 }
 
 #Tag: {
-	// The value for the tag. 
+	// The value for the tag.
 	Key: string
-	// The key name of the tag. 
+	// The key name of the tag.
 	Value: string
 }
 
 #TargetDescription: {
 	// An Availability Zone or all. This determines whether the target receives traffic from the load balancer nodes in the specified Availability Zone or from all enabled Availability Zones for the load balancer.
 	AvailabilityZone?: string
-	// The ID of the target. If the target type of the target group is instance, specify an instance ID. If the target type is ip, specify an IP address. If the target type is lambda, specify the ARN of the Lambda function. If the target type is alb, specify the ARN of the Application Load Balancer target. 
+	// The ID of the target. If the target type of the target group is instance, specify an instance ID. If the target type is ip, specify an IP address. If the target type is lambda, specify the ARN of the Lambda function. If the target type is alb, specify the ARN of the Application Load Balancer target.
 	Id: string
 	// The port on which the target is listening. If the target group protocol is GENEVE, the supported port is 6081. If the target type is alb, the targeted Application Load Balancer must have at least one listener whose port matches the target group port. Not used if the target is a Lambda function.
 	Port?: int

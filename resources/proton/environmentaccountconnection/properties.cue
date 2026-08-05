@@ -16,8 +16,8 @@ import "strings"
 	// The Amazon Resource Name (ARN) of the IAM service role that's created in the environment account. AWS Proton uses this role to provision infrastructure resources in the associated environment account.
 	RoleArn?: string & =~"^arn:(aws|aws-cn|aws-us-gov):iam::\\d{12}:role/([\\w+=,.@-]{1,512}[/:])*([\\w+=,.@-]{1,64})$" & strings.MinRunes(1) & strings.MaxRunes(200)
 	// <p>An optional list of metadata items that you can associate with the Proton environment account connection. A tag is a key-value pair.</p>
-         <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
-        <i>Proton User Guide</i>.</p>
+	// <p>For more information, see <a href="https://docs.aws.amazon.com/proton/latest/userguide/resources.html">Proton resources and tagging</a> in the
+	// <i>Proton User Guide</i>.</p>
 	Tags?: [...#Tag]
 }
 

@@ -155,9 +155,9 @@ import "strings"
 }
 
 #Tag: {
-	// The value for the tag. You can specify a value that is 1 to 128 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The value for the tag. You can specify a value that is 1 to 128 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & =~"^[A-Za-z0-9 /_.:=+@-]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
-	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & =~"^[A-Za-z0-9 /_.:=+@-]*$" & strings.MinRunes(0) & strings.MaxRunes(256)
 }
 

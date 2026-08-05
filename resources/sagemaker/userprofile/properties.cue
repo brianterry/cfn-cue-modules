@@ -180,7 +180,7 @@ import "strings"
 }
 
 #UserSettings: {
-	// Indicates whether auto-mounting of an EFS volume is supported for the user profile. 
+	// Indicates whether auto-mounting of an EFS volume is supported for the user profile.
 	AutoMountHomeEFS?: "Enabled" | "Disabled" | "DefaultAsDomain"
 	CodeEditorAppSettings?: #CodeEditorAppSettings
 	CustomFileSystemConfigs?: [...#CustomFileSystemConfig]

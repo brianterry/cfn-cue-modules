@@ -116,7 +116,7 @@ package principalpermissions
 	// The name of the table.
 	Name?: #NameString
 	// A wildcard object representing every table under a database.
- At least one of ``TableResource$Name`` or ``TableResource$TableWildcard`` is required.
+	// At least one of ``TableResource$Name`` or ``TableResource$TableWildcard`` is required.
 	TableWildcard?: #TableWildcard
 }
 

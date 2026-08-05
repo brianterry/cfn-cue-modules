@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	// This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).
- If this value is ``true``, the metric filter is applied on the transformed version of the log events instead of the original ingested log events.
+	// If this value is ``true``, the metric filter is applied on the transformed version of the log events instead of the original ingested log events.
 	ApplyOnTransformedLogs?: bool
 	// The list of system fields that are emitted as additional dimensions in the generated metrics. Returns the ``emitSystemFieldDimensions`` value if it was specified when the metric filter was created.
 	EmitSystemFieldDimensions?: [...string]
@@ -22,7 +22,7 @@ import "strings"
 
 #Dimension: {
 	// The name for the CW metric dimension that the metric filter creates.
- Dimension names must contain only ASCII characters, must include at least one non-whitespace character, and cannot start with a colon (:).
+	// Dimension names must contain only ASCII characters, must include at least one non-whitespace character, and cannot start with a colon (:).
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(255)
 	// The log event field that will contain the value for this dimension. This dimension will only be published for a metric if the value is found in the log event. For example, ``$.eventType`` for JSON log events, or ``$server`` for space-delimited log events.
 	Value: string & strings.MinRunes(1) & strings.MaxRunes(255)
@@ -32,9 +32,9 @@ import "strings"
 	// (Optional) The value to emit when a filter pattern does not match a log event. This value can be null.
 	DefaultValue?: number
 	// The fields to use as dimensions for the metric. One metric filter can include as many as three dimensions.
-  Metrics extracted from log events are charged as custom metrics. To prevent unexpected high charges, do not specify high-cardinality fields such as ``IPAddress`` or ``requestID`` as dimensions. Each different value found for a dimension is treated as a separate metric and accrues charges as a separate custom metric. 
- CloudWatch Logs disables a metric filter if it generates 1000 different name/value pairs for your specified dimensions within a certain amount of time. This helps to prevent accidental high charges.
- You can also set up a billing alarm to alert you if your charges are higher than expected. For more information, see [Creating a Billing Alarm to Monitor Your Estimated Charges](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
+	// Metrics extracted from log events are charged as custom metrics. To prevent unexpected high charges, do not specify high-cardinality fields such as ``IPAddress`` or ``requestID`` as dimensions. Each different value found for a dimension is treated as a separate metric and accrues charges as a separate custom metric.
+	// CloudWatch Logs disables a metric filter if it generates 1000 different name/value pairs for your specified dimensions within a certain amount of time. This helps to prevent accidental high charges.
+	// You can also set up a billing alarm to alert you if your charges are higher than expected. For more information, see [Creating a Billing Alarm to Monitor Your Estimated Charges](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
 	Dimensions?: [...#Dimension]
 	// The name of the CloudWatch metric.
 	MetricName: string & =~"^((?![:*$])[\\x00-\\x7F]){1,255}" & strings.MinRunes(1) & strings.MaxRunes(255)

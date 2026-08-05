@@ -57,146 +57,93 @@ import "strings"
 
 #MetricDefinition: {
 	// Use this field only if you are sending the metric to CloudWatch.
-
-This field is a map of field paths to dimension names. It defines the dimensions to associate with this metric in CloudWatch. For extended metrics, valid values for the entries in this field are the following:
-
-"metadata.pageId": "PageId"
-
-"metadata.browserName": "BrowserName"
-
-"metadata.deviceType": "DeviceType"
-
-"metadata.osName": "OSName"
-
-"metadata.countryCode": "CountryCode"
-
-"event_details.fileType": "FileType"
-
-All dimensions listed in this field must also be included in EventPattern.
+	// This field is a map of field paths to dimension names. It defines the dimensions to associate with this metric in CloudWatch. For extended metrics, valid values for the entries in this field are the following:
+	// "metadata.pageId": "PageId"
+	// "metadata.browserName": "BrowserName"
+	// "metadata.deviceType": "DeviceType"
+	// "metadata.osName": "OSName"
+	// "metadata.countryCode": "CountryCode"
+	// "event_details.fileType": "FileType"
+	// All dimensions listed in this field must also be included in EventPattern.
 	DimensionKeys?: {...}
 	// The pattern that defines the metric, specified as a JSON object. RUM checks events that happen in a user's session against the pattern, and events that match the pattern are sent to the metric destination.
-
-When you define extended metrics, the metric definition is not valid if EventPattern is omitted.
-
-Example event patterns:
-
-'{ "event_type": ["com.amazon.rum.js_error_event"], "metadata": { "browserName": [ "Chrome", "Safari" ], } }'
-
-'{ "event_type": ["com.amazon.rum.performance_navigation_event"], "metadata": { "browserName": [ "Chrome", "Firefox" ] }, "event_details": { "duration": [{ "numeric": [ "<", 2000 ] }] } }'
-
-'{ "event_type": ["com.amazon.rum.performance_navigation_event"], "metadata": { "browserName": [ "Chrome", "Safari" ], "countryCode": [ "US" ] }, "event_details": { "duration": [{ "numeric": [ ">=", 2000, "<", 8000 ] }] } }'
-
-If the metrics destination' is CloudWatch and the event also matches a value in DimensionKeys, then the metric is published with the specified dimensions.
+	// When you define extended metrics, the metric definition is not valid if EventPattern is omitted.
+	// Example event patterns:
+	// '{ "event_type": ["com.amazon.rum.js_error_event"], "metadata": { "browserName": [ "Chrome", "Safari" ], } }'
+	// '{ "event_type": ["com.amazon.rum.performance_navigation_event"], "metadata": { "browserName": [ "Chrome", "Firefox" ] }, "event_details": { "duration": [{ "numeric": [ "<", 2000 ] }] } }'
+	// '{ "event_type": ["com.amazon.rum.performance_navigation_event"], "metadata": { "browserName": [ "Chrome", "Safari" ], "countryCode": [ "US" ] }, "event_details": { "duration": [{ "numeric": [ ">=", 2000, "<", 8000 ] }] } }'
+	// If the metrics destination' is CloudWatch and the event also matches a value in DimensionKeys, then the metric is published with the specified dimensions.
 	EventPattern?: string & strings.MinRunes(1) & strings.MaxRunes(4000)
 	// The name for the metric that is defined in this structure. For extended metrics, valid values are the following:
-
-PerformanceNavigationDuration
-
-PerformanceResourceDuration
-
-NavigationSatisfiedTransaction
-
-NavigationToleratedTransaction
-
-NavigationFrustratedTransaction
-
-WebVitalsCumulativeLayoutShift
-
-WebVitalsFirstInputDelay
-
-WebVitalsLargestContentfulPaint
-
-WebVitalsInteractionToNextPaint
-
-JsErrorCount
-
-HttpErrorCount
-
-SessionCount
-
-PageViewCount
-
-Http4xxCount
-
-Http5xxCount
-
-SessionDuration
-
-PageViewCountPerSession
-
-JsErrorCountPerSession
-
-Http4xxCountPerSession
-
-Http5xxCountPerSession
-
-JsErrorCountPerPageView
-
-Http4xxCountPerPageView
-
-Http5xxCountPerPageView
-
-TimeOnPage
-
-ColdLaunchTime
-
-WarmLaunchTime
-
-CrashCount
-
-ANRCount
-
-AppHangCount
-
-ScreenLoadCount
-
-ScreenLoadTime
-
-NetworkLatency
-
-SpanPayloadSize
-
-LogEventPayloadSize
+	// PerformanceNavigationDuration
+	// PerformanceResourceDuration
+	// NavigationSatisfiedTransaction
+	// NavigationToleratedTransaction
+	// NavigationFrustratedTransaction
+	// WebVitalsCumulativeLayoutShift
+	// WebVitalsFirstInputDelay
+	// WebVitalsLargestContentfulPaint
+	// WebVitalsInteractionToNextPaint
+	// JsErrorCount
+	// HttpErrorCount
+	// SessionCount
+	// PageViewCount
+	// Http4xxCount
+	// Http5xxCount
+	// SessionDuration
+	// PageViewCountPerSession
+	// JsErrorCountPerSession
+	// Http4xxCountPerSession
+	// Http5xxCountPerSession
+	// JsErrorCountPerPageView
+	// Http4xxCountPerPageView
+	// Http5xxCountPerPageView
+	// TimeOnPage
+	// ColdLaunchTime
+	// WarmLaunchTime
+	// CrashCount
+	// ANRCount
+	// AppHangCount
+	// ScreenLoadCount
+	// ScreenLoadTime
+	// NetworkLatency
+	// SpanPayloadSize
+	// LogEventPayloadSize
 	Name: string & strings.MinRunes(1) & strings.MaxRunes(255)
 	// The namespace used by CloudWatch Metrics for the metric that is defined in this structure
 	Namespace?: string & =~"[a-zA-Z0-9-._/#:]+$" & strings.MinRunes(1) & strings.MaxRunes(237)
 	// The CloudWatch metric unit to use for this metric. If you omit this field, the metric is recorded with no unit.
 	UnitLabel?: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	// The field within the event object that the metric value is sourced from.
-
-If you omit this field, a hardcoded value of 1 is pushed as the metric value. This is useful if you just want to count the number of events that the filter catches.
-
-If this metric is sent to Evidently, this field will be passed to Evidently raw and Evidently will handle data extraction from the event. Note: Evidently has been discontinued.
+	// If you omit this field, a hardcoded value of 1 is pushed as the metric value. This is useful if you just want to count the number of events that the filter catches.
+	// If this metric is sent to Evidently, this field will be passed to Evidently raw and Evidently will handle data extraction from the event. Note: Evidently has been discontinued.
 	ValueKey?: string & =~".*" & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
 #MetricDestination: {
 	// Defines the destination to send the metrics to. Valid values are CloudWatch and Evidently. Note: Evidently has been discontinued and is no longer supported - requests with Evidently will be rejected.
 	Destination: "CloudWatch" | "Evidently"
-	// Evidently has been discontinued and therefore this is no longer an acceptable field. If Destination is CloudWatch, do not use this parameter. 
-
-This parameter specifies the ARN of the Evidently experiment that will receive the extended metrics.
+	// Evidently has been discontinued and therefore this is no longer an acceptable field. If Destination is CloudWatch, do not use this parameter.
+	// This parameter specifies the ARN of the Evidently experiment that will receive the extended metrics.
 	DestinationArn?: string & =~"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*"
-	// Evidently has been discontinued and therefore this is no longer an acceptable field. If Destination is CloudWatch, do not use this parameter. 
-
-This parameter specifies the ARN of an IAM role that RUM will assume to write to the Evidently experiment that you are sending metrics to. This role must have permission to write to that experiment.
+	// Evidently has been discontinued and therefore this is no longer an acceptable field. If Destination is CloudWatch, do not use this parameter.
+	// This parameter specifies the ARN of an IAM role that RUM will assume to write to the Evidently experiment that you are sending metrics to. This role must have permission to write to that experiment.
 	IamRoleArn?: string & =~"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*"
 	// An array of structures which define the metrics that you want to send.
 	MetricDefinitions?: [...#MetricDefinition]
 }
 
 #ResourcePolicy: {
-	// The JSON to use as the resource policy. The document can be up to 4 KB in size. 
+	// The JSON to use as the resource policy. The document can be up to 4 KB in size.
 	PolicyDocument: string
-	// A string value that you can use to conditionally update your policy. You can provide the revision ID of your existing policy to make mutating requests against that policy. 
-
- When you assign a policy revision ID, then later requests about that policy will be rejected with an InvalidPolicyRevisionIdException error if they don't provide the correct current revision ID.
+	// A string value that you can use to conditionally update your policy. You can provide the revision ID of your existing policy to make mutating requests against that policy.
+	// When you assign a policy revision ID, then later requests about that policy will be rejected with an InvalidPolicyRevisionIdException error if they don't provide the correct current revision ID.
 	PolicyRevisionId?: string & strings.MinRunes(1) & strings.MaxRunes(255)
 }
 
 #Tag: {
-	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & =~"^(?!aws:)[a-zA-Z+-=._:/]+$" & strings.MinRunes(1) & strings.MaxRunes(128)
-	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }

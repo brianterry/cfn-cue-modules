@@ -249,17 +249,15 @@ import "strings"
 	// The location where Amazon S3 stores temporary execution data and other artifacts for the project that corresponds to the domain.
 	ProjectS3Path?: string & =~"[\\w\\.-]+$" & strings.MinRunes(1) & strings.MaxRunes(100)
 	// Sets whether you can access the domain in Amazon SageMaker Studio:
-
-ENABLED
-You can access the domain in Amazon SageMaker Studio. If you migrate the domain to Amazon SageMaker Unified Studio, you can access it in both studio interfaces.
-DISABLED
-You can't access the domain in Amazon SageMaker Studio. If you migrate the domain to Amazon SageMaker Unified Studio, you can access it only in that studio interface.
-
+	// ENABLED
+	// You can access the domain in Amazon SageMaker Studio. If you migrate the domain to Amazon SageMaker Unified Studio, you can access it in both studio interfaces.
+	// DISABLED
+	// You can't access the domain in Amazon SageMaker Studio. If you migrate the domain to Amazon SageMaker Unified Studio, you can access it only in that studio interface.
 	StudioWebPortalAccess?: "ENABLED" | "DISABLED"
 }
 
 #UserSettings: {
-	// Indicates whether auto-mounting of an EFS volume is supported for the user profile. 
+	// Indicates whether auto-mounting of an EFS volume is supported for the user profile.
 	AutoMountHomeEFS?: "Enabled" | "Disabled" | "DefaultAsDomain"
 	CodeEditorAppSettings?: #CodeEditorAppSettings
 	CustomFileSystemConfigs?: [...#CustomFileSystemConfig]

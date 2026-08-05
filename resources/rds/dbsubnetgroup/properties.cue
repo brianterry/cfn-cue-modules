@@ -6,12 +6,11 @@ import "strings"
 	// The description for the DB subnet group.
 	DBSubnetGroupDescription: string
 	// The name for the DB subnet group. This value is stored as a lowercase string.
- Constraints:
-  +  Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens.
-  +  Must not be default.
-  +  First character must be a letter.
-  
- Example: ``mydbsubnetgroup``
+	// Constraints:
+	// +  Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens.
+	// +  Must not be default.
+	// +  First character must be a letter.
+	// Example: ``mydbsubnetgroup``
 	DBSubnetGroupName?: string
 	// The EC2 Subnet IDs for the DB subnet group.
 	SubnetIds: [...string]

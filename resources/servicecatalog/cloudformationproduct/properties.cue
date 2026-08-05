@@ -35,8 +35,6 @@ package cloudformationproduct
 	// The specific branch where the artifact resides.
 	Branch: string
 	// The CodeStar ARN, which is the connection between AWS Service Catalog and the external repository.
-
-
 	ConnectionArn: string
 	// The specific repository where the product's artifact-to-be-synced resides, formatted as "Account/Repo."
 	Repository: string
@@ -53,10 +51,8 @@ package cloudformationproduct
 	// If set to true, AWS Service Catalog stops validating the specified provisioning artifact even if it is invalid.
 	DisableTemplateValidation?: bool
 	// Specify the template source with one of the following options, but not both. Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ] The URL of the AWS CloudFormation template in Amazon S3 in JSON format. Specify the URL in JSON format as follows:
-
-"LoadTemplateFromURL": "https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/..."
-
-ImportFromPhysicalId: The physical id of the resource that contains the template. Currently only supports AWS CloudFormation stack arn. Specify the physical id in JSON format as follows: ImportFromPhysicalId: "arn:aws:cloudformation:[us-east-1]:[accountId]:stack/[StackName]/[resourceId]
+	// "LoadTemplateFromURL": "https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/..."
+	// ImportFromPhysicalId: The physical id of the resource that contains the template. Currently only supports AWS CloudFormation stack arn. Specify the physical id in JSON format as follows: ImportFromPhysicalId: "arn:aws:cloudformation:[us-east-1]:[accountId]:stack/[StackName]/[resourceId]
 	Info: {
 		ImportFromPhysicalId?: string
 		LoadTemplateFromURL?: string

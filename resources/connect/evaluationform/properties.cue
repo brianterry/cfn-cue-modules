@@ -6,13 +6,13 @@ import "strings"
 	// The automatic evaluation configuration of an evaluation form.
 	AutoEvaluationConfiguration?: #AutoEvaluationConfiguration
 	// The description of the evaluation form.
- *Length Constraints*: Minimum length of 0. Maximum length of 1024.
+	// *Length Constraints*: Minimum length of 0. Maximum length of 1024.
 	Description?: string & strings.MaxRunes(1024)
 	// The identifier of the Amazon Connect instance.
 	InstanceArn: string & =~"^arn:aws[-a-z0-9]*:connect:[-a-z0-9]*:[0-9]{12}:instance/[-a-zA-Z0-9]*$"
 	// Items that are part of the evaluation form. The total number of sections and questions must not exceed 100 each. Questions must be contained in a section.
- *Minimum size*: 1
- *Maximum size*: 100
+	// *Minimum size*: 1
+	// *Maximum size*: 100
 	Items: [...#EvaluationFormBaseItem]
 	// Configuration for language settings of this evaluation form.
 	LanguageConfiguration?: #EvaluationFormLanguageConfiguration
@@ -21,7 +21,7 @@ import "strings"
 	// A scoring strategy of the evaluation form.
 	ScoringStrategy?: #ScoringStrategy
 	// The status of the evaluation form.
- *Allowed values*: ``DRAFT`` | ``ACTIVE``
+	// *Allowed values*: ``DRAFT`` | ``ACTIVE``
 	Status: "DRAFT" | "ACTIVE"
 	// The tags used to organize, track, or control access for this resource. For example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags?: [...#Tag]
@@ -156,8 +156,8 @@ import "strings"
 	// The points configuration for point-based scoring.
 	PointsConfiguration?: #QuestionOptionPointsConfiguration
 	// The score assigned to answer values within the range option.
- *Minimum*: 0
- *Maximum*: 10
+	// *Minimum*: 0
+	// *Maximum*: 10
 	Score?: #Score
 }
 
@@ -176,26 +176,26 @@ import "strings"
 	// A question conditional enablement.
 	Enablement?: #EvaluationFormItemEnablementConfiguration
 	// The instructions of the section.
- *Length Constraints*: Minimum length of 0. Maximum length of 1024.
+	// *Length Constraints*: Minimum length of 0. Maximum length of 1024.
 	Instructions?: string & strings.MaxRunes(1024)
 	// The flag to enable not applicable answers to the question.
 	NotApplicableEnabled?: bool
 	// The type of the question.
- *Allowed values*: ``NUMERIC`` | ``SINGLESELECT`` | ``TEXT``
+	// *Allowed values*: ``NUMERIC`` | ``SINGLESELECT`` | ``TEXT``
 	QuestionType: "NUMERIC" | "SINGLESELECT" | "TEXT" | "MULTISELECT" | "DATETIME"
 	// The properties of the type of question. Text questions do not have to define question type properties.
 	QuestionTypeProperties?: #EvaluationFormQuestionTypeProperties
 	// The identifier of the question. An identifier must be unique within the evaluation form.
- *Length Constraints*: Minimum length of 1. Maximum length of 40.
+	// *Length Constraints*: Minimum length of 1. Maximum length of 40.
 	RefId: #RefId
 	// The scoring configuration of the question.
 	ScoringConfiguration?: #EvaluationFormQuestionScoringConfiguration
 	// The title of the question.
- *Length Constraints*: Minimum length of 1. Maximum length of 350.
+	// *Length Constraints*: Minimum length of 1. Maximum length of 350.
 	Title: string & strings.MinRunes(1) & strings.MaxRunes(350)
 	// The scoring weight of the section.
- *Minimum*: 0
- *Maximum*: 100
+	// *Minimum*: 0
+	// *Maximum*: 100
 	Weight?: #Weight
 }
 
@@ -239,19 +239,19 @@ import "strings"
 	// The flag to exclude the section from scoring.
 	IsExcludedFromScoring?: bool
 	// The items of the section.
- *Minimum*: 1
+	// *Minimum*: 1
 	Items?: [...#EvaluationFormItem]
 	// The identifier of the section. An identifier must be unique within the evaluation form.
- *Length Constraints*: Minimum length of 1. Maximum length of 40.
+	// *Length Constraints*: Minimum length of 1. Maximum length of 40.
 	RefId: #RefId
 	// The score thresholds for performance categories.
 	ScoreThresholds?: [...#EvaluationFormScoreThreshold]
 	// The title of the section.
- *Length Constraints*: Minimum length of 1. Maximum length of 128.
+	// *Length Constraints*: Minimum length of 1. Maximum length of 128.
 	Title: string & strings.MinRunes(1) & strings.MaxRunes(128)
 	// The scoring weight of the section.
- *Minimum*: 0 
- *Maximum*: 100
+	// *Minimum*: 0
+	// *Maximum*: 100
 	Weight?: #Weight
 }
 
@@ -259,11 +259,11 @@ import "strings"
 	// Automation answer source.
 	AnswerSource?: #EvaluationFormQuestionAutomationAnswerSource
 	// The identifier of the default answer option, when none of the automation options match the criteria.
- *Length Constraints*: Minimum length of 1. Maximum length of 40.
+	// *Length Constraints*: Minimum length of 1. Maximum length of 40.
 	DefaultOptionRefId?: #RefId
 	// The automation options of the single select question.
- *Minimum*: 1
- *Maximum*: 20
+	// *Minimum*: 1
+	// *Maximum*: 20
 	Options?: [...#EvaluationFormSingleSelectQuestionAutomationOption]
 }
 
@@ -280,14 +280,14 @@ import "strings"
 	// The points configuration for point-based scoring.
 	PointsConfiguration?: #QuestionOptionPointsConfiguration
 	// The identifier of the answer option. An identifier must be unique within the question.
- *Length Constraints*: Minimum length of 1. Maximum length of 40.
+	// *Length Constraints*: Minimum length of 1. Maximum length of 40.
 	RefId: #RefId
 	// The score assigned to the answer option.
- *Minimum*: 0
- *Maximum*: 10
+	// *Minimum*: 0
+	// *Maximum*: 10
 	Score?: #Score
 	// The title of the answer option.
- *Length Constraints*: Minimum length of 1. Maximum length of 128.
+	// *Length Constraints*: Minimum length of 1. Maximum length of 128.
 	Text: string & strings.MinRunes(1) & strings.MaxRunes(128)
 }
 
@@ -295,11 +295,11 @@ import "strings"
 	// The display mode of the single select question.
 	Automation?: #EvaluationFormSingleSelectQuestionAutomation
 	// The display mode of the single select question.
- *Allowed values*: ``DROPDOWN`` | ``RADIO``
+	// *Allowed values*: ``DROPDOWN`` | ``RADIO``
 	DisplayAs?: "DROPDOWN" | "RADIO"
 	// The answer options of the single select question.
- *Minimum*: 2
- *Maximum*: 256
+	// *Minimum*: 2
+	// *Maximum*: 256
 	Options: [...#EvaluationFormSingleSelectQuestionOption]
 }
 
@@ -369,25 +369,25 @@ import "strings"
 
 #ScoringStrategy: {
 	// The scoring mode of the evaluation form.
- *Allowed values*: ``QUESTION_ONLY`` | ``SECTION_ONLY``
+	// *Allowed values*: ``QUESTION_ONLY`` | ``SECTION_ONLY``
 	Mode: "QUESTION_ONLY" | "SECTION_ONLY" | "POINTS_BASED"
 	ScoreThresholds?: [...#EvaluationFormScoreThreshold]
 	// The scoring status of the evaluation form.
- *Allowed values*: ``ENABLED`` | ``DISABLED``
+	// *Allowed values*: ``ENABLED`` | ``DISABLED``
 	Status: "ENABLED" | "DISABLED"
 }
 
 #SingleSelectQuestionRuleCategoryAutomation: {
 	// The category name, as defined in Rules.
- *Minimum*: 1
- *Maximum*: 50
+	// *Minimum*: 1
+	// *Maximum*: 50
 	Category: string & strings.MinRunes(1) & strings.MaxRunes(50)
 	// The condition to apply for the automation option. If the condition is PRESENT, then the option is applied when the contact data includes the category. Similarly, if the condition is NOT_PRESENT, then the option is applied when the contact data does not include the category.
- *Allowed values*: ``PRESENT`` | ``NOT_PRESENT``
- *Maximum*: 50
+	// *Allowed values*: ``PRESENT`` | ``NOT_PRESENT``
+	// *Maximum*: 50
 	Condition: "PRESENT" | "NOT_PRESENT"
 	// The identifier of the answer option. An identifier must be unique within the question.
- *Length Constraints*: Minimum length of 1. Maximum length of 40.
+	// *Length Constraints*: Minimum length of 1. Maximum length of 40.
 	OptionRefId: #RefId
 }
 

@@ -5,7 +5,7 @@ package endpointauthorization
 	Account: #AwsAccount
 	// The cluster identifier.
 	ClusterIdentifier: string & =~"^(?=^[a-z][a-z0-9]*(-[a-z0-9]+)*$).{1,63}$"
-	//  Indicates whether to force the revoke action. If true, the Redshift-managed VPC endpoints associated with the endpoint authorization are also deleted.
+	// Indicates whether to force the revoke action. If true, the Redshift-managed VPC endpoints associated with the endpoint authorization are also deleted.
 	Force?: bool
 	// The virtual private cloud (VPC) identifiers to grant or revoke access to.
 	VpcIds?: [...#VpcId]

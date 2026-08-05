@@ -8,12 +8,10 @@ import "strings"
 	// Specifies logging configuration information for a type.
 	LoggingConfig?: #LoggingConfig
 	// A url to the S3 bucket containing the schema handler package that contains the schema, event handlers, and associated files for the type you want to register.
-
-For information on generating a schema handler package for the type you want to register, see submit in the CloudFormation CLI User Guide.
+	// For information on generating a schema handler package for the type you want to register, see submit in the CloudFormation CLI User Guide.
 	SchemaHandlerPackage: string & strings.MaxRunes(4096)
 	// The name of the type being registered.
-
-We recommend that type names adhere to the following pattern: company_or_organization::service::type.
+	// We recommend that type names adhere to the following pattern: company_or_organization::service::type.
 	TypeName: string & =~"^[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}$"
 }
 

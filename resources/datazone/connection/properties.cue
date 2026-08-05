@@ -16,7 +16,7 @@ import "strings"
 	EnvironmentIdentifier?: string
 	// The name of the connection.
 	Name: string & =~"^[\\w][\\w\\.\\-\\_]*$" & strings.MaxRunes(64)
-	// The identifier of the project in which the connection should be created. If 
+	// The identifier of the project in which the connection should be created. If
 	ProjectIdentifier?: string
 	Props?: #ConnectionPropertiesInput
 	// The scope of the connection.

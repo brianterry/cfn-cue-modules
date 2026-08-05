@@ -145,7 +145,7 @@ package endpoint
 }
 
 #KafkaSettings: {
-	// A comma-separated list of one or more broker locations in your Kafka cluster that host your Kafka instance. Specify each broker location in the form broker-hostname-or-ip:port 
+	// A comma-separated list of one or more broker locations in your Kafka cluster that host your Kafka instance. Specify each broker location in the form broker-hostname-or-ip:port
 	Broker?: string
 	// Shows detailed control information for table definition, column definition, and table and column changes in the Kafka message output. The default is false.
 	IncludeControlDetails?: bool

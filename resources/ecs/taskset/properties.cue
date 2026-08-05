@@ -4,9 +4,9 @@ package taskset
 	CapacityProviderStrategy?: [...#CapacityProviderStrategyItem]
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.
 	Cluster: string
-	// An optional non-unique tag that identifies this task set in external systems. If the task set is associated with a service discovery registry, the tasks in this task set will have the ECS_TASK_SET_EXTERNAL_ID AWS Cloud Map attribute set to the provided value. 
+	// An optional non-unique tag that identifies this task set in external systems. If the task set is associated with a service discovery registry, the tasks in this task set will have the ECS_TASK_SET_EXTERNAL_ID AWS Cloud Map attribute set to the provided value.
 	ExternalId?: string
-	// The launch type that new tasks in the task set will use. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html in the Amazon Elastic Container Service Developer Guide. 
+	// The launch type that new tasks in the task set will use. For more information, see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html in the Amazon Elastic Container Service Developer Guide.
 	LaunchType?: "EC2" | "FARGATE"
 	LoadBalancers?: [...#LoadBalancer]
 	NetworkConfiguration?: #NetworkConfiguration

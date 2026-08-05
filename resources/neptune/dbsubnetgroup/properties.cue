@@ -4,12 +4,8 @@ package dbsubnetgroup
 	// The description for the DB subnet group.
 	DBSubnetGroupDescription: string
 	// The name for the DB subnet group. This value is stored as a lowercase string.
-
-Constraints: Must contain no more than 255 lowercase alphanumeric characters or hyphens. Must not be "Default".
-
-Example: mysubnetgroup
-
-
+	// Constraints: Must contain no more than 255 lowercase alphanumeric characters or hyphens. Must not be "Default".
+	// Example: mysubnetgroup
 	DBSubnetGroupName?: string
 	// The Amazon EC2 subnet IDs for the DB subnet group.
 	SubnetIds: [...string]
@@ -18,8 +14,8 @@ Example: mysubnetgroup
 }
 
 #Tag: {
-	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string
-	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string
 }

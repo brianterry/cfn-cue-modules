@@ -63,9 +63,7 @@ import "strings"
 	ListValue?: [...#DataValue]
 	// A long value.
 	LongValue?: number
-	// An object that maps strings to multiple DataValue objects. 
-
-
+	// An object that maps strings to multiple DataValue objects.
 	MapValue?: {...}
 	// A value that relates a component to another component.
 	RelationshipValue?: {

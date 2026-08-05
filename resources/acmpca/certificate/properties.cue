@@ -9,18 +9,18 @@ import "strings"
 	CertificateAuthorityArn: #Arn
 	// The certificate signing request (CSR) for the certificate.
 	CertificateSigningRequest: string & strings.MinRunes(1)
-	// The name of the algorithm that will be used to sign the certificate to be issued. 
- This parameter should not be confused with the ``SigningAlgorithm`` parameter used to sign a CSR in the ``CreateCertificateAuthority`` action.
-  The specified signing algorithm family (RSA or ECDSA) must match the algorithm family of the CA's secret key.
+	// The name of the algorithm that will be used to sign the certificate to be issued.
+	// This parameter should not be confused with the ``SigningAlgorithm`` parameter used to sign a CSR in the ``CreateCertificateAuthority`` action.
+	// The specified signing algorithm family (RSA or ECDSA) must match the algorithm family of the CA's secret key.
 	SigningAlgorithm: string
 	// Specifies a custom configuration template to use when issuing a certificate. If this parameter is not provided, PCAshort defaults to the ``EndEntityCertificate/V1`` template. For more information about PCAshort templates, see [Using Templates](https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).
 	TemplateArn?: #Arn
 	// The period of time during which the certificate will be valid.
 	Validity: #Validity
 	// Information describing the start of the validity period of the certificate. This parameter sets the “Not Before" date for the certificate.
- By default, when issuing a certificate, PCAshort sets the "Not Before" date to the issuance time minus 60 minutes. This compensates for clock inconsistencies across computer systems. The ``ValidityNotBefore`` parameter can be used to customize the “Not Before” value. 
- Unlike the ``Validity`` parameter, the ``ValidityNotBefore`` parameter is optional.
- The ``ValidityNotBefore`` value is expressed as an explicit date and time, using the ``Validity`` type value ``ABSOLUTE``.
+	// By default, when issuing a certificate, PCAshort sets the "Not Before" date to the issuance time minus 60 minutes. This compensates for clock inconsistencies across computer systems. The ``ValidityNotBefore`` parameter can be used to customize the “Not Before” value.
+	// Unlike the ``Validity`` parameter, the ``ValidityNotBefore`` parameter is optional.
+	// The ``ValidityNotBefore`` value is expressed as an explicit date and time, using the ``Validity`` type value ``ABSOLUTE``.
 	ValidityNotBefore?: #Validity
 }
 
@@ -63,7 +63,7 @@ import "strings"
 
 #Extensions: {
 	// Contains a sequence of one or more policy information terms, each of which consists of an object identifier (OID) and optional qualifiers. For more information, see NIST's definition of [Object Identifier (OID)](https://docs.aws.amazon.com/https://csrc.nist.gov/glossary/term/Object_Identifier).
- In an end-entity certificate, these terms indicate the policy under which the certificate was issued and the purposes for which it may be used. In a CA certificate, these terms limit the set of policies for certification paths that include this certificate.
+	// In an end-entity certificate, these terms indicate the policy under which the certificate was issued and the purposes for which it may be used. In a CA certificate, these terms limit the set of policies for certification paths that include this certificate.
 	CertificatePolicies?: #CertificatePolicyList
 	// Contains a sequence of one or more X.509 extensions, each of which consists of an object identifier (OID), a base64-encoded value, and the critical flag. For more information, see the [Global OID reference database.](https://docs.aws.amazon.com/https://oidref.com/2.5.29)
 	CustomExtensions?: #CustomExtensionList
@@ -143,12 +143,12 @@ import "strings"
 
 #Subject: {
 	// For CA and end-entity certificates in a private PKI, the common name (CN) can be any string within the length limit.
- Note: In publicly trusted certificates, the common name must be a fully qualified domain name (FQDN) associated with the certificate subject.
+	// Note: In publicly trusted certificates, the common name must be a fully qualified domain name (FQDN) associated with the certificate subject.
 	CommonName?: string
 	// Two-digit code that specifies the country in which the certificate subject located.
 	Country?: string
 	// Contains a sequence of one or more X.500 relative distinguished names (RDNs), each of which consists of an object identifier (OID) and a value. For more information, see NIST’s definition of [Object Identifier (OID)](https://docs.aws.amazon.com/https://csrc.nist.gov/glossary/term/Object_Identifier).
-  Custom attributes cannot be used in combination with standard attributes.
+	// Custom attributes cannot be used in combination with standard attributes.
 	CustomAttributes?: #CustomAttributeList
 	// Disambiguating information for the certificate subject.
 	DistinguishedNameQualifier?: string

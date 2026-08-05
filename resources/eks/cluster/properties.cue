@@ -90,14 +90,14 @@ import "strings"
 	ElasticLoadBalancing?: #ElasticLoadBalancing
 	// Ipv4 or Ipv6. You can only specify ipv6 for 1.21 and later clusters that use version 1.10.1 or later of the Amazon VPC CNI add-on
 	IpFamily?: "ipv4" | "ipv6"
-	// The CIDR block to assign Kubernetes service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. We recommend that you specify a block that does not overlap with resources in other networks that are peered or connected to your VPC. 
+	// The CIDR block to assign Kubernetes service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. We recommend that you specify a block that does not overlap with resources in other networks that are peered or connected to your VPC.
 	ServiceIpv4Cidr?: string
 	// The CIDR block to assign Kubernetes service IP addresses from.
 	ServiceIpv6Cidr?: string
 }
 
 #Logging: {
-	// The cluster control plane logging configuration for your cluster. 
+	// The cluster control plane logging configuration for your cluster.
 	ClusterLogging?: #ClusterLogging
 }
 

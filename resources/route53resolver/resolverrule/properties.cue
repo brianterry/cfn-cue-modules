@@ -27,13 +27,13 @@ import "strings"
 }
 
 #TargetAddress: {
-	// One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses. 
+	// One IP address that you want to forward DNS queries to. You can specify only IPv4 addresses.
 	Ip?: string
-	// One IPv6 address that you want to forward DNS queries to. You can specify only IPv6 addresses. 
+	// One IPv6 address that you want to forward DNS queries to. You can specify only IPv6 addresses.
 	Ipv6?: string
-	// The port at Ip that you want to forward DNS queries to. 
+	// The port at Ip that you want to forward DNS queries to.
 	Port?: string & strings.MinRunes(0) & strings.MaxRunes(65535)
-	// The protocol that you want to use to forward DNS queries. 
+	// The protocol that you want to use to forward DNS queries.
 	Protocol?: "Do53" | "DoH"
 	// The SNI of the target name servers for DoH/DoH-FIPS outbound endpoints
 	ServerNameIndication?: string & strings.MinRunes(0) & strings.MaxRunes(255)

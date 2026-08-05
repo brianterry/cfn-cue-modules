@@ -248,7 +248,7 @@ import "strings"
 	// The multipurpose internet mail extension (MIME) type of the data. Amazon SageMaker uses the MIME type with each http call to transfer data to the transform job.
 	ContentType?: string & =~".*" & strings.MaxRunes(256)
 	DataSource: #DataSource
-	// The method to use to split the transform job's data files into smaller batches. 
+	// The method to use to split the transform job's data files into smaller batches.
 	SplitType?: "None" | "TFRecord" | "Line" | "RecordIO"
 }
 

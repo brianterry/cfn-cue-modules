@@ -4,32 +4,31 @@ import "strings"
 
 #Properties: {
 	// The name of the DB cluster parameter group.
- Constraints:
-  +  Must not match the name of an existing DB cluster parameter group.
-  
-  This value is stored as a lowercase string.
+	// Constraints:
+	// +  Must not match the name of an existing DB cluster parameter group.
+	// This value is stored as a lowercase string.
 	DBClusterParameterGroupName?: string & =~"^[a-zA-Z]{1}(?:-?[a-zA-Z0-9])*$" & strings.MinRunes(1)
 	// The description for the DB cluster parameter group.
 	Description: string
 	// The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a database engine and engine version compatible with that DB cluster parameter group family.
-  *Aurora MySQL* 
- Example: ``aurora-mysql5.7``, ``aurora-mysql8.0``
-  *Aurora PostgreSQL* 
- Example: ``aurora-postgresql14``
-  *RDS for MySQL* 
- Example: ``mysql8.0``
-  *RDS for PostgreSQL* 
- Example: ``postgres13``
- To list all of the available parameter group families for a DB engine, use the following command:
-  ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine <engine>`` 
- For example, to list all of the available parameter group families for the Aurora PostgreSQL DB engine, use the following command:
-  ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine aurora-postgresql`` 
-  The output contains duplicates.
-  The following are the valid DB engine values:
-  +   ``aurora-mysql`` 
-  +   ``aurora-postgresql`` 
-  +   ``mysql`` 
-  +   ``postgres``
+	// *Aurora MySQL*
+	// Example: ``aurora-mysql5.7``, ``aurora-mysql8.0``
+	// *Aurora PostgreSQL*
+	// Example: ``aurora-postgresql14``
+	// *RDS for MySQL*
+	// Example: ``mysql8.0``
+	// *RDS for PostgreSQL*
+	// Example: ``postgres13``
+	// To list all of the available parameter group families for a DB engine, use the following command:
+	// ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine <engine>``
+	// For example, to list all of the available parameter group families for the Aurora PostgreSQL DB engine, use the following command:
+	// ``aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine aurora-postgresql``
+	// The output contains duplicates.
+	// The following are the valid DB engine values:
+	// +   ``aurora-mysql``
+	// +   ``aurora-postgresql``
+	// +   ``mysql``
+	// +   ``postgres``
 	Family: string
 	// Provides a list of parameters for the DB cluster parameter group.
 	Parameters: {...}

@@ -17,11 +17,9 @@ import "strings"
 	DBClusterParameterGroupName?: string
 	// The name of the DB parameter group to apply to all instances of the DB cluster. Used only in case of a major EngineVersion upgrade request.
 	DBInstanceParameterGroupName?: string
-	// The port number on which the DB instances in the DB cluster accept connections. 
-
-If not specified, the default port used is `8182`. 
-
-Note: `Port` property will soon be deprecated from this resource. Please update existing templates to rename it with new property `DBPort` having same functionalities.
+	// The port number on which the DB instances in the DB cluster accept connections.
+	// If not specified, the default port used is `8182`.
+	// Note: `Port` property will soon be deprecated from this resource. Please update existing templates to rename it with new property `DBPort` having same functionalities.
 	DBPort?: int
 	// Specifies information on the subnet group associated with the DB cluster, including the name, description, and subnets in the subnet group.
 	DBSubnetGroupName?: string
@@ -44,48 +42,34 @@ Note: `Port` property will soon be deprecated from this resource. Please update 
 	// Specifies the weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).
 	PreferredMaintenanceWindow?: string
 	// Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
-
-If a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.
-
-If a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group.
+	// If a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.
+	// If a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group.
 	RestoreToTime?: string
 	// Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
-
-If a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.
-
-If a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group.
+	// If a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.
+	// If a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group.
 	RestoreType?: string
 	// Contains the scaling configuration used by the Neptune Serverless Instances within this DB cluster.
 	ServerlessScalingConfiguration?: #ServerlessScalingConfiguration
 	// Specifies the identifier for a DB cluster snapshot. Must match the identifier of an existing snapshot.
-
-After you restore a DB cluster using a SnapshotIdentifier, you must specify the same SnapshotIdentifier for any future updates to the DB cluster. When you specify this property for an update, the DB cluster is not restored from the snapshot again, and the data in the database is not changed.
-
-However, if you don't specify the SnapshotIdentifier, an empty DB cluster is created, and the original DB cluster is deleted. If you specify a property that is different from the previous snapshot restore property, the DB cluster is restored from the snapshot specified by the SnapshotIdentifier, and the original DB cluster is deleted.
+	// After you restore a DB cluster using a SnapshotIdentifier, you must specify the same SnapshotIdentifier for any future updates to the DB cluster. When you specify this property for an update, the DB cluster is not restored from the snapshot again, and the data in the database is not changed.
+	// However, if you don't specify the SnapshotIdentifier, an empty DB cluster is created, and the original DB cluster is deleted. If you specify a property that is different from the previous snapshot restore property, the DB cluster is restored from the snapshot specified by the SnapshotIdentifier, and the original DB cluster is deleted.
 	SnapshotIdentifier?: string
 	// Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
-
-If a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.
-
-If a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group.
+	// If a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.
+	// If a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group.
 	SourceDBClusterIdentifier?: string
 	// Indicates whether the DB cluster is encrypted.
-
-If you specify the KmsKeyId property, then you must enable encryption and set this property to true.
-
-If you enable the StorageEncrypted property but don't specify KmsKeyId property, then the default KMS key is used. If you specify KmsKeyId property, then that KMS Key is used to encrypt the database instances in the DB cluster.
-
-If you specify the SourceDBClusterIdentifier property and don't specify this property or disable it. The value is inherited from the source DB cluster, and if the DB cluster is encrypted, the KmsKeyId property from the source cluster is used.
-
-If you specify the DBSnapshotIdentifier and don't specify this property or disable it. The value is inherited from the snapshot, and the specified KmsKeyId property from the snapshot is used.
+	// If you specify the KmsKeyId property, then you must enable encryption and set this property to true.
+	// If you enable the StorageEncrypted property but don't specify KmsKeyId property, then the default KMS key is used. If you specify KmsKeyId property, then that KMS Key is used to encrypt the database instances in the DB cluster.
+	// If you specify the SourceDBClusterIdentifier property and don't specify this property or disable it. The value is inherited from the source DB cluster, and if the DB cluster is encrypted, the KmsKeyId property from the source cluster is used.
+	// If you specify the DBSnapshotIdentifier and don't specify this property or disable it. The value is inherited from the snapshot, and the specified KmsKeyId property from the snapshot is used.
 	StorageEncrypted?: bool
 	// The tags assigned to this cluster.
 	Tags?: [...#Tag]
 	// Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
-
-If a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.
-
-If a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group.
+	// If a DB snapshot is specified, the target DB cluster is created from the source DB snapshot with a default configuration and default security group.
+	// If a DB cluster snapshot is specified, the target DB cluster is created from the source DB cluster restore point with the same configuration as the original source DB cluster, except that the new DB cluster is created with the default security group.
 	UseLatestRestorableTime?: bool
 	// Provides a list of VPC security groups that the DB cluster belongs to.
 	VpcSecurityGroupIds?: [...string]
@@ -106,8 +90,8 @@ If a DB cluster snapshot is specified, the target DB cluster is created from the
 }
 
 #Tag: {
-	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The key name of the tag. You can specify a value that is 1 to 128 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
-	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The value for the tag. You can specify a value that is 0 to 256 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value?: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }

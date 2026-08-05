@@ -106,9 +106,9 @@ import "strings"
 	// HANA DB SID.
 	HANASID: string
 	// The secret name which manages the HANA DB credentials e.g. {
-  "username": "<>",
-  "password": "<>"
-}.
+	// "username": "<>",
+	// "password": "<>"
+	// }.
 	HANASecretName: string
 	// Prometheus exporter port.
 	PrometheusPort?: string
@@ -194,14 +194,14 @@ import "strings"
 }
 
 #Tag: {
-	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The key name of the tag. You can specify a value that is 1 to 127 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Key: string & strings.MinRunes(1) & strings.MaxRunes(128)
-	// The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -. 
+	// The value for the tag. You can specify a value that is 1 to 255 Unicode characters in length and cannot be prefixed with aws:. You can use any of the following characters: the set of Unicode letters, digits, whitespace, _, ., /, =, +, and -.
 	Value: string & strings.MinRunes(0) & strings.MaxRunes(256)
 }
 
 #WindowsEvent: {
-	// The levels of event to log. 
+	// The levels of event to log.
 	EventLevels: [...#EventLevel]
 	// The type of Windows Events to log.
 	EventName: string & =~"^[a-zA-Z0-9_ \\\\/-]+$" & strings.MinRunes(1) & strings.MaxRunes(260)

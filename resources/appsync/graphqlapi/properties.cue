@@ -17,7 +17,7 @@ package graphqlapi
 	LambdaAuthorizerConfig?: #LambdaAuthorizerConfig
 	// The Amazon CloudWatch Logs configuration.
 	LogConfig?: #LogConfig
-	// The AWS Identity and Access Management service role ARN for a merged API. 
+	// The AWS Identity and Access Management service role ARN for a merged API.
 	MergedApiExecutionRoleArn?: string
 	// The API name
 	Name: string
@@ -30,18 +30,12 @@ package graphqlapi
 	// The maximum number of resolvers that can be invoked in a single request.
 	ResolverCountLimit?: int
 	// An arbitrary set of tags (key-value pairs) for this GraphQL API.
-
-
 	Tags?: [...#Tag]
 	// Optional authorization configuration for using Amazon Cognito user pools with your GraphQL endpoint.
-
-
 	UserPoolConfig?: #UserPoolConfig
 	// Sets the scope of the GraphQL API to public (GLOBAL) or private (PRIVATE). By default, the scope is set to Global if no value is provided.
 	Visibility?: string
 	// A flag indicating whether to use AWS X-Ray tracing for this GraphqlApi.
-
-
 	XrayEnabled?: bool
 }
 
@@ -54,7 +48,7 @@ package graphqlapi
 }
 
 #CognitoUserPoolConfig: {
-	// A regular expression for validating the incoming Amazon Cognito user pool app client ID. 
+	// A regular expression for validating the incoming Amazon Cognito user pool app client ID.
 	AppIdClientRegex?: string
 	// The AWS Region in which the user pool was created.
 	AwsRegion?: string
@@ -64,16 +58,10 @@ package graphqlapi
 
 #EnhancedMetricsConfig: {
 	// Controls how data source metrics will be emitted to CloudWatch. Data source metrics include:
-
-
 	DataSourceLevelMetricsBehavior: string
 	// Controls how operation metrics will be emitted to CloudWatch. Operation metrics include:
-
-
 	OperationLevelMetricsConfig: string
 	// Controls how resolver metrics will be emitted to CloudWatch. Resolver metrics include:
-
-
 	ResolverLevelMetricsBehavior: string
 }
 
@@ -101,10 +89,8 @@ package graphqlapi
 	// The client identifier of the Relying party at the OpenID identity provider.
 	ClientId?: string
 	// The number of milliseconds that a token is valid after it's issued to a user.
-
-
 	IatTTL?: number
-	// The issuer for the OIDC configuration. 
+	// The issuer for the OIDC configuration.
 	Issuer?: string
 }
 

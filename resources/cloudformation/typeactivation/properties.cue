@@ -18,8 +18,7 @@ import "strings"
 	// The kind of extension
 	Type?: "RESOURCE" | "MODULE" | "HOOK"
 	// The name of the type being registered.
-
-We recommend that type names adhere to the following pattern: company_or_organization::service::type.
+	// We recommend that type names adhere to the following pattern: company_or_organization::service::type.
 	TypeName?: string & =~"[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}"
 	// An alias to assign to the public extension in this account and region. If you specify an alias for the extension, you must then use the alias to refer to the extension in your templates.
 	TypeNameAlias?: string & =~"[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}" & strings.MinRunes(10) & strings.MaxRunes(204)

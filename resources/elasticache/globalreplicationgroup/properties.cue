@@ -15,11 +15,11 @@ package globalreplicationgroup
 	GlobalNodeGroupCount?: int
 	// The optional description of the Global Datastore
 	GlobalReplicationGroupDescription?: string
-	// The suffix name of a Global Datastore. Amazon ElastiCache automatically applies a prefix to the Global Datastore ID when it is created. Each AWS Region has its own prefix. 
+	// The suffix name of a Global Datastore. Amazon ElastiCache automatically applies a prefix to the Global Datastore ID when it is created. Each AWS Region has its own prefix.
 	GlobalReplicationGroupIdSuffix?: string
 	// The replication groups that comprise the Global Datastore.
 	Members: [...#GlobalReplicationGroupMember]
-	// Describes the replication group IDs, the AWS regions where they are stored and the shard configuration for each that comprise the Global Datastore 
+	// Describes the replication group IDs, the AWS regions where they are stored and the shard configuration for each that comprise the Global Datastore
 	RegionalConfigurations?: [...#RegionalConfiguration]
 }
 
@@ -37,7 +37,7 @@ package globalreplicationgroup
 	ReplicationGroupId?: string
 	// The AWS region of the Global Datastore member.
 	ReplicationGroupRegion?: string
-	// A list of PreferredAvailabilityZones objects that specifies the configuration of a node group in the resharded cluster. 
+	// A list of PreferredAvailabilityZones objects that specifies the configuration of a node group in the resharded cluster.
 	ReshardingConfigurations?: [...#ReshardingConfiguration]
 }
 

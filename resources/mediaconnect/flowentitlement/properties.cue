@@ -7,7 +7,7 @@ package flowentitlement
 	Description: string
 	// The type of encryption that will be used on the output that is associated with this entitlement.
 	Encryption?: #Encryption
-	//  An indication of whether the entitlement is enabled.
+	// An indication of whether the entitlement is enabled.
 	EntitlementStatus?: "ENABLED" | "DISABLED"
 	// The ARN of the flow.
 	FlowArn: string
@@ -34,7 +34,7 @@ package flowentitlement
 	ResourceId?: string
 	// The ARN of the role that you created during setup (when you set up AWS Elemental MediaConnect as a trusted entity).
 	RoleArn: string & =~"^arn:(aws[a-zA-Z-]*):iam::[0-9]{12}:role/[a-zA-Z0-9_+=,.@-]+$"
-	//  The ARN of the secret that you created in AWS Secrets Manager to store the encryption key. This parameter is required for static key encryption and is not valid for SPEKE encryption.
+	// The ARN of the secret that you created in AWS Secrets Manager to store the encryption key. This parameter is required for static key encryption and is not valid for SPEKE encryption.
 	SecretArn?: string & =~"^arn:(aws[a-zA-Z-]*):secretsmanager:[a-z0-9-]+:[0-9]{12}:secret:[a-zA-Z0-9/_+=.@-]+$"
 	// The URL from the API Gateway proxy that you set up to talk to your key server. This parameter is required for SPEKE encryption and is not valid for static key encryption.
 	Url?: string

@@ -5,7 +5,7 @@ import "strings"
 #Properties: {
 	// Indicates whether actions should be executed during any changes to the alarm state. The default is TRUE.
 	ActionsEnabled?: bool
-	// Actions will be suppressed if the suppressor alarm is in the ALARM state. ActionsSuppressor can be an AlarmName or an Amazon Resource Name (ARN) from an existing alarm. 
+	// Actions will be suppressed if the suppressor alarm is in the ALARM state. ActionsSuppressor can be an AlarmName or an Amazon Resource Name (ARN) from an existing alarm.
 	ActionsSuppressor?: string & strings.MinRunes(1) & strings.MaxRunes(1600)
 	// Actions will be suppressed if WaitPeriod is active. The length of time that actions are suppressed is in seconds.
 	ActionsSuppressorExtensionPeriod?: int & >=0

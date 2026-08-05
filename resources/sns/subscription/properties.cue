@@ -3,7 +3,7 @@ package subscription
 #Properties: {
 	// The delivery policy JSON assigned to the subscription. Enables the subscriber to define the message delivery retry strategy in the case of an HTTP/S endpoint subscribed to the topic.
 	DeliveryPolicy?: {...}
-	// The subscription's endpoint. The endpoint value depends on the protocol that you specify. 
+	// The subscription's endpoint. The endpoint value depends on the protocol that you specify.
 	Endpoint?: string
 	// The filter policy JSON assigned to the subscription. Enables the subscriber to filter out unwanted messages.
 	FilterPolicy?: {...}

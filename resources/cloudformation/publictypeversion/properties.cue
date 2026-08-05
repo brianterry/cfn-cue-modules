@@ -12,7 +12,6 @@ import "strings"
 	// The kind of extension
 	Type?: "RESOURCE" | "MODULE" | "HOOK"
 	// The name of the type being registered.
-
-We recommend that type names adhere to the following pattern: company_or_organization::service::type.
+	// We recommend that type names adhere to the following pattern: company_or_organization::service::type.
 	TypeName?: string & =~"[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}"
 }

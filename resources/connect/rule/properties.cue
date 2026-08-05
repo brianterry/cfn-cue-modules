@@ -12,7 +12,7 @@ import "strings"
 	// The name of the rule.
 	Name: string & =~"^[a-zA-Z0-9._-]{1,200}$"
 	// The publish status of the rule.
- *Allowed values*: ``DRAFT`` | ``PUBLISHED``
+	// *Allowed values*: ``DRAFT`` | ``PUBLISHED``
 	PublishStatus: "DRAFT" | "PUBLISHED"
 	// The tags used to organize, track, or control access for this resource. For example, { "tags": {"key1":"value1", "key2":"value2"} }.
 	Tags?: [...#Tag]
@@ -77,8 +77,8 @@ import "strings"
 }
 
 #Reference: {
-	// The type of the reference. ``DATE`` must be of type Epoch timestamp. 
- *Allowed values*: ``URL`` | ``ATTACHMENT`` | ``NUMBER`` | ``STRING`` | ``DATE`` | ``EMAIL``
+	// The type of the reference. ``DATE`` must be of type Epoch timestamp.
+	// *Allowed values*: ``URL`` | ``ATTACHMENT`` | ``NUMBER`` | ``STRING`` | ``DATE`` | ``EMAIL``
 	Type: "URL" | "ATTACHMENT" | "NUMBER" | "STRING" | "DATE" | "EMAIL"
 	// A valid value for the reference. For example, for a URL reference, a formatted URL that is displayed to an agent in the Contact Control Panel (CCP).
 	Value: string & =~"^(/|https:)"
@@ -95,10 +95,10 @@ import "strings"
 	// Notification content. Supports variable injection. For more information, see [JSONPath reference](https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html) in the *Administrators Guide*.
 	Content: string & strings.MinRunes(1) & strings.MaxRunes(1024)
 	// Content type format.
- *Allowed value*: ``PLAIN_TEXT``
+	// *Allowed value*: ``PLAIN_TEXT``
 	ContentType: "PLAIN_TEXT"
 	// Notification delivery method.
- *Allowed value*: ``EMAIL``
+	// *Allowed value*: ``EMAIL``
 	DeliveryMethod: "EMAIL"
 	Exclusion?: #NotificationRecipientType
 	// Notification recipient.

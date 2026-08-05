@@ -2,14 +2,11 @@ package environment
 
 #Properties: {
 	// Key/value pairs representing Airflow configuration variables.
-    Keys are prefixed by their section:
-
-    [core]
-    dags_folder={AIRFLOW_HOME}/dags
-
-    Would be represented as
-
-    "core.dags_folder": "{AIRFLOW_HOME}/dags"
+	// Keys are prefixed by their section:
+	// [core]
+	// dags_folder={AIRFLOW_HOME}/dags
+	// Would be represented as
+	// "core.dags_folder": "{AIRFLOW_HOME}/dags"
 	AirflowConfigurationOptions?: {...}
 	AirflowVersion?: #AirflowVersion
 	DagS3Path?: #RelativePath

@@ -36,7 +36,7 @@ import "strings"
 #InstanceMetadataOptions: {
 	// Limit the number of hops that an instance metadata request can traverse to reach its destination.
 	HttpPutResponseHopLimit?: int
-	// Indicates whether a signed token header is required for instance metadata retrieval requests. The values affect the response as follows: 
+	// Indicates whether a signed token header is required for instance metadata retrieval requests. The values affect the response as follows:
 	HttpTokens?: "required" | "optional"
 }
 

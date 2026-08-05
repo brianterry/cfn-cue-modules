@@ -6,11 +6,9 @@ import "strings"
 	// Major version upgrades can be applied during the maintenance window to the Amazon Redshift engine that is running on the cluster. Default value is True
 	AllowVersionUpgrade?: bool
 	// The value represents how the cluster is configured to use AQUA (Advanced Query Accelerator) after the cluster is restored. Possible values include the following.
-
-enabled - Use AQUA if it is available for the current Region and Amazon Redshift node type.
-disabled - Don't use AQUA.
-auto - Amazon Redshift determines whether to use AQUA.
-
+	// enabled - Use AQUA if it is available for the current Region and Amazon Redshift node type.
+	// disabled - Don't use AQUA.
+	// auto - Amazon Redshift determines whether to use AQUA.
 	AquaConfigurationStatus?: string
 	// The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Default value is 1
 	AutomatedSnapshotRetentionPeriod?: int
@@ -51,10 +49,8 @@ auto - Amazon Redshift determines whether to use AQUA.
 	// If true, the data in the cluster is encrypted at rest.
 	Encrypted?: bool
 	// An option that specifies whether to create the cluster with enhanced VPC routing enabled. To create a cluster that uses enhanced VPC routing, the cluster must be in a VPC. For more information, see Enhanced VPC Routing in the Amazon Redshift Cluster Management Guide.
-
-If this option is true , enhanced VPC routing is enabled.
-
-Default: false
+	// If this option is true , enhanced VPC routing is enabled.
+	// Default: false
 	EnhancedVpcRouting?: bool
 	// Specifies the name of the HSM client certificate the Amazon Redshift cluster uses to retrieve the data encryption keys stored in an HSM
 	HsmClientCertificateIdentifier?: string
@@ -70,8 +66,7 @@ Default: false
 	// A boolean indicating if the redshift cluster's admin user credentials is managed by Redshift or not. You can't use MasterUserPassword if ManageMasterPassword is true. If ManageMasterPassword is false or not set, Amazon Redshift uses MasterUserPassword for the admin user account's password.
 	ManageMasterPassword?: bool
 	// The number of days to retain newly copied snapshots in the destination AWS Region after they are copied from the source AWS Region. If the value is -1, the manual snapshot is retained indefinitely.
-
-The value must be either -1 or an integer between 1 and 3,653.
+	// The value must be either -1 or an integer between 1 and 3,653.
 	ManualSnapshotRetentionPeriod?: int
 	// The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin user credentials secret.
 	MasterPasswordSecretKmsKeyId?: string | string
@@ -106,11 +101,9 @@ The value must be either -1 or an integer between 1 and 3,653.
 	SnapshotCopyGrantName?: string
 	// Indicates whether to apply the snapshot retention period to newly copied manual snapshots instead of automated snapshots.
 	SnapshotCopyManual?: bool
-	// The number of days to retain automated snapshots in the destination region after they are copied from the source region. 
-
- Default is 7. 
-
- Constraints: Must be at least 1 and no more than 35.
+	// The number of days to retain automated snapshots in the destination region after they are copied from the source region.
+	// Default is 7.
+	// Constraints: Must be at least 1 and no more than 35.
 	SnapshotCopyRetentionPeriod?: int
 	// The name of the snapshot from which to create the new cluster. This parameter isn't case sensitive.
 	SnapshotIdentifier?: string

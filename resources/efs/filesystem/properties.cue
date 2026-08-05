@@ -2,7 +2,7 @@ package filesystem
 
 #Properties: {
 	// For One Zone file systems, specify the AWS Availability Zone in which to create the file system. Use the format ``us-east-1a`` to specify the Availability Zone. For more information about One Zone file systems, see [EFS file system types](https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html#file-system-type) in the *Amazon EFS User Guide*.
-  One Zone file systems are not available in all Availability Zones in AWS-Regions where Amazon EFS is available.
+	// One Zone file systems are not available in all Availability Zones in AWS-Regions where Amazon EFS is available.
 	AvailabilityZoneName?: string
 	// Use the ``BackupPolicy`` to turn automatic backups on or off for the file system.
 	BackupPolicy?: #BackupPolicy
@@ -17,35 +17,33 @@ package filesystem
 	// Use to create one or more tags associated with the file system. Each tag is a user-defined key-value pair. Name your file system on creation by including a ``"Key":"Name","Value":"{value}"`` key-value pair. Each key must be unique. For more information, see [Tagging resources](https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the *General Reference Guide*.
 	FileSystemTags?: [...#ElasticFileSystemTag]
 	// The ID of the kms-key-long to be used to protect the encrypted file system. This parameter is only required if you want to use a nondefault kms-key. If this parameter is not specified, the default kms-key for EFS is used. This ID can be in one of the following formats:
-  +  Key ID - A unique identifier of the key, for example ``1234abcd-12ab-34cd-56ef-1234567890ab``.
-  +  ARN - An Amazon Resource Name (ARN) for the key, for example ``arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab``.
-  +  Key alias - A previously created display name for a key, for example ``alias/projectKey1``.
-  +  Key alias ARN - An ARN for a key alias, for example ``arn:aws:kms:us-west-2:444455556666:alias/projectKey1``.
-  
- If ``KmsKeyId`` is specified, the ``Encrypted`` parameter must be set to true.
+	// +  Key ID - A unique identifier of the key, for example ``1234abcd-12ab-34cd-56ef-1234567890ab``.
+	// +  ARN - An Amazon Resource Name (ARN) for the key, for example ``arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab``.
+	// +  Key alias - A previously created display name for a key, for example ``alias/projectKey1``.
+	// +  Key alias ARN - An ARN for a key alias, for example ``arn:aws:kms:us-west-2:444455556666:alias/projectKey1``.
+	// If ``KmsKeyId`` is specified, the ``Encrypted`` parameter must be set to true.
 	KmsKeyId?: string
 	// An array of ``LifecyclePolicy`` objects that define the file system's ``LifecycleConfiguration`` object. A ``LifecycleConfiguration`` object informs Lifecycle management of the following:
-  +  When to move files in the file system from primary storage to IA storage.
-  +  When to move files in the file system from primary storage or IA storage to Archive storage.
-  +  When to move files that are in IA or Archive storage to primary storage.
-  
-  EFS requires that each ``LifecyclePolicy`` object have only a single transition. This means that in a request body, ``LifecyclePolicies`` needs to be structured as an array of ``LifecyclePolicy`` objects, one object for each transition, ``TransitionToIA``, ``TransitionToArchive````TransitionToPrimaryStorageClass``. See the example requests in the following section for more information.
+	// +  When to move files in the file system from primary storage to IA storage.
+	// +  When to move files in the file system from primary storage or IA storage to Archive storage.
+	// +  When to move files that are in IA or Archive storage to primary storage.
+	// EFS requires that each ``LifecyclePolicy`` object have only a single transition. This means that in a request body, ``LifecyclePolicies`` needs to be structured as an array of ``LifecyclePolicy`` objects, one object for each transition, ``TransitionToIA``, ``TransitionToArchive````TransitionToPrimaryStorageClass``. See the example requests in the following section for more information.
 	LifecyclePolicies?: [...#LifecyclePolicy]
 	// The performance mode of the file system. We recommend ``generalPurpose`` performance mode for all file systems. File systems using the ``maxIO`` performance mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for most file operations. The performance mode can't be changed after the file system has been created. The ``maxIO`` mode is not supported on One Zone file systems.
-  Due to the higher per-operation latencies with Max I/O, we recommend using General Purpose performance mode for all file systems.
-  Default is ``generalPurpose``.
+	// Due to the higher per-operation latencies with Max I/O, we recommend using General Purpose performance mode for all file systems.
+	// Default is ``generalPurpose``.
 	PerformanceMode?: string
 	// The throughput, measured in mebibytes per second (MiBps), that you want to provision for a file system that you're creating. Required if ``ThroughputMode`` is set to ``provisioned``. Valid values are 1-3414 MiBps, with the upper limit depending on Region. To increase this limit, contact SUP. For more information, see [Amazon EFS quotas that you can increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide*.
 	ProvisionedThroughputInMibps?: number
-	// Specifies the throughput mode for the file system. The mode can be ``bursting``, ``provisioned``, or ``elastic``. If you set ``ThroughputMode`` to ``provisioned``, you must also set a value for ``ProvisionedThroughputInMibps``. After you create the file system, you can decrease your file system's Provisioned throughput or change between the throughput modes, with certain time restrictions. For more information, see [Specifying throughput with provisioned mode](https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput) in the *Amazon EFS User Guide*. 
- Default is ``bursting``.
+	// Specifies the throughput mode for the file system. The mode can be ``bursting``, ``provisioned``, or ``elastic``. If you set ``ThroughputMode`` to ``provisioned``, you must also set a value for ``ProvisionedThroughputInMibps``. After you create the file system, you can decrease your file system's Provisioned throughput or change between the throughput modes, with certain time restrictions. For more information, see [Specifying throughput with provisioned mode](https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput) in the *Amazon EFS User Guide*.
+	// Default is ``bursting``.
 	ThroughputMode?: string
 }
 
 #BackupPolicy: {
 	// Set the backup policy status for the file system.
-  +  *ENABLED* - Turns automatic backups on for the file system. 
-  +  *DISABLED* - Turns automatic backups off for the file system.
+	// +  *ENABLED* - Turns automatic backups on for the file system.
+	// +  *DISABLED* - Turns automatic backups off for the file system.
 	Status: "DISABLED" | "ENABLED"
 }
 
@@ -58,11 +56,10 @@ package filesystem
 
 #FileSystemProtection: {
 	// The status of the file system's replication overwrite protection.
-  +  ``ENABLED`` – The file system cannot be used as the destination file system in a replication configuration. The file system is writeable. Replication overwrite protection is ``ENABLED`` by default. 
-  +  ``DISABLED`` – The file system can be used as the destination file system in a replication configuration. The file system is read-only and can only be modified by EFS replication.
-  +  ``REPLICATING`` – The file system is being used as the destination file system in a replication configuration. The file system is read-only and is modified only by EFS replication.
-  
- If the replication configuration is deleted, the file system's replication overwrite protection is re-enabled, the file system becomes writeable.
+	// +  ``ENABLED`` – The file system cannot be used as the destination file system in a replication configuration. The file system is writeable. Replication overwrite protection is ``ENABLED`` by default.
+	// +  ``DISABLED`` – The file system can be used as the destination file system in a replication configuration. The file system is read-only and can only be modified by EFS replication.
+	// +  ``REPLICATING`` – The file system is being used as the destination file system in a replication configuration. The file system is read-only and is modified only by EFS replication.
+	// If the replication configuration is deleted, the file system's replication overwrite protection is re-enabled, the file system becomes writeable.
 	ReplicationOverwriteProtection?: "DISABLED" | "ENABLED"
 }
 
@@ -81,16 +78,16 @@ package filesystem
 }
 
 #ReplicationDestination: {
-	// For One Zone file systems, the replication configuration must specify the Availability Zone in which the destination file system is located. 
- Use the format ``us-east-1a`` to specify the Availability Zone. For more information about One Zone file systems, see [EFS file system types](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html) in the *Amazon EFS User Guide*.
-  One Zone file system type is not available in all Availability Zones in AWS-Regions where Amazon EFS is available.
+	// For One Zone file systems, the replication configuration must specify the Availability Zone in which the destination file system is located.
+	// Use the format ``us-east-1a`` to specify the Availability Zone. For more information about One Zone file systems, see [EFS file system types](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html) in the *Amazon EFS User Guide*.
+	// One Zone file system type is not available in all Availability Zones in AWS-Regions where Amazon EFS is available.
 	AvailabilityZoneName?: string
 	// The ID of the destination Amazon EFS file system.
 	FileSystemId?: string & =~"^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$"
 	// The ID of an kms-key-long used to protect the encrypted file system.
 	KmsKeyId?: string
 	// The AWS-Region in which the destination file system is located.
-  For One Zone file systems, the replication configuration must specify the AWS-Region in which the destination file system is located.
+	// For One Zone file systems, the replication configuration must specify the AWS-Region in which the destination file system is located.
 	Region?: string
 	// The Amazon Resource Name (ARN) of the current source file system in the replication configuration.
 	RoleArn?: string

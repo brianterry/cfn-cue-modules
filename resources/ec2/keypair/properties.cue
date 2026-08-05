@@ -4,14 +4,14 @@ import "strings"
 
 #Properties: {
 	// The format of the key pair.
- Default: ``pem``
+	// Default: ``pem``
 	KeyFormat?: "pem" | "ppk"
 	// A unique name for the key pair.
- Constraints: Up to 255 ASCII characters
+	// Constraints: Up to 255 ASCII characters
 	KeyName: string
 	// The type of key pair. Note that ED25519 keys are not supported for Windows instances.
- If the ``PublicKeyMaterial`` property is specified, the ``KeyType`` property is ignored, and the key type is inferred from the ``PublicKeyMaterial`` value.
- Default: ``rsa``
+	// If the ``PublicKeyMaterial`` property is specified, the ``KeyType`` property is ignored, and the key type is inferred from the ``PublicKeyMaterial`` value.
+	// Default: ``rsa``
 	KeyType?: "rsa" | "ed25519"
 	// The public key material. The ``PublicKeyMaterial`` property is used to import a key pair. If this property is not specified, then a new key pair will be created.
 	PublicKeyMaterial?: string

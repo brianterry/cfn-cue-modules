@@ -56,8 +56,7 @@ package replicationgroup
 	// The identifier of the cluster that serves as the primary for this replication group. This cluster must already exist and have a status of available.
 	PrimaryClusterId?: string
 	// An optional parameter that specifies the number of replica nodes in each node group (shard). Valid values are 0 to 5.
-
-**Note:** Using ReplicasPerNodeGroup with NodeGroupConfiguration results in resource replacement. For online scaling, use ReplicasPerNodeGroup alone.
+	// **Note:** Using ReplicasPerNodeGroup with NodeGroupConfiguration results in resource replacement. For online scaling, use ReplicasPerNodeGroup alone.
 	ReplicasPerNodeGroup?: int
 	// A user-created description for the replication group.
 	ReplicationGroupDescription: string

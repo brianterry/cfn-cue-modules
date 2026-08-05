@@ -2,11 +2,11 @@ package customergateway
 
 #Properties: {
 	// For customer gateway devices that support BGP, specify the device's ASN. You must specify either ``BgpAsn`` or ``BgpAsnExtended`` when creating the customer gateway. If the ASN is larger than ``2,147,483,647``, you must use ``BgpAsnExtended``.
- Default: 65000
- Valid values: ``1`` to ``2,147,483,647``
+	// Default: 65000
+	// Valid values: ``1`` to ``2,147,483,647``
 	BgpAsn?: int
 	// For customer gateway devices that support BGP, specify the device's ASN. You must specify either ``BgpAsn`` or ``BgpAsnExtended`` when creating the customer gateway. If the ASN is larger than ``2,147,483,647``, you must use ``BgpAsnExtended``.
- Valid values: ``2,147,483,648`` to ``4,294,967,295``
+	// Valid values: ``2,147,483,648`` to ``4,294,967,295``
 	BgpAsnExtended?: number & >=2.147483648e+09 & <=4.294967294e+09
 	// The Amazon Resource Name (ARN) for the customer gateway certificate.
 	CertificateArn?: string & =~"^arn:(aws[a-zA-Z-]*)?:acm:[a-z]{2}((-gov)|(-iso([a-z]{1})?))?-[a-z]+-\\d{1}:\\d{12}:certificate\\/[a-zA-Z0-9-_]+$"

@@ -9,7 +9,7 @@ package trafficmirrortarget
 	NetworkInterfaceId?: string
 	// The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.
 	NetworkLoadBalancerArn?: string
-	//  The tags to assign to the Traffic Mirror target.
+	// The tags to assign to the Traffic Mirror target.
 	Tags?: [...#Tag]
 }
 

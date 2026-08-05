@@ -24,7 +24,7 @@ import "strings"
 	Duration: #Duration
 	DurationUnit: #DurationUnit
 	// Epoch time in seconds you want the first interval to start. Be sure to choose a time that configures the intervals the way that you want. For example, if you want weekly intervals starting on Mondays at 6 a.m., be sure to specify a start time that is a Monday at 6 a.m.
-As soon as one calendar interval ends, another automatically begins.
+	// As soon as one calendar interval ends, another automatically begins.
 	StartTime: int & >=946684800
 }
 
@@ -61,7 +61,7 @@ As soon as one calendar interval ends, another automatically begins.
 
 #Goal: {
 	// The threshold that determines if the goal is being met. An attainment goal is the ratio of good periods that meet the threshold requirements to the total periods within the interval. For example, an attainment goal of 99.9% means that within your interval, you are targeting 99.9% of the periods to be in healthy state.
-If you omit this parameter, 99 is used to represent 99% as the attainment goal.
+	// If you omit this parameter, 99 is used to represent 99% as the attainment goal.
 	AttainmentGoal?: number
 	Interval?: #Interval
 	// The percentage of remaining budget over total budget that you want to get warnings for. If you omit this parameter, the default of 50.0 is used.

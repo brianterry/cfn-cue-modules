@@ -8,7 +8,7 @@ package datasource
 	// AWS Region and TableName for an Amazon DynamoDB table in your account.
 	DynamoDBConfig?: #DynamoDBConfig
 	// AWS Region and Endpoints for an Amazon OpenSearch Service domain in your account.
-As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service. This property is deprecated. For new data sources, use OpenSearchServiceConfig to specify an OpenSearch Service data source.
+	// As of September 2021, Amazon Elasticsearch Service is Amazon OpenSearch Service. This property is deprecated. For new data sources, use OpenSearchServiceConfig to specify an OpenSearch Service data source.
 	ElasticsearchConfig?: #ElasticsearchConfig
 	// ARN for the EventBridge bus.
 	EventBridgeConfig?: #EventBridgeConfig

@@ -4,14 +4,14 @@ import "strings"
 
 #Properties: {
 	// <p>A set of alternate data source parameters that you want to share for the credentials
-            stored with this data source. The credentials are applied in tandem with the data source
-            parameters when you copy a data source by using a create or update request. The API
-            operation compares the <code>DataSourceParameters</code> structure that's in the request
-            with the structures in the <code>AlternateDataSourceParameters</code> allow list. If the
-            structures are an exact match, the request is allowed to use the credentials from this
-            existing data source. If the <code>AlternateDataSourceParameters</code> list is null,
-            the <code>Credentials</code> originally used with this <code>DataSourceParameters</code>
-            are automatically allowed.</p>
+	// stored with this data source. The credentials are applied in tandem with the data source
+	// parameters when you copy a data source by using a create or update request. The API
+	// operation compares the <code>DataSourceParameters</code> structure that's in the request
+	// with the structures in the <code>AlternateDataSourceParameters</code> allow list. If the
+	// structures are an exact match, the request is allowed to use the credentials from this
+	// existing data source. If the <code>AlternateDataSourceParameters</code> list is null,
+	// the <code>Credentials</code> originally used with this <code>DataSourceParameters</code>
+	// are automatically allowed.</p>
 	AlternateDataSourceParameters?: [...#DataSourceParameters]
 	AwsAccountId?: string & =~"^[0-9]{12}$" & strings.MinRunes(12) & strings.MaxRunes(12)
 	Credentials?: #DataSourceCredentials
@@ -70,14 +70,14 @@ import "strings"
 
 #CredentialPair: {
 	// <p>A set of alternate data source parameters that you want to share for these
-            credentials. The credentials are applied in tandem with the data source parameters when
-            you copy a data source by using a create or update request. The API operation compares
-            the <code>DataSourceParameters</code> structure that's in the request with the
-            structures in the <code>AlternateDataSourceParameters</code> allow list. If the
-            structures are an exact match, the request is allowed to use the new data source with
-            the existing credentials. If the <code>AlternateDataSourceParameters</code> list is
-            null, the <code>DataSourceParameters</code> originally used with these
-                <code>Credentials</code> is automatically allowed.</p>
+	// credentials. The credentials are applied in tandem with the data source parameters when
+	// you copy a data source by using a create or update request. The API operation compares
+	// the <code>DataSourceParameters</code> structure that's in the request with the
+	// structures in the <code>AlternateDataSourceParameters</code> allow list. If the
+	// structures are an exact match, the request is allowed to use the new data source with
+	// the existing credentials. If the <code>AlternateDataSourceParameters</code> list is
+	// null, the <code>DataSourceParameters</code> originally used with these
+	// <code>Credentials</code> is automatically allowed.</p>
 	AlternateDataSourceParameters?: [...#DataSourceParameters]
 	// <p>Password.</p>
 	Password: string & strings.MinRunes(1) & strings.MaxRunes(1024)
@@ -87,9 +87,9 @@ import "strings"
 
 #DataSourceCredentials: {
 	// <p>The Amazon Resource Name (ARN) of a data source that has the credential pair that you
-            want to use. When <code>CopySourceArn</code> is not null, the credential pair from the
-            data source in the ARN is used as the credentials for the
-            <code>DataSourceCredentials</code> structure.</p>
+	// want to use. When <code>CopySourceArn</code> is not null, the credential pair from the
+	// data source in the ARN is used as the credentials for the
+	// <code>DataSourceCredentials</code> structure.</p>
 	CopySourceArn?: string & =~"^arn:[-a-z0-9]*:quicksight:[-a-z0-9]*:[0-9]{12}:datasource/.+$"
 	CredentialPair?: #CredentialPair
 	KeyPairCredentials?: #KeyPairCredentials
@@ -233,7 +233,7 @@ import "strings"
 
 #RedshiftParameters: {
 	// <p>Cluster ID. This field can be blank if the <code>Host</code> and <code>Port</code> are
-            provided.</p>
+	// provided.</p>
 	ClusterId?: string & strings.MinRunes(1) & strings.MaxRunes(64)
 	// <p>Database.</p>
 	Database: string & strings.MinRunes(1) & strings.MaxRunes(128)
@@ -249,20 +249,20 @@ import "strings"
 	// <p>The IAM action to grant or revoke permissions on.</p>
 	Actions: [...string]
 	// <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
-            following:</p>
-         <ul>
-            <li>
-               <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
-            </li>
-            <li>
-               <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
-            </li>
-            <li>
-               <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
-                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
-                    (This is less common.) </p>
-            </li>
-         </ul>
+	// following:</p>
+	// <ul>
+	// <li>
+	// <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
+	// </li>
+	// <li>
+	// <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+	// </li>
+	// <li>
+	// <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
+	// ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
+	// (This is less common.) </p>
+	// </li>
+	// </ul>
 	Principal: string & strings.MinRunes(1) & strings.MaxRunes(256)
 	Resource?: string
 }

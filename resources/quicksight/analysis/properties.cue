@@ -2671,20 +2671,20 @@ import "strings"
 	// <p>The IAM action to grant or revoke permissions on.</p>
 	Actions: [...string]
 	// <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
-            following:</p>
-         <ul>
-            <li>
-               <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
-            </li>
-            <li>
-               <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
-            </li>
-            <li>
-               <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
-                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
-                    (This is less common.) </p>
-            </li>
-         </ul>
+	// following:</p>
+	// <ul>
+	// <li>
+	// <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
+	// </li>
+	// <li>
+	// <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+	// </li>
+	// <li>
+	// <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
+	// ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
+	// (This is less common.) </p>
+	// </li>
+	// </ul>
 	Principal: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
@@ -2849,7 +2849,7 @@ import "strings"
 
 #Sheet: {
 	// <p>The name of a sheet. This name is displayed on the sheet's tab in the Amazon QuickSight
-            console.</p>
+	// console.</p>
 	Name?: string & strings.MinRunes(1) & strings.MaxRunes(2048)
 	// <p>The unique identifier associated with a sheet.</p>
 	SheetId?: string & =~"^[\\w\\-]+$" & strings.MinRunes(1) & strings.MaxRunes(512)

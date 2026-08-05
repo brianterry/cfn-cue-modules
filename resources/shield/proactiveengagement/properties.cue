@@ -4,10 +4,10 @@ import "strings"
 
 #Properties: {
 	// A list of email addresses and phone numbers that the Shield Response Team (SRT) can use to contact you for escalations to the SRT and to initiate proactive customer support.
-To enable proactive engagement, the contact list must include at least one phone number.
+	// To enable proactive engagement, the contact list must include at least one phone number.
 	EmergencyContactList: [...#EmergencyContact]
 	// If `ENABLED`, the Shield Response Team (SRT) will use email and phone to notify contacts about escalations to the SRT and to initiate proactive customer support.
-If `DISABLED`, the SRT will not proactively notify contacts about escalations or to initiate proactive customer support.
+	// If `DISABLED`, the SRT will not proactively notify contacts about escalations or to initiate proactive customer support.
 	ProactiveEngagementStatus: "ENABLED" | "DISABLED"
 }
 

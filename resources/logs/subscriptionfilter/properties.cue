@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	// This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see [PutTransformer](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html).
- If this value is ``true``, the subscription filter is applied on the transformed version of the log events instead of the original ingested log events.
+	// If this value is ``true``, the subscription filter is applied on the transformed version of the log events instead of the original ingested log events.
 	ApplyOnTransformedLogs?: bool
 	// The Amazon Resource Name (ARN) of the destination.
 	DestinationArn: string

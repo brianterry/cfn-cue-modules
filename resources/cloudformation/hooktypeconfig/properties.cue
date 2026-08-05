@@ -8,7 +8,6 @@ package hooktypeconfig
 	// The Amazon Resource Name (ARN) of the type without version number.
 	TypeArn?: string & =~"^arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:([0-9]{12})?:type/hook/.+$"
 	// The name of the type being registered.
-
-We recommend that type names adhere to the following pattern: company_or_organization::service::type.
+	// We recommend that type names adhere to the following pattern: company_or_organization::service::type.
 	TypeName?: string & =~"^[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}$"
 }

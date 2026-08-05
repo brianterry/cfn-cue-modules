@@ -32,15 +32,15 @@ import "strings"
 }
 
 #AuthFormat: {
-	// The type of authentication that the proxy uses for connections from the proxy to the underlying database. 
+	// The type of authentication that the proxy uses for connections from the proxy to the underlying database.
 	AuthScheme?: "SECRETS"
 	// The type of authentication the proxy uses for connections from clients.
 	ClientPasswordAuthType?: "MYSQL_NATIVE_PASSWORD" | "MYSQL_CACHING_SHA2_PASSWORD" | "POSTGRES_SCRAM_SHA_256" | "POSTGRES_MD5" | "SQL_SERVER_AUTHENTICATION"
-	// A user-specified description about the authentication used by a proxy to log in as a specific database user. 
+	// A user-specified description about the authentication used by a proxy to log in as a specific database user.
 	Description?: string
 	// Whether to require or disallow Amazon Web Services Identity and Access Management (IAM) authentication for connections to the proxy. The ENABLED value is valid only for proxies with RDS for Microsoft SQL Server.
 	IAMAuth?: "DISABLED" | "REQUIRED" | "ENABLED"
-	// The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager. 
+	// The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager.
 	SecretArn?: string
 }
 

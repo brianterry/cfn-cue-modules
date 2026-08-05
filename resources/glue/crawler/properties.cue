@@ -55,8 +55,7 @@ package crawler
 	// Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table. A value of true means to scan all records, while a value of false means to sample the records. If no value is specified, the value defaults to true.
 	ScanAll?: bool
 	// The percentage of the configured read capacity units to use by the AWS Glue crawler. Read capacity units is a term defined by DynamoDB, and is a numeric value that acts as rate limiter for the number of reads that can be performed on that table per second.
-
-The valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode).
+	// The valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode).
 	ScanRate?: number
 }
 
@@ -86,8 +85,7 @@ The valid values are null or a value between 0.1 to 1.5. A null value is used wh
 	// The name of the connection to use to connect to the JDBC target.
 	ConnectionName?: string
 	// Specify a value of RAWTYPES or COMMENTS to enable additional metadata in table responses. RAWTYPES provides the native-level datatype. COMMENTS provides comments associated with a column or table in the database.
-
-If you do not need additional metadata, keep the field empty.
+	// If you do not need additional metadata, keep the field empty.
 	EnableAdditionalMetadata?: [...string]
 	// A list of glob patterns used to exclude from the crawl. For more information, see Catalog Tables with a Crawler.
 	Exclusions?: [...string]

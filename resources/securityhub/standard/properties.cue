@@ -1,8 +1,8 @@
 package standard
 
 #Properties: {
-	// Specifies which controls are to be disabled in a standard. 
- *Maximum*: ``100``
+	// Specifies which controls are to be disabled in a standard.
+	// *Maximum*: ``100``
 	DisabledStandardsControls?: [...#StandardsControl]
 	// The ARN of the standard that you want to enable. To view a list of available ASH standards and their ARNs, use the [DescribeStandards](https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_DescribeStandards.html) API operation.
 	StandardsArn: string & =~"arn:aws\\S*:securityhub:\\S"

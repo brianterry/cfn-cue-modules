@@ -17,7 +17,7 @@ import "strings"
 	Bumper?: #Bumper
 	// The configuration for using a content delivery network (CDN), like Amazon CloudFront, for content and ad segment management.
 	CdnConfiguration?: #CdnConfiguration
-	// The player parameters and aliases used as dynamic variables during session initialization. For more information, see Domain Variables. 
+	// The player parameters and aliases used as dynamic variables during session initialization. For more information, see Domain Variables.
 	ConfigurationAliases?: #ConfigurationAliases
 	// A map of event names to function identifiers for custom processing during session lifecycle events.
 	FunctionMapping?: {...}

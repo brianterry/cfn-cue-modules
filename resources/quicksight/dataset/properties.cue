@@ -7,8 +7,8 @@ import "strings"
 	// <p>Groupings of columns that work together in certain Amazon QuickSight features. Currently, only geospatial hierarchy is supported.</p>
 	ColumnGroups?: [...#ColumnGroup]
 	// <p>A set of one or more definitions of a <code>
-               <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html">ColumnLevelPermissionRule</a>
-            </code>.</p>
+	// <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html">ColumnLevelPermissionRule</a>
+	// </code>.</p>
 	ColumnLevelPermissionRules?: [...#ColumnLevelPermissionRule]
 	DataPrepConfiguration?: #DataPrepConfiguration
 	DataSetId?: string
@@ -67,8 +67,8 @@ import "strings"
 
 #CalculatedColumn: {
 	// <p>A unique ID to identify a calculated column. During a dataset update, if the column ID
-            of a calculated column matches that of an existing calculated column, Amazon QuickSight
-            preserves the existing calculated column.</p>
+	// of a calculated column matches that of an existing calculated column, Amazon QuickSight
+	// preserves the existing calculated column.</p>
 	ColumnId: string & strings.MinRunes(1) & strings.MaxRunes(64)
 	// <p>Column name.</p>
 	ColumnName: string & strings.MinRunes(1) & strings.MaxRunes(127)
@@ -80,7 +80,7 @@ import "strings"
 	// <p>Column name.</p>
 	ColumnName: string & strings.MinRunes(1) & strings.MaxRunes(127)
 	// <p>When casting a column from string to datetime type, you can supply a string in a
-            format supported by Amazon QuickSight to denote the source data format.</p>
+	// format supported by Amazon QuickSight to denote the source data format.</p>
 	Format?: string & strings.MinRunes(0) & strings.MaxRunes(32)
 	NewColumnType: #ColumnDataType
 	SubType?: #ColumnDataSubType
@@ -326,7 +326,7 @@ import "strings"
 
 #FilterOperation: {
 	// <p>An expression that must evaluate to a Boolean value. Rows for which the expression
-            evaluates to true are kept in the dataset.</p>
+	// evaluates to true are kept in the dataset.</p>
 	ConditionExpression?: string & strings.MinRunes(1) & strings.MaxRunes(4096)
 	DateFilterCondition?: #DataSetDateFilterCondition
 	NumericFilterCondition?: #DataSetNumericFilterCondition
@@ -363,10 +363,10 @@ import "strings"
 
 #IngestionWaitPolicy: {
 	// <p>The maximum time (in hours) to wait for Ingestion to complete. Default timeout is 36 hours.
- Applicable only when DataSetImportMode mode is set to SPICE and WaitForSpiceIngestion is set to true.</p>
+	// Applicable only when DataSetImportMode mode is set to SPICE and WaitForSpiceIngestion is set to true.</p>
 	IngestionWaitTimeInHours?: number & >=1 & <=36
 	// <p>Wait for SPICE ingestion to finish to mark dataset creation/update successful. Default (true).
-  Applicable only when DataSetImportMode mode is set to SPICE.</p>
+	// Applicable only when DataSetImportMode mode is set to SPICE.</p>
 	WaitForSpiceIngestion?: bool
 }
 
@@ -411,7 +411,7 @@ import "strings"
 
 #JoinKeyProperties: {
 	// <p>A value that indicates that a row in a table is uniquely identified by the columns in
-            a join key. This is used by Amazon QuickSight to optimize query performance.</p>
+	// a join key. This is used by Amazon QuickSight to optimize query performance.</p>
 	UniqueKey?: bool
 }
 
@@ -571,20 +571,20 @@ import "strings"
 	// <p>The IAM action to grant or revoke permissions on.</p>
 	Actions: [...string]
 	// <p>The Amazon Resource Name (ARN) of the principal. This can be one of the
-            following:</p>
-         <ul>
-            <li>
-               <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
-            </li>
-            <li>
-               <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
-            </li>
-            <li>
-               <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
-                    ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
-                    (This is less common.) </p>
-            </li>
-         </ul>
+	// following:</p>
+	// <ul>
+	// <li>
+	// <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p>
+	// </li>
+	// <li>
+	// <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p>
+	// </li>
+	// <li>
+	// <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight
+	// ARN. Use this option only to share resources (templates) across Amazon Web Services accounts.
+	// (This is less common.) </p>
+	// </li>
+	// </ul>
 	Principal: string & strings.MinRunes(1) & strings.MaxRunes(256)
 }
 
@@ -626,9 +626,9 @@ import "strings"
 	// <p>The Amazon Resource Name (ARN) for the data source.</p>
 	DataSourceArn: string
 	// <p>A physical table type for an S3 data source.</p>
-         <note>
-            <p>For files that aren't JSON, only <code>STRING</code> data types are supported in input columns.</p>
-         </note>
+	// <note>
+	// <p>For files that aren't JSON, only <code>STRING</code> data types are supported in input columns.</p>
+	// </note>
 	InputColumns: [...#InputColumn]
 	UploadSettings?: #UploadSettings
 }
@@ -695,9 +695,9 @@ import "strings"
 	// <p>The column that this operation acts on.</p>
 	ColumnName: string & strings.MinRunes(1) & strings.MaxRunes(127)
 	// <p>The dataset column tag, currently only used for geospatial type tagging.</p>
-         <note>
-            <p>This is not tags for the Amazon Web Services tagging feature.</p>
-         </note>
+	// <note>
+	// <p>This is not tags for the Amazon Web Services tagging feature.</p>
+	// </note>
 	Tags: [...#ColumnTag]
 }
 

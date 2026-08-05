@@ -46,9 +46,9 @@ package distributiontenant
 	// The locations for geographic restrictions.
 	Locations?: [...string]
 	// The method that you want to use to restrict distribution of your content by country:
-  +  ``none``: No geographic restriction is enabled, meaning access to content is not restricted by client geo location.
-  +  ``blacklist``: The ``Location`` elements specify the countries in which you don't want CloudFront to distribute your content.
-  +  ``whitelist``: The ``Location`` elements specify the countries in which you want CloudFront to distribute your content.
+	// +  ``none``: No geographic restriction is enabled, meaning access to content is not restricted by client geo location.
+	// +  ``blacklist``: The ``Location`` elements specify the countries in which you don't want CloudFront to distribute your content.
+	// +  ``whitelist``: The ``Location`` elements specify the countries in which you want CloudFront to distribute your content.
 	RestrictionType?: "blacklist" | "whitelist" | "none"
 }
 
@@ -58,8 +58,8 @@ package distributiontenant
 	// The primary domain name associated with the CloudFront managed ACM certificate.
 	PrimaryDomainName?: string
 	// Specify how the HTTP validation token will be served when requesting the CloudFront managed ACM certificate.
-  +  For ``cloudfront``, CloudFront will automatically serve the validation token. Choose this mode if you can point the domain's DNS to CloudFront immediately.
-  +  For ``self-hosted``, you serve the validation token from your existing infrastructure. Choose this mode when you need to maintain current traffic flow while your certificate is being issued. You can place the validation token at the well-known path on your existing web server, wait for ACM to validate and issue the certificate, and then update your DNS to point to CloudFront.
+	// +  For ``cloudfront``, CloudFront will automatically serve the validation token. Choose this mode if you can point the domain's DNS to CloudFront immediately.
+	// +  For ``self-hosted``, you serve the validation token from your existing infrastructure. Choose this mode when you need to maintain current traffic flow while your certificate is being issued. You can place the validation token at the well-known path on your existing web server, wait for ACM to validate and issue the certificate, and then update your DNS to point to CloudFront.
 	ValidationTokenHost?: "cloudfront" | "self-hosted"
 }
 
@@ -72,10 +72,10 @@ package distributiontenant
 
 #Tag: {
 	// A string that contains ``Tag`` key.
- The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+	// The string length should be between 1 and 128 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
 	Key: string
 	// A string that contains an optional ``Tag`` value.
- The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
+	// The string length should be between 0 and 256 characters. Valid characters include ``a-z``, ``A-Z``, ``0-9``, space, and the special characters ``_ - . : / = + @``.
 	Value: string
 }
 

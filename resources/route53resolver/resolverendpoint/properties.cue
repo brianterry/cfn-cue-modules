@@ -2,9 +2,9 @@ package resolverendpoint
 
 #Properties: {
 	// Indicates whether the Resolver endpoint allows inbound or outbound DNS queries:
-- INBOUND: allows DNS queries to your VPC from your network 
-- OUTBOUND: allows DNS queries from your VPC to your network 
-- INBOUND_DELEGATION: allows DNS queries to your VPC from your network with authoritative answers from private hosted zones
+	// - INBOUND: allows DNS queries to your VPC from your network
+	// - OUTBOUND: allows DNS queries from your VPC to your network
+	// - INBOUND_DELEGATION: allows DNS queries to your VPC from your network with authoritative answers from private hosted zones
 	Direction: string
 	// Specifies whether DNS64 is enabled for the Inbound Resolver Endpoint. When set to true, if a DNS AAAA query is made for a domain that has only an A (IPv4) record, the resolver automatically synthesizes an AAAA (IPv6) response by embedding the IPv4 address into the well-known prefix 64:ff9b::/96. Default is false.
 	Dns64Enabled?: bool

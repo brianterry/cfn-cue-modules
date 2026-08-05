@@ -50,14 +50,12 @@ import "strings"
 	// A policy that limits the number of game sessions an individual player can create over a span of time for this fleet.
 	ResourceCreationLimitPolicy?: #ResourceCreationLimitPolicy
 	// Instructions for launching server processes on each instance in the fleet. Server processes run either a custom game build executable or a Realtime script. The runtime configuration defines the server executables or launch script file, launch parameters, and the number of processes to run concurrently on each instance. When creating a fleet, the runtime configuration must have at least one server process configuration; otherwise the request fails with an invalid request exception.
-
-This parameter is required unless the parameters ServerLaunchPath and ServerLaunchParameters are defined. Runtime configuration has replaced these parameters, but fleets that use them will continue to work.
+	// This parameter is required unless the parameters ServerLaunchPath and ServerLaunchParameters are defined. Runtime configuration has replaced these parameters, but fleets that use them will continue to work.
 	RuntimeConfiguration?: #RuntimeConfiguration
 	// A list of rules that control how a fleet is scaled.
 	ScalingPolicies?: [...#ScalingPolicy]
 	// A unique identifier for a Realtime script to be deployed on a new Realtime Servers fleet. The script must have been successfully uploaded to Amazon GameLift. This fleet setting cannot be changed once the fleet is created.
-
-Note: It is not currently possible to use the !Ref command to reference a script created with a CloudFormation template for the fleet property ScriptId. Instead, use Fn::GetAtt Script.Arn or Fn::GetAtt Script.Id to retrieve either of these properties as input for ScriptId. Alternatively, enter a ScriptId string manually.
+	// Note: It is not currently possible to use the !Ref command to reference a script created with a CloudFormation template for the fleet property ScriptId. Instead, use Fn::GetAtt Script.Arn or Fn::GetAtt Script.Id to retrieve either of these properties as input for ScriptId. Alternatively, enter a ScriptId string manually.
 	ScriptId?: string & =~"^script-\\S+|^arn:.*:script/script-\\S+"
 	// This parameter is no longer used but is retained for backward compatibility. Instead, specify server launch parameters in the RuntimeConfiguration parameter. A request must specify either a runtime configuration or values for both ServerLaunchParameters and ServerLaunchPath.
 	ServerLaunchParameters?: string & strings.MinRunes(1) & strings.MaxRunes(1024)
@@ -163,10 +161,8 @@ Note: It is not currently possible to use the !Ref command to reference a script
 	// The number of server processes that use this configuration to run concurrently on an instance.
 	ConcurrentExecutions: int & >=1
 	// The location of the server executable in a custom game build or the name of the Realtime script file that contains the Init() function. Game builds and Realtime scripts are installed on instances at the root:
-
-Windows (for custom game builds only): C:\game. Example: "C:\game\MyGame\server.exe"
-
-Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/MyRealtimeScript.js"
+	// Windows (for custom game builds only): C:\game. Example: "C:\game\MyGame\server.exe"
+	// Linux: /local/game. Examples: "/local/game/MyGame/server.exe" or "/local/game/MyRealtimeScript.js"
 	LaunchPath: string & =~"^([Cc]:\\\\game\\S+|/local/game/\\S+)" & strings.MinRunes(1) & strings.MaxRunes(1024)
 	// An optional list of parameters to pass to the server executable or Realtime script on launch.
 	Parameters?: string & strings.MinRunes(1) & strings.MaxRunes(1024)

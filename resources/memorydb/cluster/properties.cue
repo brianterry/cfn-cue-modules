@@ -6,8 +6,7 @@ import "strings"
 	// The name of the Access Control List to associate with the cluster.
 	ACLName: string & =~"[a-zA-Z][a-zA-Z0-9\\-]*"
 	// A flag that enables automatic minor version upgrade when set to true.
-
-You cannot modify the value of AutoMinorVersionUpgrade after the cluster is created. To enable AutoMinorVersionUpgrade on a cluster you must set AutoMinorVersionUpgrade to true when you create a cluster.
+	// You cannot modify the value of AutoMinorVersionUpgrade after the cluster is created. To enable AutoMinorVersionUpgrade on a cluster you must set AutoMinorVersionUpgrade to true when you create a cluster.
 	AutoMinorVersionUpgrade?: bool
 	// The name of the cluster. This value must be unique as it also serves as the cluster identifier.
 	ClusterName: string & =~"[a-z][a-z0-9\\-]*"
@@ -58,8 +57,7 @@ You cannot modify the value of AutoMinorVersionUpgrade after the cluster is crea
 	// The name of the subnet group to be used for the cluster.
 	SubnetGroupName?: string
 	// A flag that enables in-transit encryption when set to true.
-
-You cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster.
+	// You cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster.
 	TLSEnabled?: bool
 	// An array of key-value pairs to apply to this cluster.
 	Tags?: [...#Tag]
@@ -68,7 +66,7 @@ You cannot modify the value of TransitEncryptionEnabled after the cluster is cre
 #Endpoint: {
 	// The DNS address of the primary read-write node.
 	Address?: string
-	// The port number that the engine is listening on. 
+	// The port number that the engine is listening on.
 	Port?: int
 }
 

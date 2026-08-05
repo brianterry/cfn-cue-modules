@@ -4,7 +4,7 @@ import "strings"
 
 #Properties: {
 	// An optional set of non-secret key–value pairs that contains additional contextual information about the data. For more information, see [Encryption context](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context) in the *Key Management Service Developer Guide*.
- You can only include this parameter if you specify the ``KMSKeyId`` parameter.
+	// You can only include this parameter if you specify the ``KMSKeyId`` parameter.
 	AdditionalEncryptionContext?: #EncryptionContextMap
 	// Data filters for the integration. These filters determine which tables from the source database are sent to the target Amazon Redshift data warehouse.
 	DataFilter?: string & =~"[a-zA-Z0-9_ \"\\\\\\-$,*.:?+\\/]*" & strings.MinRunes(1) & strings.MaxRunes(25600)

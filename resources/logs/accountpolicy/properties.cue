@@ -4,12 +4,9 @@ import "strings"
 
 #Properties: {
 	// The body of the policy document you want to use for this topic.
-
-You can only add one policy per PolicyType.
-
-The policy must be in JSON string format.
-
-Length Constraints: Maximum length of 30720
+	// You can only add one policy per PolicyType.
+	// The policy must be in JSON string format.
+	// Length Constraints: Maximum length of 30720
 	PolicyDocument: string & strings.MinRunes(1) & strings.MaxRunes(30720)
 	// The name of the account policy
 	PolicyName: string & =~"^[^:*]{1,256}$" & strings.MinRunes(1) & strings.MaxRunes(256)

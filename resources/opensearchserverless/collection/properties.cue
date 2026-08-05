@@ -10,13 +10,11 @@ import "strings"
 	Description?: string & strings.MaxRunes(1000)
 	EncryptionConfig?: #EncryptionConfig
 	// The name of the collection.
-
-The name must meet the following criteria:
-Unique to your account and AWS Region
-Starts with a lowercase letter
-Contains only lowercase letters a-z, the numbers 0-9 and the hyphen (-)
-Contains between 3 and 64 characters
-
+	// The name must meet the following criteria:
+	// Unique to your account and AWS Region
+	// Starts with a lowercase letter
+	// Contains only lowercase letters a-z, the numbers 0-9 and the hyphen (-)
+	// Contains between 3 and 64 characters
 	Name: string & =~"^[a-z][a-z0-9-]{2,63}$" & strings.MinRunes(3) & strings.MaxRunes(64)
 	StandbyReplicas?: #StandbyReplicas
 	// List of tags to be added to the resource

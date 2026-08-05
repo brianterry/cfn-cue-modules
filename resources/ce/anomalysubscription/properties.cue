@@ -3,7 +3,7 @@ package anomalysubscription
 import "strings"
 
 #Properties: {
-	// The frequency at which anomaly reports are sent over email. 
+	// The frequency at which anomaly reports are sent over email.
 	Frequency: "DAILY" | "IMMEDIATE" | "WEEKLY"
 	// A list of cost anomaly monitors.
 	MonitorArnList: [...#Arn]
@@ -11,7 +11,7 @@ import "strings"
 	ResourceTags?: [...#ResourceTag]
 	// The name of the subscription.
 	SubscriptionName: string & =~"[\\S\\s]*" & strings.MinRunes(0) & strings.MaxRunes(1024)
-	// The dollar value that triggers a notification if the threshold is exceeded. 
+	// The dollar value that triggers a notification if the threshold is exceeded.
 	Threshold?: number & >=0
 	// An Expression object in JSON String format used to specify the anomalies that you want to generate alerts for.
 	ThresholdExpression?: string

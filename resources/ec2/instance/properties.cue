@@ -83,8 +83,6 @@ package instance
 	// The SSM document and parameter values in AWS Systems Manager to associate with this instance.
 	SsmAssociations?: [...#SsmAssociation]
 	// [EC2-VPC] The ID of the subnet to launch the instance into.
-
-
 	SubnetId?: string
 	// The tags to add to the instance.
 	Tags?: [...#Tag]

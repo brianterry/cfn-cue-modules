@@ -8,10 +8,8 @@ package dbparametergroup
 	// Provides the name of the DB parameter group.
 	Name?: string
 	// The parameters to set for this DB parameter group.
-
-The parameters are expressed as a JSON object consisting of key-value pairs.
-
-Changes to dynamic parameters are applied immediately. During an update, if you have static parameters (whether they were changed or not), it triggers AWS CloudFormation to reboot the associated DB instance without failover.
+	// The parameters are expressed as a JSON object consisting of key-value pairs.
+	// Changes to dynamic parameters are applied immediately. During an update, if you have static parameters (whether they were changed or not), it triggers AWS CloudFormation to reboot the associated DB instance without failover.
 	Parameters: {...}
 	// An optional array of key-value pairs to apply to this DB parameter group.
 	Tags?: [...#Tag]

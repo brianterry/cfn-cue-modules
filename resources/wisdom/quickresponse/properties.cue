@@ -7,8 +7,8 @@ import "strings"
 	Channels?: [...#ChannelType]
 	Content: #QuickResponseContentProvider
 	// The media type of the quick response content.
-- Use application/x.quickresponse;format=plain for quick response written in plain text.
-- Use application/x.quickresponse;format=markdown for quick response written in richtext.
+	// - Use application/x.quickresponse;format=plain for quick response written in plain text.
+	// - Use application/x.quickresponse;format=markdown for quick response written in richtext.
 	ContentType?: string & =~"^(application/x\\.quickresponse;format=(plain|markdown))$"
 	// The description of the quick response.
 	Description?: string & strings.MinRunes(1) & strings.MaxRunes(255)
