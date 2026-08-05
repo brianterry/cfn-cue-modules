@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/sns/topic"
 
 // #mas_trmg enforces all mas-trmg controls for this resource.
 // Unify with #Resource: myResource: topic.#Resource & compliance.#mas_trmg & { ... }
-#mas_trmg: topic.#Resource & #10_1_1
+#mas_trmg: topic.#Resource & #ctrl_10_1_1
 
 // Guard rule: SNS_ENCRYPTED_KMS
-#10_1_1: {
+#ctrl_10_1_1: {
 	Properties: KmsMasterKeyId: _ & !=_|_
 	...
 }

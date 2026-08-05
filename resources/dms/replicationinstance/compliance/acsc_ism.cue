@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/dms/replicationinstance"
 
 // #acsc_ism enforces all acsc-ism controls for this resource.
 // Unify with #Resource: myResource: replicationinstance.#Resource & compliance.#acsc_ism & { ... }
-#acsc_ism: replicationinstance.#Resource & #1528
+#acsc_ism: replicationinstance.#Resource & #ctrl_1528
 
 // Guard rule: DMS_REPLICATION_NOT_PUBLIC
-#1528: {
+#ctrl_1528: {
 	Properties: PubliclyAccessible: _ & !=_|_
 	Properties: PubliclyAccessible: false
 	...

@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstan
 
 // #PCI_DSS_3_2_1 enforces all PCI-DSS-3-2-1 controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#PCI_DSS_3_2_1 & { ... }
-#PCI_DSS_3_2_1: notebookinstance.#Resource & #3_4 & #1_2
+#PCI_DSS_3_2_1: notebookinstance.#Resource & #ctrl_3_4 & #ctrl_1_2
 
 // Guard rule: SAGEMAKER_NOTEBOOK_INSTANCE_KMS_KEY_CONFIGURED
-#3_4: {
+#ctrl_3_4: {
 	Properties: KmsKeyId: _ & !=_|_
 	...
 }
 
 // Guard rule: SAGEMAKER_NOTEBOOK_NO_DIRECT_INTERNET_ACCESS
-#1_2: {
+#ctrl_1_2: {
 	Properties: DirectInternetAccess: _ & !=_|_
 	Properties: DirectInternetAccess: "Disabled"
 	...

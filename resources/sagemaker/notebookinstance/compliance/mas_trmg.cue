@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstan
 
 // #mas_trmg enforces all mas-trmg controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#mas_trmg & { ... }
-#mas_trmg: notebookinstance.#Resource & #10_1_1 & #11_1_1__b
+#mas_trmg: notebookinstance.#Resource & #ctrl_10_1_1 & #ctrl_11_1_1__b
 
 // Guard rule: SAGEMAKER_NOTEBOOK_INSTANCE_KMS_KEY_CONFIGURED
-#10_1_1: {
+#ctrl_10_1_1: {
 	Properties: KmsKeyId: _ & !=_|_
 	...
 }
 
 // Guard rule: SAGEMAKER_NOTEBOOK_NO_DIRECT_INTERNET_ACCESS
-#11_1_1__b: {
+#ctrl_11_1_1__b: {
 	Properties: DirectInternetAccess: _ & !=_|_
 	Properties: DirectInternetAccess: "Disabled"
 	...

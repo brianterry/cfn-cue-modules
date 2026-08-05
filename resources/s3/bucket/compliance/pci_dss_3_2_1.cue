@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #PCI_DSS_3_2_1 enforces all PCI-DSS-3-2-1 controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#PCI_DSS_3_2_1 & { ... }
-#PCI_DSS_3_2_1: bucket.#Resource & #1_2 & #2_2 & #1_2_2 & #1_2_3 & #2_2_2 & #2_2_3 & #10_5_3 & #3_4
+#PCI_DSS_3_2_1: bucket.#Resource & #ctrl_1_2 & #ctrl_2_2 & #ctrl_1_2_2 & #ctrl_1_2_3 & #ctrl_2_2_2 & #ctrl_2_2_3 & #ctrl_10_5_3 & #ctrl_3_4
 
 // Guard rule: S3_BUCKET_LEVEL_PUBLIC_ACCESS_PROHIBITED
-#1_2: {
+#ctrl_1_2: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -19,13 +19,13 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_LOGGING_ENABLED
-#2_2: {
+#ctrl_2_2: {
 	Properties: LoggingConfiguration: _ & !=_|_
 	...
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_READ_PROHIBITED
-#1_2_2: {
+#ctrl_1_2_2: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -35,7 +35,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
-#1_2_3: {
+#ctrl_1_2_3: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -45,13 +45,13 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_REPLICATION_ENABLED
-#2_2_2: {
+#ctrl_2_2_2: {
 	Properties: ReplicationConfiguration: _ & !=_|_
 	...
 }
 
 // Guard rule: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
-#2_2_3: {
+#ctrl_2_2_3: {
 	Properties: BucketEncryption: _ & !=_|_
 	Properties: BucketEncryption: ServerSideEncryptionConfiguration: [...{
 		ServerSideEncryptionByDefault: SSEAlgorithm: "aws:kms" | "AES256"
@@ -61,14 +61,14 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_VERSIONING_ENABLED
-#10_5_3: {
+#ctrl_10_5_3: {
 	Properties: VersioningConfiguration: _ & !=_|_
 	Properties: VersioningConfiguration: Status: "Enabled"
 	...
 }
 
 // Guard rule: S3_DEFAULT_ENCRYPTION_KMS
-#3_4: {
+#ctrl_3_4: {
 	Properties: BucketEncryption: _ & !=_|_
 	Properties: BucketEncryption: ServerSideEncryptionConfiguration: [...{
 		ServerSideEncryptionByDefault: SSEAlgorithm: "aws:kms" | "AES256"

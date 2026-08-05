@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/ec2/route"
 
 // #us_nydfs enforces all us-nydfs controls for this resource.
 // Unify with #Resource: myResource: route.#Resource & compliance.#us_nydfs & { ... }
-#us_nydfs: route.#Resource & #500_02_b_2
+#us_nydfs: route.#Resource & #ctrl_500_02_b_2
 
 // Guard rule: NO_UNRESTRICTED_ROUTE_TO_IGW
-#500_02_b_2: {
+#ctrl_500_02_b_2: {
 	// No clauses extracted — manual review needed
 	...
 }

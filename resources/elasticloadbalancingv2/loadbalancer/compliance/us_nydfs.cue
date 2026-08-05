@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancingv2/l
 
 // #us_nydfs enforces all us-nydfs controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#us_nydfs & { ... }
-#us_nydfs: loadbalancer.#Resource & #500_02_a & #500_02_a_2
+#us_nydfs: loadbalancer.#Resource & #ctrl_500_02_a & #ctrl_500_02_a_2
 
 // Guard rule: ALB_HTTP_DROP_INVALID_HEADER_ENABLED
-#500_02_a: {
+#ctrl_500_02_a: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_DELETION_PROTECTION_ENABLED
-#500_02_a_2: {
+#ctrl_500_02_a_2: {
 	// No clauses extracted — manual review needed
 	...
 }

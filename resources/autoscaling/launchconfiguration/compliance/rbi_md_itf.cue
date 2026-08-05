@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/autoscaling/launchconfig
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: launchconfiguration.#Resource & compliance.#rbi_md_itf & { ... }
-#rbi_md_itf: launchconfiguration.#Resource & #8_I
+#rbi_md_itf: launchconfiguration.#Resource & #ctrl_8_I
 
 // Guard rule: AUTOSCALING_LAUNCH_CONFIG_PUBLIC_IP_DISABLED
-#8_I: {
+#ctrl_8_I: {
 	// No clauses extracted — manual review needed
 	...
 }

@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/sns/topic"
 
 // #bnm_rmit enforces all bnm-rmit controls for this resource.
 // Unify with #Resource: myResource: topic.#Resource & compliance.#bnm_rmit & { ... }
-#bnm_rmit: topic.#Resource & #10_18
+#bnm_rmit: topic.#Resource & #ctrl_10_18
 
 // Guard rule: SNS_ENCRYPTED_KMS
-#10_18: {
+#ctrl_10_18: {
 	Properties: KmsMasterKeyId: _ & !=_|_
 	...
 }

@@ -6,22 +6,22 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancing/loa
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#rbi_md_itf & { ... }
-#rbi_md_itf: loadbalancer.#Resource & #4_4_h & #3_1_h & #3_1_i
+#rbi_md_itf: loadbalancer.#Resource & #ctrl_4_4_h & #ctrl_3_1_h & #ctrl_3_1_i
 
 // Guard rule: ELB_CROSS_ZONE_LOAD_BALANCING_ENABLED
-#4_4_h: {
+#ctrl_4_4_h: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_LOGGING_ENABLED
-#3_1_h: {
+#ctrl_3_1_h: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_TLS_HTTPS_LISTENERS_ONLY
-#3_1_i: {
+#ctrl_3_1_i: {
 	// No clauses extracted — manual review needed
 	...
 }

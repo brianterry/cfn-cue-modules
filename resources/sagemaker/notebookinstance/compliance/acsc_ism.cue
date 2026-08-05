@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstan
 
 // #acsc_ism enforces all acsc-ism controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#acsc_ism & { ... }
-#acsc_ism: notebookinstance.#Resource & #459 & #1528
+#acsc_ism: notebookinstance.#Resource & #ctrl_459 & #ctrl_1528
 
 // Guard rule: SAGEMAKER_NOTEBOOK_INSTANCE_KMS_KEY_CONFIGURED
-#459: {
+#ctrl_459: {
 	Properties: KmsKeyId: _ & !=_|_
 	...
 }
 
 // Guard rule: SAGEMAKER_NOTEBOOK_NO_DIRECT_INTERNET_ACCESS
-#1528: {
+#ctrl_1528: {
 	Properties: DirectInternetAccess: _ & !=_|_
 	Properties: DirectInternetAccess: "Disabled"
 	...

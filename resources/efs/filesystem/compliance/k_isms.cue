@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/efs/filesystem"
 
 // #K_ISMS enforces all K-ISMS controls for this resource.
 // Unify with #Resource: myResource: filesystem.#Resource & compliance.#K_ISMS & { ... }
-#K_ISMS: filesystem.#Resource & #2_7
+#K_ISMS: filesystem.#Resource & #ctrl_2_7
 
 // Guard rule: EFS_ENCRYPTED_CHECK
-#2_7: {
+#ctrl_2_7: {
 	Properties: Encrypted: true
 	...
 }

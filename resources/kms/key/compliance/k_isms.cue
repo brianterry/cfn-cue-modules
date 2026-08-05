@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/kms/key"
 
 // #K_ISMS enforces all K-ISMS controls for this resource.
 // Unify with #Resource: myResource: key.#Resource & compliance.#K_ISMS & { ... }
-#K_ISMS: key.#Resource & #2_7_2
+#K_ISMS: key.#Resource & #ctrl_2_7_2
 
 // Guard rule: CMK_BACKING_KEY_ROTATION_ENABLED
-#2_7_2: {
+#ctrl_2_7_2: {
 	Properties: EnableKeyRotation: true
 	...
 }

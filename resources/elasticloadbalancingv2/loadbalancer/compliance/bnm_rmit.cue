@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancingv2/l
 
 // #bnm_rmit enforces all bnm-rmit controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#bnm_rmit & { ... }
-#bnm_rmit: loadbalancer.#Resource & #10_18 & #10_34
+#bnm_rmit: loadbalancer.#Resource & #ctrl_10_18 & #ctrl_10_34
 
 // Guard rule: ALB_HTTP_DROP_INVALID_HEADER_ENABLED
-#10_18: {
+#ctrl_10_18: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_DELETION_PROTECTION_ENABLED
-#10_34: {
+#ctrl_10_34: {
 	// No clauses extracted — manual review needed
 	...
 }

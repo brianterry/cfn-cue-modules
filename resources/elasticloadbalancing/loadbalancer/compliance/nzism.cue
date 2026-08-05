@@ -6,22 +6,22 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancing/loa
 
 // #nzism enforces all nzism controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#nzism & { ... }
-#nzism: loadbalancer.#Resource & #4829 & #2013 & #1667
+#nzism: loadbalancer.#Resource & #ctrl_4829 & #ctrl_2013 & #ctrl_1667
 
 // Guard rule: ELB_CROSS_ZONE_LOAD_BALANCING_ENABLED
-#4829: {
+#ctrl_4829: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_LOGGING_ENABLED
-#2013: {
+#ctrl_2013: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_TLS_HTTPS_LISTENERS_ONLY
-#1667: {
+#ctrl_1667: {
 	// No clauses extracted — manual review needed
 	...
 }

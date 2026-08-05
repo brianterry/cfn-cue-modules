@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/efs/filesystem"
 
 // #bnm_rmit enforces all bnm-rmit controls for this resource.
 // Unify with #Resource: myResource: filesystem.#Resource & compliance.#bnm_rmit & { ... }
-#bnm_rmit: filesystem.#Resource & #10_18
+#bnm_rmit: filesystem.#Resource & #ctrl_10_18
 
 // Guard rule: EFS_ENCRYPTED_CHECK
-#10_18: {
+#ctrl_10_18: {
 	Properties: Encrypted: true
 	...
 }

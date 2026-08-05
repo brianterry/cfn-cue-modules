@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/emr/cluster"
 
 // #K_ISMS enforces all K-ISMS controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#K_ISMS & { ... }
-#K_ISMS: cluster.#Resource & #2_5_1
+#K_ISMS: cluster.#Resource & #ctrl_2_5_1
 
 // Guard rule: EMR_KERBEROS_ENABLED
-#2_5_1: {
+#ctrl_2_5_1: {
 	Properties: KerberosAttributes: _ & !=_|_
 	...
 }

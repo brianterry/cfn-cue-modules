@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucketpolicy"
 
 // #mas_trmg enforces all mas-trmg controls for this resource.
 // Unify with #Resource: myResource: bucketpolicy.#Resource & compliance.#mas_trmg & { ... }
-#mas_trmg: bucketpolicy.#Resource & #6_4_5
+#mas_trmg: bucketpolicy.#Resource & #ctrl_6_4_5
 
 // Guard rule: S3_BUCKET_SSL_REQUESTS_ONLY
-#6_4_5: {
+#ctrl_6_4_5: {
 	...
 }
 

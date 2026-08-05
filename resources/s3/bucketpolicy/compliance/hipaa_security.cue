@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucketpolicy"
 
 // #hipaa_security enforces all hipaa-security controls for this resource.
 // Unify with #Resource: myResource: bucketpolicy.#Resource & compliance.#hipaa_security & { ... }
-#hipaa_security: bucketpolicy.#Resource & #164_312_a_2_iv
+#hipaa_security: bucketpolicy.#Resource & #ctrl_164_312_a_2_iv
 
 // Guard rule: S3_BUCKET_SSL_REQUESTS_ONLY
-#164_312_a_2_iv: {
+#ctrl_164_312_a_2_iv: {
 	...
 }
 

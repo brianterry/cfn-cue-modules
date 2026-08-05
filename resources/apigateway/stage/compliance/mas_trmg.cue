@@ -6,16 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/apigateway/stage"
 
 // #mas_trmg enforces all mas-trmg controls for this resource.
 // Unify with #Resource: myResource: stage.#Resource & compliance.#mas_trmg & { ... }
-#mas_trmg: stage.#Resource & #10_1_1 & #6_4_6
+#mas_trmg: stage.#Resource & #ctrl_10_1_1
 
 // Guard rule: API_GW_CACHE_ENABLED_AND_ENCRYPTED
-#10_1_1: {
-	// No clauses extracted — manual review needed
-	...
-}
-
-// Guard rule: API_GW_EXECUTION_LOGGING_ENABLED
-#6_4_6: {
+#ctrl_10_1_1: {
 	// No clauses extracted — manual review needed
 	...
 }

@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/kms/key"
 
 // #nbc_trmg enforces all nbc-trmg controls for this resource.
 // Unify with #Resource: myResource: key.#Resource & compliance.#nbc_trmg & { ... }
-#nbc_trmg: key.#Resource & #3_1_5_d_e
+#nbc_trmg: key.#Resource & #ctrl_3_1_5_d_e
 
 // Guard rule: CMK_BACKING_KEY_ROTATION_ENABLED
-#3_1_5_d_e: {
+#ctrl_3_1_5_d_e: {
 	Properties: EnableKeyRotation: true
 	...
 }

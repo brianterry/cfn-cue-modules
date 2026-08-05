@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/autoscaling/launchconfig
 
 // #apra_cpg_234 enforces all apra-cpg-234 controls for this resource.
 // Unify with #Resource: myResource: launchconfiguration.#Resource & compliance.#apra_cpg_234 & { ... }
-#apra_cpg_234: launchconfiguration.#Resource & #36d
+#apra_cpg_234: launchconfiguration.#Resource & #ctrl_36d
 
 // Guard rule: AUTOSCALING_LAUNCH_CONFIG_PUBLIC_IP_DISABLED
-#36d: {
+#ctrl_36d: {
 	// No clauses extracted — manual review needed
 	...
 }

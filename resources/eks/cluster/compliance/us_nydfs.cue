@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/eks/cluster"
 
 // #us_nydfs enforces all us-nydfs controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#us_nydfs & { ... }
-#us_nydfs: cluster.#Resource & #500_02_b_2
+#us_nydfs: cluster.#Resource & #ctrl_500_02_b_2
 
 // Guard rule: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
-#500_02_b_2: {
+#ctrl_500_02_b_2: {
 	Properties: PubliclyAccessible: false
 	...
 }

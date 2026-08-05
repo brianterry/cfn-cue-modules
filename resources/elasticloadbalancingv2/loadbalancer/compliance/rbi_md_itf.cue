@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancingv2/l
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#rbi_md_itf & { ... }
-#rbi_md_itf: loadbalancer.#Resource & #3_1_i & #4_4_h
+#rbi_md_itf: loadbalancer.#Resource & #ctrl_3_1_i & #ctrl_4_4_h
 
 // Guard rule: ALB_HTTP_DROP_INVALID_HEADER_ENABLED
-#3_1_i: {
+#ctrl_3_1_i: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_DELETION_PROTECTION_ENABLED
-#4_4_h: {
+#ctrl_4_4_h: {
 	// No clauses extracted — manual review needed
 	...
 }

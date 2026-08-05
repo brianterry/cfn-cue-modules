@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/eks/cluster"
 
 // #nist_800_172 enforces all nist-800-172 controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#nist_800_172 & { ... }
-#nist_800_172: cluster.#Resource & #3_1_3e
+#nist_800_172: cluster.#Resource & #ctrl_3_1_3e
 
 // Guard rule: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
-#3_1_3e: {
+#ctrl_3_1_3e: {
 	Properties: PubliclyAccessible: false
 	...
 }

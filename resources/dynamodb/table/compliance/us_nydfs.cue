@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/dynamodb/table"
 
 // #us_nydfs enforces all us-nydfs controls for this resource.
 // Unify with #Resource: myResource: table.#Resource & compliance.#us_nydfs & { ... }
-#us_nydfs: table.#Resource & #500_02_b_5
+#us_nydfs: table.#Resource & #ctrl_500_02_b_5
 
 // Guard rule: DYNAMODB_PITR_ENABLED
-#500_02_b_5: {
+#ctrl_500_02_b_5: {
 	Properties: PointInTimeRecoverySpecification: PointInTimeRecoveryEnabled: true
 	...
 }

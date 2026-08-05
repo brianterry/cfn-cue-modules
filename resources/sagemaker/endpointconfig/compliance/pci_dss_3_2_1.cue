@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/endpointconfig
 
 // #PCI_DSS_3_2_1 enforces all PCI-DSS-3-2-1 controls for this resource.
 // Unify with #Resource: myResource: endpointconfig.#Resource & compliance.#PCI_DSS_3_2_1 & { ... }
-#PCI_DSS_3_2_1: endpointconfig.#Resource & #3_4
+#PCI_DSS_3_2_1: endpointconfig.#Resource & #ctrl_3_4
 
 // Guard rule: SAGEMAKER_ENDPOINT_CONFIGURATION_KMS_KEY_CONFIGURED
-#3_4: {
+#ctrl_3_4: {
 	Properties: KmsKeyId: _ & !=_|_
 	...
 }

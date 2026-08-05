@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucketpolicy"
 
 // #nist_800_172 enforces all nist-800-172 controls for this resource.
 // Unify with #Resource: myResource: bucketpolicy.#Resource & compliance.#nist_800_172 & { ... }
-#nist_800_172: bucketpolicy.#Resource & #3_1_3e
+#nist_800_172: bucketpolicy.#Resource & #ctrl_3_1_3e
 
 // Guard rule: S3_BUCKET_SSL_REQUESTS_ONLY
-#3_1_3e: {
+#ctrl_3_1_3e: {
 	...
 }
 

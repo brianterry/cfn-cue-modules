@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucketpolicy"
 
 // #apra_cpg_234 enforces all apra-cpg-234 controls for this resource.
 // Unify with #Resource: myResource: bucketpolicy.#Resource & compliance.#apra_cpg_234 & { ... }
-#apra_cpg_234: bucketpolicy.#Resource & #54
+#apra_cpg_234: bucketpolicy.#Resource & #ctrl_54
 
 // Guard rule: S3_BUCKET_SSL_REQUESTS_ONLY
-#54: {
+#ctrl_54: {
 	...
 }
 

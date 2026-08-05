@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstan
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#rbi_md_itf & { ... }
-#rbi_md_itf: notebookinstance.#Resource & #8_I
+#rbi_md_itf: notebookinstance.#Resource & #ctrl_8_I
 
 // Guard rule: SAGEMAKER_NOTEBOOK_NO_DIRECT_INTERNET_ACCESS
-#8_I: {
+#ctrl_8_I: {
 	Properties: DirectInternetAccess: _ & !=_|_
 	Properties: DirectInternetAccess: "Disabled"
 	...

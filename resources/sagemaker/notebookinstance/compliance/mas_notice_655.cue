@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstan
 
 // #mas_notice_655 enforces all mas-notice-655 controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#mas_notice_655 & { ... }
-#mas_notice_655: notebookinstance.#Resource & #4_4
+#mas_notice_655: notebookinstance.#Resource & #ctrl_4_4
 
 // Guard rule: SAGEMAKER_NOTEBOOK_NO_DIRECT_INTERNET_ACCESS
-#4_4: {
+#ctrl_4_4: {
 	Properties: DirectInternetAccess: _ & !=_|_
 	Properties: DirectInternetAccess: "Disabled"
 	...

@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/efs/filesystem"
 
 // #ncsc enforces all ncsc controls for this resource.
 // Unify with #Resource: myResource: filesystem.#Resource & compliance.#ncsc & { ... }
-#ncsc: filesystem.#Resource & #2__Asset_protection_and_resilience
+#ncsc: filesystem.#Resource & #ctrl_2__Asset_protection_and_resilience
 
 // Guard rule: EFS_ENCRYPTED_CHECK
-#2__Asset_protection_and_resilience: {
+#ctrl_2__Asset_protection_and_resilience: {
 	Properties: Encrypted: true
 	...
 }

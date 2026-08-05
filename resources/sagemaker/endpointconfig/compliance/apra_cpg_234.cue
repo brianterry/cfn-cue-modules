@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/endpointconfig
 
 // #apra_cpg_234 enforces all apra-cpg-234 controls for this resource.
 // Unify with #Resource: myResource: endpointconfig.#Resource & compliance.#apra_cpg_234 & { ... }
-#apra_cpg_234: endpointconfig.#Resource & #52c
+#apra_cpg_234: endpointconfig.#Resource & #ctrl_52c
 
 // Guard rule: SAGEMAKER_ENDPOINT_CONFIGURATION_KMS_KEY_CONFIGURED
-#52c: {
+#ctrl_52c: {
 	Properties: KmsKeyId: _ & !=_|_
 	...
 }

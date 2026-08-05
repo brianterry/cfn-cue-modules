@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/eks/cluster"
 
 // #K_ISMS enforces all K-ISMS controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#K_ISMS & { ... }
-#K_ISMS: cluster.#Resource & #2_6
+#K_ISMS: cluster.#Resource & #ctrl_2_6
 
 // Guard rule: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
-#2_6: {
+#ctrl_2_6: {
 	Properties: PubliclyAccessible: false
 	...
 }

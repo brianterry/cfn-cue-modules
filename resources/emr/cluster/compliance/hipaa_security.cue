@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/emr/cluster"
 
 // #hipaa_security enforces all hipaa-security controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#hipaa_security & { ... }
-#hipaa_security: cluster.#Resource & #164_308_a_3_i
+#hipaa_security: cluster.#Resource & #ctrl_164_308_a_3_i
 
 // Guard rule: EMR_KERBEROS_ENABLED
-#164_308_a_3_i: {
+#ctrl_164_308_a_3_i: {
 	Properties: KerberosAttributes: _ & !=_|_
 	...
 }

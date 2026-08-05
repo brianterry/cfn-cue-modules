@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/eks/cluster"
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#rbi_md_itf & { ... }
-#rbi_md_itf: cluster.#Resource & #8_I
+#rbi_md_itf: cluster.#Resource & #ctrl_8_I
 
 // Guard rule: REDSHIFT_CLUSTER_PUBLIC_ACCESS_CHECK
-#8_I: {
+#ctrl_8_I: {
 	Properties: PubliclyAccessible: false
 	...
 }

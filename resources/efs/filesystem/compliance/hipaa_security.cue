@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/efs/filesystem"
 
 // #hipaa_security enforces all hipaa-security controls for this resource.
 // Unify with #Resource: myResource: filesystem.#Resource & compliance.#hipaa_security & { ... }
-#hipaa_security: filesystem.#Resource & #164_312_a_2_iv
+#hipaa_security: filesystem.#Resource & #ctrl_164_312_a_2_iv
 
 // Guard rule: EFS_ENCRYPTED_CHECK
-#164_312_a_2_iv: {
+#ctrl_164_312_a_2_iv: {
 	Properties: Encrypted: true
 	...
 }

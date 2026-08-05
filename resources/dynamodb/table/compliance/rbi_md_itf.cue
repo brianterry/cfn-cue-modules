@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/dynamodb/table"
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: table.#Resource & compliance.#rbi_md_itf & { ... }
-#rbi_md_itf: table.#Resource & #8_IX
+#rbi_md_itf: table.#Resource & #ctrl_8_IX
 
 // Guard rule: DYNAMODB_PITR_ENABLED
-#8_IX: {
+#ctrl_8_IX: {
 	Properties: PointInTimeRecoverySpecification: PointInTimeRecoveryEnabled: true
 	...
 }

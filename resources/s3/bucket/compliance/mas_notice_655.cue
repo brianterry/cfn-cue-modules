@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #mas_notice_655 enforces all mas-notice-655 controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#mas_notice_655 & { ... }
-#mas_notice_655: bucket.#Resource & #4_4 & #4_4_2 & #4_4_3
+#mas_notice_655: bucket.#Resource & #ctrl_4_4 & #ctrl_4_4_2 & #ctrl_4_4_3
 
 // Guard rule: S3_BUCKET_LEVEL_PUBLIC_ACCESS_PROHIBITED
-#4_4: {
+#ctrl_4_4: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -19,7 +19,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_READ_PROHIBITED
-#4_4_2: {
+#ctrl_4_4_2: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -29,7 +29,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
-#4_4_3: {
+#ctrl_4_4_3: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true

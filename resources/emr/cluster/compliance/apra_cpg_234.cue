@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/emr/cluster"
 
 // #apra_cpg_234 enforces all apra-cpg-234 controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#apra_cpg_234 & { ... }
-#apra_cpg_234: cluster.#Resource & #36d
+#apra_cpg_234: cluster.#Resource & #ctrl_36d
 
 // Guard rule: EMR_KERBEROS_ENABLED
-#36d: {
+#ctrl_36d: {
 	Properties: KerberosAttributes: _ & !=_|_
 	...
 }

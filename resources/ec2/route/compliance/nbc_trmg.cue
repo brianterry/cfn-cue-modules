@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/ec2/route"
 
 // #nbc_trmg enforces all nbc-trmg controls for this resource.
 // Unify with #Resource: myResource: route.#Resource & compliance.#nbc_trmg & { ... }
-#nbc_trmg: route.#Resource & #3_1_2_c
+#nbc_trmg: route.#Resource & #ctrl_3_1_2_c
 
 // Guard rule: NO_UNRESTRICTED_ROUTE_TO_IGW
-#3_1_2_c: {
+#ctrl_3_1_2_c: {
 	// No clauses extracted — manual review needed
 	...
 }

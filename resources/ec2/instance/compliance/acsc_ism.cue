@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/ec2/instance"
 
 // #acsc_ism enforces all acsc-ism controls for this resource.
 // Unify with #Resource: myResource: instance.#Resource & compliance.#acsc_ism & { ... }
-#acsc_ism: instance.#Resource & #1528 & #1528_2
+#acsc_ism: instance.#Resource & #ctrl_1528 & #ctrl_1528_2
 
 // Guard rule: EC2_INSTANCE_NO_PUBLIC_IP
-#1528: {
+#ctrl_1528: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: EC2_INSTANCES_IN_VPC
-#1528_2: {
+#ctrl_1528_2: {
 	Properties: SubnetId: [_, ...]
 	...
 }

@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/secretsmanager/secret"
 
 // #PCI_DSS_3_2_1 enforces all PCI-DSS-3-2-1 controls for this resource.
 // Unify with #Resource: myResource: secret.#Resource & compliance.#PCI_DSS_3_2_1 & { ... }
-#PCI_DSS_3_2_1: secret.#Resource & #3_4
+#PCI_DSS_3_2_1: secret.#Resource & #ctrl_3_4
 
 // Guard rule: SECRETSMANAGER_USING_CMK
-#3_4: {
+#ctrl_3_4: {
 	Properties: KmsKeyId: _ & !=_|_
 	Properties: KmsKeyId: "alias/aws/secretsmanager"
 	...

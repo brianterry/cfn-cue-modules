@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/emr/cluster"
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#rbi_md_itf & { ... }
-#rbi_md_itf: cluster.#Resource & #3_1_c_
+#rbi_md_itf: cluster.#Resource & #ctrl_3_1_c_
 
 // Guard rule: EMR_KERBEROS_ENABLED
-#3_1_c_: {
+#ctrl_3_1_c_: {
 	Properties: KerberosAttributes: _ & !=_|_
 	...
 }

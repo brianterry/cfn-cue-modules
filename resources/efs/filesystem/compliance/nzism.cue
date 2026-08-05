@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/efs/filesystem"
 
 // #nzism enforces all nzism controls for this resource.
 // Unify with #Resource: myResource: filesystem.#Resource & compliance.#nzism & { ... }
-#nzism: filesystem.#Resource & #2082
+#nzism: filesystem.#Resource & #ctrl_2082
 
 // Guard rule: EFS_ENCRYPTED_CHECK
-#2082: {
+#ctrl_2082: {
 	Properties: Encrypted: true
 	...
 }

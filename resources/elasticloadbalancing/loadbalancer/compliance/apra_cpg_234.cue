@@ -6,22 +6,22 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancing/loa
 
 // #apra_cpg_234 enforces all apra-cpg-234 controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#apra_cpg_234 & { ... }
-#apra_cpg_234: loadbalancer.#Resource & #36l & #67 & #54
+#apra_cpg_234: loadbalancer.#Resource & #ctrl_36l & #ctrl_67 & #ctrl_54
 
 // Guard rule: ELB_CROSS_ZONE_LOAD_BALANCING_ENABLED
-#36l: {
+#ctrl_36l: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_LOGGING_ENABLED
-#67: {
+#ctrl_67: {
 	// No clauses extracted — manual review needed
 	...
 }
 
 // Guard rule: ELB_TLS_HTTPS_LISTENERS_ONLY
-#54: {
+#ctrl_54: {
 	// No clauses extracted — manual review needed
 	...
 }

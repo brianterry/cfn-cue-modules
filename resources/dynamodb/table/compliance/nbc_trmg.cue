@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/dynamodb/table"
 
 // #nbc_trmg enforces all nbc-trmg controls for this resource.
 // Unify with #Resource: myResource: table.#Resource & compliance.#nbc_trmg & { ... }
-#nbc_trmg: table.#Resource & #3_2_1_h
+#nbc_trmg: table.#Resource & #ctrl_3_2_1_h
 
 // Guard rule: DYNAMODB_PITR_ENABLED
-#3_2_1_h: {
+#ctrl_3_2_1_h: {
 	Properties: PointInTimeRecoverySpecification: PointInTimeRecoveryEnabled: true
 	...
 }

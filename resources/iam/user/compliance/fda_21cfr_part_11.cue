@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/iam/user"
 
 // #FDA_21CFR_Part_11 enforces all FDA-21CFR-Part-11 controls for this resource.
 // Unify with #Resource: myResource: user.#Resource & compliance.#FDA_21CFR_Part_11 & { ... }
-#FDA_21CFR_Part_11: user.#Resource & #11_10_d & #11_10_d_2
+#FDA_21CFR_Part_11: user.#Resource & #ctrl_11_10_d & #ctrl_11_10_d_2
 
 // Guard rule: IAM_NO_INLINE_POLICY_CHECK
-#11_10_d: {
+#ctrl_11_10_d: {
 	Properties: Policies: []
 	...
 }
 
 // Guard rule: IAM_USER_NO_POLICIES_CHECK
-#11_10_d_2: {
+#ctrl_11_10_d_2: {
 	Properties: Policies: []
 	...
 }

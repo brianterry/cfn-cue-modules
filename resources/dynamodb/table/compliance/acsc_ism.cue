@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/dynamodb/table"
 
 // #acsc_ism enforces all acsc-ism controls for this resource.
 // Unify with #Resource: myResource: table.#Resource & compliance.#acsc_ism & { ... }
-#acsc_ism: table.#Resource & #1511
+#acsc_ism: table.#Resource & #ctrl_1511
 
 // Guard rule: DYNAMODB_PITR_ENABLED
-#1511: {
+#ctrl_1511: {
 	Properties: PointInTimeRecoverySpecification: PointInTimeRecoveryEnabled: true
 	...
 }

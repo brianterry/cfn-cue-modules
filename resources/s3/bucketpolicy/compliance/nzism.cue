@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucketpolicy"
 
 // #nzism enforces all nzism controls for this resource.
 // Unify with #Resource: myResource: bucketpolicy.#Resource & compliance.#nzism & { ... }
-#nzism: bucketpolicy.#Resource & #4839
+#nzism: bucketpolicy.#Resource & #ctrl_4839
 
 // Guard rule: S3_BUCKET_SSL_REQUESTS_ONLY
-#4839: {
+#ctrl_4839: {
 	...
 }
 

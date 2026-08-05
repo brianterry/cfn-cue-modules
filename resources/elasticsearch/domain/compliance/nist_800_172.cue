@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 
 // #nist_800_172 enforces all nist-800-172 controls for this resource.
 // Unify with #Resource: myResource: domain.#Resource & compliance.#nist_800_172 & { ... }
-#nist_800_172: domain.#Resource & #3_1_3e & #3_1_3e_2
+#nist_800_172: domain.#Resource & #ctrl_3_1_3e & #ctrl_3_1_3e_2
 
 // Guard rule: ELASTICSEARCH_IN_VPC_ONLY
-#3_1_3e: {
+#ctrl_3_1_3e: {
 	Properties: VPCOptions: _ & !=_|_
 	...
 }
 
 // Guard rule: ELASTICSEARCH_NODE_TO_NODE_ENCRYPTION_CHECK
-#3_1_3e_2: {
+#ctrl_3_1_3e_2: {
 	Properties: NodeToNodeEncryptionOptions: Enabled: true
 	...
 }

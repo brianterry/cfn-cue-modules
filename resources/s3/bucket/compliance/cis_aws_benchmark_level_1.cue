@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #cis_aws_benchmark_level_1 enforces all cis-aws-benchmark-level-1 controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#cis_aws_benchmark_level_1 & { ... }
-#cis_aws_benchmark_level_1: bucket.#Resource & #2_1_5 & #3_6 & #3_3 & #3_3_2 & #2_1_3
+#cis_aws_benchmark_level_1: bucket.#Resource & #ctrl_2_1_5 & #ctrl_3_6 & #ctrl_3_3 & #ctrl_3_3_2 & #ctrl_2_1_3
 
 // Guard rule: S3_BUCKET_LEVEL_PUBLIC_ACCESS_PROHIBITED
-#2_1_5: {
+#ctrl_2_1_5: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -19,13 +19,13 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_LOGGING_ENABLED
-#3_6: {
+#ctrl_3_6: {
 	Properties: LoggingConfiguration: _ & !=_|_
 	...
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_READ_PROHIBITED
-#3_3: {
+#ctrl_3_3: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -35,7 +35,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
-#3_3_2: {
+#ctrl_3_3_2: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -45,7 +45,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_VERSIONING_ENABLED
-#2_1_3: {
+#ctrl_2_1_3: {
 	Properties: VersioningConfiguration: _ & !=_|_
 	Properties: VersioningConfiguration: Status: "Enabled"
 	...

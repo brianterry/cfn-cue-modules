@@ -6,16 +6,16 @@ import "github.com/brianterry/cfn-cue-modules/resources/redshift/cluster"
 
 // #apra_cpg_234 enforces all apra-cpg-234 controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#apra_cpg_234 & { ... }
-#apra_cpg_234: cluster.#Resource & #52c & #36b & #36d
+#apra_cpg_234: cluster.#Resource & #ctrl_52c & #ctrl_36b & #ctrl_36d
 
 // Guard rule: REDSHIFT_CLUSTER_CONFIGURATION_CHECK
-#52c: {
+#ctrl_52c: {
 	Properties: Encrypted: true
 	...
 }
 
 // Guard rule: REDSHIFT_CLUSTER_MAINTENANCESETTINGS_CHECK
-#36b: {
+#ctrl_36b: {
 	Properties: PreferredMaintenanceWindow: _ & !=_|_
 	Properties: AllowVersionUpgrade: true
 	Properties: AutomatedSnapshotRetentionPeriod: >0
@@ -23,7 +23,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/redshift/cluster"
 }
 
 // Guard rule: REDSHIFT_ENHANCED_VPC_ROUTING_ENABLED
-#36d: {
+#ctrl_36d: {
 	Properties: EnhancedVpcRouting: true
 	...
 }

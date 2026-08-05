@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/autoscaling/launchconfig
 
 // #nist_800_171 enforces all nist-800-171 controls for this resource.
 // Unify with #Resource: myResource: launchconfiguration.#Resource & compliance.#nist_800_171 & { ... }
-#nist_800_171: launchconfiguration.#Resource & #3_1_2
+#nist_800_171: launchconfiguration.#Resource & #ctrl_3_1_2
 
 // Guard rule: AUTOSCALING_LAUNCH_CONFIG_PUBLIC_IP_DISABLED
-#3_1_2: {
+#ctrl_3_1_2: {
 	// No clauses extracted — manual review needed
 	...
 }

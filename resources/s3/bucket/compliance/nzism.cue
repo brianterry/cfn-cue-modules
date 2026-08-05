@@ -6,10 +6,10 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #nzism enforces all nzism controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#nzism & { ... }
-#nzism: bucket.#Resource & #4838 & #4838_2 & #2082 & #4849 & #2082_2
+#nzism: bucket.#Resource & #ctrl_4838 & #ctrl_4838_2 & #ctrl_2082 & #ctrl_4849 & #ctrl_2082_2
 
 // Guard rule: S3_BUCKET_PUBLIC_READ_PROHIBITED
-#4838: {
+#ctrl_4838: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -19,7 +19,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
-#4838_2: {
+#ctrl_4838_2: {
 	Properties: PublicAccessBlockConfiguration: _ & !=_|_
 	Properties: PublicAccessBlockConfiguration: BlockPublicAcls: true
 	Properties: PublicAccessBlockConfiguration: BlockPublicPolicy: true
@@ -29,7 +29,7 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
-#2082: {
+#ctrl_2082: {
 	Properties: BucketEncryption: _ & !=_|_
 	Properties: BucketEncryption: ServerSideEncryptionConfiguration: [...{
 		ServerSideEncryptionByDefault: SSEAlgorithm: "aws:kms" | "AES256"
@@ -39,14 +39,14 @@ import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 }
 
 // Guard rule: S3_BUCKET_VERSIONING_ENABLED
-#4849: {
+#ctrl_4849: {
 	Properties: VersioningConfiguration: _ & !=_|_
 	Properties: VersioningConfiguration: Status: "Enabled"
 	...
 }
 
 // Guard rule: S3_DEFAULT_ENCRYPTION_KMS
-#2082_2: {
+#ctrl_2082_2: {
 	Properties: BucketEncryption: _ & !=_|_
 	Properties: BucketEncryption: ServerSideEncryptionConfiguration: [...{
 		ServerSideEncryptionByDefault: SSEAlgorithm: "aws:kms" | "AES256"
