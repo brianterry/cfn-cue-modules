@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/replicationinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/dms/replicationinstance"
 
 // #cmmc_level_3 enforces all cmmc-level-3 controls for this resource.
 // Unify with #Resource: myResource: replicationinstance.#Resource & compliance.#cmmc_level_3 & { ... }

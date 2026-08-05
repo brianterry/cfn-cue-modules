@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/user"
+import "github.com/brianterry/cfn-cue-modules/resources/iam/user"
 
 // #ncsc_cafv3 enforces all ncsc-cafv3 controls for this resource.
 // Unify with #Resource: myResource: user.#Resource & compliance.#ncsc_cafv3 & { ... }

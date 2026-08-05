@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/bucket"
+import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #cmmc_level_1 enforces all cmmc-level-1 controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#cmmc_level_1 & { ... }

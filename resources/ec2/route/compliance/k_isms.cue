@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/route"
+import "github.com/brianterry/cfn-cue-modules/resources/ec2/route"
 
 // #K_ISMS enforces all K-ISMS controls for this resource.
 // Unify with #Resource: myResource: route.#Resource & compliance.#K_ISMS & { ... }

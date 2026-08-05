@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/notebookinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstance"
 
 // #FDA_21CFR_Part_11 enforces all FDA-21CFR-Part-11 controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#FDA_21CFR_Part_11 & { ... }

@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/cluster"
+import "github.com/brianterry/cfn-cue-modules/resources/eks/cluster"
 
 // #nist_privacy_framework enforces all nist-privacy-framework controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#nist_privacy_framework & { ... }

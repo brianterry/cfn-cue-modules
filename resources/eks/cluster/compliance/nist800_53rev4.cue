@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/cluster"
+import "github.com/brianterry/cfn-cue-modules/resources/eks/cluster"
 
 // #NIST800_53Rev4 enforces all NIST800-53Rev4 controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#NIST800_53Rev4 & { ... }

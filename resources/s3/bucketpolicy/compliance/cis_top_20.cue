@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/bucketpolicy"
+import "github.com/brianterry/cfn-cue-modules/resources/s3/bucketpolicy"
 
 // #cis_top_20 enforces all cis-top-20 controls for this resource.
 // Unify with #Resource: myResource: bucketpolicy.#Resource & compliance.#cis_top_20 & { ... }

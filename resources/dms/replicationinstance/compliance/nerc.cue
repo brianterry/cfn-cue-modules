@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/replicationinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/dms/replicationinstance"
 
 // #nerc enforces all nerc controls for this resource.
 // Unify with #Resource: myResource: replicationinstance.#Resource & compliance.#nerc & { ... }

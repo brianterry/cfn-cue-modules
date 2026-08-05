@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/endpointconfig"
+import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/endpointconfig"
 
 // #nbc_trmg enforces all nbc-trmg controls for this resource.
 // Unify with #Resource: myResource: endpointconfig.#Resource & compliance.#nbc_trmg & { ... }

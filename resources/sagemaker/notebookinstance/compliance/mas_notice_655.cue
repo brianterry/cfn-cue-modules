@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/notebookinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstance"
 
 // #mas_notice_655 enforces all mas-notice-655 controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#mas_notice_655 & { ... }

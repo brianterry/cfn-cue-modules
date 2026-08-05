@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/cluster"
+import "github.com/brianterry/cfn-cue-modules/resources/redshift/cluster"
 
 // #wa_Reliability_Pillar enforces all wa-Reliability-Pillar controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#wa_Reliability_Pillar & { ... }

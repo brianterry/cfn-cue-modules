@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/domainname"
+import "github.com/brianterry/cfn-cue-modules/resources/apigateway/domainname"
 
 // #general enforces all general controls for this resource.
 // Unify with #Resource: myResource: domainname.#Resource & compliance.#general & { ... }

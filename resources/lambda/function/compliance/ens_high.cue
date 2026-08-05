@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/function"
+import "github.com/brianterry/cfn-cue-modules/resources/lambda/function"
 
 // #ens_high enforces all ens-high controls for this resource.
 // Unify with #Resource: myResource: function.#Resource & compliance.#ens_high & { ... }

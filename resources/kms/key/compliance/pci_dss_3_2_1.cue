@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/key"
+import "github.com/brianterry/cfn-cue-modules/resources/kms/key"
 
 // #PCI_DSS_3_2_1 enforces all PCI-DSS-3-2-1 controls for this resource.
 // Unify with #Resource: myResource: key.#Resource & compliance.#PCI_DSS_3_2_1 & { ... }

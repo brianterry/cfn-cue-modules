@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/trail"
+import "github.com/brianterry/cfn-cue-modules/resources/cloudtrail/trail"
 
 // #ncsc enforces all ncsc controls for this resource.
 // Unify with #Resource: myResource: trail.#Resource & compliance.#ncsc & { ... }

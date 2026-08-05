@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/function"
+import "github.com/brianterry/cfn-cue-modules/resources/lambda/function"
 
 // #ncsc_cafv3 enforces all ncsc-cafv3 controls for this resource.
 // Unify with #Resource: myResource: function.#Resource & compliance.#ncsc_cafv3 & { ... }

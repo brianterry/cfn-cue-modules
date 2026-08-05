@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/endpointconfig"
+import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/endpointconfig"
 
 // #us_nydfs enforces all us-nydfs controls for this resource.
 // Unify with #Resource: myResource: endpointconfig.#Resource & compliance.#us_nydfs & { ... }

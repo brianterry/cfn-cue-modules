@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/loadbalancer"
+import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancing/loadbalancer"
 
 // #cis_top_20 enforces all cis-top-20 controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#cis_top_20 & { ... }

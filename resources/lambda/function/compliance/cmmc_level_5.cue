@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/function"
+import "github.com/brianterry/cfn-cue-modules/resources/lambda/function"
 
 // #cmmc_level_5 enforces all cmmc-level-5 controls for this resource.
 // Unify with #Resource: myResource: function.#Resource & compliance.#cmmc_level_5 & { ... }

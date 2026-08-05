@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/replicationinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/dms/replicationinstance"
 
 // #hipaa_security enforces all hipaa-security controls for this resource.
 // Unify with #Resource: myResource: replicationinstance.#Resource & compliance.#hipaa_security & { ... }

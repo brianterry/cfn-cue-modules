@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/loggroup"
+import "github.com/brianterry/cfn-cue-modules/resources/logs/loggroup"
 
 // #nist_800_181 enforces all nist-800-181 controls for this resource.
 // Unify with #Resource: myResource: loggroup.#Resource & compliance.#nist_800_181 & { ... }

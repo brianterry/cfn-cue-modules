@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/notebookinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstance"
 
 // #cmmc_level_2 enforces all cmmc-level-2 controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#cmmc_level_2 & { ... }

@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/launchconfiguration"
+import "github.com/brianterry/cfn-cue-modules/resources/autoscaling/launchconfiguration"
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: launchconfiguration.#Resource & compliance.#ens_low & { ... }

@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/route"
+import "github.com/brianterry/cfn-cue-modules/resources/ec2/route"
 
 // #enisa_cybersecurity_guide_for_smes enforces all enisa-cybersecurity-guide-for-smes controls for this resource.
 // Unify with #Resource: myResource: route.#Resource & compliance.#enisa_cybersecurity_guide_for_smes & { ... }

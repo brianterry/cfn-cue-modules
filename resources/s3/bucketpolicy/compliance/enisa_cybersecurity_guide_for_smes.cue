@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/bucketpolicy"
+import "github.com/brianterry/cfn-cue-modules/resources/s3/bucketpolicy"
 
 // #enisa_cybersecurity_guide_for_smes enforces all enisa-cybersecurity-guide-for-smes controls for this resource.
 // Unify with #Resource: myResource: bucketpolicy.#Resource & compliance.#enisa_cybersecurity_guide_for_smes & { ... }

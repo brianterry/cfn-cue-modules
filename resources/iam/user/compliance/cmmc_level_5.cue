@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/user"
+import "github.com/brianterry/cfn-cue-modules/resources/iam/user"
 
 // #cmmc_level_5 enforces all cmmc-level-5 controls for this resource.
 // Unify with #Resource: myResource: user.#Resource & compliance.#cmmc_level_5 & { ... }

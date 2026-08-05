@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/loadbalancer"
+import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancing/loadbalancer"
 
 // #ncsc_cafv3 enforces all ncsc-cafv3 controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#ncsc_cafv3 & { ... }

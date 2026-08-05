@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/launchconfiguration"
+import "github.com/brianterry/cfn-cue-modules/resources/autoscaling/launchconfiguration"
 
 // #nist_800_171 enforces all nist-800-171 controls for this resource.
 // Unify with #Resource: myResource: launchconfiguration.#Resource & compliance.#nist_800_171 & { ... }

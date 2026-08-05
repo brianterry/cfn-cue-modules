@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/function"
+import "github.com/brianterry/cfn-cue-modules/resources/lambda/function"
 
 // #hipaa_security enforces all hipaa-security controls for this resource.
 // Unify with #Resource: myResource: function.#Resource & compliance.#hipaa_security & { ... }

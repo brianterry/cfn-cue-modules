@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/domain"
+import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 
 // #nzism enforces all nzism controls for this resource.
 // Unify with #Resource: myResource: domain.#Resource & compliance.#nzism & { ... }

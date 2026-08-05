@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/domain"
+import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 
 // #nist_800_172 enforces all nist-800-172 controls for this resource.
 // Unify with #Resource: myResource: domain.#Resource & compliance.#nist_800_172 & { ... }

@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/trail"
+import "github.com/brianterry/cfn-cue-modules/resources/cloudtrail/trail"
 
 // #cisa_ce enforces all cisa-ce controls for this resource.
 // Unify with #Resource: myResource: trail.#Resource & compliance.#cisa_ce & { ... }

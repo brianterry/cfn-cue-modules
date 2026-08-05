@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/loggroup"
+import "github.com/brianterry/cfn-cue-modules/resources/logs/loggroup"
 
 // #ABS_CCIGv2_Standard enforces all ABS-CCIGv2-Standard controls for this resource.
 // Unify with #Resource: myResource: loggroup.#Resource & compliance.#ABS_CCIGv2_Standard & { ... }

@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/key"
+import "github.com/brianterry/cfn-cue-modules/resources/kms/key"
 
 // #cis_aws_benchmark_level_2 enforces all cis-aws-benchmark-level-2 controls for this resource.
 // Unify with #Resource: myResource: key.#Resource & compliance.#cis_aws_benchmark_level_2 & { ... }

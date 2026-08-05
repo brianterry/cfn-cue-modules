@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/loadbalancer"
+import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancingv2/loadbalancer"
 
 // #nbc_trmg enforces all nbc-trmg controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#nbc_trmg & { ... }

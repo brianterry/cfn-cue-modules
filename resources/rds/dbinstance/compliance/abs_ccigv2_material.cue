@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/dbinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/rds/dbinstance"
 
 // #ABS_CCIGv2_Material enforces all ABS-CCIGv2-Material controls for this resource.
 // Unify with #Resource: myResource: dbinstance.#Resource & compliance.#ABS_CCIGv2_Material & { ... }

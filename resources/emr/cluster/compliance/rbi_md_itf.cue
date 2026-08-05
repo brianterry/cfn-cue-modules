@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/cluster"
+import "github.com/brianterry/cfn-cue-modules/resources/emr/cluster"
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#rbi_md_itf & { ... }

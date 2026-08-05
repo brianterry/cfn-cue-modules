@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/notebookinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/sagemaker/notebookinstance"
 
 // #nbc_trmg enforces all nbc-trmg controls for this resource.
 // Unify with #Resource: myResource: notebookinstance.#Resource & compliance.#nbc_trmg & { ... }

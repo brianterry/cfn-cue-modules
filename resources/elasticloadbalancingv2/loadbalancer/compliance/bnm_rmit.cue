@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/loadbalancer"
+import "github.com/brianterry/cfn-cue-modules/resources/elasticloadbalancingv2/loadbalancer"
 
 // #bnm_rmit enforces all bnm-rmit controls for this resource.
 // Unify with #Resource: myResource: loadbalancer.#Resource & compliance.#bnm_rmit & { ... }

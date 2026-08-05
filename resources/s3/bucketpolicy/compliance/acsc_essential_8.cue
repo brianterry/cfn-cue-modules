@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/bucketpolicy"
+import "github.com/brianterry/cfn-cue-modules/resources/s3/bucketpolicy"
 
 // #acsc_essential_8 enforces all acsc-essential-8 controls for this resource.
 // Unify with #Resource: myResource: bucketpolicy.#Resource & compliance.#acsc_essential_8 & { ... }

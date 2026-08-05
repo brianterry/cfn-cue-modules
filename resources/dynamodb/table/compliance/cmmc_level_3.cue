@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/table"
+import "github.com/brianterry/cfn-cue-modules/resources/dynamodb/table"
 
 // #cmmc_level_3 enforces all cmmc-level-3 controls for this resource.
 // Unify with #Resource: myResource: table.#Resource & compliance.#cmmc_level_3 & { ... }

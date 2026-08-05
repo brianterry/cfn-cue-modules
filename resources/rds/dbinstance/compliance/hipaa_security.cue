@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/dbinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/rds/dbinstance"
 
 // #hipaa_security enforces all hipaa-security controls for this resource.
 // Unify with #Resource: myResource: dbinstance.#Resource & compliance.#hipaa_security & { ... }

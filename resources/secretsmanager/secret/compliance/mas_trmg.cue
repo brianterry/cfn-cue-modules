@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/secret"
+import "github.com/brianterry/cfn-cue-modules/resources/secretsmanager/secret"
 
 // #mas_trmg enforces all mas-trmg controls for this resource.
 // Unify with #Resource: myResource: secret.#Resource & compliance.#mas_trmg & { ... }

@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/user"
+import "github.com/brianterry/cfn-cue-modules/resources/iam/user"
 
 // #us_nydfs enforces all us-nydfs controls for this resource.
 // Unify with #Resource: myResource: user.#Resource & compliance.#us_nydfs & { ... }

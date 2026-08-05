@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/table"
+import "github.com/brianterry/cfn-cue-modules/resources/dynamodb/table"
 
 // #wa_Reliability_Pillar enforces all wa-Reliability-Pillar controls for this resource.
 // Unify with #Resource: myResource: table.#Resource & compliance.#wa_Reliability_Pillar & { ... }

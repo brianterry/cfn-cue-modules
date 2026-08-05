@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/instance"
+import "github.com/brianterry/cfn-cue-modules/resources/ec2/instance"
 
 // #ens_high enforces all ens-high controls for this resource.
 // Unify with #Resource: myResource: instance.#Resource & compliance.#ens_high & { ... }

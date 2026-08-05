@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/distribution"
+import "github.com/brianterry/cfn-cue-modules/resources/cloudfront/distribution"
 
 // #general enforces all general controls for this resource.
 // Unify with #Resource: myResource: distribution.#Resource & compliance.#general & { ... }

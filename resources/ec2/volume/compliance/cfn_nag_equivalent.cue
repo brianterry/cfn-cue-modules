@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/volume"
+import "github.com/brianterry/cfn-cue-modules/resources/ec2/volume"
 
 // #cfn_nag_equivalent enforces all cfn-nag-equivalent controls for this resource.
 // Unify with #Resource: myResource: volume.#Resource & compliance.#cfn_nag_equivalent & { ... }

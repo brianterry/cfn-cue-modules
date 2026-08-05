@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/cluster"
+import "github.com/brianterry/cfn-cue-modules/resources/redshift/cluster"
 
 // #FDA_21CFR_Part_11 enforces all FDA-21CFR-Part-11 controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#FDA_21CFR_Part_11 & { ... }

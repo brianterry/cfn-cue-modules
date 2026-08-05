@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/loggroup"
+import "github.com/brianterry/cfn-cue-modules/resources/logs/loggroup"
 
 // #cfn_nag_equivalent enforces all cfn-nag-equivalent controls for this resource.
 // Unify with #Resource: myResource: loggroup.#Resource & compliance.#cfn_nag_equivalent & { ... }

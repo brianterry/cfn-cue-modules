@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/bucket"
+import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #ABS_CCIGv2_Standard enforces all ABS-CCIGv2-Standard controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#ABS_CCIGv2_Standard & { ... }

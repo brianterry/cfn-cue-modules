@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/instance"
+import "github.com/brianterry/cfn-cue-modules/resources/ec2/instance"
 
 // #cisa_ce enforces all cisa-ce controls for this resource.
 // Unify with #Resource: myResource: instance.#Resource & compliance.#cisa_ce & { ... }

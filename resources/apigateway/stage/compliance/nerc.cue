@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/stage"
+import "github.com/brianterry/cfn-cue-modules/resources/apigateway/stage"
 
 // #nerc enforces all nerc controls for this resource.
 // Unify with #Resource: myResource: stage.#Resource & compliance.#nerc & { ... }

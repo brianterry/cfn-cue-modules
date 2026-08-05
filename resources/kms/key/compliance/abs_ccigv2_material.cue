@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/key"
+import "github.com/brianterry/cfn-cue-modules/resources/kms/key"
 
 // #ABS_CCIGv2_Material enforces all ABS-CCIGv2-Material controls for this resource.
 // Unify with #Resource: myResource: key.#Resource & compliance.#ABS_CCIGv2_Material & { ... }

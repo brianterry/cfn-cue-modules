@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/filesystem"
+import "github.com/brianterry/cfn-cue-modules/resources/efs/filesystem"
 
 // #bnm_rmit enforces all bnm-rmit controls for this resource.
 // Unify with #Resource: myResource: filesystem.#Resource & compliance.#bnm_rmit & { ... }

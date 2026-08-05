@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/key"
+import "github.com/brianterry/cfn-cue-modules/resources/kms/key"
 
 // #FedRAMP_Low enforces all FedRAMP-Low controls for this resource.
 // Unify with #Resource: myResource: key.#Resource & compliance.#FedRAMP_Low & { ... }

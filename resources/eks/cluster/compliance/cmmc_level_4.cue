@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/cluster"
+import "github.com/brianterry/cfn-cue-modules/resources/eks/cluster"
 
 // #cmmc_level_4 enforces all cmmc-level-4 controls for this resource.
 // Unify with #Resource: myResource: cluster.#Resource & compliance.#cmmc_level_4 & { ... }

@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/function"
+import "github.com/brianterry/cfn-cue-modules/resources/lambda/function"
 
 // #ABS_CCIGv2_Standard enforces all ABS-CCIGv2-Standard controls for this resource.
 // Unify with #Resource: myResource: function.#Resource & compliance.#ABS_CCIGv2_Standard & { ... }

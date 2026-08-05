@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/domain"
+import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 
 // #wa_Reliability_Pillar enforces all wa-Reliability-Pillar controls for this resource.
 // Unify with #Resource: myResource: domain.#Resource & compliance.#wa_Reliability_Pillar & { ... }

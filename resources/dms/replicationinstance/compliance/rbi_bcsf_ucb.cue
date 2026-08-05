@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/replicationinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/dms/replicationinstance"
 
 // #rbi_bcsf_ucb enforces all rbi-bcsf-ucb controls for this resource.
 // Unify with #Resource: myResource: replicationinstance.#Resource & compliance.#rbi_bcsf_ucb & { ... }

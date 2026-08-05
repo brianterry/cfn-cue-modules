@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/user"
+import "github.com/brianterry/cfn-cue-modules/resources/iam/user"
 
 // #rbi_md_itf enforces all rbi-md-itf controls for this resource.
 // Unify with #Resource: myResource: user.#Resource & compliance.#rbi_md_itf & { ... }

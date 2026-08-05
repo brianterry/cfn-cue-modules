@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/topic"
+import "github.com/brianterry/cfn-cue-modules/resources/sns/topic"
 
 // #wa_Security_Pillar enforces all wa-Security-Pillar controls for this resource.
 // Unify with #Resource: myResource: topic.#Resource & compliance.#wa_Security_Pillar & { ... }

@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/dbinstance"
+import "github.com/brianterry/cfn-cue-modules/resources/rds/dbinstance"
 
 // #ens_high enforces all ens-high controls for this resource.
 // Unify with #Resource: myResource: dbinstance.#Resource & compliance.#ens_high & { ... }

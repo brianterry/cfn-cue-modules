@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/bucket"
+import "github.com/brianterry/cfn-cue-modules/resources/s3/bucket"
 
 // #cis_aws_benchmark_level_2 enforces all cis-aws-benchmark-level-2 controls for this resource.
 // Unify with #Resource: myResource: bucket.#Resource & compliance.#cis_aws_benchmark_level_2 & { ... }

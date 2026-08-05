@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/domain"
+import "github.com/brianterry/cfn-cue-modules/resources/elasticsearch/domain"
 
 // #ens_low enforces all ens-low controls for this resource.
 // Unify with #Resource: myResource: domain.#Resource & compliance.#ens_low & { ... }

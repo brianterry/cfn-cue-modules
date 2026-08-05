@@ -2,7 +2,7 @@
 // Generated from aws-guard-rules-registry Guard rules.
 package compliance
 
-import "github.com/brianterry/cfn-cue-modules/resources/trail"
+import "github.com/brianterry/cfn-cue-modules/resources/cloudtrail/trail"
 
 // #nist_1800_25 enforces all nist-1800-25 controls for this resource.
 // Unify with #Resource: myResource: trail.#Resource & compliance.#nist_1800_25 & { ... }
